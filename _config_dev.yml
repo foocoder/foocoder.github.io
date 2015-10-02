@@ -1,6 +1,6 @@
 
 # The name of your website.
-name: Meta Coder
+name: Meta Coder's Blog
 
 description:
 
@@ -8,10 +8,10 @@ description:
   meta: Reading, Thinking, Coding
 
   # Description of your site. This will show up on the front page.
-  subtitle: Reading,  Thinking  and  Coding.
+  subtitle: A simple life
 
 author:
-  name: MetaCoder # Change this!
+  name: MetaCoder# Change this!
 
   # Necessary for contact page
   email: slow295185031@gmail.com # Change this!
@@ -20,7 +20,9 @@ author:
   # want it.
   info: Just a Coder Monkey!
 
-url: http://127.0.0.1:4000
+# The URL of the homepage of your site (without trailing slash). Leave this
+# empty when you run Jekyll locally.
+url: http://localhost:4000
 baseurl: ""
 
 # language attribute in <html> element.

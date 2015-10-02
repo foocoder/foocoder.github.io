@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>Meta Coder</title>
+		<description>{&quot;meta&quot;=&gt;&quot;Reading, Thinking, Coding&quot;, &quot;subtitle&quot;=&gt;&quot;Reading,  Thinking  and  Coding.&quot;}</description>
+		<link>http://127.0.0.1:4000</link>
+		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>我的第一篇博客</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;Just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;
+折腾了整整两天，总算把这个看起来依然“残破不堪”的博客搭建起来，当页面终于不再显示404的时候，我激动的眼泪儿都下来了。
+&lt;/p&gt;
+&lt;p&gt;
+写博客的心情其实早就有了，我还记得当时是三四年前自己在家折腾一晚上才装好的一个hadoop的环境，兴奋之余就想把这一切都记录下来。
+于是又是申请博客又是copy模板什么的，好不容易在CSDN搭起一个还算看的过去的博客，写了两句之后果断放弃了，实在写不下去了。
+感觉上了大学以后来讲什么都没学到，反而失去了好多。先不说什么节操丢了一箩筐，我记得自己中学阶段有事没事偶尔还抒抒情，写点什么散文随笔之类的，
+可是上大学以后，essay虽说写了不少，但里边有多少是自己的东西，想想恐怕自己都不好意思开口。一旦处于一个人云亦云的大环境下，好多对你的潜移默化连你自己都难以发觉。
+今天看到一个博客“每天坚持1000字”挺有感触，从小到大好多事情都心血来潮，经过三分钟热度后慢慢退却，很难有什么能够真正做的persistent。
+总想去做点什么却总也做不了什么，日子就这样庸庸碌碌平平淡淡的过去了。
+&lt;/p&gt;
+&lt;p&gt;来点改变吧，毕竟已经这样平淡的过了20多年，总得去看点大风小浪什么的。&lt;/p&gt;
+&lt;p&gt;后续还有好多要折腾的地方，什么模板啊，什么评论啊，什么代码高亮啊...不过想想看，人这辈子不也总是折腾来折腾去的，只要不怕折腾，就够了&lt;/p&gt;
+&lt;hr/&gt;
+&lt;p&gt;PS:本人胡言乱语之作，不登大雅之堂&lt;/p&gt;
+&lt;p&gt;30 Aug 2015&lt;/p&gt;
+
+
+</description>
+				
+				<pubDate>Sun, 30 Aug 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
+			</item>
+		
+			<item>
+				<title>Theme introduction</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;Just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;This post is a showcase of what Holo Alfa looks like, and a reference guide for how you can use it to make your blog shine.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 22 Jul 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/2015/07/22/theme-introduction/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/2015/07/22/theme-introduction/</guid>
+			</item>
+		
+			<item>
+				<title>Guest Posts</title>
+				
+					<dc:creator>{&quot;name&quot;=&gt;&quot;George Michael&quot;, &quot;info&quot;=&gt;&quot;(@&lt;a href=\&quot;https://twitter.com/georgemichael\&quot;&gt;GeorgeMichael&lt;/a&gt;)&quot;}</dc:creator>
+				
+				
+					<description>&lt;p&gt;If you want to create a guest post that will appear as if written by another author, simply add an &lt;code&gt;author&lt;/code&gt; attribute to the front matter of your blog post. This will be picked up in the template and displayed in the meta-section both on the front page as well as on the individual post pages.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Fri, 15 Mar 2013 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/2013/03/15/guest-posts/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/2013/03/15/guest-posts/</guid>
+			</item>
+		
+			<item>
+				<title>Code Snippets</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;Just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Whenever you need to post a code snippet, use the liquid tags &lt;code&gt;hilight&lt;/code&gt; and &lt;code&gt;endhilight&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Sun, 10 Feb 2013 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/2013/02/10/code-snippets/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/2013/02/10/code-snippets/</guid>
+			</item>
+		
+			<item>
+				<title>Flat out like a dunny</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;Just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;She’ll be right bored sh*tless mate he’s got a massive bitzer. Lets throw a trackies where built like a rotten. As stands out like garbo flamin grab us a bogan. We’re going pozzy when she’ll be right cleanskin. Lets throw a chrissie my come a skite. Gutful of middy my gutful of ugg boots. Flat out like a larrikin where grab us a mates. It’ll be apples heaps built like a counter meal. As cross as a booze bus when you little ripper shit house. As cunning as a bush oyster mate as stands out like jumbuck. We’re going whinge mate lets throw a vee dub.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 18 Jan 2012 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/2012/01/18/hello-world/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/2012/01/18/hello-world/</guid>
+			</item>
+		
+	</channel>
+</rss>
