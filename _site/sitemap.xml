@@ -9,18 +9,6 @@
         <loc>http://127.0.0.1:4000/2015/07/22/theme-introduction/</loc>
     </url>
     
-    <url>
-        <loc>http://127.0.0.1:4000/2013/03/15/guest-posts/</loc>
-    </url>
-    
-    <url>
-        <loc>http://127.0.0.1:4000/2013/02/10/code-snippets/</loc>
-    </url>
-    
-    <url>
-        <loc>http://127.0.0.1:4000/2012/01/18/hello-world/</loc>
-    </url>
-    
 
     
     
@@ -74,16 +62,6 @@
     
     <url>
         <loc>http://127.0.0.1:4000/thanks/</loc>
-    </url>
-    
-    
-    
-    
-    
-    
-    
-    <url>
-        <loc>http://127.0.0.1:4000/page-2/</loc>
     </url>
     
     

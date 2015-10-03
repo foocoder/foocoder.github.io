@@ -49,11 +49,11 @@ a {
   color: inherit;
   text-decoration: none;
   position: relative;
-  background: -webkit-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76));
+  /* background: -webkit-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76)); */
   background: -moz-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76));
   background: -o-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76));
   background: -ms-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76));
-  background: linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76));
+  /* background: linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76)); */
   -webkit-background-size: 1px 1px;
   -moz-background-size: 1px 1px;
   background-size: 1px 1px;
@@ -385,11 +385,11 @@ nav a.current {
   color: rgba({{ site.text-color }},.5);
 }
 .subtitle a {
-  background-image: -webkit-linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5));
+  /* background-image: -webkit-linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5)); */
   background-image: -moz-linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5));
   background-image: -o-linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5));
   background-image: -ms-linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5));
-  background-image: linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5));
+  /* background-image: linear-gradient(rgba({{ site.text-color }},.5),rgba({{ site.text-color }},.5)); */
 }
 
 

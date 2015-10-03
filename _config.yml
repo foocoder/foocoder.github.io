@@ -18,7 +18,7 @@ author:
 
   # Optional text (html) to display after author name. Leave empty if you don't
   # want it.
-  info: Just a Coder Monkey!
+  info: who is just a Coder Monkey!
 
 url: http://127.0.0.1:4000
 baseurl: ""
@@ -87,7 +87,7 @@ disqus-shortname:
 
 # Use a complete url here, including http:// and such. Requiring just usernames
 # has been considered, but this is way more customizable.
-twitter:
+twitter: a
 youtube:
 instagram:
 tumblr:
