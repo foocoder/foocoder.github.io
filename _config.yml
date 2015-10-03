@@ -35,12 +35,12 @@ lang: en
 # If you want to show the subtitle anywhere else than the front page, use
 # {% include subtitle.html %} to include it anywhere you want.
 show-subtitle: true
-display-social-icons: false
+display-social-icons: true
 
 footer-text: This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.
 
 # Preferably 64px in height. Leave empty = disable.
-logo-image: # /img/logo.png
+logo-image:  /img/logo1.png
 
 # Toolbar color for Chrome on Android.
 theme-color-attr: "#00f0ff"
@@ -92,12 +92,12 @@ youtube:
 instagram:
 tumblr:
 facebook:
-google-plus:
+google-plus: slow295185031@gmail.com
 reddit:
 soundcloud:
 medium:
 linkedin:
-github:
+github: slow295185031@gmail.com
 behance:
 codepen:
 dribbble:
@@ -114,7 +114,7 @@ paypal:
 # Useful for translating into other languages.
 
 var_on_the_web: On the web
-var_read: Read # Text after each post summary on the homepage.
+var_read: Read More# Text after each post summary on the homepage.
 var_newer: Newer
 var_older: Older
 var_next_post: Next post
