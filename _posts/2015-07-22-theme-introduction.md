@@ -1,5 +1,6 @@
 ---
 title: Theme introduction
+tags: [Introduction, Markdown, Blog]
 cover-image: hipster.jpg
 ---
 
