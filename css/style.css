@@ -260,6 +260,7 @@ nav {
   margin: 20px 0;
 }
 article {
+  text-align:justify;
   margin-top: 30px;
 }
 article::after,

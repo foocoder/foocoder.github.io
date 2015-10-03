@@ -8,7 +8,7 @@ description:
   meta: Reading, Thinking, Coding
 
   # Description of your site. This will show up on the front page.
-  subtitle: Reading,  Thinking  and  Coding.
+  subtitle: Hi, I'm Meta Coder!<br/>Reading, Thinking and Coding is My Life.
 
 author:
   name: MetaCoder # Change this!
@@ -75,7 +75,7 @@ nav-breaking-point: 520px
 paginate: 3
 
 # Display links for the previous and next post on post pages.
-display-next-prev-post: false
+display-next-prev-post: true
 
 # Leave empty if you don't want comments on post pages.
 disqus-shortname:
@@ -91,8 +91,8 @@ twitter:
 youtube:
 instagram:
 tumblr:
-facebook:
-google-plus: slow295185031@gmail.com
+facebook: https://www.facebook.com/yeoman.slow/
+google-plus: https://plus.google.com/u/0/101257011987309990194/posts/p/pub/
 reddit:
 soundcloud:
 medium:
@@ -113,8 +113,8 @@ paypal:
 
 # Useful for translating into other languages.
 
-var_on_the_web: On the web
-var_read: Read More # Text after each post summary on the homepage.
+var_on_the_web: You can find me on the web
+var_read: <br/>Read More # Text after each post summary on the homepage.
 var_newer: Newer
 var_older: Older
 var_next_post: Next post
