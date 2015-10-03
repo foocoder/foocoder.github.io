@@ -114,7 +114,7 @@ paypal:
 # Useful for translating into other languages.
 
 var_on_the_web: On the web
-var_read: Read More# Text after each post summary on the homepage.
+var_read: Read More # Text after each post summary on the homepage.
 var_newer: Newer
 var_older: Older
 var_next_post: Next post
