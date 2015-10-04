@@ -1,6 +1,6 @@
 ---
 title: Code Snippets
-category: Sample
+categories: Sample
 tags: [Markdown, Code, Introduction]
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Guest Posts
-category: Sample
+categories: Sample
 tags: [Guest, Blog, Introduction]
 author:
   name: George Michael
