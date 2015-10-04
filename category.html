@@ -8,7 +8,7 @@ cover-image: 7.jpg
   {% for category in site.categories %}
     <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
     <div>
-    <h2 class="fa fa-bookmark">{{ category|first }}
+    <h2 class="fa fa-bookmark" style="font-size:30px">{{ category|first|capitalize }}
         <span>({{ category|last|size }})</span>
     </h2>
         {% for post in category.last %}

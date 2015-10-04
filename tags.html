@@ -22,17 +22,15 @@ cover-image: 10.jpg
       });
     </script>
 
+    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
     <div id="example" style="width: 850px; height: 400px;"></div>
-    <hr style="margin:30px auto;width:90%">
+    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
 
-    <!-- 标签列表 -->
     {% for tag in site.tags %}
     <div >
-        <h3>
-        <span class="fa fa-tag" id="{{ tag[0] }}">
-                {{ tag[0] }}
-        </span>
-        </h3>
+        <h2 class="fa fa-tag" id="{{ tag[0] }}" style="font-size:30px">
+        <span>{{ tag[0] }}</span>
+        </h2>
         {% for post in tag[1] %}
           <!-- <li class="listing-item">
           <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
