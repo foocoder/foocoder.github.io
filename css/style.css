@@ -122,7 +122,7 @@ h3, h4, h5, h6 {
   display: block;
   margin-bottom: 10px;
   font-weight: 400;
-  font-size: .8em;
+  font-size: 1.6em;
 }
 .fluid-width-video-wrapper {
   margin: 30px auto;
@@ -493,7 +493,13 @@ nav a.current {
 /* Additional */
 div.tags{
     margin-top:15px;
+    color: rgba({{ site.text-color }}, 0.5);
 }
 div.category{
     margin-top:15px;
+    color: rgba({{ site.text-color }}, 0.5);
+}
+div.times{
+    margin-top:15px;
+    color: rgba({{ site.text-color }}, 0.5);
 }

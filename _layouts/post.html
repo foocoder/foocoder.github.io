@@ -10,7 +10,6 @@ layout: default
 {% endif %}
 
 <article>
-    <span class="meta">{{ page.date | date: site.date_format }} • {{ read-time }}</span>
         <h1>{{ page.title }}</h1>
         <div class="category">
             {% for cat in page.categories %}
@@ -21,6 +20,9 @@ layout: default
             {% for tag in page.tags %}
             <a class="fa fa-tag" href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
             {% endfor %}
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar-o">{{ page.date | date: site.date_format }} • {{ read-time }}</span>
         </div>
 
         <hr>
