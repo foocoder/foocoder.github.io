@@ -9,7 +9,7 @@ cover-image: 4.jpg
 
     {% unless post.next %}
       <hr>
-      <h2 class="fa fa-tags" style="font-size:30px">
+      <h2 class="fa fa-laptop" style="font-size:30px">
           <span>{{ post.date | date: '%Y' }}</span>
       </h2>
     {% else %}
@@ -17,7 +17,7 @@ cover-image: 4.jpg
       {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
       {% if year != nyear %}
         <hr>
-        <h2 class="fa fa-tags" style="font-size:30px">
+        <h2 class="fa fa-laptop" style="font-size:30px">
             <span>{{ post.date | date: '%Y' }}</span>
         </h2>
       {% endif %}
