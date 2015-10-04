@@ -47,3 +47,8 @@ div.jqcloud {
 }
 
 div.jqcloud span { padding: 0; }
+a sup{
+    vertical-align:super;
+    font-size:smaller;
+    color:rgba(167,81,3,0.49);
+}

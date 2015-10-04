@@ -121,7 +121,7 @@
             word.link = $.extend(word.link, { href: encodeURI(word.link.href).replace(/'/g, "%27") });
           }
 
-          inner_html = $('<a>').attr(word.link).text(word.text);
+          inner_html = $('<a>').attr(word.link).text(word.text).append('<sup>'+word.weight+'</sup>');
         } else {
           inner_html = word.text;
         }

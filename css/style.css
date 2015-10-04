@@ -458,7 +458,7 @@ nav a.current {
     font-size: 1.3em;
   }
   hr {
-    margin: 90px auto;
+    margin: 20px auto;
   }
 }
 @media all and (min-width: {{ site.nav-breaking-point }}) {

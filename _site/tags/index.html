@@ -103,293 +103,229 @@ header::after {
 
 		<article>
 	<h1>Tag Cloud</h1>
-		    <link rel="stylesheet" type="text/css" href="/js/jqCloud/jqcloud.css" />
-    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/js/jqCloud/jqcloud-1.0.4.min.js"></script>
-    <script type="text/javascript">
-      /*!
-       * Create an array of word objects, each representing a word in the cloud
-       */
-      var word_array = [
-        
-            {text: "Markdown", weight: 3, link: "#Markdown" },
-        
-            {text: "Hello Blog", weight: 1, link: "#Hello Blog" },
-        
-            {text: "Test", weight: 1, link: "#Test" },
-        
-            {text: "Blog", weight: 4, link: "#Blog" },
-        
-            {text: "Code", weight: 1, link: "#Code" },
-        
-            {text: "Introduction", weight: 3, link: "#Introduction" },
-        
-            {text: "Guest", weight: 1, link: "#Guest" },
-        
-            {text: "Casually", weight: 1, link: "#Casually" },
-        
-            {text: "胡言乱语", weight: 1, link: "#胡言乱语" },
-        
-      ];
-      $(function() {
-        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
-        $("#example").jQCloud(word_array);
-      });
-    </script>
+		<link rel="stylesheet" type="text/css" href="/js/jqCloud/jqcloud.css" />
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/js/jqCloud/jqcloud-1.0.4.js"></script>
+<script type="text/javascript">
+/*!
+* Create an array of word objects, each representing a word in the cloud
+ */
+var word_array = [
 
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
-    <div id="example" style="width: 850px; height: 400px;"></div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+{text: "Markdown", weight: 3, link: "#Markdown" },
 
+{text: "Hello Blog", weight: 1, link: "#Hello Blog" },
+
+{text: "Test", weight: 1, link: "#Test" },
+
+{text: "Blog", weight: 4, link: "#Blog" },
+
+{text: "Code", weight: 1, link: "#Code" },
+
+{text: "Introduction", weight: 3, link: "#Introduction" },
+
+{text: "Guest", weight: 1, link: "#Guest" },
+
+{text: "Casually", weight: 1, link: "#Casually" },
+
+{text: "胡言乱语", weight: 1, link: "#胡言乱语" },
+
+];
+$(function() {
+    // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+    $("#example").jQCloud(word_array);
+});
+</script>
+
+<hr>
+<div id="example" style="width: 850px; height: 400px;"></div>
+<hr>
+
+
+<div >
+    <h2 class="fa fa-tag" id="Markdown" style="font-size:30px">
+        <span>Markdown (3)</span>
+    </h2>
     
-    <div >
-        <h2 class="fa fa-tag" id="Markdown" style="font-size:30px">
-        <span>Markdown</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-07-22">2015-07-22</time>
-          <a href="/sample/2015/07/22/theme-introduction/" title="Theme introduction">Theme introduction</a>
-          </li> -->
-         <p >
-            <a href="/sample/2015/07/22/theme-introduction/">
-                Theme introduction
-            </a>
-             <small> • Jul 22, 2015</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-02-10">2013-02-10</time>
-          <a href="/sample/2013/02/10/code-snippets/" title="Code Snippets">Code Snippets</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/02/10/code-snippets/">
-                Code Snippets
-            </a>
-             <small> • Feb 10, 2013</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2012-01-18">2012-01-18</time>
-          <a href="/sample/2012/01/18/hello-world/" title="Flat out like a dunny">Flat out like a dunny</a>
-          </li> -->
-         <p >
-            <a href="/sample/2012/01/18/hello-world/">
-                Flat out like a dunny
-            </a>
-             <small> • Jan 18, 2012</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/sample/2015/07/22/theme-introduction/">
+        Theme introduction
+    </a>
+    <small> • Jul 22, 2015</small></p>
+    </p>
     
-    <div >
-        <h2 class="fa fa-tag" id="Hello Blog" style="font-size:30px">
-        <span>Hello Blog</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2012-01-18">2012-01-18</time>
-          <a href="/sample/2012/01/18/hello-world/" title="Flat out like a dunny">Flat out like a dunny</a>
-          </li> -->
-         <p >
-            <a href="/sample/2012/01/18/hello-world/">
-                Flat out like a dunny
-            </a>
-             <small> • Jan 18, 2012</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/sample/2013/02/10/code-snippets/">
+        Code Snippets
+    </a>
+    <small> • Feb 10, 2013</small></p>
+    </p>
     
-    <div >
-        <h2 class="fa fa-tag" id="Test" style="font-size:30px">
-        <span>Test</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2012-01-18">2012-01-18</time>
-          <a href="/sample/2012/01/18/hello-world/" title="Flat out like a dunny">Flat out like a dunny</a>
-          </li> -->
-         <p >
-            <a href="/sample/2012/01/18/hello-world/">
-                Flat out like a dunny
-            </a>
-             <small> • Jan 18, 2012</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/sample/2012/01/18/hello-world/">
+        Flat out like a dunny
+    </a>
+    <small> • Jan 18, 2012</small></p>
+    </p>
     
-    <div >
-        <h2 class="fa fa-tag" id="Blog" style="font-size:30px">
-        <span>Blog</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-08-30">2015-08-30</time>
-          <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="我的第一篇博客">我的第一篇博客</a>
-          </li> -->
-         <p >
-            <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-                我的第一篇博客
-            </a>
-             <small> • Aug 30, 2015</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-07-22">2015-07-22</time>
-          <a href="/sample/2015/07/22/theme-introduction/" title="Theme introduction">Theme introduction</a>
-          </li> -->
-         <p >
-            <a href="/sample/2015/07/22/theme-introduction/">
-                Theme introduction
-            </a>
-             <small> • Jul 22, 2015</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-03-15">2013-03-15</time>
-          <a href="/sample/2013/03/15/guest-posts/" title="Guest Posts">Guest Posts</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/03/15/guest-posts/">
-                Guest Posts
-            </a>
-             <small> • Mar 15, 2013</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2012-01-18">2012-01-18</time>
-          <a href="/sample/2012/01/18/hello-world/" title="Flat out like a dunny">Flat out like a dunny</a>
-          </li> -->
-         <p >
-            <a href="/sample/2012/01/18/hello-world/">
-                Flat out like a dunny
-            </a>
-             <small> • Jan 18, 2012</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Hello Blog" style="font-size:30px">
+        <span>Hello Blog (1)</span>
+    </h2>
     
-    <div >
-        <h2 class="fa fa-tag" id="Code" style="font-size:30px">
-        <span>Code</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-02-10">2013-02-10</time>
-          <a href="/sample/2013/02/10/code-snippets/" title="Code Snippets">Code Snippets</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/02/10/code-snippets/">
-                Code Snippets
-            </a>
-             <small> • Feb 10, 2013</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/sample/2012/01/18/hello-world/">
+        Flat out like a dunny
+    </a>
+    <small> • Jan 18, 2012</small></p>
+    </p>
     
-    <div >
-        <h2 class="fa fa-tag" id="Introduction" style="font-size:30px">
-        <span>Introduction</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-07-22">2015-07-22</time>
-          <a href="/sample/2015/07/22/theme-introduction/" title="Theme introduction">Theme introduction</a>
-          </li> -->
-         <p >
-            <a href="/sample/2015/07/22/theme-introduction/">
-                Theme introduction
-            </a>
-             <small> • Jul 22, 2015</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-03-15">2013-03-15</time>
-          <a href="/sample/2013/03/15/guest-posts/" title="Guest Posts">Guest Posts</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/03/15/guest-posts/">
-                Guest Posts
-            </a>
-             <small> • Mar 15, 2013</small></p>
-        </p>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-02-10">2013-02-10</time>
-          <a href="/sample/2013/02/10/code-snippets/" title="Code Snippets">Code Snippets</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/02/10/code-snippets/">
-                Code Snippets
-            </a>
-             <small> • Feb 10, 2013</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Test" style="font-size:30px">
+        <span>Test (1)</span>
+    </h2>
     
-    <div >
-        <h2 class="fa fa-tag" id="Guest" style="font-size:30px">
-        <span>Guest</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2013-03-15">2013-03-15</time>
-          <a href="/sample/2013/03/15/guest-posts/" title="Guest Posts">Guest Posts</a>
-          </li> -->
-         <p >
-            <a href="/sample/2013/03/15/guest-posts/">
-                Guest Posts
-            </a>
-             <small> • Mar 15, 2013</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/sample/2012/01/18/hello-world/">
+        Flat out like a dunny
+    </a>
+    <small> • Jan 18, 2012</small></p>
+    </p>
     
-    <div >
-        <h2 class="fa fa-tag" id="Casually" style="font-size:30px">
-        <span>Casually</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-08-30">2015-08-30</time>
-          <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="我的第一篇博客">我的第一篇博客</a>
-          </li> -->
-         <p >
-            <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-                我的第一篇博客
-            </a>
-             <small> • Aug 30, 2015</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Blog" style="font-size:30px">
+        <span>Blog (4)</span>
+    </h2>
     
-    <div >
-        <h2 class="fa fa-tag" id="胡言乱语" style="font-size:30px">
-        <span>胡言乱语</span>
-        </h2>
-        
-          <!-- <li class="listing-item">
-          <time datetime="2015-08-30">2015-08-30</time>
-          <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="我的第一篇博客">我的第一篇博客</a>
-          </li> -->
-         <p >
-            <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-                我的第一篇博客
-            </a>
-             <small> • Aug 30, 2015</small></p>
-        </p>
-        
-    </div>
-    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    <p >
+    <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+        我的第一篇博客
+    </a>
+    <small> • Aug 30, 2015</small></p>
+    </p>
     
+    <p >
+    <a href="/sample/2015/07/22/theme-introduction/">
+        Theme introduction
+    </a>
+    <small> • Jul 22, 2015</small></p>
+    </p>
+    
+    <p >
+    <a href="/sample/2013/03/15/guest-posts/">
+        Guest Posts
+    </a>
+    <small> • Mar 15, 2013</small></p>
+    </p>
+    
+    <p >
+    <a href="/sample/2012/01/18/hello-world/">
+        Flat out like a dunny
+    </a>
+    <small> • Jan 18, 2012</small></p>
+    </p>
+    
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Code" style="font-size:30px">
+        <span>Code (1)</span>
+    </h2>
+    
+    <p >
+    <a href="/sample/2013/02/10/code-snippets/">
+        Code Snippets
+    </a>
+    <small> • Feb 10, 2013</small></p>
+    </p>
+    
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Introduction" style="font-size:30px">
+        <span>Introduction (3)</span>
+    </h2>
+    
+    <p >
+    <a href="/sample/2015/07/22/theme-introduction/">
+        Theme introduction
+    </a>
+    <small> • Jul 22, 2015</small></p>
+    </p>
+    
+    <p >
+    <a href="/sample/2013/03/15/guest-posts/">
+        Guest Posts
+    </a>
+    <small> • Mar 15, 2013</small></p>
+    </p>
+    
+    <p >
+    <a href="/sample/2013/02/10/code-snippets/">
+        Code Snippets
+    </a>
+    <small> • Feb 10, 2013</small></p>
+    </p>
+    
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Guest" style="font-size:30px">
+        <span>Guest (1)</span>
+    </h2>
+    
+    <p >
+    <a href="/sample/2013/03/15/guest-posts/">
+        Guest Posts
+    </a>
+    <small> • Mar 15, 2013</small></p>
+    </p>
+    
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="Casually" style="font-size:30px">
+        <span>Casually (1)</span>
+    </h2>
+    
+    <p >
+    <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+        我的第一篇博客
+    </a>
+    <small> • Aug 30, 2015</small></p>
+    </p>
+    
+</div>
+<hr>
+
+<div >
+    <h2 class="fa fa-tag" id="胡言乱语" style="font-size:30px">
+        <span>胡言乱语 (1)</span>
+    </h2>
+    
+    <p >
+    <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+        我的第一篇博客
+    </a>
+    <small> • Aug 30, 2015</small></p>
+    </p>
+    
+</div>
+<hr>
+
 
 </article>
 
