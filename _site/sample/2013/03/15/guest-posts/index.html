@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-我的第一篇博客 • Meta Coder
+Guest Posts • Meta Coder
 
 </title>
-<meta name="description" content=" Reading, Thinking, Coding">
+<meta name="description" content="If you want to create a guest post that will appear as if written by another author, simply add an <code>author</code> attribute to the front matter of your blog post. Reading, Thinking, Coding">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
 
 <!-- include Font Awesome -->
@@ -27,18 +27,18 @@
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="我的第一篇博客 • Meta Coder">
+<meta property="og:title" content="Guest Posts • Meta Coder">
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/hipster.jpg">
+    <meta property="og:image" content="http://127.0.0.1:4000/img/og-image.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
+<meta property="og:url" content="http://127.0.0.1:4000/sample/2013/03/15/guest-posts/">
 <meta property="og:description" content="
 
-Reading, Thinking, Coding
+If you want to create a guest post that will appear as if written by another author, simply add an <code>author</code> attribute to the front matter of your blog post.
 ">
 <!-- /og tags -->
 
@@ -79,10 +79,6 @@ header::after {
 </head>
 <body>
 	
-	<div class="cover-image-container">
-		<img alt="Cover image" src="/img/covers/hipster.jpg" style="width:2000px">
-	</div>
-	
 	<div class="wrap">
 		<header>
   <a href="/" class="website-title">
@@ -107,31 +103,26 @@ header::after {
 
 
 <article>
-  <span class="meta">Aug 30, 2015 • Less than a minute read</span>
-	<h1>我的第一篇博客</h1>
-		<p>
-折腾了整整两天，总算把这个看起来依然“残破不堪”的博客搭建起来，当页面终于不再显示404的时候，我激动的眼泪儿都下来了。
-</p>
+  <span class="meta">Mar 15, 2013 • Less than a minute read</span>
+	<h1>Guest Posts</h1>
+		<p>If you want to create a guest post that will appear as if written by another author, simply add an <code>author</code> attribute to the front matter of your blog post. This will be picked up in the template and displayed in the meta-section both on the front page as well as on the individual post pages.</p>
 
-<p>
-写博客的心情其实早就有了，我还记得当时是三四年前自己在家折腾一晚上才装好的一个hadoop的环境，兴奋之余就想把这一切都记录下来。
-于是又是申请博客又是copy模板什么的，好不容易在CSDN搭起一个还算看的过去的博客，写了两句之后果断放弃了，实在写不下去了。
-感觉上了大学以后来讲什么都没学到，反而失去了好多。先不说什么节操丢了一箩筐，我记得自己中学阶段有事没事偶尔还抒抒情，写点什么散文随笔之类的，
-可是上大学以后，essay虽说写了不少，但里边有多少是自己的东西，想想恐怕自己都不好意思开口。一旦处于一个人云亦云的大环境下，好多对你的潜移默化连你自己都难以发觉。
-今天看到一个博客“每天坚持1000字”挺有感触，从小到大好多事情都心血来潮，经过三分钟热度后慢慢退却，很难有什么能够真正做的persistent。
-总想去做点什么却总也做不了什么，日子就这样庸庸碌碌平平淡淡的过去了。
-</p>
-<p>来点改变吧，毕竟已经这样平淡的过了20多年，总得去看点大风小浪什么的。</p>
-<p>后续还有好多要折腾的地方，什么模板啊，什么评论啊，什么代码高亮啊...不过想想看，人这辈子不也总是折腾来折腾去的，只要不怕折腾，就够了</p>
-<hr/>
-<p>PS:本人胡言乱语之作，不登大雅之堂</p>
-<p>30 Aug 2015</p>
+<p>This post’s front matter looks like this:</p>
+
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Guest Posts</span>
+
+<span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">George Michael</span>
+  <span class="l-Scalar-Plain">info</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">(@&lt;a href=&quot;https://twitter.com/georgemichael&quot;&gt;GeorgeMichael&lt;/a&gt;)</span>
+
+<span class="l-Scalar-Plain">summary</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">If you want to create a guest post that will appear as if written by another author, simply add an `author` attribute to the front matter of your blog post.</span>
+<span class="nn">---</span></code></pre></div>
+
 
   
     
-      
-        <small><em>Post by: MetaCoder who is just a Coder Monkey!</em></small>
-      
+      <small><em>Guest post by: George Michael (@<a href="https://twitter.com/georgemichael">GeorgeMichael</a>)</em></small>
     
   
 </article>
@@ -140,12 +131,12 @@ header::after {
 <div class="pagination clearfix">
   <div class="left">
     
-      <span class="disabled">‹ Next post</span>
+      <a href="/sample/2015/07/22/theme-introduction/">‹ Next post</a>
     
   </div>
   <div class="right">
     
-      <a href="/2015/07/22/theme-introduction/">Previous post ›</a>
+      <a href="/sample/2013/02/10/code-snippets/">Previous post ›</a>
     
   </div>
 </div>

@@ -21,8 +21,8 @@
 </description>
 				
 				<pubDate>Sun, 30 Aug 2015 00:00:00 +0800</pubDate>
-				<link>http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
+				<link>http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
 			</item>
 		
 			<item>
@@ -38,8 +38,57 @@
 </description>
 				
 				<pubDate>Wed, 22 Jul 2015 00:00:00 +0800</pubDate>
-				<link>http://127.0.0.1:4000/2015/07/22/theme-introduction/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/2015/07/22/theme-introduction/</guid>
+				<link>http://127.0.0.1:4000/sample/2015/07/22/theme-introduction/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/sample/2015/07/22/theme-introduction/</guid>
+			</item>
+		
+			<item>
+				<title>Guest Posts</title>
+				
+					<dc:creator>{&quot;name&quot;=&gt;&quot;George Michael&quot;, &quot;info&quot;=&gt;&quot;(@&lt;a href=\&quot;https://twitter.com/georgemichael\&quot;&gt;GeorgeMichael&lt;/a&gt;)&quot;}</dc:creator>
+				
+				
+					<description>&lt;p&gt;If you want to create a guest post that will appear as if written by another author, simply add an &lt;code&gt;author&lt;/code&gt; attribute to the front matter of your blog post. This will be picked up in the template and displayed in the meta-section both on the front page as well as on the individual post pages.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Fri, 15 Mar 2013 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/sample/2013/03/15/guest-posts/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/sample/2013/03/15/guest-posts/</guid>
+			</item>
+		
+			<item>
+				<title>Code Snippets</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Whenever you need to post a code snippet, use the liquid tags &lt;code&gt;hilight&lt;/code&gt; and &lt;code&gt;endhilight&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Sun, 10 Feb 2013 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/sample/2013/02/10/code-snippets/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/sample/2013/02/10/code-snippets/</guid>
+			</item>
+		
+			<item>
+				<title>Flat out like a dunny</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;She’ll be right bored sh*tless mate he’s got a massive bitzer. Lets throw a trackies where built like a rotten. As stands out like garbo flamin grab us a bogan. We’re going pozzy when she’ll be right cleanskin. Lets throw a chrissie my come a skite. Gutful of middy my gutful of ugg boots. Flat out like a larrikin where grab us a mates. It’ll be apples heaps built like a counter meal. As cross as a booze bus when you little ripper shit house. As cunning as a bush oyster mate as stands out like jumbuck. We’re going whinge mate lets throw a vee dub.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 18 Jan 2012 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/sample/2012/01/18/hello-world/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/sample/2012/01/18/hello-world/</guid>
 			</item>
 		
 	</channel>

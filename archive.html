@@ -1,19 +1,21 @@
 ---
 title: Time Machine
 layout: page
-cover-image: 8.jpg
+cover-image: 4.jpg
 ---
 
 
   {% for post in site.posts %}
 
     {% unless post.next %}
-      <h3>{{ post.date | date: '%Y' }}</h3>
+      <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+      <span><h2 class="fa fa-tags">{{ post.date | date: '%Y' }}</h2></span>
     {% else %}
       {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
       {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
       {% if year != nyear %}
-        <h3>{{ post.date | date: '%Y' }}</h3>
+        <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+        <span><h2 class="fa fa-tags">{{ post.date | date: '%Y' }}</h2></span>
       {% endif %}
     {% endunless %}
 

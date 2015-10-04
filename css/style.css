@@ -19,7 +19,7 @@
 /* Content */
 
 body {
-  font-family: "Crimson Text", Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: "Crimson Text", "Microsoft YaHei", Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 22px;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
@@ -212,9 +212,9 @@ small a {
 }
 hr {
   border:none;
-  background-color: rgba({{ site.theme-color }}, .4);
-  margin: 60px auto;
-  width: 30%;
+  background-color: rgba({{ site.theme-color }}, .2);
+  margin: 30px auto;
+  width: 80%;
   height: 2px;
 }
 .cover-image-container {

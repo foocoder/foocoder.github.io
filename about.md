@@ -4,7 +4,8 @@ title: About
 cover-image: 6.jpg
 ---
 
-Hello, This is ***Meta Coder***!
+---
+Hey! This is ***Meta Coder***!
 
 本人安徽大学尚未毕业的小硕一枚～
 喜欢读书，喜欢历史，喜欢一切带有人文气息的Things，

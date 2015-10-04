@@ -1,5 +1,7 @@
 ---
 title: Code Snippets
+category: Sample
+tags: [Markdown, Code, Introduction]
 ---
 
 Whenever you need to post a code snippet, use the liquid tags `hilight` and `endhilight`.

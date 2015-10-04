@@ -1,7 +1,7 @@
 ---
 title: Tag Cloud
 layout: page
-cover-image: 1.jpg
+cover-image: 10.jpg
 ---
 
     <link rel="stylesheet" type="text/css" href="/js/jqCloud/jqcloud.css" />
@@ -12,9 +12,9 @@ cover-image: 1.jpg
        * Create an array of word objects, each representing a word in the cloud
        */
       var word_array = [
-    {% for tag in site.tags %}
-        {text: "{{ tag[0] }}", weight: {{ tag[1].size }} },
-    {% endfor %}
+        {% for tag in site.tags %}
+            {text: "{{ tag[0] }}", weight: {{ tag[1].size }}, link: "#{{ tag[0] }}" },
+        {% endfor %}
       ];
       $(function() {
         // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
@@ -22,4 +22,29 @@ cover-image: 1.jpg
       });
     </script>
 
-    <div id="example" style="width: 550px; height: 350px;"></div>
+    <div id="example" style="width: 850px; height: 400px;"></div>
+    <hr style="margin:30px auto;width:90%">
+
+    <!-- 标签列表 -->
+    {% for tag in site.tags %}
+    <div >
+        <h3>
+        <span class="fa fa-tag" id="{{ tag[0] }}">
+                {{ tag[0] }}
+        </span>
+        </h3>
+        {% for post in tag[1] %}
+          <!-- <li class="listing-item">
+          <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+          <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+          </li> -->
+         <p >
+            <a href="{{ post.url | prepend: site.baseurl }}">
+                {{ post.title }}
+            </a>
+             <small> • {{ post.date | date: site.date_format }}</small></p>
+        </p>
+        {% endfor %}
+    </div>
+    <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
+    {% endfor %}

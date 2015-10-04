@@ -2,14 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>http://127.0.0.1:4000/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
+        <loc>http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
     </url>
     
     <url>
-        <loc>http://127.0.0.1:4000/2015/07/22/theme-introduction/</loc>
+        <loc>http://127.0.0.1:4000/sample/2015/07/22/theme-introduction/</loc>
+    </url>
+    
+    <url>
+        <loc>http://127.0.0.1:4000/sample/2013/03/15/guest-posts/</loc>
+    </url>
+    
+    <url>
+        <loc>http://127.0.0.1:4000/sample/2013/02/10/code-snippets/</loc>
+    </url>
+    
+    <url>
+        <loc>http://127.0.0.1:4000/sample/2012/01/18/hello-world/</loc>
     </url>
     
 
+    
+    
+    
+    
+    <url>
+        <loc>http://127.0.0.1:4000/:w</loc>
+    </url>
+    
+    
+    
     
     
     
@@ -26,6 +48,16 @@
     
     <url>
         <loc>http://127.0.0.1:4000/archive/</loc>
+    </url>
+    
+    
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://127.0.0.1:4000/category/</loc>
     </url>
     
     
@@ -72,6 +104,16 @@
     
     <url>
         <loc>http://127.0.0.1:4000/thanks/</loc>
+    </url>
+    
+    
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://127.0.0.1:4000/page-2/</loc>
     </url>
     
     

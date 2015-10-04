@@ -1,6 +1,7 @@
 ---
 title: Guest Posts
-
+category: Sample
+tags: [Guest, Blog, Introduction]
 author:
   name: George Michael
   info: (@<a href="https://twitter.com/georgemichael">GeorgeMichael</a>)

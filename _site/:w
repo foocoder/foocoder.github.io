@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Time Machine • Meta Coder
+Tag Cloud • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,15 +27,15 @@ Time Machine • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Time Machine • Meta Coder">
+<meta property="og:title" content="Tag Cloud • Meta Coder">
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/4.jpg">
+    <meta property="og:image" content="http://127.0.0.1:4000/img/2.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/archive/">
+<meta property="og:url" content="http://127.0.0.1:4000/:w">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -80,7 +80,7 @@ header::after {
 <body>
 	
 	<div class="cover-image-container">
-		<img alt="Cover image" src="/img/covers/4.jpg" style="width:2000px">
+		<img alt="Cover image" src="/img/covers/2.jpg" style="width:2000px">
 	</div>
 	
 	<div class="wrap">
@@ -102,58 +102,43 @@ header::after {
 </header>
 
 		<article>
-	<h1>Time Machine</h1>
-		  
-
+	<h1>Tag Cloud</h1>
+		    <link rel="stylesheet" type="text/css" href="/js/jqCloud/jqcloud.css" />
+    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/jqCloud/jqcloud-1.0.4.min.js"></script>
+    <script type="text/javascript">
+      /*!
+       * Create an array of word objects, each representing a word in the cloud
+       */
+      var word_array = [
     
-      <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
-      <span><h2 class="fa fa-tags">2015</h2></span>
+        {text: "Markdown", weight: 3 },
     
-
-    <p><a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a><small> • Aug 30, 2015</small></p>
-  
-
+        {text: "Hello Blog", weight: 1 },
     
-      
-      
-      
+        {text: "Test", weight: 1 },
     
-
-    <p><a href="/sample/2015/07/22/theme-introduction/">Theme introduction</a><small> • Jul 22, 2015</small></p>
-  
-
+        {text: "Blog", weight: 4 },
     
-      
-      
-      
-        <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
-        <span><h2 class="fa fa-tags">2013</h2></span>
-      
+        {text: "Code", weight: 1 },
     
-
-    <p><a href="/sample/2013/03/15/guest-posts/">Guest Posts</a><small> • Mar 15, 2013</small></p>
-  
-
+        {text: "Introduction", weight: 3 },
     
-      
-      
-      
+        {text: "Guest", weight: 1 },
     
-
-    <p><a href="/sample/2013/02/10/code-snippets/">Code Snippets</a><small> • Feb 10, 2013</small></p>
-  
-
+        {text: "Casually", weight: 1 },
     
-      
-      
-      
-        <hr style="margin:20px auto;width:80%;background-color:rgba(0,0,0,.1)">
-        <span><h2 class="fa fa-tags">2012</h2></span>
-      
+        {text: "胡言乱语", weight: 1 },
     
+      ];
+      $(function() {
+        // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+        $("#example").jQCloud(word_array);
+      });
+    </script>
 
-    <p><a href="/sample/2012/01/18/hello-world/">Flat out like a dunny</a><small> • Jan 18, 2012</small></p>
-  
+    <br/>
+    <div id="example" style="width: 550px; height: 350px;"></div>
 
 </article>
 
