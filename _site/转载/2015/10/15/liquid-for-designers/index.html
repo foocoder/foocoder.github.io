@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+Liquid for Designers • Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+
+<!-- include Font Awesome -->
+<link href="/font_awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- include Font Awesome -->
+
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="Liquid for Designers • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://127.0.0.1:4000/img/91.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://127.0.0.1:4000/%E8%BD%AC%E8%BD%BD/2015/10/15/liquid-for-designers/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Crimson+Text:700italic,600,600italic,400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+<link rel="stylesheet" href="/css/font-awesome.css">
+
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/91.jpg" style="width:2000px">
+        </div>
+        
+        <div class="wrap">
+            <header>
+  <a href="/" class="website-title">
+    
+      <img alt="Meta Coder" src="/img/logo1.png" style="height:54px">
+    
+
+  </a>
+  <nav>
+  <a href="/about/">About</a>
+  <a href="/archive/">Archive</a>
+  <a href="/category/">Category</a>
+  <a href="/tags/">Tags</a>
+</nav>
+
+  
+</header>
+
+            
+
+    
+
+
+<article>
+        <h1>Liquid for Designers</h1>
+        <div class="category">
+            
+                <a class="fa fa-bookmark" href="/category/#转载" title="转载">转载</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-tag" href="/tags/#转载" title="转载">转载</a>
+            
+            <a class="fa fa-tag" href="/tags/#翻译" title="翻译">翻译</a>
+            
+            <a class="fa fa-tag" href="/tags/#Liquid" title="Liquid">Liquid</a>
+            
+            <a class="fa fa-tag" href="/tags/#会用得着的" title="会用得着的">会用得着的</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar-o">Oct 15, 2015 • 1&nbsp;min read</span>
+        </div>
+
+        <hr>
+        <p>这两天在用jekyll搭博客,一看是liquid语言立刻傻眼了!</p>
+
+<p>话说Liquid是个什么鬼?</p>
+
+<p>不过好在Github上有<a href="http://github.com/Shopify/liquid/wiki/Liquid-for-Designers">文档</a>, 但是可惜是英语的.虽说作为一个Code Monkey来说,英语应该作为第二母语来使用,但我还是尽我所能的去寻找第一母语吧.</p>
+
+<p>功夫不负有心人,让我找到了 <a href="http://havee.me">@Havee</a>的这篇<a href="http://havee.me/internet/2013-11/jekyll-liquid-designer.html">Jekyll扩展的Liquid设计</a>,虽然这篇也是转自<a href="http://yanshasha.com/2013/01/22/Liquid-for-designers/">http://yanshasha.com/2013/01/22/Liquid-for-designers/</a>,不过可惜原文已挂,为了防止这么好的母语翻译文档继续挂掉,so,我还是转过来吧.</p>
+
+<blockquote>
+  <center>原文:Jekyll扩展的Liquid设计</center>
+</blockquote>
+
+<p>在Liquid中有两种类型的标记:<code>Output</code>和<code>Tag</code>.</p>
+
+<ul>
+  <li><code>Output</code>标记(有些可能解析文本)被包含在:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{{</span><span class="w"> </span><span class="err">两个配对的花括号中</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
+
+<ul>
+  <li><code>Tag</code>标记(不能被解析文本)被包含在:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">成对的花括号和百分号中</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
+
+<h2 id="output">Output</h2>
+<p>下面是关于输出标记的简单实例:</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">Hello <span class="p">{{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+Hello <span class="p">{{</span><span class="w"> </span><span class="nv">user</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
+Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
+
+<h3 id="section">高级输入:过滤器</h3>
+<p>输入标记带有过滤器,方法很简单.第一个参数总是过滤器左边值的输出.当下个过滤器运行时,刚刚所得到的过滤器的返回值就会成为新的左边值.知道最后没有过滤器时,模板就会接受最后的结果字符串.</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">upcase</span><span class="w"> </span><span class="p">}}</span>
+Hello tobi has <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="nf">letters</span><span class="w"></span>
+Hello<span class="w"> </span>{{<span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">capitalize</span><span class="w"> </span><span class="p">}}</span>
+Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;1982-02-01&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="s2">&quot;%Y&quot;</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
+
+<p>输出的结果是:</p>
+
+<div class="highlight"><pre><code class="language-liquid" data-lang="liquid">Hello TOBI
+Hello tobi has 4 letters
+Hello Tobi
+Hello 1982</code></pre></div>
+
+<h3 id="section-1">标准过滤器</h3>
+<ul>
+  <li><code>data</code> - 格式化日期</li>
+  <li><code>capitalize</code> - 将输入语句的首字母大写</li>
+  <li><code>downcase</code> - 将输入字符串转为小写</li>
+  <li><code>upcase</code> - 将输入字符串转为大写</li>
+  <li><code>first</code> - 获取传递数组的第一个元素</li>
+  <li><code>last</code> - 获取传递数组的最后一个元素</li>
+  <li><code>join</code> - 将数组中元素连成一串,中间通过某些字符分隔</li>
+  <li><code>sort</code> - 对数组元素进行排序</li>
+  <li><code>map</code> - 从一个给定属性中映射/收集一个数组</li>
+  <li><code>size</code> - 返回一个数组或字符串的大小</li>
+  <li><code>escape</code> - 对一串字符串进行编码</li>
+  <li><code>escape_once</code> - 返回一个转义的html版本,而不影响现有的转义文本</li>
+  <li><code>strip_html</code> - 去除一串字符串中的所有html标签</li>
+  <li><code>strip_newlines</code> - 从字符串中去除所有换行符(\n)</li>
+  <li><code>newline_to_br</code> - 将所有的换行符(\n)换成html的换行标记</li>
+  <li><code>replace</code> - 替换每一处匹配字符串,如{{ ‘foofoo’|replace:’foo’,’bar’ }}#=&gt;barbar</li>
+</ul>
+
+        
+            
+            
+                <small><em>Post by: MetaCoder who is just a Coder Monkey!</em></small>
+            
+          
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).addClass('img-only-source');
+                    }
+                });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+  </div>
+</footer>
+
+    </body>
+</html>

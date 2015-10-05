@@ -7,6 +7,23 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Liquid for Designers</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;这两天在用jekyll搭博客,一看是liquid语言立刻傻眼了!&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 15 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/%E8%BD%AC%E8%BD%BD/2015/10/15/liquid-for-designers/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/%E8%BD%AC%E8%BD%BD/2015/10/15/liquid-for-designers/</guid>
+			</item>
+		
+			<item>
 				<title>我的第一篇博客</title>
 				
 					
