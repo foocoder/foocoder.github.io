@@ -434,6 +434,7 @@ nav a.current {
   li {
     padding-left: 10px;
     margin: 10px 0;
+    text-align: -webkit-auto;
   }
   table {
     margin: 40px auto;

@@ -2,7 +2,7 @@
 title: Theme introduction
 categories: Sample
 tags: [Introduction, Markdown, Blog]
-cover-image: 91.jpg
+cover-image: 9.jpg
 ---
 
 This post is a showcase of what Holo Alfa looks like, and a reference guide for how you can use it to make your blog shine.

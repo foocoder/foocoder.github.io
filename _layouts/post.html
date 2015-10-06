@@ -27,6 +27,8 @@ layout: default
 
         <hr>
         {{ content }}
+        <hr>
+        <p>{{ page.date | date_to_string}}</p>
         {% if site.display-author-post-page %}
             {% if page.author.name %}
                 <small><em>{{ site.var_guest_post_by }}: {{ page.author.name }} {{ page.author.info }}</em></small>
