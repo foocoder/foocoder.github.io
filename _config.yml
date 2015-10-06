@@ -78,7 +78,7 @@ paginate: 3
 display-next-prev-post: true
 
 # Leave empty if you don't want comments on post pages.
-disqus-shortname:
+disqus-shortname: foocoder
 
 
 ################
