@@ -2,6 +2,7 @@
 title: Guest Posts
 categories: Sample
 tags: [Guest, Blog, Introduction]
+cover-image: 9.jpg
 author:
   name: George Michael
   info: (@<a href="https://twitter.com/georgemichael">GeorgeMichael</a>)

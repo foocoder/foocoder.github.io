@@ -2,6 +2,7 @@
 title: Code Snippets
 categories: Sample
 tags: [Markdown, Code, Introduction]
+cover-image: 9.jpg
 ---
 
 Whenever you need to post a code snippet, use the liquid tags `hilight` and `endhilight`.
