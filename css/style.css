@@ -43,7 +43,7 @@ strong {
   font-weight: 700;
 }
 i, em {
-  font-style: italic;
+  /*font-style: italic;*/
 }
 a {
   color: inherit;
@@ -519,4 +519,9 @@ p a{
 }
 p a:hover{
     color: rgba({{ site.text-color }}, 1);
+}
+#back-top {
+  position: fixed;
+  bottom: 30px;
+  margin-left: 1040px;
 }

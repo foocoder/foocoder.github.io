@@ -9,6 +9,16 @@
             <img alt="Cover image" src="{{ site.baseurl }}/img/covers/{{ page.cover-image }}" style="width:2000px">
         </div>
         {% endif %}
+        {% if site.enabletoTop %}
+        <div id="back-top" >
+          <a href="#top" title="回到顶部">
+              <span class="fa-stack fa-lg">
+                  <i class="fa-square fa-stack-2x"></i>
+                  <i class="fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        {% endif %}
         <div class="wrap">
             {% include header.html %}
             {{ content }}
