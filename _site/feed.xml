@@ -7,6 +7,27 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>github多sshkey管理</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;
+断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
+虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
+非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
+&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 08 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/</guid>
+			</item>
+		
+			<item>
 				<title>Liquid for Designers</title>
 				
 					

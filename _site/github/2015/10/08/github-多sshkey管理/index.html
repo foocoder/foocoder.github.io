@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Flat out like a dunny • Meta Coder
+github多sshkey管理 • Meta Coder
 
 </title>
-<meta name="description" content="Grab us a bloody oath! heaps we're going rort. Come a mate's rate when as stands out like cut lunch commando. It'll be booze also built like a dob. Grab us a chuck a sickie with she'll be right budgie smugglers. Reading, Thinking, Coding">
+<meta name="description" content=" Reading, Thinking, Coding">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
 
 <!-- include Font Awesome -->
@@ -27,7 +27,7 @@ Flat out like a dunny • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Flat out like a dunny • Meta Coder">
+<meta property="og:title" content="github多sshkey管理 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,10 +35,10 @@ Flat out like a dunny • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/sample/2012/01/18/hello-world/">
+<meta property="og:url" content="http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">
 <meta property="og:description" content="
 
-Grab us a bloody oath! heaps we're going rort. Come a mate's rate when as stands out like cut lunch commando. It'll be booze also built like a dob. Grab us a chuck a sickie with she'll be right budgie smugglers.
+Reading, Thinking, Coding
 ">
 <!-- /og tags -->
 
@@ -135,34 +135,61 @@ header::after {
 
 
 <article>
-        <h1>Flat out like a dunny</h1>
+        <h1>github多sshkey管理</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#sample" title="sample">Sample</a>
+                <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#Markdown" title="Markdown">Markdown</a>
+            <a class="fa fa-tag" href="/tags/#github" title="github">github</a>
             
-            <a class="fa fa-tag" href="/tags/#Hello Blog" title="Hello Blog">Hello Blog</a>
+            <a class="fa fa-tag" href="/tags/#sshkey" title="sshkey">sshkey</a>
             
-            <a class="fa fa-tag" href="/tags/#Test" title="Test">Test</a>
-            
-            <a class="fa fa-tag" href="/tags/#Blog" title="Blog">Blog</a>
+            <a class="fa fa-tag" href="/tags/#免密码登陆" title="免密码登陆">免密码登陆</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Jan 18, 2012 • 1&nbsp;min read</span>
+            <span class="fa fa-calendar">Oct 8, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>She’ll be right bored sh*tless mate he’s got a massive bitzer. Lets throw a trackies where built like a rotten. As stands out like garbo flamin grab us a bogan. We’re going pozzy when she’ll be right cleanskin. Lets throw a chrissie my come a skite. Gutful of middy my gutful of ugg boots. Flat out like a larrikin where grab us a mates. It’ll be apples heaps built like a counter meal. As cross as a booze bus when you little ripper shit house. As cunning as a bush oyster mate as stands out like jumbuck. We’re going whinge mate lets throw a vee dub.</p>
+        <p>
+断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
+虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
+非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
+</p>
 
-<p>As dry as a rollie piece of piss as dry as a crack a fat. As dry as a bluey no worries flat out like a kelpie. Stands out like a porky no dramas it’ll be cockie. Mad as a avos with it’ll be show pony. Gutful of shit house also grab us a maccas. As busy as a rego piece of piss stands out like a cream. Built like a boogie board when she’ll be right muster. Stands out like a big smoke no dramas gutful of gutta. You little ripper rage on my as cunning as a fairy floss. Get a dog up ya joey no worries lets throw a rotten.</p>
+<p>
+但是，这时候问题却出现了，之前一直只用一个github帐号，完全可以用一个sshkey来登陆github.
+不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
+</p>
+
+<p>对于单个github，还是老方法，先生成sshkey，然后把<code>publickey</code> copy 到github的setting &gt; SSH keys中</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
+ssh-keygen -t rsa -C <span class="s2">&quot;youremail@email.com&quot;</span></code></pre></div>
+<blockquote>
+
+</blockquote>
+
+<p>其中<code>-t</code>是指<code>type</code> – 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
+
+<p>之后，我们打开repo的git配置文件<code>.git/config</code>，将远程仓库地址改成ssh形式，<code>git@github.com:user.name/repoName.git</code></p>
+
+<p>
+以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
+这样就必须用到两个key了。然后在 <code>~/.ssh/config</code> 中添加每个key的声明。
+</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Host gi</code></pre></div>
+<blockquote>
+
+</blockquote>
 
         <hr>
-        <p>18 Jan 2012</p>
+        <p>08 Oct 2015</p>
         
             
             
@@ -176,12 +203,12 @@ header::after {
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/sample/2013/02/10/code-snippets/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <span class="disabled">Previous post ›</span>
+        <a href="/%E8%BD%AC%E8%BD%BD/2015/10/05/liquid-for-designers/">Previous post ›</a>
         
     </div>
 </div>
