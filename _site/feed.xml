@@ -7,6 +7,23 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>awesome 初体验</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢&lt;a href=&quot;http://www.linuxzen.com&quot;&gt;@cold&lt;/a&gt;的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Fri, 09 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</guid>
+			</item>
+		
+			<item>
 				<title>Github多sshkey管理</title>
 				
 					

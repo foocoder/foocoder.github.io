@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Github多sshkey管理 • Meta Coder
+awesome 初体验 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ Github多sshkey管理 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Github多sshkey管理 • Meta Coder">
+<meta property="og:title" content="awesome 初体验 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ Github多sshkey管理 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">
+<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,92 +135,54 @@ header::after {
 
 
 <article>
-        <h1>Github多sshkey管理</h1>
+        <h1>awesome 初体验</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
+                <a class="fa fa-bookmark" href="/category/#linux" title="linux">Linux</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#Github" title="Github">Github</a>
+            <a class="fa fa-tag" href="/tags/#linux" title="linux">linux</a>
             
-            <a class="fa fa-tag" href="/tags/#ssh" title="ssh">ssh</a>
+            <a class="fa fa-tag" href="/tags/#window manager" title="window manager">window manager</a>
             
-            <a class="fa fa-tag" href="/tags/#免密码登陆" title="免密码登陆">免密码登陆</a>
+            <a class="fa fa-tag" href="/tags/#awesome" title="awesome">awesome</a>
+            
+            <a class="fa fa-tag" href="/tags/#美化" title="美化">美化</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 8, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 9, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>
-断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
-虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
-非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
-</p>
+        <p>话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢<a href="http://www.linuxzen.com">@cold</a>的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！</p>
 
-<p>
-但是，这时候问题却出现了，之前一直只用一个github帐号，完全可以用一个sshkey来登陆github.
-不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
-</p>
+<p>这里给出原文。</p>
 
-<h2 id="github">单个github帐号免密码登陆</h2>
+<blockquote>
+  <p><a href="http://ju.outofmemory.cn/entry/94125">Awesome+tmux+gnomeDo打造高效Linux桌面环境</a></p>
+</blockquote>
 
-<p>对于单个github，还是老方法，先生成sshkey，然后把<code>publickey</code> copy 到github的setting &gt; SSH keys中</p>
+<h2 id="tmux">tmux</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
-ssh-keygen -t rsa -C <span class="s2">&quot;youremail@email.com&quot;</span></code></pre></div>
+<p><code>tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code>tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。<br />
+安装的话只要<code>apt-get</code>就可以了</p>
 
-<p>其中<code>-t</code>是指<code>type</code> – 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></div>
 
-<p>之后，我们打开repo的git配置文件<code>.git/config</code>，将远程仓库地址改成ssh形式，<code>git@github.com:user.name/repoName.git</code></p>
+<h2 id="gnome-do">gnome-do</h2>
+<p><code>gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code>Super+Space</code>调出<code>gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code>everything</code>。<br />
+安装也很简单</p>
 
-<p>当然，在<code>git commit</code>之前还要通过<code>git config</code>来设置user.name以及user.email。如果只是单个帐号的话global模式会比较方便，而多个帐号只能设置成local模式。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></div>
 
-<h2 id="github-1">多个github帐号管理</h2>
+<p>但这里有个问题是，当我在Ununtu 15.10下调用<code>gnome-do</code>(版本是0.95.3)时，点击<code>首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
 
-<p>
-以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
-这样就必须用到两个key了。同样我们需要利用<code>ssh-keygen</code>来生成每一个帐号的sshkey,当然此时不能一路回车了，要为每个帐号的sshkey分别命名。
-由于不是默认的名称，所以我们需要 <code>ssh-add</code> 来添加每一个会用到的sshkey。
-哦，对了，如果之前设置了<code>git config --global</code>,现在必须<code> git config --global --unset</code>掉，然后为每个repo设置local的<code>user.name</code>以及<code>user.email</code>.
-</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh-add ~/.ssh/id_rsa1
-ssh-add ~/.ssh/id_rsa2</code></pre></div>
-
-<p>然后在 <code>~/.ssh/config</code> 中添加每个帐号的Host信息。</p>
-
-<div class="highlight"><pre><code class="language-vim" data-lang="vim">Host user1.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
-
-Host user2.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></div>
-
-<p>好了，现在就可以测试是否可以链接了。</p>
-
-<div class="highlight"><pre><code class="language-shell-session" data-lang="shell-session"><span class="go">ssh -T user1.github.com</span>
-<span class="go">Hi user1! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
-<span class="go">ssh -T user2.github.com</span>
-<span class="go">Hi user2! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span></code></pre></div>
-
-<p>如上显示，便表示链接成功了。</p>
-
-<p>现在我们需要将每个仓库下的配置改成相应<code>Host</code>的形式了，改成如下所示</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span>user1.github.com:user.name/repoName.git
-<span class="nv">url</span><span class="o">=</span>user2.github.com:user.name/repoName.git</code></pre></div>
-
-<p>自此以后，就可以<code>git push</code>了。</p>
 
         <hr>
-        <p>08 Oct 2015</p>
+        <p>09 Oct 2015</p>
         
             
             
@@ -234,12 +196,12 @@ IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/%E8%BD%AC%E8%BD%BD/2015/10/05/liquid-for-designers/">Previous post ›</a>
+        <a href="/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">Previous post ›</a>
         
     </div>
 </div>
