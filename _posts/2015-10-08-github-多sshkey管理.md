@@ -16,6 +16,7 @@ cover-image: 9.jpg
 不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
 </p>
 
+## 单个github帐号免密码登陆 ##
 对于单个github，还是老方法，先生成sshkey，然后把`publickey` copy 到github的setting > SSH keys中
 
 {% highlight bash %}
@@ -27,10 +28,14 @@ ssh-keygen -t rsa -C "youremail@email.com"
 
 之后，我们打开repo的git配置文件`.git/config`，将远程仓库地址改成ssh形式，`git@github.com:user.name/repoName.git`
 
+当然，在`git commit`之前还要通过`git config`来设置user.name以及user.email。如果只是单个帐号的话global模式会比较方便，而多个帐号只能设置成local模式。
+
+## 多个github帐号管理 ##
 <p>
 以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
 这样就必须用到两个key了。然后在 <code>~/.ssh/config</code> 中添加每个key的声明。
 </p>
+
 
 {% highlight bash %}
 Host gi
