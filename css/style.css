@@ -523,5 +523,9 @@ p a:hover{
 #back-top {
   position: fixed;
   bottom: 30px;
-  margin-left: 1040px;
+  margin-left: 80%;
+  color:rgba({{ site.text-color }},.5);
+}
+#back-top a:hover{
+  color:rgba({{ site.text-color }},.76);
 }
