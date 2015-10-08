@@ -1,7 +1,7 @@
 ---
-title: github多sshkey管理
-categories: github
-tags: [github, ssh, 免密码登陆]
+title: Github多sshkey管理
+categories: Github
+tags: [Github, ssh, 免密码登陆]
 cover-image: 9.jpg
 ---
 
@@ -47,7 +47,7 @@ ssh-add ~/.ssh/id_rsa2
 
 然后在 <code>~/.ssh/config</code> 中添加每个帐号的Host信息。
 
-{% highlight bash %}
+{% highlight vim %}
 Host user1.github.com
 HostName github.com
 User git
@@ -61,7 +61,7 @@ IdentityFile ~/.ssh/id_rsa2
 
 好了，现在就可以测试是否可以链接了。
 
-{% highlight bash %}
+{% highlight shell-session %}
 ssh -T user1.github.com
 Hi user1! You've successfully authenticated, but GitHub does not provide shell access.
 ssh -T user2.github.com

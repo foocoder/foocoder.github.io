@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-github多sshkey管理 • Meta Coder
+Github多sshkey管理 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ github多sshkey管理 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="github多sshkey管理 • Meta Coder">
+<meta property="og:title" content="Github多sshkey管理 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -135,7 +135,7 @@ header::after {
 
 
 <article>
-        <h1>github多sshkey管理</h1>
+        <h1>Github多sshkey管理</h1>
         <div class="category">
             
                 <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
@@ -143,7 +143,7 @@ header::after {
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#github" title="github">github</a>
+            <a class="fa fa-tag" href="/tags/#Github" title="Github">Github</a>
             
             <a class="fa fa-tag" href="/tags/#ssh" title="ssh">ssh</a>
             
@@ -193,22 +193,22 @@ ssh-add ~/.ssh/id_rsa2</code></pre></div>
 
 <p>然后在 <code>~/.ssh/config</code> 中添加每个帐号的Host信息。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">Host user1.github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa1
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">Host user1.github.<span class="k">com</span>
+HostName github.<span class="k">com</span>
+<span class="nb">User</span> git
+IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
 
-Host user2.github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa2</code></pre></div>
+Host user2.github.<span class="k">com</span>
+HostName github.<span class="k">com</span>
+<span class="nb">User</span> git
+IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></div>
 
 <p>好了，现在就可以测试是否可以链接了。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh -T user1.github.com
-Hi user1! You<span class="s1">&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
-<span class="s1">ssh -T user2.github.com</span>
-<span class="s1">Hi user2! You&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.</code></pre></div>
+<div class="highlight"><pre><code class="language-shell-session" data-lang="shell-session"><span class="go">ssh -T user1.github.com</span>
+<span class="go">Hi user1! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
+<span class="go">ssh -T user2.github.com</span>
+<span class="go">Hi user2! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span></code></pre></div>
 
 <p>如上显示，便表示链接成功了。</p>
 
