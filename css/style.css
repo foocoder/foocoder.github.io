@@ -514,7 +514,7 @@ div.times{
     color: rgba({{ site.text-color }}, 0.5);
 }
 
-p a{
+li a,p a{
     color: rgba({{ site.text-color }}, 0.5);
 }
 p a:hover{

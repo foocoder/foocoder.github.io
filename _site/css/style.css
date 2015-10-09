@@ -519,7 +519,7 @@ div.times{
     color: rgba(0, 0, 0, 0.5);
 }
 
-p a{
+li a,p a{
     color: rgba(0, 0, 0, 0.5);
 }
 p a:hover{
