@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-awesome 初体验 • Meta Coder
+Awesome 锁屏 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ awesome 初体验 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="awesome 初体验 • Meta Coder">
+<meta property="og:title" content="Awesome 锁屏 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ awesome 初体验 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">
+<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,7 +135,7 @@ header::after {
 
 
 <article>
-        <h1>awesome 初体验</h1>
+        <h1>Awesome 锁屏</h1>
         <div class="category">
             
                 <a class="fa fa-bookmark" href="/category/#linux" title="linux">Linux</a>
@@ -145,81 +145,59 @@ header::after {
             
             <a class="fa fa-tag" href="/tags/#linux" title="linux">linux</a>
             
-            <a class="fa fa-tag" href="/tags/#window manager" title="window manager">window manager</a>
-            
             <a class="fa fa-tag" href="/tags/#awesome" title="awesome">awesome</a>
             
-            <a class="fa fa-tag" href="/tags/#美化" title="美化">美化</a>
+            <a class="fa fa-tag" href="/tags/#window manager" title="window manager">window manager</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 9, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 10, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢<a href="http://www.linuxzen.com">@cold</a>的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！</p>
+        <p>Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。</p>
 
-<p>这里给出原文。</p>
+<p>可是，用了不久突然反应过来，没有屏保，没有锁屏。虽说你也可以直接<code>ctrl+alt+F1</code>然后拔掉键盘再走掉，但是作为一个有着轻微强迫症的自己绝不允许这么挫的事情发生，于是，还是去折腾吧，骚年！</p>
+
+<p>记得之前xfce4下一直用的是<code>xscreensaver</code>，屏保很有像素感，非常喜欢，可是怎么调出来使用呢？</p>
+
+<p>首先查阅<a href="http://ju.outofmemory.con/entry/94124">@cold</a>大神的文章,貌似我们需要配置一下<code>~/.xinitrc</code>这个文件。</p>
 
 <blockquote>
-  <p><a href="http://ju.outofmemory.cn/entry/94125">Awesome+tmux+gnomeDo打造高效Linux桌面环境</a></p>
+  <p><code>~/.xinitrc</code>文件是<code>xinit</code>和他的前端<code>startx</code>第一次启动时会读取的脚本，通常在启动X时执行窗口管理器或其他程序，例如启动守护进程和设置环境变量。<br />
+<small>—— <a href="https://wiki.archlinux.org/index.php/xinitrc_(简体中文)">ArchWiki</a></small></p>
 </blockquote>
 
-<h2 id="tmux">tmux</h2>
+<p>这是colde大神的配置，不过貌似没看到锁屏什么事。</p>
 
-<p><code>tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code>tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="c">#!/usr/bin/env bash</span>
+<span class="lineno">2</span> gnome-settings-daeman <span class="p">&amp;</span> <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
+<span class="lineno">3</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span></code></pre></div>
 
-<p>安装的话只要<code>apt-get</code>就可以了</p>
+<p>不过想想看，我们可以把<code>xscreensaver</code>直接添加到启动脚本里边应该可以了吧。就像这样子：</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="c">#!/usr/bin/env bash</span>
+<span class="lineno">2</span> gnome-settings-daeman <span class="p">&amp;</span> <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
+<span class="lineno">3</span> xscreensaver <span class="p">&amp;</span> <span class="c">#屏保</span>
+<span class="lineno">4</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span>
+<span class="lineno">5</span> update-notifier <span class="p">&amp;</span> 自动更新程序</code></pre></div>
 
-<h2 id="gnome-do">gnome-do</h2>
+<p>然而，悲催的是，现在开始报错了，“未能启动通知守护进程”！我去，这又是什么鬼，什么是<code>通知守护进程</code>？连谷歌都谷不到！后来几经波折，才发现原来是个叫<code>notification daemon</code>的东东，可能翻译成中文后还真找不到相关文献了，gnome下的系统通知工具，类似Windows系统右边的通知栏。好吧，第二次重启DE后又没问题了，我也是醉了。</p>
 
-<p><code>gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code>Super+Space</code>调出<code>gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code>everything</code>。</p>
+<p>接下来在<code>rc.lua</code>里边帮定锁屏的快捷键，如下:</p>
 
-<p>安装也很简单</p>
+<div class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="lineno">1</span> <span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Control&quot;</span> <span class="p">},</span> <span class="s2">&quot;</span><span class="s">Delete&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">xscreensaver-command -lock&#39;</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></div>
+<p>不过每次启动后都有个<code>xscreensaver</code>的logo画面怪惹人烦的， 后来看到<code>Awesome</code>的官网添加<code>xscreensaver</code>是这样的：</p>
 
-<p>但这里有个问题是，当我在Ununtu 15.10下调用<code>gnome-do</code>(版本是0.95.3)时，点击<code>首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> xscreensaver -nosplash <span class="p">&amp;</span></code></pre></div>
 
-<h2 id="awesome">Awesome</h2>
+<p>通过添加<code>-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净过了。</p>
 
-<p>当使用 <code>Awesome</code> 的时候，给我的感觉确实如其名所示, Awesome，不仅仅是他的美观，更主要的是他的高效性。</p>
-
-<p>一开始不明白什么是所谓的平铺式窗口管理，原来不是相互重叠一起的便是平铺了，不过确实，平铺式管理要比折叠式的窗口管理方便的多，首先就是不用再<code>Alt+Tab</code>的切来切去的了，不过当然，前提是你的显示屏要得足够的大才行。</p>
-
-<p>下边来秀一下自己的桌面吧。</p>
-
-<p><img src="/img/awesome_screen.jpg" alt="awesome-screen" /></p>
-
-<p>不说有多酷，起码看着是非常舒服的。主题用的是<a href="https://github.com/mikar/">@mikar</a>的vinyl主题,将终端背景设置成透明就OK了。</p>
-
-<p>其实，还有这样的效果图。</p>
-
-<p><img src="/img/awesome_multi.png" alt="awesome-multi-screen" /><small>Source: <a href="http://wiki.ubuntu.org.cn/awesome">Unbuntu中文</a></small></p>
-
-<p>简直是酷毙了，<code>awesome</code>对多屏幕的兼容也是浑然天成。只需要<code>Ctrl+Super+j/k</code>便可来回切换使用屏幕，完全可以把鼠标扔掉了！</p>
-
-<p>Awesome的安装其实也是非常简单的。</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install awesome</code></pre></div>
-
-<p>然后我们需要在<code>home/</code>下的<code>.config/</code>文件夹中新建一个<code>awesome</code>的文件夹,将<code>/etc/xdg/awesome/rc.lua</code>配置文件copy其中就可以了。具体的配置我也不多说了，网上依旧是好多文献。哦，对了，这样安装的是awesome3.4版，如果想安装3.5的就得自己下载源码编译了。</p>
-
-<p>下面列出相关资源，用来方便查找。</p>
-
-<ul>
-  <li><a href="http://awesome.naquadah.org">Awesome官网</a></li>
-  <li><a href="http://wiki.ubuntu.org.cn/Awesome">ubuntu中文下的Awesome文档</a></li>
-  <li><a href="https://wiki.archlinux.org/index.php/awesome_(简体中文)">archlinux下的Awesome中文文档</a></li>
-  <li><a href="https://github.com/mikar/awesome34-themes">pre 3.5主题 –mikar</a></li>
-  <li><a href="https://github.com/mikar/awesome-themes">3.5主题 –mikar</a></li>
-  <li><a href="https://github.com/Morley93/awesome-themes-3.5">3.5主题 –Morley93</a></li>
-</ul>
+<p>Ps. 总结一下，这次安装屏保的过程又折腾了好久，主要因素是由于自己的大意好多命令给拼错了，导致很多莫名奇妙的问题，如<code>gnome-settings-daemon</code>成了<code>gnome-setting-daemon</code>，<code>xscreensvaer</code>又成了<code>xscreen-saver</code>，切记不要太粗心!</p>
 
         <hr>
-        <p>09 Oct 2015</p>
+        <p>10 Oct 2015</p>
         
             
             
@@ -233,12 +211,12 @@ header::after {
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">Previous post ›</a>
+        <a href="/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">Previous post ›</a>
         
     </div>
 </div>

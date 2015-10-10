@@ -7,6 +7,23 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Awesome 锁屏</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Sat, 10 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</guid>
+			</item>
+		
+			<item>
 				<title>awesome 初体验</title>
 				
 					
