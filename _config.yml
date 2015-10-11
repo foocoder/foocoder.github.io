@@ -81,6 +81,12 @@ display-next-prev-post: true
 # Leave empty if you don't want comments on post pages.
 disqus-shortname: foocoder
 
+#Web Analy
+googleAnaly:
+    config: false
+    id: UA-68666687-1
+baiduAnaly:
+    config: true
 
 ################
 # SOCIAL ICONS #
