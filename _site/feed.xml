@@ -15,7 +15,6 @@
 				
 				
 					<description>&lt;p&gt;前两天在设置&lt;code&gt;github&lt;/code&gt;的多&lt;code&gt;ssh-key&lt;/code&gt;登陆时，有个问提扰了我好久，直到后来才找到原因，特此记录一下。&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Mon, 12 Oct 2015 00:00:00 +0800</pubDate>
@@ -32,7 +31,6 @@
 				
 				
 					<description>&lt;p&gt;Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Sat, 10 Oct 2015 00:00:00 +0800</pubDate>
@@ -49,7 +47,6 @@
 				
 				
 					<description>&lt;p&gt;话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢&lt;a href=&quot;http://www.linuxzen.com&quot;&gt;@cold&lt;/a&gt;的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Fri, 09 Oct 2015 00:00:00 +0800</pubDate>
@@ -70,7 +67,6 @@
 虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
 非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
 &lt;/p&gt;
-
 </description>
 				
 				<pubDate>Thu, 08 Oct 2015 00:00:00 +0800</pubDate>
@@ -87,7 +83,6 @@
 				
 				
 					<description>&lt;p&gt;这两天在用jekyll搭博客,一看是liquid语言立刻傻眼了!&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate>
@@ -123,7 +118,6 @@
 				
 				
 					<description>&lt;p&gt;This post is a showcase of what Holo Alfa looks like, and a reference guide for how you can use it to make your blog shine.&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Wed, 22 Jul 2015 00:00:00 +0800</pubDate>
@@ -138,7 +132,6 @@
 				
 				
 					<description>&lt;p&gt;If you want to create a guest post that will appear as if written by another author, simply add an &lt;code&gt;author&lt;/code&gt; attribute to the front matter of your blog post. This will be picked up in the template and displayed in the meta-section both on the front page as well as on the individual post pages.&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Fri, 15 Mar 2013 00:00:00 +0800</pubDate>
@@ -155,7 +148,6 @@
 				
 				
 					<description>&lt;p&gt;Whenever you need to post a code snippet, use the liquid tags &lt;code&gt;hilight&lt;/code&gt; and &lt;code&gt;endhilight&lt;/code&gt;.&lt;/p&gt;
-
 </description>
 				
 				<pubDate>Sun, 10 Feb 2013 00:00:00 +0800</pubDate>
@@ -171,8 +163,7 @@
 					
 				
 				
-					<description>&lt;p&gt;She’ll be right bored sh*tless mate he’s got a massive bitzer. Lets throw a trackies where built like a rotten. As stands out like garbo flamin grab us a bogan. We’re going pozzy when she’ll be right cleanskin. Lets throw a chrissie my come a skite. Gutful of middy my gutful of ugg boots. Flat out like a larrikin where grab us a mates. It’ll be apples heaps built like a counter meal. As cross as a booze bus when you little ripper shit house. As cunning as a bush oyster mate as stands out like jumbuck. We’re going whinge mate lets throw a vee dub.&lt;/p&gt;
-
+					<description>&lt;p&gt;She&amp;#39;ll be right bored sh*tless mate he&amp;#39;s got a massive bitzer. Lets throw a trackies where built like a rotten. As stands out like garbo flamin grab us a bogan. We&amp;#39;re going pozzy when she&amp;#39;ll be right cleanskin. Lets throw a chrissie my come a skite. Gutful of middy my gutful of ugg boots. Flat out like a larrikin where grab us a mates. It&amp;#39;ll be apples heaps built like a counter meal. As cross as a booze bus when you little ripper shit house. As cunning as a bush oyster mate as stands out like jumbuck. We&amp;#39;re going whinge mate lets throw a vee dub.&lt;/p&gt;
 </description>
 				
 				<pubDate>Wed, 18 Jan 2012 00:00:00 +0800</pubDate>

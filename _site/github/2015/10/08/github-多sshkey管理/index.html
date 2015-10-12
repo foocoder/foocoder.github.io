@@ -166,20 +166,20 @@ header::after {
 不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
 </p>
 
-<h2 id="github">单个github帐号免密码登陆</h2>
+<h2>单个github帐号免密码登陆</h2>
 
 <p>对于单个github，还是老方法，先生成sshkey，然后把<code>publickey</code> copy 到github的setting &gt; SSH keys中</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
 ssh-keygen -t rsa -C <span class="s2">&quot;youremail@email.com&quot;</span></code></pre></div>
 
-<p>其中<code>-t</code>是指<code>type</code> – 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
+<p>其中<code>-t</code>是指<code>type</code> -- 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
 
 <p>之后，我们打开repo的git配置文件<code>.git/config</code>，将远程仓库地址改成ssh形式，<code>git@github.com:user.name/repoName.git</code></p>
 
 <p>当然，在<code>git commit</code>之前还要通过<code>git config</code>来设置user.name以及user.email。如果只是单个帐号的话global模式会比较方便，而多个帐号只能设置成local模式。</p>
 
-<h2 id="github-1">多个github帐号管理</h2>
+<h2>多个github帐号管理</h2>
 
 <p>
 以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
