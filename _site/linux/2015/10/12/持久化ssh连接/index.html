@@ -186,10 +186,13 @@ header::after {
 <p>再一次进行<code>ssh</code>测试User2的连接情况，奇迹发生了，终于出现<code>Hi, User2</code>了，但这时<code>ssh</code>User1也成了<code>Hi, User2</code>，突然想起来是不是<code>config</code>里前三行搞的鬼？然后继续问谷歌吧。</p>
 
 <blockquote>
-<p><code>ControlMaster auto</code> 告诉ssh客户端尝试重用现有的连接(master connection)。
-<code>ControlPath</code> 指定了这个连接的socket保存位置，这里保存在<code>/tmp</code>路径下，以便重启后便删除了，实际放在其他地方也可以。文件名中%h表示远程主机名(host)，%p表示端口(port)，%r表示远程用户名(remote user name)。文件可随时<code>rm</code>掉然后重新连接。
-<code>ControlPersist 4h</code> 表示在创建的首个连接(master connection)的会话推出后，master连接仍然在后台保留，以便其他复用该连接的会话不会出现问题。
-<small>— <a href="http://liyangliang.me/posts/2015/03/reuse-ssh-connection/">@李林克斯 《重用SSH连接》</a></small></p>
+<ul>
+<li><code>ControlMaster auto</code> 告诉ssh客户端尝试重用现有的连接(master connection)。</li>
+<li><code>ControlPath</code> 指定了这个连接的socket保存位置，这里保存在<code>/tmp</code>路径下，以便重启后便删除了，实际放在其他地方也可以。文件名中%h表示远程主机名(host)，%p表示端口(port)，%r表示远程用户名(remote user name)。文件可随时<code>rm</code>掉然后重新连接。</li>
+<li><code>ControlPersist 4h</code> 表示在创建的首个连接(master connection)的会话推出后，master连接仍然在后台保留，以便其他复用该连接的会话不会出现问题。</li>
+</ul>
+
+<p><small>— <a href="http://liyangliang.me/posts/2015/03/reuse-ssh-connection/">@李林克斯 《重用SSH连接》</a></small></p>
 </blockquote>
 
 <p>难怪，由于的我的<code>ControlMaster</code>配置没有在哪个<code>Host</code>下，因此对全局生效，况且<code>github</code>的user都是<code>git</code>，所以导致每次验证的都是<code>master</code>的连接，难怪会出现问题。看来以后遇到问题后不能什么都不懂直接Copy，因为接下来总会有莫名其妙的问题等着你。</p>
