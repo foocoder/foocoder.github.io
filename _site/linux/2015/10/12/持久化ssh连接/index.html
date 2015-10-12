@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Github多sshkey管理 • Meta Coder
+持久化ssh连接 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ Github多sshkey管理 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Github多sshkey管理 • Meta Coder">
+<meta property="og:title" content="持久化ssh连接 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ Github多sshkey管理 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">
+<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,92 +135,67 @@ header::after {
 
 
 <article>
-        <h1>Github多sshkey管理</h1>
+        <h1>持久化ssh连接</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
+                <a class="fa fa-bookmark" href="/category/#linux" title="linux">Linux</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#Github" title="Github">Github</a>
+            <a class="fa fa-tag" href="/tags/#linux" title="linux">linux</a>
             
             <a class="fa fa-tag" href="/tags/#ssh" title="ssh">ssh</a>
             
-            <a class="fa fa-tag" href="/tags/#免密码登陆" title="免密码登陆">免密码登陆</a>
+            <a class="fa fa-tag" href="/tags/#ssh_config" title="ssh_config">ssh_config</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 8, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 12, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>
-断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
-虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
-非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
-</p>
+        <p>前两天在设置<code>github</code>的多<code>ssh-key</code>登陆时，有个问提扰了我好久，直到后来才找到原因，特此记录一下。</p>
 
-<p>
-但是，这时候问题却出现了，之前一直只用一个github帐号，完全可以用一个sshkey来登陆github.
-不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
-</p>
+<p>话说前段时间在用超算中心跑实验的时候，由于学校的战斗力为5的渣渣网速，<code>ssh</code>以及<code>sshfs</code>每隔几分钟就断掉一次，而每次连接又耗费大量时间等待其身份验证，于是从google上查找了一下，在<code>~/.ssh/config</code>添加两行：</p>
 
-<h2 id="github">单个github帐号免密码登陆</h2>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="lineno">1</span> ControlMaster <span class="k">auto</span>
+<span class="lineno">2</span> ControlPath <span class="sr">/tmp/</span>ssh_mux_%h_%p_%<span class="k">r</span>
+<span class="lineno">3</span> ControlPersist <span class="m">4</span>h</code></pre></div>
 
-<p>对于单个github，还是老方法，先生成sshkey，然后把<code>publickey</code> copy 到github的setting &gt; SSH keys中</p>
+<p>好吧，瞬间有一种便秘了好多天突然畅通无阻的感觉（我承认我是有够低俗的），心情舒畅了不少。但具体是什么意思自己也没细想，就把他搁那儿了。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
-ssh-keygen -t rsa -C <span class="s2">&quot;youremail@email.com&quot;</span></code></pre></div>
+<p>然后的然后，在设置多个<code>github</code>登陆时，又修改了<code>.ssh/config</code>文件如下:</p>
 
-<p>其中<code>-t</code>是指<code>type</code> – 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="lineno"> 1</span> ControlMaster <span class="k">auto</span>
+<span class="lineno"> 2</span> ControlPath <span class="sr">/tmp/</span>ssh_mux_%h_%p_%<span class="k">r</span>
+<span class="lineno"> 3</span> ControlPersist <span class="m">4</span>h
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> Host user1.github.<span class="k">com</span>
+<span class="lineno"> 6</span> Host github.<span class="k">com</span>
+<span class="lineno"> 7</span> <span class="nb">User</span> git
+<span class="lineno"> 8</span> IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> Host user2.github.<span class="k">com</span>
+<span class="lineno">11</span> Host github.<span class="k">com</span>
+<span class="lineno">12</span> <span class="nb">User</span> git
+<span class="lineno">13</span> IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></div>
 
-<p>之后，我们打开repo的git配置文件<code>.git/config</code>，将远程仓库地址改成ssh形式，<code>git@github.com:user.name/repoName.git</code></p>
+<p>然后<code>ssh</code>分别进行测试两个Host能否联通，但令人抓狂的是每次return的都是<code>Hi, User1</code>，而且对User2的repo进行<code>push</code>也无法认证，因为是User1的sshkey，如此几次怎么查找都找不出问题所在，后来一怒之下关机重启了。</p>
 
-<p>当然，在<code>git commit</code>之前还要通过<code>git config</code>来设置user.name以及user.email。如果只是单个帐号的话global模式会比较方便，而多个帐号只能设置成local模式。</p>
+<p>再一次进行<code>ssh</code>测试User2的连接情况，奇迹发生了，终于出现<code>Hi, User2</code>了，但这时<code>ssh</code>User1也成了<code>Hi, User2</code>，突然想起来是不是<code>config</code>里前三行搞的鬼？然后继续问谷歌吧。</p>
 
-<h2 id="github-1">多个github帐号管理</h2>
+<blockquote>
+  <p><code>ControlMaster auto</code> 告诉ssh客户端尝试重用现有的连接(master connection)。<br />
+<code>ControlPath</code> 指定了这个连接的socket保存位置，这里保存在<code>/tmp</code>路径下，以便重启后便删除了，实际放在其他地方也可以。文件名中%h表示远程主机名(host)，%p表示端口(port)，%r表示远程用户名(remote user name)。文件可随时<code>rm</code>掉然后重新连接。<br />
+<code>ControlPersist 4h</code> 表示在创建的首个连接(master connection)的会话推出后，master连接仍然在后台保留，以便其他复用该连接的会话不会出现问题。<br />
+<small>— <a href="http://liyangliang.me/posts/2015/03/reuse-ssh-connection/">@李林克斯 《重用SSH连接》</a></small></p>
+</blockquote>
 
-<p>
-以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
-这样就必须用到两个key了。同样我们需要利用<code>ssh-keygen</code>来生成每一个帐号的sshkey,当然此时不能一路回车了，要为每个帐号的sshkey分别命名。
-由于不是默认的名称，所以我们需要 <code>ssh-add</code> 来添加每一个会用到的sshkey。
-哦，对了，如果之前设置了<code>git config --global</code>,现在必须<code> git config --global --unset</code>掉，然后为每个repo设置local的<code>user.name</code>以及<code>user.email</code>.
-</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh-add ~/.ssh/id_rsa1
-ssh-add ~/.ssh/id_rsa2</code></pre></div>
-
-<p>然后在 <code>~/.ssh/config</code> 中添加每个帐号的Host信息。</p>
-
-<div class="highlight"><pre><code class="language-vim" data-lang="vim">Host user1.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
-
-Host user2.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></div>
-
-<p>好了，现在就可以测试是否可以链接了。</p>
-
-<div class="highlight"><pre><code class="language-shell-session" data-lang="shell-session"><span class="go">ssh -T user1.github.com</span>
-<span class="go">Hi user1! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
-<span class="go">ssh -T user2.github.com</span>
-<span class="go">Hi user2! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span></code></pre></div>
-
-<p>如上显示，便表示链接成功了。</p>
-
-<p>现在我们需要将每个仓库下的配置改成相应<code>Host</code>的形式了，改成如下所示</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span>user1.github.com:user.name/repoName.git
-<span class="nv">url</span><span class="o">=</span>user2.github.com:user.name/repoName.git</code></pre></div>
-
-<p>自此以后，就可以<code>git push</code>了。</p>
+<p>难怪，由于的我的<code>ControlMaster</code>配置没哟在哪个<code>Host</code>下，因此对全局生效，况且<code>github</code>的user都是<code>git</code>，所以导致每次验证的都是<code>master</code>的连接，难怪会出现问题。看来以后遇到问题后不能什么都不懂直接Copy，因为接下来总会有莫名其妙的问题等着你。</p>
 
         <hr>
-        <p>08 Oct 2015</p>
+        <p>12 Oct 2015</p>
         
             
             
@@ -234,12 +209,12 @@ IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/%E8%BD%AC%E8%BD%BD/2015/10/05/liquid-for-designers/">Previous post ›</a>
+        <a href="/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/">Previous post ›</a>
         
     </div>
 </div>

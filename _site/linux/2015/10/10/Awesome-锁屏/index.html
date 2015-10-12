@@ -192,7 +192,13 @@ header::after {
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> xscreensaver -nosplash <span class="p">&amp;</span></code></pre></div>
 
-<p>通过添加<code>-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净过了。</p>
+<p>通过添加<code>-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净多了。</p>
+
+<p>哦，对了，如果遇到启用<code>gnome-settings-daemon</code>时发现鼠标指针不见的情况下，输入以下命令。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span></code></pre></div>
+
+<p>完成！</p>
 
 <p>Ps. 总结一下，这次安装屏保的过程又折腾了好久，主要因素是由于自己的大意好多命令给拼错了，导致很多莫名奇妙的问题，如<code>gnome-settings-daemon</code>成了<code>gnome-setting-daemon</code>，<code>xscreensvaer</code>又成了<code>xscreen-saver</code>，切记不要太粗心!</p>
 
@@ -211,12 +217,12 @@ header::after {
 <div class="pagination clearfix">
     <div class="left">
         
-        <span class="disabled">‹ Next post</span>
+        <a href="/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/">‹ Next post</a>
         
     </div>
     <div class="right">
         
-        <a href="/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">Previous post ›</a>
+        <a href="/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">Previous post ›</a>
         
     </div>
 </div>

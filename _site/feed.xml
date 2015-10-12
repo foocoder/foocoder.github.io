@@ -7,6 +7,23 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>持久化ssh连接</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;前两天在设置&lt;code&gt;github&lt;/code&gt;的多&lt;code&gt;ssh-key&lt;/code&gt;登陆时，有个问提扰了我好久，直到后来才找到原因，特此记录一下。&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Mon, 12 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</guid>
+			</item>
+		
+			<item>
 				<title>Awesome 锁屏</title>
 				
 					
@@ -24,7 +41,7 @@
 			</item>
 		
 			<item>
-				<title>awesome 初体验</title>
+				<title>Awesome 初体验</title>
 				
 					
 						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
@@ -36,8 +53,8 @@
 </description>
 				
 				<pubDate>Fri, 09 Oct 2015 00:00:00 +0800</pubDate>
-				<link>http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/09/awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</guid>
+				<link>http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</guid>
 			</item>
 		
 			<item>
