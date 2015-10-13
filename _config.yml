@@ -88,8 +88,8 @@ googleAnaly:
 baiduAnaly:
     config: true
 
-#Markdown 
-markdown: redcarpet
+#Markdown
+markdown: kramdown
 ################
 # SOCIAL ICONS #
 ################

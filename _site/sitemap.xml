@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/13/Redis%E5%A4%A7%E5%86%92%E9%99%A9/</loc>
+    </url>
+    
+    <url>
         <loc>http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</loc>
     </url>
     
