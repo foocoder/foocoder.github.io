@@ -1,5 +1,6 @@
 ---
 title: Code Snippets
+date: 2013-02-10
 categories: Sample
 tags: [Markdown, Code, Introduction]
 cover-image: 9.jpg

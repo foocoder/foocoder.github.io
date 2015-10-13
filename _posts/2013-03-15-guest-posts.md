@@ -1,5 +1,6 @@
 ---
 title: Guest Posts
+date: 2013-03-15
 categories: Sample
 tags: [Guest, Blog, Introduction]
 cover-image: 9.jpg

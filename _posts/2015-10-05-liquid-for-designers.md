@@ -1,5 +1,6 @@
 ---
 title: Liquid for Designers
+date: 2015-10-05
 categories: 转载
 tags: [转载, 译文, Liquid, 不时之需]
 cover-image: 9.jpg

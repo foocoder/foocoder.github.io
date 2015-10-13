@@ -1,5 +1,6 @@
 ---
 title: Github多sshkey管理
+date: 2015-10-08
 categories: Github
 tags: [Github, ssh, 免密码登陆]
 cover-image: 9.jpg

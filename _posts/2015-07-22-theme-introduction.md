@@ -1,5 +1,6 @@
 ---
 title: Theme introduction
+date: 2015-07-22
 categories: Sample
 tags: [Introduction, Markdown, Blog]
 cover-image: 9.jpg
