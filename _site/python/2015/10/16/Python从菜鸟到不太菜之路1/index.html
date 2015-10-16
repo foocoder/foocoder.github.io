@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+Python从菜鸟到不太菜之路(1) • Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+
+<!-- include Font Awesome -->
+<link href="/font_awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- include Font Awesome -->
+
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="Python从菜鸟到不太菜之路(1) • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://127.0.0.1:4000/python/2015/10/16/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF1/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Crimson+Text:700italic,600,600italic,400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:2000px">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa-stack fa-lg">
+                  <i class="fa-square fa-stack-2x"></i>
+                  <i class="fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <div class="wrap">
+            <header>
+  <a href="/" class="website-title">
+    
+      <img alt="Meta Coder" src="/img/logo1.png" style="height:54px">
+    
+
+  </a>
+  <nav>
+  <a href="/about/">About</a>
+  <a href="/archive/">Archive</a>
+  <a href="/category/">Category</a>
+  <a href="/tags/">Tags</a>
+</nav>
+
+  
+</header>
+
+            
+
+    
+
+
+<article>
+        <h1>Python从菜鸟到不太菜之路(1)</h1>
+        <div class="category">
+            
+                <a class="fa fa-bookmark" href="/category/#python" title="python">Python</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-tag" href="/tags/#Code" title="Code">Code</a>
+            
+            <a class="fa fa-tag" href="/tags/#Python" title="Python">Python</a>
+            
+            <a class="fa fa-tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
+            
+            <a class="fa fa-tag" href="/tags/#工具" title="工具">工具</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar">Oct 16, 2015 • Less than a minute read</span>
+        </div>
+
+        <hr>
+        <p>Python 之前由于有一些数据要处理，从网上东一块西一块的看过一些资料，但要说系统的学习还是没有的，所以最近这段时间决心看些书查些资料，对Python有些个系统的了解。在这里记录一些学习笔记，希望能坚持下去。</p>
+
+<h2 id="pythonmain">(1) 关于Python的Main函数在哪？</h2>
+
+<p>一开始刚接触到Python的时候,看一个py的代码经常第一反应是去找这段代码的main函数，经常却只能见到这么一段代码:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno">1</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="lineno">2</span>     <span class="c">#主函数语句</span></code></pre></div>
+
+<p>原来Python里的Main函数并不需要直接显式的定义调用的，Python是一种解释型语言，所以我们看到py文件中尽管没有任何函数块或者主函数入口也可以执行运行。</p>
+
+<p>在Python里边有着“命名空间”的概念，也就是<code>__name__</code>的值,Python中所有的代码都会有一个命名空间与之相关联。其中，主程序（即python命令直接执行的程序或者python shell中的代码）会与<code>__main__</code>命名空间相关联，而每个模块中的代码（即import要导入的代码）则是与该模块名相同的命名空间里。</p>
+
+<p>如以下例子：</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno">1</span> <span class="c">#Filename TestNamespace.py</span>
+<span class="lineno">2</span> <span class="k">def</span> <span class="nf">funcName</span><span class="p">():</span>
+<span class="lineno">3</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;This is a Test&quot;</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="lineno">5</span>     <span class="n">funcname</span><span class="p">();</span>
+<span class="lineno">6</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Testnamespace Run in Main Namespace&quot;</span><span class="p">);</span></code></pre></div>
+
+<p>如果我们直接调用<code>python TestNamespace.py</code>两句话都会输出</p>
+
+<pre><code>This is a Test
+Testnamespace Run in Main Namespace
+</code></pre>
+
+<p>而如果在代码中先<code>import Testnamespace</code>,第二个print则永远调用不出来</p>
+
+<div class="highlight"><pre><code class="language-pycon" data-lang="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Testnamespace</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Testnamespace</span><span class="o">.</span><span class="n">funcname</span><span class="p">()</span>
+<span class="go">This is a Test</span></code></pre></div>
+
+<p>从而我们可以在每个模块对代码在<code>__main__</code>空间下进行测试,而import该模块后,测试语句则不再起任何作用。</p>
+
+
+        <hr>
+        <p>16 Oct 2015</p>
+        
+            
+            
+                <small><em>Post by: MetaCoder who is just a Coder Monkey!</em></small>
+            
+          
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/13/Redis%E5%A4%A7%E5%86%92%E9%99%A9/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).addClass('img-only-source');
+                    }
+                });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>
