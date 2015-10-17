@@ -163,16 +163,15 @@ header::after {
 
 <p>首先查阅<a href="http://ju.outofmemory.con/entry/94124">@cold</a>大神的文章,貌似我们需要配置一下<code>~/.xinitrc</code>这个文件。</p>
 
-<blockquote>
-  <p><code>~/.xinitrc</code>文件是<code>xinit</code>和他的前端<code>startx</code>第一次启动时会读取的脚本，通常在启动X时执行窗口管理器或其他程序，例如启动守护进程和设置环境变量。<br />
-<small>—— <a href="https://wiki.archlinux.org/index.php/xinitrc_(简体中文)">ArchWiki</a></small></p>
-</blockquote>
+<blockquote><p><code>~/.xinitrc</code>文件是<code>xinit</code>和他的前端<code>startx</code>第一次启动时会读取的脚本，通常在启动X时执行窗口管理器或其他程序，例如启动守护进程和设置环境变量。
+<small>—— <a href="https://wiki.archlinux.org/index.php/xinitrc_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">ArchWiki</a>)</small></p></blockquote>
 
 <p>这是colde大神的配置，不过貌似没看到锁屏什么事。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="c">#!/usr/bin/env bash</span>
 <span class="lineno">2</span> gnome-settings-daeman <span class="p">&amp;</span> <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
 <span class="lineno">3</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span></code></pre></div>
+
 
 <p>不过想想看，我们可以把<code>xscreensaver</code>直接添加到启动脚本里边应该可以了吧。就像这样子：</p>
 
@@ -182,21 +181,25 @@ header::after {
 <span class="lineno">4</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span>
 <span class="lineno">5</span> update-notifier <span class="p">&amp;</span> 自动更新程序</code></pre></div>
 
+
 <p>然而，悲催的是，现在开始报错了，“未能启动通知守护进程”！我去，这又是什么鬼，什么是<code>通知守护进程</code>？连谷歌都谷不到！后来几经波折，才发现原来是个叫<code>notification daemon</code>的东东，可能翻译成中文后还真找不到相关文献了，gnome下的系统通知工具，类似Windows系统右边的通知栏。好吧，第二次重启DE后又没问题了，我也是醉了。</p>
 
 <p>接下来在<code>rc.lua</code>里边帮定锁屏的快捷键，如下:</p>
 
 <div class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="lineno">1</span> <span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Control&quot;</span> <span class="p">},</span> <span class="s2">&quot;</span><span class="s">Delete&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">xscreensaver-command -lock&#39;</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span></code></pre></div>
 
+
 <p>不过每次启动后都有个<code>xscreensaver</code>的logo画面怪惹人烦的， 后来看到<code>Awesome</code>的官网添加<code>xscreensaver</code>是这样的：</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> xscreensaver -nosplash <span class="p">&amp;</span></code></pre></div>
+
 
 <p>通过添加<code>-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净多了。</p>
 
 <p>哦，对了，如果遇到启用<code>gnome-settings-daemon</code>时发现鼠标指针不见的情况下，输入以下命令。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span></code></pre></div>
+
 
 <p>完成！</p>
 

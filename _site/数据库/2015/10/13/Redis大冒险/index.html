@@ -155,16 +155,15 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 13, 2015 • 3&nbsp;min read</span>
+            <span class="fa fa-calendar">Oct 13, 2015 • 2&nbsp;min read</span>
         </div>
 
         <hr>
         <p>最近在搞一组实验，但数据用mysql存储的话好多数据项是不定长的，于是决定改用Redis。看到关于Redis简介的一篇很好的文章，特此转载过来。</p>
 
-<blockquote>
-  <p>英文原文: <a href="http://labs.alcacoop.it/doku.php?id=articles:redis_land">ALCA in Redis-Land</a><br />
-译文原文: <a href="http://www.cnblogs.com/enjiex/p/3618546.html">Redis大冒险</a></p>
-</blockquote>
+<blockquote><p>英文原文: <a href="http://labs.alcacoop.it/doku.php?id=articles:redis_land">ALCA in Redis-Land</a></p>
+
+<p>译文原文: <a href="http://www.cnblogs.com/enjiex/p/3618546.html">Redis大冒险</a></p></blockquote>
 
 <p>一篇对使用Redis在NoSQL的世界中冒险之旅的总结。</p>
 
@@ -173,14 +172,15 @@ header::after {
 <p>像每次出发一样，先对我们这次的旅程路线做个介绍：</p>
 
 <ul>
-  <li><a href="#title1">Redis? What is it?</a></li>
-  <li><a href="#title2">Available datatypes</a></li>
-  <li><a href="#title3">Where are my tables?</a></li>
-  <li><a href="#title4">A simple use case</a></li>
-  <li><a href="#title5">Back home</a></li>
+<li><a href="#title1">Redis? What is it?</a></li>
+<li><a href="#title2">Available datatypes</a></li>
+<li><a href="#title3">Where are my tables?</a></li>
+<li><a href="#title4">A simple use case</a></li>
+<li><a href="#title5">Back home</a></li>
 </ul>
 
-<h2 id="span-idtitle1redis-what-is-itspan"><span id="title1">探索之一：Redis? What is it?</span></h2>
+
+<h2><span id="title1">探索之一：Redis? What is it?</span></h2>
 
 <p>简而言之，Redis是一种强大的key-value数据库，之所以强大有两点：响应速度快(所以数据内存存储，只在必要时写入磁盘)，特性丰富(支持多种数据类型，以及各类型上的复杂操作)。</p>
 
@@ -188,409 +188,417 @@ header::after {
 
 <p>在Redis中，没有数据表的概念，也无须关心select,join,view等操作或功能，同时也不提供类似于int或varchar的数据字段。你面对的将是相对原始的数据集合及数据类型。</p>
 
-<h2 id="span-idtitle2available-datatypesspan"><span id="title2">探索之二：Available datatypes</span></h2>
+<h2><span id="title2">探索之二：Available datatypes</span></h2>
 
 <p>下面我们深入看下这个奇怪的数据库是如何工作的。如上所见，Redis是基于key-value范式存储数据，所以先来重点看下<code>key</code>的概念。</p>
 
-<p>key本质上就是简单的字符串，诸如<code>username</code>、<code>password</code>等。在定义key时，除了不能使用空格，你可以随意的使用普通的字符、数字等，像”.”,”:”,”_“等在定义key时都能正常使用，所以像<code>user_name</code>, <code>user:123:age</code>, <code>user:123:username</code>都是不错的key的定义方式。</p>
+<p>key本质上就是简单的字符串，诸如<code>username</code>、<code>password</code>等。在定义key时，除了不能使用空格，你可以随意的使用普通的字符、数字等，像".",":","_"等在定义key时都能正常使用，所以像<code>user_name</code>, <code>user:123:age</code>, <code>user:123:username</code>都是不错的key的定义方式。</p>
 
 <p>不像RDBMS中的字段名称，这里的key是Redis中的重要组成部分，所以我们必须在处理key时多加小心。在下面的讲述中，Redis并没有table的概念，所以像<code>SELECT username from users WHERE user_id=123;</code>这种简单任务都只能换种方式实现，为了达到这种目的，在Redis上，一种方式是通过key <code>user:123:username</code>来获取结果value。如你所见，key的定义中携带了神秘信息(像user ids)。在Redis中，key的重要性可见一斑。(其他key-value数据库中key的地位也是如此。)</p>
 
 <p>现在你应该对key有了清楚的了解，下面带你进入可用的数据类型的神奇世界。</p>
 
-<h3 id="strings">Strings</h3>
+<h3>Strings</h3>
 
 <p>String是Redis中最基本的数据类型，它就是普通的二进制安全的字符串，支持最大数据长度为1Gb。</p>
 
 <p>可以通过SET命令给一个key设置String类型的数据，并可通过GET命令根据key取得结果。如果你想存储数字信息，像计数器，你也可以把它存储到String数据中，并可使用INCR和DECR对之做自增和自减操作。</p>
 
-<h3 id="lists">Lists</h3>
+<h3>Lists</h3>
 
 <p>List是string数据的集合，其中各数据项按插入顺序排列。你可以把list当作一个锁链(chain)，所以可以在锁链最左边(链头)或最右边(链尾)添加一个新的链结(link)；当然也可以加在锁链中间，但却要打断某个链结。</p>
 
 <p>可能通过LPUSH和RPUSH命令给list添加数据(L:left, R:right)，通过LPOP或RPOP命令弹出元素(同时删除该元素)，也可以通过LRANGE获取指定范围的元素(仅返回数据，不会删除任何元素)。另外也可通过LSET在指定位置添加元素，但通常这种操作比简单的LPUSH或RPUSH要慢很多。</p>
 
-<h3 id="hashes">Hashes</h3>
+<h3>Hashes</h3>
 
 <p>Hashes以简洁的方式存储关系更为紧密的数据。Hashes为每个存储的key实现一个内置的key-value对来存储数据，例如对于<code>user</code>这个key，它的值可以是多个字段以及与每个字符相应的值对组成数据集。如果你熟悉像ruby或javascript等编程语言，这里的hashes与那些语言中的hash概念大同小异。</p>
 
-<h3 id="sets">Sets</h3>
+<h3>Sets</h3>
 
-<p>Sets和它在数学上的同名概念”集合”意义相同，是包含不重复元素的集合。在Redis中，这些对象变成了Redis里的String类型。正如你想，sets与lists不同的地方在于：sets中的元素是无序的，并且不能重复，你不能在sets中放进两个相同的数据。　　</p>
+<p>Sets和它在数学上的同名概念"集合"意义相同，是包含不重复元素的集合。在Redis中，这些对象变成了Redis里的String类型。正如你想，sets与lists不同的地方在于：sets中的元素是无序的，并且不能重复，你不能在sets中放进两个相同的数据。　　</p>
 
-<p>可以通过SADD往set中添加数据，SREM删除数据，或者通过SPOP返回并删除此数据。此外还可以通过SUNION, SINTER, SDIFF命令分别实现集合上的”并集”, “交集”, “差集”操作。</p>
+<p>可以通过SADD往set中添加数据，SREM删除数据，或者通过SPOP返回并删除此数据。此外还可以通过SUNION, SINTER, SDIFF命令分别实现集合上的"并集", "交集", "差集"操作。</p>
 
-<h3 id="ordered-sets">Ordered sets</h3>
+<h3>Ordered sets</h3>
 
 <p>Ordered sets与sets类似，不同地方在于Ordered set中的每个元素都有一个权重，用于与其他元素比较并排序。</p>
 
 <p>当然ordered set与普通sets具有类似的操作，ZADD和ZREM分别是添加和删除元素。Ordered set也有自己独有的操作：ZINCR和ZSCORE，前则用于为元素的权重+1，后则则返回元素的权重值。</p>
 
-<h2 id="span-idtitle3where-are-my-tablesspan"><span id="title3">探索之三：Where are my tables?</span></h2>
+<h2><span id="title3">探索之三：Where are my tables?</span></h2>
 
 <p>使用Redis与我们之前使用的SQL数据表完全不同，没有语言支持你在服务器上查询数据，这里仅有一些命令帮你操作数据库中的keys值。Redis中的命令是数据类型敏感型的，也就是说你不能在list上执行set命令，否则你将得到一个执行错误的提示。可以通过redis-cli或其他你使用的编程语言中的接口给Redis server发送命令。在下面的示例中，我们只强调命令本身，而不关注你通过哪种方式提交给Redis server。</p>
 
 <p>想像一下，一个简单的SQL数据库表，像一些应用中会用到的保存用户数据的表：</p>
 
 <table>
-  <thead>
-    <tr>
-      <th style="text-align: right">id</th>
-      <th style="text-align: center">username</th>
-      <th style="text-align: center">password</th>
-      <th style="text-align: center">name</th>
-      <th style="text-align: center">surname</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: right">1</td>
-      <td style="text-align: center">user1　</td>
-      <td style="text-align: center">pass1　</td>
-      <td style="text-align: center">Bob</td>
-      <td style="text-align: center">Smith</td>
-    </tr>
-    <tr>
-      <td style="text-align: right">2</td>
-      <td style="text-align: center">user2　</td>
-      <td style="text-align: center">pass2　</td>
-      <td style="text-align: center">Mario</td>
-      <td style="text-align: center">Rossi</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:right;">id</th>
+<th style="text-align:center;">username</th>
+<th style="text-align:center;">password</th>
+<th style="text-align:center;">name </th>
+<th style="text-align:center;">surname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">1 </td>
+<td style="text-align:center;">user1　 </td>
+<td style="text-align:center;">pass1　 </td>
+<td style="text-align:center;">Bob  </td>
+<td style="text-align:center;">Smith</td>
+</tr>
+<tr>
+<td style="text-align:right;">2 </td>
+<td style="text-align:center;">user2　 </td>
+<td style="text-align:center;">pass2　 </td>
+<td style="text-align:center;">Mario</td>
+<td style="text-align:center;">Rossi</td>
+</tr>
+</tbody>
 </table>
 
-<h3 id="section">存储数据</h3>
+
+<h3>存储数据</h3>
 
 <p>假如我们想把上面的数据存储到Redis中，你会如何在Redis中设计数据库方案呢？也许以应用的视觉来看会更直观一些。使用SQL，我们在SELECT中通过指定用户id来获得一个用户信息，换句话说就是需要有用于区分不同数据实体的方式，所以我们可以通过一个唯一的标识来标识和获取用户信息。所以如果在redis的key中加入用户的id信息，那么我们的查询需求就解决了，在redis中，数据被存储成如下形式：</p>
 
 <table>
-  <thead>
-    <tr>
-      <th>Key　　　　　　　　</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user:1:username　　</td>
-      <td>user1</td>
-    </tr>
-    <tr>
-      <td>user:1:password　　</td>
-      <td>pass1</td>
-    </tr>
-    <tr>
-      <td>user:1:name　　　　</td>
-      <td>Bob</td>
-    </tr>
-    <tr>
-      <td>user:1:surname　　</td>
-      <td>Smith</td>
-    </tr>
-    <tr>
-      <td>user:2:username　　</td>
-      <td>user2</td>
-    </tr>
-    <tr>
-      <td>user:2:password　　</td>
-      <td>pass2</td>
-    </tr>
-    <tr>
-      <td>user:2:name 　　　</td>
-      <td>Mario</td>
-    </tr>
-    <tr>
-      <td>user:2:surname 　　</td>
-      <td>Rossi</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>Key　　　　　　　　</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user:1:username　　</td>
+<td>user1</td>
+</tr>
+<tr>
+<td>user:1:password　　</td>
+<td>pass1</td>
+</tr>
+<tr>
+<td>user:1:name　　　　</td>
+<td>Bob</td>
+</tr>
+<tr>
+<td>user:1:surname　　 </td>
+<td>Smith</td>
+</tr>
+<tr>
+<td>user:2:username　　</td>
+<td>user2</td>
+</tr>
+<tr>
+<td>user:2:password　　</td>
+<td>pass2</td>
+</tr>
+<tr>
+<td>user:2:name 　　　 </td>
+<td> Mario</td>
+</tr>
+<tr>
+<td>user:2:surname 　　</td>
+<td>Rossi</td>
+</tr>
+</tbody>
 </table>
+
 
 <p>那么，给出任一个用户id，我们就可以通过key <code>user:id:username</code>,<code>user:id:password</code>,<code>user:id:name</code>,<code>user:id:surname</code>的形式读出用户信息。</p>
 
-<h3 id="section-1">用户登录</h3>
+<h3>用户登录</h3>
 
 <p>上面的存储形式也能用于用户登录，但需要一种方式能根据username来查询用户的id。也就是说我们还需要在username和id之间建立联系。这可以通过添加另外一个redis key <code>user:username:id</code>来实现。</p>
 
 <table>
-  <thead>
-    <tr>
-      <th>key　　　　　　</th>
-      <th>value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user:user1:id　</td>
-      <td>　1</td>
-    </tr>
-    <tr>
-      <td>user:user2:id　</td>
-      <td>　2</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>key　　　　　　</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user:user1:id　</td>
+<td>　1</td>
+</tr>
+<tr>
+<td>user:user2:id　</td>
+<td>　2</td>
+</tr>
+</tbody>
 </table>
+
 
 <p>现在如果Mario Rossi想要登录进来，我们可以通过key <code>user:user2:id</code>先查出username，进而获得用户的所有信息。</p>
 
-<h3 id="section-2">主键</h3>
+<h3>主键</h3>
 
 <p>在Redis中如何保证id值的唯一性呢。在SQL中，可以通过<code>id int primary key auto_increment</code>定义自增主键来实现，现在我们也需要一种类似的方式为每个用户生成一个不同的id。根据前面可用的数据类型中提到的数字数据，Redis中的方案是这样的：创建一个key <code>user:next_id</code>，并把它作为计数器，每当要添加新用户时，就对key <code>user:next_id</code>执行INCR命令。</p>
 
 <div class="highlight"><pre><code class="language-mysql" data-lang="mysql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span><span class="p">;</span></code></pre></div>
 
+
 <p>下一个面临的问题是查询用户列表。也许你认为我们上面的数据存储已经足以查询出用户列表：可以先获得<code>user:next_id</code>的当前值counter，然后通过一步或多步遍历0到counter获得用户数据。但如果某个用户从系统中删除(下面会讲到删除操作)，而我们会遍历0到counter中的所有id，这时就会有些id查询不到任何数据。</p>
 
 <p>尽管这通常不是问题，但我们不想在不存在的用户数据上浪费时间，所以需要创建另外一个key <code>user:list</code>，其value为list或set类型，用于存储每一个新增的用户id，并在必要的时候从<code>user:list</code>中删除该id。我更倾向于使用list，因为它可能通过LRANGE命令实现分页功能。</p>
 
-<h3 id="section-3">删除用户</h3>
+<h3>删除用户</h3>
 
-<p>还有一个要面临的问题是”数据完整性”,看看我们在删除用户时会发生什么吧。我们需要删除每一个对此用户的引用，也就是说，需要删除下面所有的key <code>user:id:*</code>,<code>user:username:id</code>，以及<code>user:list</code>中的用户id。</p>
+<p>还有一个要面临的问题是"数据完整性",看看我们在删除用户时会发生什么吧。我们需要删除每一个对此用户的引用，也就是说，需要删除下面所有的key <code>user:id:*</code>,<code>user:username:id</code>，以及<code>user:list</code>中的用户id。</p>
 
-<h2 id="span-idtitle4a-simple-use-casespan"><span id="title4">探索之四：A Simple use case</span></h2>
+<h2><span id="title4">探索之四：A Simple use case</span></h2>
 
 <p>为了学习致用，我们尝试设计一个虚拟图书馆，并能根据主题对图书分组。下面的例子比上面的用户表会稍微复杂些，但你将学会如何在Redis中处理关联关系。</p>
 
 <p>在应用中，我们需要收集图书，并存储他们的title,author(s), topic(s), pages, price, ISBN和description。显然有些图书的作者不止一个，并且它也许会涵盖不同的主题(例如一本书可以是编程主题，也可以是描述的ruby编程)。另外一个作者可能写了很多本书，而一个主题必然会包含很多本书。可以看出，这里出现了作者和图书、主题和图书的多对多关系。</p>
 
-<h3 id="sql">SQL场景</h3>
+<h3>SQL场景</h3>
 
 <p>首先，我们尝试使用SQL数据表为此种场景建数据模型，以便于我们更直观的在Redis领域中模拟：</p>
 
-<h4 id="books">Books</h4>
+<h4>Books</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th style="text-align: center">id</th>
-      <th style="text-align: center">title</th>
-      <th style="text-align: center">pages</th>
-      <th style="text-align: center">price</th>
-      <th style="text-align: center">ISBN</th>
-      <th style="text-align: center">description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">Programming Ruby</td>
-      <td style="text-align: center">829</td>
-      <td style="text-align: center">$26</td>
-      <td style="text-align: center">0974514055</td>
-      <td style="text-align: center">ruby programming language</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">2</td>
-      <td style="text-align: center">Erlang Programming</td>
-      <td style="text-align: center">496</td>
-      <td style="text-align: center">$42</td>
-      <td style="text-align: center">0596518188</td>
-      <td style="text-align: center">an introduction to erlang</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th style="text-align:center;">id</th>
+<th style="text-align:center;">title</th>
+<th style="text-align:center;">pages</th>
+<th style="text-align:center;">price</th>
+<th style="text-align:center;">ISBN</th>
+<th style="text-align:center;">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">1</td>
+<td style="text-align:center;">Programming Ruby</td>
+<td style="text-align:center;">829</td>
+<td style="text-align:center;">$26</td>
+<td style="text-align:center;">0974514055</td>
+<td style="text-align:center;">ruby programming language</td>
+</tr>
+<tr>
+<td style="text-align:center;">2</td>
+<td style="text-align:center;">Erlang Programming</td>
+<td style="text-align:center;">496</td>
+<td style="text-align:center;">$42</td>
+<td style="text-align:center;">0596518188</td>
+<td style="text-align:center;">an introduction to erlang</td>
+</tr>
+</tbody>
 </table>
 
-<h4 id="authors">Authors</h4>
+
+<h4>Authors</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>surname</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Dave</td>
-      <td>Thomas</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Chad</td>
-      <td>Fowler</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Andy</td>
-      <td>Hunt</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Francesco</td>
-      <td>Cesarini</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Simon</td>
-      <td>Thompson</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>surname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dave</td>
+<td>Thomas</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Chad</td>
+<td>Fowler</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Andy</td>
+<td>Hunt</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Francesco</td>
+<td>Cesarini</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Simon</td>
+<td>Thompson</td>
+</tr>
+</tbody>
 </table>
 
-<h4 id="topics">Topics</h4>
+
+<h4>Topics</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>programming</td>
-      <td>Books about programming</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>ruby</td>
-      <td>Books about ruby</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>erlang</td>
-      <td>Books about erlang</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>programming</td>
+<td>Books about programming</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ruby</td>
+<td>Books about ruby</td>
+</tr>
+<tr>
+<td>3</td>
+<td>erlang</td>
+<td>Books about erlang</td>
+</tr>
+</tbody>
 </table>
 
-<h4 id="books-authors">Books-Authors</h4>
+
+<h4>Books-Authors</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>book_id</th>
-      <th>author_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1　　　</td>
-      <td>　　1</td>
-    </tr>
-    <tr>
-      <td>1　　　</td>
-      <td>　　2</td>
-    </tr>
-    <tr>
-      <td>1　　　</td>
-      <td>　　3</td>
-    </tr>
-    <tr>
-      <td>2　　　</td>
-      <td>　　4</td>
-    </tr>
-    <tr>
-      <td>2　　　</td>
-      <td>　　5</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>book_id</th>
+<th>author_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1　　　</td>
+<td>　　1</td>
+</tr>
+<tr>
+<td>1　　　</td>
+<td>　　2</td>
+</tr>
+<tr>
+<td>1　　　</td>
+<td>　　3</td>
+</tr>
+<tr>
+<td>2　　　</td>
+<td>　　4</td>
+</tr>
+<tr>
+<td>2　　　</td>
+<td>　　5</td>
+</tr>
+</tbody>
 </table>
 
-<h4 id="books-topics">Books-Topics</h4>
+
+<h4>Books-Topics</h4>
 
 <table>
-  <thead>
-    <tr>
-      <th>book_id</th>
-      <th>topic_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1　　　</td>
-      <td>　　1</td>
-    </tr>
-    <tr>
-      <td>1　　　</td>
-      <td>　　2</td>
-    </tr>
-    <tr>
-      <td>2　　　</td>
-      <td>　　1</td>
-    </tr>
-    <tr>
-      <td>2　　　</td>
-      <td>　　3</td>
-    </tr>
-  </tbody>
+<thead>
+<tr>
+<th>book_id</th>
+<th>topic_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1　　　</td>
+<td>　　1</td>
+</tr>
+<tr>
+<td>1　　　</td>
+<td>　　2</td>
+</tr>
+<tr>
+<td>2　　　</td>
+<td>　　1</td>
+</tr>
+<tr>
+<td>2　　　</td>
+<td>　　3</td>
+</tr>
+</tbody>
 </table>
 
-<h3 id="redis">Redis场景</h3>
+
+<h3>Redis场景</h3>
 
 <p>前面已经介绍了如何在Redis中存储数据，所以这里理解Books,Authors和Topics这三张表应该不成问题。但当面对Books-Authors和Book-Topics这种表之间的多对多关联时，问题变得复杂起来。下面以Topic为例来看如何解决Book与Topic之间的关联，一旦对这个关系清楚了，Book与Author之间的关系也就迎刃而解了。</p>
 
-<p>对于每本book，我们需要知道它属于哪些topics；同样对于每个topic，也要处理它包含的每本book。换句话说，对每本book，需要一个存储它所关联的topic的id列表，对于每个topic，同样需要一个存储它关联的book的id列表。这正是set大展身手的地方。我们将创建两个sets:<code>book:id:topic</code>和<code>topic:id:books</code>，前者保存book的topics’id列表，后者存储topic的books’id列表。以前面SQL场景中的数据为例，图书”Programming Erlang”(books表中的id为2)，将有一个key为<code>book:2:topics</code>，value为set类型且数据为(1,3)的数据信息；而主题”programming”则会有一个key为<code>topic:1:books</code>，值为(1,2)的数据集。</p>
+<p>对于每本book，我们需要知道它属于哪些topics；同样对于每个topic，也要处理它包含的每本book。换句话说，对每本book，需要一个存储它所关联的topic的id列表，对于每个topic，同样需要一个存储它关联的book的id列表。这正是set大展身手的地方。我们将创建两个sets:<code>book:id:topic</code>和<code>topic:id:books</code>，前者保存book的topics'id列表，后者存储topic的books'id列表。以前面SQL场景中的数据为例，图书"Programming Erlang"(books表中的id为2)，将有一个key为<code>book:2:topics</code>，value为set类型且数据为(1,3)的数据信息；而主题"programming"则会有一个key为<code>topic:1:books</code>，值为(1,2)的数据集。</p>
 
 <p>经过分析，就得出了Redis场景下的数据模型：</p>
 
-<h4 id="authors-1">Authors</h4>
+<h4>Authors</h4>
 
-<p>Strings<br />
--　author:id<br />
--　author:id:name<br />
+<p>Strings
+-　author:id
+-　author:id:name
 -　author:id:surname</p>
 
-<p>Sets<br />
+<p>Sets
 else -　author:id:books</p>
 
-<p>Lists<br />
+<p>Lists
 -　authorlist</p>
 
-<h4 id="books-1">Books</h4>
+<h4>Books</h4>
 
-<p>Strings<br />
--　book:id<br />
--　book:id:title<br />
--　book:id:pages<br />
--　book:id:price<br />
--　book:id:isbn<br />
+<p>Strings
+-　book:id
+-　book:id:title
+-　book:id:pages
+-　book:id:price
+-　book:id:isbn
 -　book:id:description</p>
 
-<p>Sets<br />
+<p>Sets
 -　books:id:authors -　books:id:opics</p>
 
-<p>Lists<br />
+<p>Lists
 -　book:list</p>
 
-<h4 id="topics-1">Topics</h4>
+<h4>Topics</h4>
 
-<p>String<br />
--　topic:id<br />
--　topic:id:name<br />
+<p>String
+-　topic:id
+-　topic:id:name
 -　topic:id:description</p>
 
-<p>Sets<br />
+<p>Sets
 -　topic:id:books</p>
 
-<p>Lists<br />
+<p>Lists
 -　topic:list</p>
 
 <p>可以看出，在SQL中的多对多关联，在Redis中可以通过两个set来实现。你会发现这种实现相当有用，它给我们提供了一种可以自由获得其他信息的能力：可以通过对所有感兴趣的<code>topic:id:books</code>集合中交集操作，从而获得隶属于多个主题的图书。例如对集合<code>topic:1:books</code>(programming主题)和<code>topic:2:books</code>(ruby主题)做交集，会得到只有一个元素(1)的集合，从而获得id=1的图书：programming Ruby。</p>
 
 <p>对于这种实现，你必须特别关注对数据的删除操作。因为topics里有对books的引用，同样books里有对topics的引用，那删除如何操作？以删除books中的数据为例，首先想到的是要删除每个key为<code>book:id:*</code>的数据，但执行此操作前需要先遍历topics中的所有key为<code>topic:id:books</code>的集合，并从中删除待删除图书的id，当然也要从books中key为<code>book:list</code>的列表中删除此id。如果想删除一个topic，操作也很类似：从topics中删除所有key为<code>topic:id:*</code>信息之前，需要先遍历books中的key为<code>books:id:topics</code>的topic id集，并从中删除待删除topic的id，同时从<code>topic:list</code>列表中也删除此id。同样的操作对于authors一样适用。</p>
 
-<h2 id="span-idtitle5back-homespan"><span id="title5">探索之五：Back home</span></h2>
+<h2><span id="title5">探索之五：Back home</span></h2>
 
-<p>对于Redis的探索到一段落，现在回头看看我们的旅行包里收获了哪些精彩。<br />
+<p>对于Redis的探索到一段落，现在回头看看我们的旅行包里收获了哪些精彩。
 我们学习了Redis中的数据类型及操作命令，还有一些其他有趣的东西。 是不是还有几段记忆深刻的故事呢：</p>
 
 <ul>
-  <li>通过对String数据执行INCR命令解决唯一自增主键问题</li>
-  <li>通过含义丰富的key:<code>user:username:id</code>处理用户登录场景</li>
-  <li>通过set实现数据间的多对多关联</li>
+<li>通过对String数据执行INCR命令解决唯一自增主键问题</li>
+<li>通过含义丰富的key:<code>user:username:id</code>处理用户登录场景</li>
+<li>通过set实现数据间的多对多关联</li>
 </ul>
+
 
 <p>到此为止，Redis之旅已经结束，希望未给你带来不快。最后送上一副良济：</p>
 
-<blockquote>
-  <p>having fun coding free software!</p>
-</blockquote>
+<blockquote><p>having fun coding free software!</p></blockquote>
 
         <hr>
         <p>13 Oct 2015</p>
