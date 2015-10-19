@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Github那些事 • Meta Coder
+Python从菜鸟到不太菜之路(2) • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ Github那些事 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Github那些事 • Meta Coder">
+<meta property="og:title" content="Python从菜鸟到不太菜之路(2) • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ Github那些事 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/github/2015/10/17/Github-%E9%82%A3%E4%BA%9B%E4%BA%8B/">
+<meta property="og:url" content="http://127.0.0.1:4000/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,15 +135,17 @@ header::after {
 
 
 <article>
-        <h1>Github那些事</h1>
+        <h1>Python从菜鸟到不太菜之路(2)</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
+                <a class="fa fa-bookmark" href="/category/#python" title="python">Python</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#Github" title="Github">Github</a>
+            <a class="fa fa-tag" href="/tags/#Code" title="Code">Code</a>
+            
+            <a class="fa fa-tag" href="/tags/#Python" title="Python">Python</a>
             
             <a class="fa fa-tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
             
@@ -151,54 +153,49 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 17, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 19, 2015 • 1&nbsp;min read</span>
         </div>
 
         <hr>
-        <p>Git——一个由大神Linus花两周写的C版本的分布式版本控制器，又一款神话般的大作，真可谓Linus出品，必属精品。有机会一定要膜拜下Git的源码。</p>
+        <h2>Python I/O</h2>
 
-<p>而Github则又是最流行的Git访问网站，现在可以说已经是世界上最大的代码存放库。</p>
+<p>我们知道，在程序中打开文件的时候，往往需要考虑一些乱七八糟的异常出现的情况，例如文件不存在啦，没有可读可写的权限啦，亦或是硬盘已满。所以我们经常会用到<code>try/except</code>语句来捕获异常，
+而为了防止文件被破坏，我们还需要<code>finally</code>语句来保证文件的关闭，如下例子：</p>
 
-<p>这么NB的工具以及这么NB的站点，自己怎么能不跟下风呢？我也来记录下自己的Git使用过程。</p>
-
-<p>最初接触Github已经不记得是什么时候了，但最初使用还是从建博开始。当时由于被各种酷炫的个人博客所诱惑，于是乎花了些时间与脑细胞来搭了个自己的博客。</p>
-
-<p>对于Github使用，简单来讲只有下面的几条命令就OK了。</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git add -A
-git commit -m <span class="s2">&quot;The Code Information&quot;</span>
-git push origin master</code></pre></div>
-
-
-<p><code>git add</code>将要提交的文件放到一个缓存区(index)里边,其中<code>-A</code>命令是将仓库中所有的修改的文件都提交，包括新添加的以及以及删除掉的文件信息。
-<code>git commit</code>则将缓存区中的文件提交到当前的分支(branch)中，这里边需要<code>-m</code>命令来添加本次提交代码说明，否则大家提交代码时你一个版本我一个版本没有任何说明就没办法来管理了。
-最后由<code>git push</code>来将本地的分支推送到远程（这里一般用Github）的相应的分支(master)上去。当然，在<code>push</code>命令之前首先要<code>git remote add</code>命令来链接远程仓库。</p>
-
-<p>还有一条就是</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git status</code></pre></div>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">fw</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath2</span><span class="p">,</span><span class="s">&#39;wb&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Error happened!&quot;</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="n">fw</span><span class="o">.</span><span class="n">close</span><span class="p">();</span></code></pre></div>
 
 
-<p>用来查看当前缓存区状态，或者说来查看当前工作区域与缓存区域有什么区别。</p>
+<p>这么冗长臃肿的代码，显然不是我们这些强迫症患者所喜爱的，必需要找个方式把他解决掉，那就是<code>with</code>。<code>with</code>是python2.5引入的，到了2.6就已经成为默认关键字。加了<code>with</code>的代码是以下形式：</p>
 
-<p>基本上这四条命令是我使用最频繁的，不过可能还有一点小小的瑕疵，比如说某天我可能突然失手把一些重要的私人信息给<code>git add</code>了，这该怎么办。
-我们可以使用<code>git checkout --file</code>来撤消掉对缓存区的<code>file</code>的修改，而又有可能，我不仅<code>git add</code>到缓存区，甚至还<code>git commit</code>提交到了分支上去。
-不过还好，只要文件还在本地就没问题的，我们可以<code>git reset HEAD file</code>来撤销分支里边<code>file</code>的修改。</p>
-
-<p>对于维护一个博客来讲，这些个命令基本上以经足够了。</p>
-
-<p>当然，我们现在使用电脑往往不止一台，比如说学校或者公司有一台，家里又有一台。但如果我可能在两台以上的电脑上更新博客的话，这样会导致我这两台电脑上本地博客进度不统一怎么办。
-还好Git天生就是为解决这些个项目中的分支与冲突而存在的。</p>
-
-<p>我们可以在每次写博前先从Github里同步到本地</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git pull origin master</code></pre></div>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath2</span><span class="p">,</span><span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fw</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span></code></pre></div>
 
 
-<p>然后再继续写完之后进行<code>push</code>。</p>
+<p>然后我们还可以通过<code>nested</code>这样用：</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">form</span> <span class="n">contextlib</span> <span class="kn">import</span> <span class="nn">nested</span>
+<span class="k">with</span> <span class="n">nested</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">),</span><span class="nb">open</span><span class="p">(</span><span class="n">filepath2</span><span class="p">,</span><span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">fw</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span></code></pre></div>
+
+
+<p>从此以后，妈妈再也不用担心我的文件打开后忘记关闭了。</p>
+
+<p><code>with</code>语句引入了一个“上下文管理协议”(Context Management Protocol)，对资源访问后发生异常能够正常关闭资源。具体实现是通过定义两个方法<code>__enter__()</code>以及<code>__exit__()</code>方法来操作。
+这里有一篇参考文献<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/">《浅谈Python的with语句》</a>。</p>
 
         <hr>
-        <p>17 Oct 2015</p>
+        <p>19 Oct 2015</p>
         
             
             
@@ -212,12 +209,12 @@ git push origin master</code></pre></div>
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/python/2015/10/16/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF1/">Previous post ›</a>
+        <a href="/github/2015/10/17/Github-%E9%82%A3%E4%BA%9B%E4%BA%8B/">Previous post ›</a>
         
     </div>
 </div>
