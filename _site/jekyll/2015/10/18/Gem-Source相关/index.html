@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Github多sshkey管理 • Meta Coder
+Gem Source相关 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ Github多sshkey管理 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Github多sshkey管理 • Meta Coder">
+<meta property="og:title" content="Gem Source相关 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ Github多sshkey管理 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">
+<meta property="og:url" content="http://127.0.0.1:4000/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,104 +135,73 @@ header::after {
 
 
 <article>
-        <h1>Github多sshkey管理</h1>
+        <h1>Gem Source相关</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#github" title="github">Github</a>
+                <a class="fa fa-bookmark" href="/category/#jekyll" title="jekyll">Jekyll</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#Github" title="Github">Github</a>
+            <a class="fa fa-tag" href="/tags/#Blog" title="Blog">Blog</a>
             
-            <a class="fa fa-tag" href="/tags/#ssh" title="ssh">ssh</a>
+            <a class="fa fa-tag" href="/tags/#Jekyll" title="Jekyll">Jekyll</a>
             
-            <a class="fa fa-tag" href="/tags/#免密码登陆" title="免密码登陆">免密码登陆</a>
+            <a class="fa fa-tag" href="/tags/#Gem" title="Gem">Gem</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 8, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 18, 2015 • 1&nbsp;min read</span>
         </div>
 
         <hr>
-        <p>
-断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
-虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
-非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
-</p>
+        <p>之前由于<code>Markdown</code>的引擎问题，导致在<code>md</code>文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把<code>Markdown</code>引擎换成了<code>rdiscount</code>。
+在笔记本上实验成功，分段的话需要空一行。</p>
+
+<p>然后回到实验时<code>yekyll server</code>的时候报错了，发现并没有安装<code>rdiscount</code>软件包。这个简单，<code>gem install</code>一下就可以了。可是可是，事与愿违</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install rdiscount
+ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
 
 
+<p>看来是<code>source</code>出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem <span class="nb">source</span> --remove http://ruby.taobao.org/
+<span class="nv">$ </span>gem <span class="nb">source</span> -a https://ruby.taobao.org/
+<span class="nv">$ </span>gem install rdiscount
+ERROR:  While executing gem ... <span class="o">(</span>Gem::FilePermissionError<span class="o">)</span>
+You don<span class="err">&#39;</span>t have write permissions <span class="k">for</span> the /var/lib/gems/2.1.0 directory.</code></pre></div>
 
 
-<p>
-但是，这时候问题却出现了，之前一直只用一个github帐号，完全可以用一个sshkey来登陆github.
-不过现在要管理两个帐号， <code>push</code> 以及 <code>pull</code>就不成了。但一直输入密码跟帐号也不是问题啊.还是看看怎么解决吧。
-</p>
+<p>需要<code>root</code>用户权限，那就<code>sudo !!</code>，可是，老问题又出现了。</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo !!
+<span class="nv">$ </span>sudo gem install rdiscount
+ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
 
 
-<h2>单个github帐号免密码登陆</h2>
+<p>想起来了，只是给当前用户修改了<code>source</code>，<code>root</code>用户的<code>source</code>还没改呢。好吧，那就继续改掉</p>
 
-<p>对于单个github，还是老方法，先生成sshkey，然后把<code>publickey</code> copy 到github的setting > SSH keys中</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.ssh
-ssh-keygen -t rsa -C <span class="s2">&quot;youremail@email.com&quot;</span></code></pre></div>
-
-
-<p>其中<code>-t</code>是指<code>type</code> -- 指定要创建密钥的类型，另一个<code>-C</code>是个什么鬼？man一下原来是添加注释，难怪发现网上有的提到，有的没有提到。</p>
-
-<p>之后，我们打开repo的git配置文件<code>.git/config</code>，将远程仓库地址改成ssh形式，<code>git@github.com:user.name/repoName.git</code></p>
-
-<p>当然，在<code>git commit</code>之前还要通过<code>git config</code>来设置user.name以及user.email。如果只是单个帐号的话global模式会比较方便，而多个帐号只能设置成local模式。</p>
-
-<h2>多个github帐号管理</h2>
-
-<p>
-以上是单个github帐号进行sshkey登陆的配置。但遇到两个及以上的github的帐号时，一个key显然不能满足两个帐号。
-这样就必须用到两个key了。同样我们需要利用<code>ssh-keygen</code>来生成每一个帐号的sshkey,当然此时不能一路回车了，要为每个帐号的sshkey分别命名。
-由于不是默认的名称，所以我们需要 <code>ssh-add</code> 来添加每一个会用到的sshkey。
-哦，对了，如果之前设置了<code>git config --global</code>,现在必须<code> git config --global --unset</code>掉，然后为每个repo设置local的<code>user.name</code>以及<code>user.email</code>.
-</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo gem <span class="nb">source</span> --remove http://ruby.taobao.org/
+<span class="nv">$ </span>sudo gem <span class="nb">source</span> -a https://ruby.taobao.org/
+<span class="nv">$ </span>sudo gem install rdiscount
+Fetching: rdiscount-2.1.8.gem <span class="o">(</span>100%<span class="o">)</span>
+Building native extensions.  This could take a <span class="k">while</span>...
+Successfully installed rdiscount-2.1.8
+Parsing documentation <span class="k">for</span> rdiscount-2.1.8
+Installing ri documentation <span class="k">for</span> rdiscount-2.1.8
+Done installing documentation <span class="k">for</span> rdiscount after <span class="m">0</span> seconds
+<span class="m">1</span> gem installed</code></pre></div>
 
 
+<p>现在问题解决了，终于可以启动<code>jekyll server</code>了。</p>
 
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh-add ~/.ssh/id_rsa1
-ssh-add ~/.ssh/id_rsa2</code></pre></div>
-
-
-<p>然后在 <code>~/.ssh/config</code> 中添加每个帐号的Host信息。</p>
-
-<div class="highlight"><pre><code class="language-vim" data-lang="vim">Host user1.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
-
-Host user2.github.<span class="k">com</span>
-HostName github.<span class="k">com</span>
-<span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></div>
-
-
-<p>好了，现在就可以测试是否可以链接了。</p>
-
-<div class="highlight"><pre><code class="language-shell-session" data-lang="shell-session"><span class="go">ssh -T user1.github.com</span>
-<span class="go">Hi user1! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span>
-<span class="go">ssh -T user2.github.com</span>
-<span class="go">Hi user2! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</span></code></pre></div>
-
-
-<p>如上显示，便表示链接成功了。</p>
-
-<p>现在我们需要将每个仓库下的配置改成相应<code>Host</code>的形式了，改成如下所示</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">url</span><span class="o">=</span>user1.github.com:user.name/repoName.git
-<span class="nv">url</span><span class="o">=</span>user2.github.com:user.name/repoName.git</code></pre></div>
-
-
-<p>自此以后，就可以<code>git push</code>了。</p>
+<p>不过后来看到<code>gem source</code>配置其实都在<code>~/.gemrc</code>里边，想修改<code>source</code>只要<code>vim ~/.gemrc</code>以及<code>/root/.gemrc</code>就可以了，真是后知后觉。</p>
 
         <hr>
-        <p>08 Oct 2015</p>
+        <p>18 Oct 2015</p>
         
             
             
@@ -246,12 +215,12 @@ IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">‹ Next post</a>
+        <a href="/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/">‹ Next post</a>
         
     </div>
     <div class="right">
         
-        <a href="/jekyll/2015/10/05/liquid-for-designers/">Previous post ›</a>
+        <a href="/github/2015/10/17/Github-%E9%82%A3%E4%BA%9B%E4%BA%8B/">Previous post ›</a>
         
     </div>
 </div>

@@ -23,6 +23,23 @@
 			</item>
 		
 			<item>
+				<title>Gem Source相关</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;之前由于&lt;code&gt;Markdown&lt;/code&gt;的引擎问题，导致在&lt;code&gt;md&lt;/code&gt;文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把&lt;code&gt;Markdown&lt;/code&gt;引擎换成了&lt;code&gt;rdiscount&lt;/code&gt;。
+在笔记本上实验成功，分段的话需要空一行。&lt;/p&gt;
+</description>
+				
+				<pubDate>Sun, 18 Oct 2015 00:00:00 +0800</pubDate>
+				<link>http://127.0.0.1:4000/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</guid>
+			</item>
+		
+			<item>
 				<title>Github那些事</title>
 				
 					
@@ -153,27 +170,8 @@
 </description>
 				
 				<pubDate>Mon, 05 Oct 2015 00:00:00 +0800</pubDate>
-				<link>http://127.0.0.1:4000/%E8%BD%AC%E8%BD%BD/2015/10/05/liquid-for-designers/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/%E8%BD%AC%E8%BD%BD/2015/10/05/liquid-for-designers/</guid>
-			</item>
-		
-			<item>
-				<title>我的第一篇博客</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;
-折腾了整整两天，总算把这个看起来依然“残破不堪”的博客搭建起来，当页面终于不再显示404的时候，我激动的眼泪儿都下来了。
-&lt;/p&gt;
-
-</description>
-				
-				<pubDate>Sun, 30 Aug 2015 00:00:00 +0800</pubDate>
-				<link>http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</guid>
+				<link>http://127.0.0.1:4000/jekyll/2015/10/05/liquid-for-designers/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/jekyll/2015/10/05/liquid-for-designers/</guid>
 			</item>
 		
 	</channel>
