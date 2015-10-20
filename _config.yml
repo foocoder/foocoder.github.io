@@ -73,7 +73,7 @@ date_format: "%b %-d, %Y"
 nav-breaking-point: 520px
 
 # Number of posts on each page.
-paginate: 5
+paginate: 10
 
 # Display links for the previous and next post on post pages.
 display-next-prev-post: true
