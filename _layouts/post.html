@@ -33,10 +33,10 @@ layout: default
             {% if page.author.name %}
                 <small><em>{{ site.var_guest_post_by }}: {{ page.author.name }} {{ page.author.info }}</em></small>
             {% else %}
-            {% if site.author.name %}
-                <small><em>{{ site.var_post_by }}: {{ site.author.name }} {{ site.author.info }}</em></small>
+                {% if site.author.name %}
+                    <small><em>{{ site.var_post_by }}: {{ site.author.name }} {{ site.author.info }}</em></small>
+                {% endif %}
             {% endif %}
-          {% endif %}
         {% endif %}
 </article>
 

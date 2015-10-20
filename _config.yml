@@ -81,6 +81,9 @@ display-next-prev-post: true
 # Leave empty if you don't want comments on post pages.
 disqus-shortname: foocoder
 
+#timezone
+timezone: CN
+
 #Web Analy
 googleAnaly:
     config: false
