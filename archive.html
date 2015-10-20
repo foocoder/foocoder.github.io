@@ -10,15 +10,17 @@ cover-image: 4.jpg
     {% unless post.next %}
       <hr>
       <h2 class="fa fa-laptop" style="font-size:30px">
-          <span>{{ post.date | date: '%Y' }}</span>
+          <span>{{ post.date | date: '%Y ~ %m' }}</span>
       </h2>
     {% else %}
       {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-      {% if year != nyear %}
+      {% capture month %}{{ post.date | date: '%m' }}{% endcapture %}
+      {% capture nextyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+      {% capture nextmonth %}{{ post.next.date | date: '%m' }}{% endcapture %}
+      {% if year != nextyear or month != nextmonth %}
         <hr>
         <h2 class="fa fa-laptop" style="font-size:30px">
-            <span>{{ post.date | date: '%Y' }}</span>
+            <span>{{ post.date | date: '%Y ~ %m' }}</span>
         </h2>
       {% endif %}
     {% endunless %}
