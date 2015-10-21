@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Awesome 初体验 • Meta Coder
+Redis 初体验 • Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -27,7 +27,7 @@ Awesome 初体验 • Meta Coder
 
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Awesome 初体验 • Meta Coder">
+<meta property="og:title" content="Redis 初体验 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -35,7 +35,7 @@ Awesome 初体验 • Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">
+<meta property="og:url" content="http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/21/Redis-%E5%88%9D%E4%BD%93%E9%AA%8C/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -135,93 +135,55 @@ header::after {
 
 
 <article>
-        <h1>Awesome 初体验</h1>
+        <h1>Redis 初体验</h1>
         <div class="category">
             
-                <a class="fa fa-bookmark" href="/category/#linux" title="linux">Linux</a>
+                <a class="fa fa-bookmark" href="/category/#数据库" title="数据库">数据库</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-tag" href="/tags/#linux" title="linux">linux</a>
+            <a class="fa fa-tag" href="/tags/#Redis" title="Redis">Redis</a>
             
-            <a class="fa fa-tag" href="/tags/#window manager" title="window manager">window manager</a>
+            <a class="fa fa-tag" href="/tags/#NoSQL" title="NoSQL">NoSQL</a>
             
-            <a class="fa fa-tag" href="/tags/#awesome" title="awesome">awesome</a>
+            <a class="fa fa-tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
             
-            <a class="fa fa-tag" href="/tags/#美化" title="美化">美化</a>
+            <a class="fa fa-tag" href="/tags/#Code" title="Code">Code</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Oct 9, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar">Oct 21, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢<a href="http://www.linuxzen.com">@cold</a>的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！</p>
+        <h2>Redis 总览</h2>
 
-<p>这里给出原文。</p>
+<p>Redis 全称(REmote DIctionary Service)，远程字典服务，是一个简单易用的<code>Key-Value</code>数据库。
+Redis是内存数据库，相比其他数据库，其速度是最大的一个优势，但能力大责任就越大，其成本代价则是昂贵的内存。
+虽说现在内存也是白菜价了，但对于动辄就是几十上百个G的数据来说，还是吃不消的。</p>
 
-<blockquote><p><a href="http://ju.outofmemory.cn/entry/94125">Awesome+tmux+gnomeDo打造高效Linux桌面环境</a></p></blockquote>
+<p>Redis 最主要的特点是其丰富的数据类型，创始人 Salvatore Sanfilippo 也将其成为“数据结构服务器”，足以体现其特点。
+除了最基本的<code>string</code>已经<code>numerical</code>类型，还支持<code>Hash</code>，<code>List</code>，<code>Set</code>，<code>SortedSet</code>等复杂数据结构，且提供着非常方便的操作方式，简单易用。</p>
 
-<h2>tmux</h2>
+<h2>一些资源</h2>
 
-<p><code>tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code>tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。</p>
+<p>当然，Redis常见的还是出现在Web Case中，如博客网站或其他类似的社交网站，这里有个<a href="http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html">《11个Redis常用Web Case》</a>。
+至于Redis内容相关，这里的<a href="http://www.searchdatabase.com.cn/showcontent_70423.htm">关于Redis的一些常识</a>，也提供了一些Redis的相关资料。
+不过不管学习什么，有文档最好参考文档，毕竟文档才是王道，<a href="http://redisdoc.cn">Redis命令参考</a>，中文版的，简洁易懂。
+发现自己学了这么多年英语，最后还是喜欢看中文文档————除非翻译的实在看不下去。
+这里还有<a href="http://redis.cn">Redis中文网站</a>。</p>
 
-<p>安装的话只要<code>apt-get</code>就可以了</p>
+<h2>一些常识</h2>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></div>
+<p>Redis 的 keys 命名没有什么限制，诸如<code>:</code>,<code>.</code>都可以用。
+一开始并不清楚，看到好多人命名<code>usr:1:name:zhang</code>之类的，还以为有什么特别之处，其实并没有什么深层含义，只不过作者建议<code>:</code>用作字段分隔，<code>.</code>号用作单词的连接符，大致是一种约定俗成。
+你想用<code>_</code>来分隔或连接也并无不可。</p>
 
-
-<h2>gnome-do</h2>
-
-<p><code>gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code>Super+Space</code>调出<code>gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code>everything</code>。</p>
-
-<p>安装也很简单</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></div>
-
-
-<p>但这里有个问题是，当我在Ununtu 15.10下调用<code>gnome-do</code>(版本是0.95.3)时，点击<code>首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
-
-<h2>Awesome</h2>
-
-<p>当使用 <code>Awesome</code> 的时候，给我的感觉确实如其名所示, Awesome，不仅仅是他的美观，更主要的是他的高效性。</p>
-
-<p>一开始不明白什么是所谓的平铺式窗口管理，原来不是相互重叠一起的便是平铺了，不过确实，平铺式管理要比折叠式的窗口管理方便的多，首先就是不用再<code>Alt+Tab</code>的切来切去的了，不过当然，前提是你的显示屏要得足够的大才行。</p>
-
-<p>下边来秀一下自己的桌面吧。</p>
-
-<p><img src="/img/awesome_screen.jpg" alt="awesome-screen" /></p>
-
-<p>不说有多酷，起码看着是非常舒服的。主题用的是<a href="https://github.com/mikar/">@mikar</a>的vinyl主题,将终端背景设置成透明就OK了。</p>
-
-<p>其实，还有这样的效果图。</p>
-
-<p><img src="/img/awesome_multi.png" alt="awesome-multi-screen" /><small>Source: <a href="http://wiki.ubuntu.org.cn/awesome">Unbuntu中文</a></small></p>
-
-<p>简直是酷毙了，<code>awesome</code>对多屏幕的兼容也是浑然天成。只需要<code>Ctrl+Super+j/k</code>便可来回切换使用屏幕，完全可以把鼠标扔掉了！</p>
-
-<p>Awesome的安装其实也是非常简单的。</p>
-
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install awesome</code></pre></div>
-
-
-<p>然后我们需要在<code>home/</code>下的<code>.config/</code>文件夹中新建一个<code>awesome</code>的文件夹,将<code>/etc/xdg/awesome/rc.lua</code>配置文件copy其中就可以了。具体的配置我也不多说了，网上依旧是好多文献。哦，对了，这样安装的是awesome3.4版，如果想安装3.5的就得自己下载源码编译了。</p>
-
-<p>下面列出相关资源，用来方便查找。</p>
-
-<ul>
-<li><a href="http://awesome.naquadah.org">Awesome官网</a></li>
-<li><a href="http://wiki.ubuntu.org.cn/Awesome">ubuntu中文下的Awesome文档</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/awesome_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">archlinux下的Awesome中文文档</a>)</li>
-<li><a href="https://github.com/mikar/awesome34-themes">pre 3.5主题 --mikar</a></li>
-<li><a href="https://github.com/mikar/awesome-themes">3.5主题 --mikar</a></li>
-<li><a href="https://github.com/Morley93/awesome-themes-3.5">3.5主题 --Morley93</a></li>
-</ul>
-
+<p>另外Redis的复杂数据类型并不能嵌套使用，也就是说<code>Hash</code>啊，<code>list</code>等等里边的value只能是<code>string</code>或者数值类型，与python不同。一开始一直想将一个<code>set</code>作为value存到一个<code>hash</code>里边，最终发现存的只是<code>set</code>的key的字符窜而已。</p>
 
         <hr>
-        <p>09 Oct 2015</p>
+        <p>21 Oct 2015</p>
         
             
                 
@@ -235,12 +197,12 @@ header::after {
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/">Previous post ›</a>
+        <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/20/Redis-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4/">Previous post ›</a>
         
     </div>
 </div>
