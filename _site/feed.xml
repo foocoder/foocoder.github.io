@@ -7,6 +7,22 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>淘宝穿衣搭配比赛有感</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;历时将近一个月的搭配比赛第一赛季落幕了，而自己也是毫无悬念的被Pass掉了，最优排名72，成绩是2.56%。总结经验，吸收教训。&lt;/p&gt;
+</description>
+				
+				<pubDate>Mon, 26 Oct 2015 00:00:00 +0000</pubDate>
+				<link>http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/10/26/%E6%B7%98%E5%AE%9D%E7%A9%BF%E8%A1%A3%E6%90%AD%E9%85%8D%E7%AE%97%E6%B3%95%E6%9C%89%E6%84%9F/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/10/26/%E6%B7%98%E5%AE%9D%E7%A9%BF%E8%A1%A3%E6%90%AD%E9%85%8D%E7%AE%97%E6%B3%95%E6%9C%89%E6%84%9F/</guid>
+			</item>
+		
+			<item>
 				<title>Redis 初体验</title>
 				
 					
@@ -149,22 +165,6 @@
 				<pubDate>Sat, 10 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</link>
 				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</guid>
-			</item>
-		
-			<item>
-				<title>Awesome 初体验</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢&lt;a href=&quot;http://www.linuxzen.com&quot;&gt;@cold&lt;/a&gt;的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！&lt;/p&gt;
-</description>
-				
-				<pubDate>Fri, 09 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/</guid>
 			</item>
 		
 	</channel>
