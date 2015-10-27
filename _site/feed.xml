@@ -7,6 +7,23 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Linux管道与重定向</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个&lt;code&gt;&amp;gt;&lt;/code&gt;代表覆盖重写而&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;代表对文件中追加，并不覆盖。
+今天在用&lt;code&gt;mplayer&lt;/code&gt;播放提示音希望不显示输出，从网上看到这个命令瞬间泪奔&lt;/p&gt;
+</description>
+				
+				<pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
+				<link>http://127.0.0.1:4000/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</guid>
+			</item>
+		
+			<item>
 				<title>淘宝穿衣搭配比赛有感</title>
 				
 					
@@ -149,22 +166,6 @@
 				<pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</link>
 				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</guid>
-			</item>
-		
-			<item>
-				<title>Awesome 锁屏</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。&lt;/p&gt;
-</description>
-				
-				<pubDate>Sat, 10 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/</guid>
 			</item>
 		
 	</channel>

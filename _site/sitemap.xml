@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://127.0.0.1:4000/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</loc>
+    </url>
+    
+    <url>
         <loc>http://127.0.0.1:4000/%E9%9A%8F%E6%84%9F/2015/10/26/%E6%B7%98%E5%AE%9D%E7%A9%BF%E8%A1%A3%E6%90%AD%E9%85%8D%E7%AE%97%E6%B3%95%E6%9C%89%E6%84%9F/</loc>
     </url>
     
