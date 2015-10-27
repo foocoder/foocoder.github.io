@@ -220,6 +220,9 @@ test1 test2 test3
 test1 test2 test3</code></pre></div>
 
 
+<p>而在一般的Linux tricks 有时候会利用<code>tee</code>来帮忙解决vim时忘记加<code>sudo</code>。可以这样子使用<code>:w !sudo tee %</code>。其中<code>:w</code>将更改后的文件作为标准输出传递给tee，
+而<code>%</code>代表当前文件名，然后利用<code>sudo</code>权限把标准输出传到当前文件中去。</p>
+
 <h3>输入重定向</h3>
 
 <p>输入重定向自己平常到用的不多，可以用<code>&lt;</code>来接受文件内容来作为标准输入。</p>
