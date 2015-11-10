@@ -7,6 +7,22 @@
 		<atom:link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>有关Javac的探究</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+					
+				
+				
+					<description>
+</description>
+				
+				<pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
+				<link>http://127.0.0.1:4000/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</link>
+				<guid isPermaLink="true">http://127.0.0.1:4000/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</guid>
+			</item>
+		
+			<item>
 				<title>Linux管道与重定向</title>
 				
 					
@@ -150,22 +166,6 @@
 				<pubDate>Tue, 13 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/13/Redis%E5%A4%A7%E5%86%92%E9%99%A9/</link>
 				<guid isPermaLink="true">http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/13/Redis%E5%A4%A7%E5%86%92%E9%99%A9/</guid>
-			</item>
-		
-			<item>
-				<title>持久化ssh连接</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;前两天在设置&lt;code&gt;github&lt;/code&gt;的多&lt;code&gt;ssh-key&lt;/code&gt;登陆时，有个问提扰了我好久，直到后来才找到原因，特此记录一下。&lt;/p&gt;
-</description>
-				
-				<pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</link>
-				<guid isPermaLink="true">http://127.0.0.1:4000/linux/2015/10/12/%E6%8C%81%E4%B9%85%E5%8C%96ssh%E8%BF%9E%E6%8E%A5/</guid>
 			</item>
 		
 	</channel>

@@ -3,9 +3,6 @@ layout: default
 home: true
 cover-image: hipster.jpg
 ---
-
-
-
 {% for post in paginator.posts %}
     {% assign minutes = post.content | number_of_words | divided_by: 180 %}
     {% if minutes == 0 %}
@@ -13,7 +10,6 @@ cover-image: hipster.jpg
     {% else %}
         {% assign read-time = minutes | append: "&nbsp;" | append: site.var_min_read %}
     {% endif %}
-
     <article>
         <a href="{{ post.url | prepend: site.baseurl }}"><h1>{{ post.title }}</h1></a>
         <span class="meta">
@@ -35,7 +31,6 @@ cover-image: hipster.jpg
             {{ post.excerpt | remove: '<p>' | remove: '</p>' }} <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
         {% endif %}
         </p>
-
     </article>
 {% endfor %}
 
