@@ -14,10 +14,11 @@
 					
 				
 				
-					<description>
+					<description>&lt;p&gt;用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。
+但IDE有IDE的方便，直接编译还是有着直接编译的好处的。毕竟是可以更深层次的接触的编译的过程。&lt;/p&gt;
 </description>
 				
-				<pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
+				<pubDate>Tue, 10 Nov 2015 23:29:36 +0000</pubDate>
 				<link>http://127.0.0.1:4000/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</link>
 				<guid isPermaLink="true">http://127.0.0.1:4000/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</guid>
 			</item>
