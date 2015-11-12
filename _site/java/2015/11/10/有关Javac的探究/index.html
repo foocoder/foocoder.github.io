@@ -260,6 +260,44 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
 
 <p>需要注意的是：<code>sourcepath</code>的默认路径与<code>classpath</code>路径相同，但如果指定了之后会将原路径覆盖。</p>
 
+<h3>-d</h3>
+
+<p><code>-d</code>选项设定了类文件的目标目录，即你编译出来的class文件所存放的位置，这里是指存放的根目录。什么意思呢？如果你的文件中没有进行打包(package)
+那么直接就把class文件生成到该目录下边。如果文件中声明了package的信息，那么就会以<code>-d</code>后的path为根目录生成整个package的文件目录中。举个例子</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">edu</span><span class="o">.</span><span class="na">school</span><span class="o">.</span><span class="na">group</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">testA</span><span class="o">{</span>
+    <span class="c1">//...</span>
+<span class="o">}</span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>javac -d /home/user/java/bin/ testA.java</code></pre></div>
+
+
+<p>之后会将<code>testA.class</code>生成到/home/user/java/bin/cn/edu/school/group/project中。如果想要<code>import</code>该类，则需要指定
+该类的根目录，即<code>-cp /home/user/java/bin</code>即可。例如我在<code>testB</code>中<code>import</code>：</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">cn.edu.school.group.project.testA</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">testB</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="n">testB</span><span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;This is B Initialize&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="n">testA</span> <span class="n">ta</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">testA</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>javac -d /home/user/java/bin -cp /home/user/java/bin testB.java</code></pre></div>
+
+
+<p>如果不指定<code>cp</code>的话就会编译出错，或者将该目录添加到环境变量中其实也可以，但如果每个project都把classpath添加到环境变量中，
+那环境变量会变得相当臃肿。</p>
+
 <p>另外，关于classpath的搜索规则，参考@haolujun 大神的说明，java的类的寻找规则是这样子的：</p>
 
 <pre><code>class文件所在目录=Classpath+'\'+Package路径中'.'换成'\'
