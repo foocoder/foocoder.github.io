@@ -153,7 +153,7 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar">Nov 10, 2015 • 2&nbsp;min read</span>
+            <span class="fa fa-calendar">Nov 10, 2015 • 3&nbsp;min read</span>
         </div>
 
         <hr>
@@ -302,6 +302,17 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
 
 <pre><code>class文件所在目录=Classpath+'\'+Package路径中'.'换成'\'
 </code></pre>
+
+<h3>debug 选项</h3>
+
+<p><code>-g</code>选项为编译提供了调试信息，包括行号信息，源文件信息以及局部变量信息。缺省情况只生成行号以及源文件信息。</p>
+
+<p><code>-g:none</code> 不生成任何调试信息。</p>
+
+<p><code>-g:{keylist}</code> 指定生成调试信息的类型，<code>keylist</code>包括<code>source</code>提供源文件调试信息，<code>lines</code>提供行号调试信息，以及
+<code>vars</code>提供局部变量调试信息。类型之间用逗号来分隔。</p>
+
+<p>如果你不想生成任何调试信息的话，需要<code>-g:none</code>来指定，不指定的话，即使不加<code>-g</code>默认也会生成行号以及源文件信息的。</p>
 
         <hr>
         <p>10 Nov 2015</p>
