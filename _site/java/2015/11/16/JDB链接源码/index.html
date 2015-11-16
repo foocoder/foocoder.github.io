@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+JDB链接源码 • Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="JDB链接源码 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://127.0.0.1:4000/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Crimson+Text:700italic,600,600italic,400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:2000px">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <div class="wrap">
+            <header>
+  <a href="/" class="website-title">
+    
+      <img alt="Meta Coder" src="/img/logo1.png" style="height:54px">
+    
+
+  </a>
+  <nav>
+  <a href="/about/">About</a>
+  <a href="/archive/">Archive</a>
+  <a href="/category/">Category</a>
+  <a href="/tags/">Tags</a>
+</nav>
+
+  
+</header>
+
+            
+
+    
+
+
+<article>
+        <h1>JDB链接源码</h1>
+        <div class="category">
+            
+                <a class="fa fa-bookmark" href="/category/#java" title="java">Java</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-tag" href="/tags/#Code" title="Code">Code</a>
+            
+            <a class="fa fa-tag" href="/tags/#Java" title="Java">Java</a>
+            
+            <a class="fa fa-tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
+            
+            <a class="fa fa-tag" href="/tags/#JDB" title="JDB">JDB</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar">Nov 16, 2015 • Less than a minute read</span>
+        </div>
+
+        <hr>
+        <p>IDE 的操作会有一个好处，一键集成式编程，底层什么都不必考虑，但会导致一个问题是————
+一旦离开了IDE，你会发现到处都是问题。</p>
+
+<p>没有IDE的debug工具，我们进行debug的话只能利用最原始的方式<code>JDB</code>。不过个人感觉，<code>JDB</code>比之
+<code>GDB</code>还是有很大的不足之处的，最大的问题是没有缩写，每个命令得多敲好多字母。另外就是没法
+上翻历史记录，如果某次你不小心打错了很长一个class的某一个字母，恭喜你，下次还得重新全部
+输入。不过，到可以用来锻炼手速了。</p>
+
+<p><code>JDB</code>调试命令还是比较简单的，没有<code>javac</code>那么复杂。直接<code>jdb class</code>文件就可以，如果class不
+在当前目录下，需要指定一下<code>-classpath</code>，设定<code>class</code>文件的路径。</p>
+
+<p>但主要是<code>JDB</code>的list命令想要进行查看源码信息的时候，总会显示找不到源文件。下面分两种情况来说明下。</p>
+
+<h3>不包含Package</h3>
+
+<p><code>jdb</code>中<code>use</code>命令可以指定源文件的位置。假设<code>src/</code>文件夹中存放的是源码文件，<code>class/</code>文件夹中存放
+的是类文件，我们在<code>class/</code>目录下进行<code>jdb</code>的时候，可以利用<code>use ../src</code>来找到源码的位置。</p>
+
+<p>具体可以参考 <a href="http://kingquake21.iteye.com/blog/1033464">在jdb中链接源码</a>，@kingquake21大神讲的很详细。</p>
+
+<h3>包含Package信息的源码链接</h3>
+
+<p>当我们如果有一个java中包含package信息，假设是<code>cn.edu.school.group.project</code>，而该文件放在<code>src/</code>文件夹下的
+话，继续用上述方法也是找不到源码的。估计<code>jdb</code>查找源码的过程跟查找<code>class</code>的过程是差不多的，也是把
+<code>package</code>中<code>.</code>号转换成路径来查找，所以我们需要将<code>src/</code>下的文件放到<code>src/cn/edu/school/group/project/</code>中，这样
+在list才能找到源码信息。</p>
+
+        <hr>
+        <p>16 Nov 2015</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder who is just a Coder Monkey!</em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).addClass('img-only-source');
+                    }
+                });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>
