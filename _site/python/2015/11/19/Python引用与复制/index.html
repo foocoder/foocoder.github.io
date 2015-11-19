@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+Python引用与复制 • Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="Python引用与复制 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://127.0.0.1:4000/python/2015/11/19/Python%E5%BC%95%E7%94%A8%E4%B8%8E%E5%A4%8D%E5%88%B6/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Crimson+Text:700italic,600,600italic,400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:2000px">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <div class="wrap">
+            <header>
+  <a href="/" class="website-title">
+    
+      <img alt="Meta Coder" src="/img/logo1.png" style="height:54px">
+    
+
+  </a>
+  <nav>
+  <a href="/about/">About</a>
+  <a href="/archive/">Archive</a>
+  <a href="/category/">Category</a>
+  <a href="/tags/">Tags</a>
+</nav>
+
+  
+</header>
+
+            
+
+    
+
+
+<article>
+        <h1>Python引用与复制</h1>
+        <div class="category">
+            
+                <a class="fa fa-bookmark" href="/category/#python" title="python">Python</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-tag" href="/tags/#Python" title="Python">Python</a>
+            
+            <a class="fa fa-tag" href="/tags/#Code" title="Code">Code</a>
+            
+            <a class="fa fa-tag" href="/tags/#学习笔记" title="学习笔记">学习笔记</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar">Nov 19, 2015 • 1&nbsp;min read</span>
+        </div>
+
+        <hr>
+        <p>Java中除了8中primitive主数据类型外，其他类型基本都是引用(Reference)，所以对其的复制我们需要时刻小心究竟是
+要对该对象进行一个链接的指向还是要将其复制(Copy)一份。而Python的使用感觉跟java类似，我们也需要关注着复制过
+来的究竟是个Reference还是整个的Copy。</p>
+
+<p>在python中，<strong>赋值操作总是存储对象的引用，而不是这些对象的拷贝</strong>，比如下边一个例子：</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></div>
+
+
+<p>c列表中是直接对a,b列表的一个引用，所以一旦a,b指向的对象发生变化，c列表也会改变。</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;123&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span>
+<span class="p">[[</span><span class="s">&#39;123&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></div>
+
+
+<p>这样可以在程序传递较大的对象而不必将其整个内容进行拷贝。不过有时候我们可能确实需要对对象进行拷贝有该怎么办？
+参见《Python学习手册》提供四种明确拷贝的方式:</p>
+
+<ul>
+<li>没有限制条件的分片表达式(L[:])能够复制序列;</li>
+<li>字典中的Copy方法(X.copy())能够复制字典;</li>
+<li>一些内置函数(如，list)能够生成拷贝(list(L));</li>
+<li>copy标准库模块能够生成完整拷贝。</li>
+</ul>
+
+
+<p>但需要注意的是，前三项的复制方式都只能算是浅复制，只有copy标准库中的<code>copy.deepcopy()</code>才能提供深复制。那什么是
+浅复制和深复制呢？</p>
+
+<p><strong>浅复制</strong>：当我们呢的list中含有其他的嵌套对象时，浅复制会将list中的所有项简单的复制到另一个list，也就是说，list中最顶层的元素是什么，它复制的就是什么，
+例如第一个例子中，c列表中包含的是a,b列表的引用，所以浅复制的话只是简单的将a,b,这两个引用复制到另一个list中，而如果a,b列表中的
+值改变的话，新的list值也会改变，所以并没有摆脱与旧list的关系。</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="p">[:]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">copy</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;test&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+<span class="p">[[</span><span class="s">&#39;test&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span>
+<span class="p">[[</span><span class="s">&#39;test&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span>
+<span class="p">[[</span><span class="s">&#39;test&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></div>
+
+
+<p>我们可以看到无条件值的分片以及<code>list</code>内置函数以及<code>copy.copy()</code>方法进行的都是浅复制，在a列表改变之后新的list值也会改变了。</p>
+
+<p><strong>深复制</strong>:有时候我们需要的是对整个list以及list中的list甚至list中的list中的list的等等全部嵌套的完整的完全独立的一个
+复制，需要跟旧有的list完全脱离关系，这时候就只能用到深拷贝，也就是copy模块中的<code>copy.deepcopy()</code>来执行。</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;testdeepcopy&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span>
+<span class="p">[[</span><span class="s">&#39;test&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></div>
+
+
+
+
+        <hr>
+        <p>19 Nov 2015</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder who is just a Coder Monkey!</em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).addClass('img-only-source');
+                    }
+                });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>
