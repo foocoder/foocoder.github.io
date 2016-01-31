@@ -13,16 +13,16 @@ layout: default
         <h1>{{ page.title }}</h1>
         <div class="category">
             {% for cat in page.categories %}
-                <a class="fa fa-bookmark" href="/category/#{{ cat }}" title="{{ cat }}">{{ cat|capitalize }}</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#{{ cat }}" title="{{ cat }}"> {{ cat|capitalize }}</a>
             {% endfor %}
         </div>
         <div class="tags">
             {% for tag in page.tags %}
-            <a class="fa fa-tag" href="/tags/#{{ tag }}" title="{{ tag }}">{{ tag }}</a>
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#{{ tag }}" title="{{ tag }}">  {{ tag }}</a>
             {% endfor %}
         </div>
         <div class="times">
-            <span class="fa fa-calendar">{{ page.date | date: site.date_format }} • {{ read-time }}</span>
+            <span class="fa fa-calendar"style="font-size:large" > {{ page.date | date: site.date_format }} • {{ read-time }}</span>
         </div>
 
         <hr>

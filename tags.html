@@ -28,11 +28,11 @@ $(function() {
 
 {% for tag in site.tags %}
 <div >
-    <h2 class="fa fa-tag" id="{{ tag[0] }}" style="font-size:30px">
+    <h2 class="fa fa-thumb-tack" style="font-size:large" id="{{ tag[0] }}" >
         <span>{{ tag[0] }} ({{ tag[1].size }})</span>
     </h2>
     {% for post in tag[1] %}
-    <p >
+    <p class="blogtitle">
     <a href="{{ post.url | prepend: site.baseurl }}">
         {{ post.title }}
     </a>
