@@ -38,7 +38,7 @@ show-subtitle: true
 display-social-icons: true
 enabletoTop: true
 
-footer-text: Copyright © MetaCoder 2016
+footer-text: Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll
 
 # Preferably 64px in height. Leave empty = disable.
 logo-image:  /img/logo1.png
