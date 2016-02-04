@@ -7,23 +7,23 @@ cover-image: coffee.jpg
 <link rel="stylesheet" type="text/css" href="/js/jqCloud/jqcloud.css" />
 <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="/js/jqCloud/jqcloud-1.0.4.js"></script>
-<!--<script type="text/javascript">-->
-<!--/*!-->
-<!--* Create an array of word objects, each representing a word in the cloud-->
- <!--*/-->
-<!--var word_array = [-->
-<!--{% for tag in site.tags %}-->
-<!--{text: "{{ tag[0] }}", weight: {{ tag[1].size }}, link: "#{{ tag[0] }}" },-->
-<!--{% endfor %}-->
-<!--];-->
-<!--$(function() {-->
-    <!--// When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.-->
-    <!--$("#example").jQCloud(word_array);-->
-<!--});-->
-<!--</script>-->
+<script type="text/javascript">
+/*!
+* Create an array of word objects, each representing a word in the cloud
+ */
+var word_array = [
+{% for tag in site.tags %}
+{text: "{{ tag[0] }}", weight: {{ tag[1].size }}, link: "#{{ tag[0] }}" },
+{% endfor %}
+];
+$(function() {
+    // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+    $("#example").jQCloud(word_array);
+});
+</script>
 
 <hr>
-<!--<div id="example" style="width: 850px; height: 500px;"></div>-->
+<div id="example" style="width: 100%; height: 500px;"></div>
 <hr>
 
 {% for tag in site.tags %}
