@@ -16,7 +16,7 @@
 /* Content */
 
 body {
-  font-family: "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", Arial, "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
@@ -228,7 +228,7 @@ hr {
 .cover-image-container {
   position: absolute;
   z-index: -9999;
-  opacity: .7;
+  opacity: .5;
   width: 100%;
 }
 .cover-image-container::after {
@@ -426,12 +426,8 @@ nav a.current {
   }
   .subtitle,
   .fluid-width-video-wrapper,
-  ol,
-  ul,
-  pre,
-  p,
-  form {
-    margin: 0px 0;
+  ol, ul, pre, p, form {
+    margin: 20px 0;
   }
   ol, ul {
     padding-left: 50px;
