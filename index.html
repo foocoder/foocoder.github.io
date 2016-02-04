@@ -30,6 +30,9 @@ cover-image: beats.jpg
         {% else %}
             {{ post.excerpt | remove: '<p>' | remove: '</p>' }} <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
         {% endif %}
+        <!--
+        {{ post.excerpt }}
+        -->
         </p>
     </article>
 {% endfor %}
