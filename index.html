@@ -26,13 +26,12 @@ cover-image: beats.jpg
         </span>
         <p>
         {% if post.summary %}
-            {{ post.summary }} <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
+            {{ post.summary }}
+            <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
         {% else %}
-            {{ post.excerpt | remove: '<p>' | remove: '</p>' }} <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
+        {{ post.content |split:'</p>'|first }}
+            <br/>&nbsp;<a class="read-more" href="{{ post.url | prepend: site.baseurl }}">{{ site.var_read }}  →</a>
         {% endif %}
-        <!--
-        {{ post.excerpt }}
-        -->
         </p>
     </article>
 {% endfor %}

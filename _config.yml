@@ -92,7 +92,7 @@ baiduAnaly:
     config: true
 
 #Markdown
-markdown: rdiscount
+markdown: radcarpet
 ################
 # SOCIAL ICONS #
 ################
