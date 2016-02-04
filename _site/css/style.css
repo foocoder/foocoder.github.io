@@ -382,7 +382,7 @@ nav a {
   display: block;
   padding: 5px;
   text-align: center;
-  font-size: 26px;
+  font-size: 22px;
   background-image: none;
   text-decoration: none !important;
   border-radius: 4px;
@@ -390,7 +390,7 @@ nav a {
   position: relative;
 }
 nav a:hover {
-  color: rgba(0, 0, 0,.76);
+  color: rgba(0, 0, 0, 1);
 }
 nav a.current {
   color: rgba(0, 0, 0, .76)
@@ -464,7 +464,7 @@ nav a.current {
   }
   nav {
     position: absolute;
-    top: 36px;
+    top: 37px;
     right: 0;
     margin: 0;
   }
