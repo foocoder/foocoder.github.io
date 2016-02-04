@@ -6,10 +6,9 @@
     {% else %}
       {{ site.name }}
     {% endif %}
-
   </a>
-  {% include navigation.html %}
   </div>
+  {% include navigation.html %}
   {% if page.home and site.show-subtitle or page.home and site.display-social-icons %}
 {% include subtitle.html %}
   {% endif %}
