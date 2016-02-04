@@ -230,6 +230,7 @@ hr {
   z-index: -9999;
   opacity: .5;
   width: 100%;
+  background-color:grey;
 }
 .cover-image-container::after {
   content: "";
