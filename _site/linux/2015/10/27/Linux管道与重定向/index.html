@@ -31,11 +31,11 @@ Linux管道与重定向 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/">
+<meta property="og:url" content="http://foocoder.github.io/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -153,39 +153,37 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar"style="font-size:large" > Oct 27, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar"style="font-size:large" > Oct 27, 2015 • 1&nbsp;min read</span>
         </div>
 
         <hr>
-        <p>Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个<code>&gt;</code>代表覆盖重写而<code>&gt;&gt;</code>代表对文件中追加，并不覆盖。
+        <p>Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个<code>&gt;</code>代表覆盖重写而<code>&gt;&gt;</code>代表对文件中追加，并不覆盖。<br />
 今天在用<code>mplayer</code>播放提示音希望不显示输出，从网上看到这个命令瞬间泪奔</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$mplayer</span> test.mp3 &lt; /dev/null &gt; /dev/null 2&gt;1<span class="p">&amp;</span></code></pre></div>
 
-
 <p>这到底什么个含义，决心花点时间来好好补补这一块的内容。</p>
 
-<h2>I/O 重定向</h2>
+<h2 id="io-">I/O 重定向</h2>
 
-<p>通常在Shell命令中最常见到三种输入输出类型，标准输入(stdin)，标准输出(stdout)以及标准错误输出(stderr)，感觉跟C/C++里边文件划分类似。
-<code>stdin</code>一般指<code>command</code>接受的输入流，<code>stdout</code>指<code>command</code>正常输出情况，默认输出显示到终端，<code>stderr</code>则是<code>command</code>的错误输出，默认也是输出显示到终端。
+<p>通常在Shell命令中最常见到三种输入输出类型，标准输入(stdin)，标准输出(stdout)以及标准错误输出(stderr)，感觉跟C/C++里边文件划分类似。<br />
+<code>stdin</code>一般指<code>command</code>接受的输入流，<code>stdout</code>指<code>command</code>正常输出情况，默认输出显示到终端，<code>stderr</code>则是<code>command</code>的错误输出，默认也是输出显示到终端。<br />
 而文件描述符则是与一个打开的文件或数据流相对应的一个整数，系统将0,1,2分别与标准输入，标准输出以及标准错误输出相对应。</p>
 
-<h3>输出重定向</h3>
+<h3 id="section">输出重定向</h3>
 
 <p>重定向符号<code>&gt;</code>以及<code>&gt;&gt;</code>意为输出重定向，包括标准输出以及标准错误输出，也是一般命令中比较常见的情况，与<code>stdout</code>及<code>stderr</code>两两组合就是四种情况</p>
 
 <ul>
-<li><code>1&gt;</code> 表示标准输出重定向，覆盖</li>
-<li><code>1&gt;&gt;</code> 表示标准输出重定向，追加</li>
-<li><code>2&gt;</code> 表示标准错误输出重定向，覆盖</li>
-<li><code>2&gt;&gt;</code> 表示标准错误输出重定向，追加</li>
+  <li><code>1&gt;</code> 表示标准输出重定向，覆盖</li>
+  <li><code>1&gt;&gt;</code> 表示标准输出重定向，追加</li>
+  <li><code>2&gt;</code> 表示标准错误输出重定向，覆盖</li>
+  <li><code>2&gt;&gt;</code> 表示标准错误输出重定向，追加</li>
 </ul>
-
 
 <p>其中默认缺省表示标准输出，即<code>&gt;</code>与<code>&gt;&gt;</code>与前两个命令含义相同。</p>
 
-<p>由于<code>&gt;</code>命令会将存在的文件进行覆盖，我们可以通过<code>set -o noclobber</code>来进行相应的限制。设置成功后，如果再次进行重定向到已有的文件中就会报错，这时便
+<p>由于<code>&gt;</code>命令会将存在的文件进行覆盖，我们可以通过<code>set -o noclobber</code>来进行相应的限制。设置成功后，如果再次进行重定向到已有的文件中就会报错，这时便<br />
 需要通过<code>&gt;|</code>来进行命令。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$set</span> -o noclobber
@@ -197,21 +195,19 @@ zsh: 文件已存在:test1
 <span class="nv">$cat</span> test1
 test1 test2 test3</code></pre></div>
 
-
-<p>另外就是<code>&amp;</code>的使用，不过这里<code>&amp;</code>并不是指将命令在后台运行。<code>&amp;&gt;</code>和<code>&amp;&gt;&gt;</code>可以将<code>stdout</code>与<code>stderr</code>重定义到同一文件中。这样就不用一个一个的指定了。
-另一种方式这样<code>2&gt;&amp;1</code>，表示将<code>stderr</code>重定向到<code>stdout</code>的位置，即<code>stdout</code>输出到哪，<code>stderr</code>也输出到哪。“IBM developerWorks"上有个很不错的例子，</p>
+<p>另外就是<code>&amp;</code>的使用，不过这里<code>&amp;</code>并不是指将命令在后台运行。<code>&amp;&gt;</code>和<code>&amp;&gt;&gt;</code>可以将<code>stdout</code>与<code>stderr</code>重定义到同一文件中。这样就不用一个一个的指定了。<br />
+另一种方式这样<code>2&gt;&amp;1</code>，表示将<code>stderr</code>重定向到<code>stdout</code>的位置，即<code>stdout</code>输出到哪，<code>stderr</code>也输出到哪。“IBM developerWorks”上有个很不错的例子，</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$command</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span> &gt;output.txt
 <span class="nv">$command</span> &gt;output.txt 2&gt;<span class="p">&amp;</span>1</code></pre></div>
 
-
-<p>这两个命令<code>stderr</code>重定向的位置并不相同。第一个先将<code>stderr</code>定向到<code>stdout</code>，而此时<code>stdout</code>的定向是默认的终端，所以<code>stderr</code>被定向到终端，之后
+<p>这两个命令<code>stderr</code>重定向的位置并不相同。第一个先将<code>stderr</code>定向到<code>stdout</code>，而此时<code>stdout</code>的定向是默认的终端，所以<code>stderr</code>被定向到终端，之后<br />
 <code>stdout</code>被重定向到文件<code>output</code>中。第二条命令先将<code>stdout</code>定向到文件<code>output</code>，然后将<code>stderr</code>定向到<code>stdout</code>上，因此<code>stderr</code>最终被定向到文件中。</p>
 
-<p>最后要提的是<code>/dev/null</code>这个空设备，被称为<code>bit bucket</code>或者黑洞，正如它名字所示，它会将一切写入到其中的数据流吞噬并丢弃，常用来将<code>stdout</code>和<code>stderr</code>
+<p>最后要提的是<code>/dev/null</code>这个空设备，被称为<code>bit bucket</code>或者黑洞，正如它名字所示，它会将一切写入到其中的数据流吞噬并丢弃，常用来将<code>stdout</code>和<code>stderr</code><br />
 内容丢弃掉。但<code>/dev/null</code>是一个文件而不是目录，所以不能类似的将文件<code>mv</code>其中来删除。</p>
 
-<p>关于<code>tee</code>命令，其实也有时候，我们希望输出不仅重定向到文件中，而且希望它能够在终端中显示出来，这样就不需要重定向后再继续打开文件来检查是否出问题。
+<p>关于<code>tee</code>命令，其实也有时候，我们希望输出不仅重定向到文件中，而且希望它能够在终端中显示出来，这样就不需要重定向后再继续打开文件来检查是否出问题。<br />
 这时候我们可以用到<code>tee</code>命令。<code>man tee</code>的解释是这样，从标准输入复制到每一个文件并复制到标准输出中。例如这样</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ls</span> <span class="p">|</span>tee file1 file2
@@ -221,11 +217,10 @@ test1 test2 test3
 <span class="nv">$cat</span> file2
 test1 test2 test3</code></pre></div>
 
-
-<p>而在一般的Linux tricks 有时候会利用<code>tee</code>来帮忙解决vim时忘记加<code>sudo</code>。可以这样子使用<code>:w !sudo tee %</code>。其中<code>:w</code>将更改后的文件作为标准输出传递给tee，
+<p>而在一般的Linux tricks 有时候会利用<code>tee</code>来帮忙解决vim时忘记加<code>sudo</code>。可以这样子使用<code>:w !sudo tee %</code>。其中<code>:w</code>将更改后的文件作为标准输出传递给tee，<br />
 而<code>%</code>代表当前文件名，然后利用<code>sudo</code>权限把标准输出传到当前文件中去。</p>
 
-<h3>输入重定向</h3>
+<h3 id="section-1">输入重定向</h3>
 
 <p>输入重定向自己平常到用的不多，可以用<code>&lt;</code>来接受文件内容来作为标准输入。</p>
 
@@ -240,19 +235,16 @@ test1 test2 test3</code></pre></div>
 2
 3</code></pre></div>
 
-
-<h2>管道</h2>
+<h2 id="section-2">管道</h2>
 
 <p>相对与重定向，管道就没那么复杂了。一般来讲可以用<code>|</code>来将上一个命令的<code>stdout</code>作为当前命令的<code>stdin</code>来使用。但需要注意的是，<code>stderr</code>是不会被处理的。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$command1</span> <span class="p">|</span>command2 <span class="p">|</span>command3</code></pre></div>
 
-
-<p>关于<code>xargs</code>。<code>xargs</code>比较牛的地方是可以将标准输入来作为命令的参数传到命令中，而管道传给命令的只能是命令接受的<code>stdin</code>。<code>xargs</code>通常与<code>find</code>连用来查找文件。
+<p>关于<code>xargs</code>。<code>xargs</code>比较牛的地方是可以将标准输入来作为命令的参数传到命令中，而管道传给命令的只能是命令接受的<code>stdin</code>。<code>xargs</code>通常与<code>find</code>连用来查找文件。<br />
 记忆中自己用到<code>xargs</code>的地方是在Redis。由于Redis删除key的时候不支持通配符，而上万条的数据又不能一个一个手动删除，所以可以利用<code>xargs</code></p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$redis</span>-cli -n <span class="m">0</span> keys <span class="s1">&#39;keys:*&#39;</span> <span class="p">|</span>xargs redis-cli -n <span class="m">0</span> del</code></pre></div>
-
 
 <p>先用<code>keys</code>命令找到数据库中所有匹配数据，然后通过xargs将输出作为<code>del</code>的参数来进行删除。</p>
 
@@ -314,7 +306,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

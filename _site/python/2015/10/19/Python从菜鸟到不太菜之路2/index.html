@@ -31,11 +31,11 @@ Python with 语句 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/">
+<meta property="og:url" content="http://foocoder.github.io/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -159,9 +159,9 @@ header::after {
         </div>
 
         <hr>
-        <h2>Python I/O</h2>
+        <h2 id="python-io">Python I/O</h2>
 
-<p>我们知道，在程序中打开文件的时候，往往需要考虑一些乱七八糟的异常出现的情况，例如文件不存在啦，没有可读可写的权限啦，亦或是硬盘已满。所以我们经常会用到<code>try/except</code>语句来捕获异常，
+<p>我们知道，在程序中打开文件的时候，往往需要考虑一些乱七八糟的异常出现的情况，例如文件不存在啦，没有可读可写的权限啦，亦或是硬盘已满。所以我们经常会用到<code>try/except</code>语句来捕获异常，<br />
 而为了防止文件被破坏，我们还需要<code>finally</code>语句来保证文件的关闭，如下例子：</p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">try</span><span class="p">:</span>
@@ -175,13 +175,11 @@ header::after {
     <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
     <span class="n">fw</span><span class="o">.</span><span class="n">close</span><span class="p">();</span></code></pre></div>
 
-
 <p>这么冗长臃肿的代码，显然不是我们这些强迫症患者所喜爱的，必需要找个方式把他解决掉，那就是<code>with</code>。<code>with</code>是python2.5引入的，到了2.6就已经成为默认关键字。加了<code>with</code>的代码是以下形式：</p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath2</span><span class="p">,</span><span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fw</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
         <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span></code></pre></div>
-
 
 <p>然后我们还可以通过<code>nested</code>这样用：</p>
 
@@ -190,10 +188,9 @@ header::after {
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
         <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">file</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span></code></pre></div>
 
-
 <p>从此以后，妈妈再也不用担心我的文件打开后忘记关闭了。</p>
 
-<p><code>with</code>语句引入了一个“上下文管理协议”(Context Management Protocol)，对资源访问后发生异常能够正常关闭资源。具体实现是通过定义两个方法<code>__enter__()</code>以及<code>__exit__()</code>方法来操作。
+<p><code>with</code>语句引入了一个“上下文管理协议”(Context Management Protocol)，对资源访问后发生异常能够正常关闭资源。具体实现是通过定义两个方法<code>__enter__()</code>以及<code>__exit__()</code>方法来操作。<br />
 这里有一篇参考文献<a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/">《浅谈Python的with语句》</a>。</p>
 
         <hr>
@@ -252,7 +249,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

@@ -31,11 +31,11 @@ Awesome 初体验 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">
+<meta property="og:url" content="http://foocoder.github.io/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -163,9 +163,11 @@ header::after {
 
 <p>这里给出原文。</p>
 
-<blockquote><p><a href="http://ju.outofmemory.cn/entry/94125">Awesome+tmux+gnomeDo打造高效Linux桌面环境</a></p></blockquote>
+<blockquote>
+  <p><a href="http://ju.outofmemory.cn/entry/94125">Awesome+tmux+gnomeDo打造高效Linux桌面环境</a></p>
+</blockquote>
 
-<h2>tmux</h2>
+<h2 id="tmux">tmux</h2>
 
 <p><code>tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code>tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。</p>
 
@@ -173,8 +175,7 @@ header::after {
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></div>
 
-
-<h2>gnome-do</h2>
+<h2 id="gnome-do">gnome-do</h2>
 
 <p><code>gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code>Super+Space</code>调出<code>gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code>everything</code>。</p>
 
@@ -182,10 +183,9 @@ header::after {
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></div>
 
-
 <p>但这里有个问题是，当我在Ununtu 15.10下调用<code>gnome-do</code>(版本是0.95.3)时，点击<code>首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
 
-<h2>Awesome</h2>
+<h2 id="awesome">Awesome</h2>
 
 <p>当使用 <code>Awesome</code> 的时候，给我的感觉确实如其名所示, Awesome，不仅仅是他的美观，更主要的是他的高效性。</p>
 
@@ -207,20 +207,18 @@ header::after {
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install awesome</code></pre></div>
 
-
 <p>然后我们需要在<code>home/</code>下的<code>.config/</code>文件夹中新建一个<code>awesome</code>的文件夹,将<code>/etc/xdg/awesome/rc.lua</code>配置文件copy其中就可以了。具体的配置我也不多说了，网上依旧是好多文献。哦，对了，这样安装的是awesome3.4版，如果想安装3.5的就得自己下载源码编译了。</p>
 
 <p>下面列出相关资源，用来方便查找。</p>
 
 <ul>
-<li><a href="http://awesome.naquadah.org">Awesome官网</a></li>
-<li><a href="http://wiki.ubuntu.org.cn/Awesome">ubuntu中文下的Awesome文档</a></li>
-<li><a href="https://wiki.archlinux.org/index.php/awesome_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">archlinux下的Awesome中文文档</a>)</li>
-<li><a href="https://github.com/mikar/awesome34-themes">pre 3.5主题 --mikar</a></li>
-<li><a href="https://github.com/mikar/awesome-themes">3.5主题 --mikar</a></li>
-<li><a href="https://github.com/Morley93/awesome-themes-3.5">3.5主题 --Morley93</a></li>
+  <li><a href="http://awesome.naquadah.org">Awesome官网</a></li>
+  <li><a href="http://wiki.ubuntu.org.cn/Awesome">ubuntu中文下的Awesome文档</a></li>
+  <li><a href="https://wiki.archlinux.org/index.php/awesome_(简体中文)">archlinux下的Awesome中文文档</a></li>
+  <li><a href="https://github.com/mikar/awesome34-themes">pre 3.5主题 –mikar</a></li>
+  <li><a href="https://github.com/mikar/awesome-themes">3.5主题 –mikar</a></li>
+  <li><a href="https://github.com/Morley93/awesome-themes-3.5">3.5主题 –Morley93</a></li>
 </ul>
-
 
         <hr>
         <p>09 Oct 2015</p>
@@ -278,7 +276,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

@@ -31,11 +31,11 @@ Redis 初体验 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/21/Redis-%E5%88%9D%E4%BD%93%E9%AA%8C/">
+<meta property="og:url" content="http://foocoder.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/21/Redis-%E5%88%9D%E4%BD%93%E9%AA%8C/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -159,30 +159,31 @@ header::after {
         </div>
 
         <hr>
-        <h2>Redis 总览</h2>
+        <h2 id="redis-">Redis 总览</h2>
 
-<p>Redis 全称(REmote DIctionary Service)，远程字典服务，是一个简单易用的<code>Key-Value</code>数据库。
-Redis是内存数据库，相比其他数据库，其速度是最大的一个优势，但能力大责任就越大，其成本代价则是昂贵的内存。
+<p>Redis 全称(REmote DIctionary Service)，远程字典服务，是一个简单易用的<code>Key-Value</code>数据库。<br />
+Redis是内存数据库，相比其他数据库，其速度是最大的一个优势，但能力大责任就越大，其成本代价则是昂贵的内存。<br />
 虽说现在内存也是白菜价了，但对于动辄就是几十上百个G的数据来说，还是吃不消的。</p>
 
-<p>Redis 最主要的特点是其丰富的数据类型，创始人 Salvatore Sanfilippo 也将其成为“数据结构服务器”，足以体现其特点。
+<p>Redis 最主要的特点是其丰富的数据类型，创始人 Salvatore Sanfilippo 也将其成为“数据结构服务器”，足以体现其特点。<br />
 除了最基本的<code>string</code>已经<code>numerical</code>类型，还支持<code>Hash</code>，<code>List</code>，<code>Set</code>，<code>SortedSet</code>等复杂数据结构，且提供着非常方便的操作方式，简单易用。</p>
 
-<h2>一些资源</h2>
+<h2 id="section">一些资源</h2>
 
-<p>当然，Redis常见的还是出现在Web Case中，如博客网站或其他类似的社交网站，这里有个<a href="http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html">《11个Redis常用Web Case》</a>。
-至于Redis内容相关，这里的<a href="http://www.searchdatabase.com.cn/showcontent_70423.htm">关于Redis的一些常识</a>，也提供了一些Redis的相关资料。
-不过不管学习什么，有文档最好参考文档，毕竟文档才是王道，<a href="http://redisdoc.com">Redis命令参考</a>，中文版的，简洁易懂。
-发现自己学了这么多年英语，最后还是喜欢看中文文档————除非翻译的实在看不下去。
+<p>当然，Redis常见的还是出现在Web Case中，如博客网站或其他类似的社交网站，这里有个<a href="http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html">《11个Redis常用Web Case》</a>。<br />
+至于Redis内容相关，这里的<a href="http://www.searchdatabase.com.cn/showcontent_70423.htm">关于Redis的一些常识</a>，也提供了一些Redis的相关资料。<br />
+不过不管学习什么，有文档最好参考文档，毕竟文档才是王道，<a href="http://redisdoc.com">Redis命令参考</a>，中文版的，简洁易懂。<br />
+发现自己学了这么多年英语，最后还是喜欢看中文文档————除非翻译的实在看不下去。<br />
 这里还有<a href="http://redis.cn">Redis中文网站</a>。</p>
 
-<h2>一些常识</h2>
+<h2 id="section-1">一些常识</h2>
 
-<p>Redis 的 keys 命名没有什么限制，诸如<code>:</code>,<code>.</code>都可以用。
-一开始并不清楚，看到好多人命名<code>usr:1:name:zhang</code>之类的，还以为有什么特别之处，其实并没有什么深层含义，只不过作者建议<code>:</code>用作字段分隔，<code>.</code>号用作单词的连接符，大致是一种约定俗成。
+<p>Redis 的 keys 命名没有什么限制，诸如<code>:</code>,<code>.</code>都可以用。<br />
+一开始并不清楚，看到好多人命名<code>usr:1:name:zhang</code>之类的，还以为有什么特别之处，其实并没有什么深层含义，只不过作者建议<code>:</code>用作字段分隔，<code>.</code>号用作单词的连接符，大致是一种约定俗成。<br />
 你想用<code>_</code>来分隔或连接也并无不可。</p>
 
 <p>另外Redis的复杂数据类型并不能嵌套使用，也就是说<code>Hash</code>啊，<code>list</code>等等里边的value只能是<code>string</code>或者数值类型，与python不同。一开始一直想将一个<code>set</code>作为value存到一个<code>hash</code>里边，最终发现存的只是<code>set</code>的key的字符窜而已。</p>
+
 
         <hr>
         <p>21 Oct 2015</p>
@@ -240,7 +241,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

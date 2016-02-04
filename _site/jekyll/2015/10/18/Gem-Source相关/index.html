@@ -31,11 +31,11 @@ Gem Source相关 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/">
+<meta property="og:url" content="http://foocoder.github.io/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -157,7 +157,7 @@ header::after {
         </div>
 
         <hr>
-        <p>之前由于<code>Markdown</code>的引擎问题，导致在<code>md</code>文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把<code>Markdown</code>引擎换成了<code>rdiscount</code>。
+        <p>之前由于<code>Markdown</code>的引擎问题，导致在<code>md</code>文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把<code>Markdown</code>引擎换成了<code>rdiscount</code>。<br />
 在笔记本上实验成功，分段的话需要空一行。</p>
 
 <p>然后回到实验时<code>yekyll server</code>的时候报错了，发现并没有安装<code>rdiscount</code>软件包。这个简单，<code>gem install</code>一下就可以了。可是可是，事与愿违</p>
@@ -165,7 +165,6 @@ header::after {
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install rdiscount
 ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
 Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
-
 
 <p>看来是<code>source</code>出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。</p>
 
@@ -175,14 +174,12 @@ Unable to download data from http://ruby.taobao.org/ - bad response Not Found <s
 ERROR:  While executing gem ... <span class="o">(</span>Gem::FilePermissionError<span class="o">)</span>
 You don<span class="err">&#39;</span>t have write permissions <span class="k">for</span> the /var/lib/gems/2.1.0 directory.</code></pre></div>
 
-
 <p>需要<code>root</code>用户权限，那就<code>sudo !!</code>，可是，老问题又出现了。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo !!
 <span class="nv">$ </span>sudo gem install rdiscount
 ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
 Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
-
 
 <p>想起来了，只是给当前用户修改了<code>source</code>，<code>root</code>用户的<code>source</code>还没改呢。好吧，那就继续改掉</p>
 
@@ -196,7 +193,6 @@ Parsing documentation <span class="k">for</span> rdiscount-2.1.8
 Installing ri documentation <span class="k">for</span> rdiscount-2.1.8
 Done installing documentation <span class="k">for</span> rdiscount after <span class="m">0</span> seconds
 <span class="m">1</span> gem installed</code></pre></div>
-
 
 <p>现在问题解决了，终于可以启动<code>jekyll server</code>了。</p>
 
@@ -258,7 +254,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

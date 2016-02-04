@@ -31,11 +31,11 @@
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/">
+<meta property="og:url" content="http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -159,7 +159,7 @@ header::after {
         </div>
 
         <hr>
-        <p>用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。
+        <p>用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。<br />
 但IDE有IDE的方便，直接编译还是有着直接编译的好处的。毕竟是可以更深层次的接触的编译的过程。</p>
 
 <p>对于<code>javac</code>，发现并没有多少书来解释这个命令，通过<code>javac -help</code>能看到一堆对参数的说明。</p>
@@ -198,13 +198,12 @@ where possible options include:
   -Werror                    Terminate compilation if warnings occur
   @&lt;filename&gt;                Read options and filenames from file
 </code></pre>
-
 <p>看着都眼晕，不过我们只需要对某几个Option来关注就可以。</p>
 
-<h3>@argfiles</h3>
+<h3 id="argfiles">@argfiles</h3>
 
-<p>话说用了这么久的<code>javac</code>还头一次知道有这么个<code>option</code>，在javac编译的时候我们可以不必每次都要
-敲那么长的一串命令，可以先通过把编译的<code>option</code>或是<code>sourcefiles</code>写入到一个文件中然后通过<code>@</code>来编译。
+<p>话说用了这么久的<code>javac</code>还头一次知道有这么个<code>option</code>，在javac编译的时候我们可以不必每次都要<br />
+敲那么长的一串命令，可以先通过把编译的<code>option</code>或是<code>sourcefiles</code>写入到一个文件中然后通过<code>@</code>来编译。<br />
 比如说，我们把<code>javac</code>的参数放到options文件中，把<code>sourcefile</code>放到source文件中，类似下边例子：</p>
 
 <div class="highlight"><pre><code class="language-vim" data-lang="vim">#Options
@@ -212,25 +211,21 @@ where possible options include:
 <span class="p">-</span><span class="k">g</span>
 <span class="p">-</span>sourcepath .</code></pre></div>
 
-
-
-
 <div class="highlight"><pre><code class="language-vim" data-lang="vim">#srcFiles
 testA.java
 testB.java</code></pre></div>
 
-
 <p>之后，通过命令<code>javac @Options @srcFiles</code>来编译文件。</p>
 
-<h3>-classpath 与 -sourcepath</h3>
+<h3 id="classpath---sourcepath">-classpath 与 -sourcepath</h3>
 
 <p><code>classpath</code> 设定java要搜索的类的路径，即编译<code>sourcefile</code>所需要依赖的class的路径。</p>
 
 <p><code>sourcepath</code> 设定java要搜索类的源码的路径，即编译<code>sourcefile</code>所需要依赖的class的源码的路径。</p>
 
-<p>一开始并不明白sourcepath的意义，以为是需要编译的源码的路径。后来看了看文档以及相关资料，才知道
-sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的路径。只不过classpath指明的是已经编译好的
-<code>.class</code>文件的位置，而sourcepath指明的是依赖的class的源码的位置，如果<code>javac</code>发现不存在或者现在的<code>.class</code>
+<p>一开始并不明白sourcepath的意义，以为是需要编译的源码的路径。后来看了看文档以及相关资料，才知道<br />
+sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的路径。只不过classpath指明的是已经编译好的<br />
+<code>.class</code>文件的位置，而sourcepath指明的是依赖的class的源码的位置，如果<code>javac</code>发现不存在或者现在的<code>.class</code><br />
 不是最新版文件，会重新编译依赖文件来产生class文件。</p>
 
 <p>我们可以通过<code>-verbose</code>来查看编译过程。</p>
@@ -256,15 +251,14 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
 <span class="o">[</span>已写入RegularFileObject<span class="o">[</span>./testA.class<span class="o">]]</span>
 <span class="o">[</span>共 <span class="m">307</span> 毫秒<span class="o">]</span></code></pre></div>
 
-
-<p>其中文件<code>testB.java</code>里边对<code>testA.java</code>里的类进行调用，然而并没有事先编译<code>testA.java</code>文件，而是指定了<code>sourcepath</code>为
+<p>其中文件<code>testB.java</code>里边对<code>testA.java</code>里的类进行调用，然而并没有事先编译<code>testA.java</code>文件，而是指定了<code>sourcepath</code>为<br />
 当前目录，我们可以看到编译进程中首先找到<code>testA.java</code>对其进行编译生成<code>testA.class</code>，然后再对<code>testB.java</code>进行编译。</p>
 
 <p>需要注意的是：<code>sourcepath</code>的默认路径与<code>classpath</code>路径相同，但如果指定了之后会将原路径覆盖。</p>
 
-<h3>-d</h3>
+<h3 id="d">-d</h3>
 
-<p><code>-d</code>选项设定了类文件的目标目录，即你编译出来的class文件所存放的位置，这里是指存放的根目录。什么意思呢？如果你的文件中没有进行打包(package)
+<p><code>-d</code>选项设定了类文件的目标目录，即你编译出来的class文件所存放的位置，这里是指存放的根目录。什么意思呢？如果你的文件中没有进行打包(package)<br />
 那么直接就把class文件生成到该目录下边。如果文件中声明了package的信息，那么就会以<code>-d</code>后的path为根目录生成整个package的文件目录中。举个例子</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">cn</span><span class="o">.</span><span class="na">edu</span><span class="o">.</span><span class="na">school</span><span class="o">.</span><span class="na">group</span><span class="o">.</span><span class="na">project</span><span class="o">;</span>
@@ -272,13 +266,9 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
     <span class="c1">//...</span>
 <span class="o">}</span></code></pre></div>
 
-
-
-
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>javac -d /home/user/java/bin/ testA.java</code></pre></div>
 
-
-<p>之后会将<code>testA.class</code>生成到/home/user/java/bin/cn/edu/school/group/project中。如果想要<code>import</code>该类，则需要指定
+<p>之后会将<code>testA.class</code>生成到/home/user/java/bin/cn/edu/school/group/project中。如果想要<code>import</code>该类，则需要指定<br />
 该类的根目录，即<code>-cp /home/user/java/bin</code>即可。例如我在<code>testB</code>中<code>import</code>：</p>
 
 <div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">cn.edu.school.group.project.testA</span><span class="o">;</span>
@@ -291,27 +281,22 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
     <span class="o">}</span>
 <span class="o">}</span></code></pre></div>
 
-
-
-
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>javac -d /home/user/java/bin -cp /home/user/java/bin testB.java</code></pre></div>
 
-
-<p>如果不指定<code>cp</code>的话就会编译出错，或者将该目录添加到环境变量中其实也可以，但如果每个project都把classpath添加到环境变量中，
+<p>如果不指定<code>cp</code>的话就会编译出错，或者将该目录添加到环境变量中其实也可以，但如果每个project都把classpath添加到环境变量中，<br />
 那环境变量会变得相当臃肿。</p>
 
 <p>另外，关于classpath的搜索规则，参考@haolujun 大神的说明，java的类的寻找规则是这样子的：</p>
 
 <pre><code>class文件所在目录=Classpath+'\'+Package路径中'.'换成'\'
 </code></pre>
-
-<h3>debug 选项</h3>
+<p>### debug 选项 ###</p>
 
 <p><code>-g</code>选项为编译提供了调试信息，包括行号信息，源文件信息以及局部变量信息。缺省情况只生成行号以及源文件信息。</p>
 
 <p><code>-g:none</code> 不生成任何调试信息。</p>
 
-<p><code>-g:{keylist}</code> 指定生成调试信息的类型，<code>keylist</code>包括<code>source</code>提供源文件调试信息，<code>lines</code>提供行号调试信息，以及
+<p><code>-g:{keylist}</code> 指定生成调试信息的类型，<code>keylist</code>包括<code>source</code>提供源文件调试信息，<code>lines</code>提供行号调试信息，以及<br />
 <code>vars</code>提供局部变量调试信息。类型之间用逗号来分隔。</p>
 
 <p>如果你不想生成任何调试信息的话，需要<code>-g:none</code>来指定，不指定的话，即使不加<code>-g</code>默认也会生成行号以及源文件信息的。</p>
@@ -372,7 +357,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

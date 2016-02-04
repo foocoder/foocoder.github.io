@@ -31,11 +31,11 @@ JDB链接源码 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/">
+<meta property="og:url" content="http://foocoder.github.io/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -159,32 +159,33 @@ header::after {
         </div>
 
         <hr>
-        <p>IDE 的操作会有一个好处，一键集成式编程，底层什么都不必考虑，但会导致一个问题是————
+        <p>IDE 的操作会有一个好处，一键集成式编程，底层什么都不必考虑，但会导致一个问题是————<br />
 一旦离开了IDE，你会发现到处都是问题。</p>
 
-<p>没有IDE的debug工具，我们进行debug的话只能利用最原始的方式<code>JDB</code>。不过个人感觉，<code>JDB</code>比之
-<code>GDB</code>还是有很大的不足之处的，最大的问题是没有缩写，每个命令得多敲好多字母。另外就是没法
-上翻历史记录，如果某次你不小心打错了很长一个class的某一个字母，恭喜你，下次还得重新全部
+<p>没有IDE的debug工具，我们进行debug的话只能利用最原始的方式<code>JDB</code>。不过个人感觉，<code>JDB</code>比之<br />
+<code>GDB</code>还是有很大的不足之处的，最大的问题是没有缩写，每个命令得多敲好多字母。另外就是没法<br />
+上翻历史记录，如果某次你不小心打错了很长一个class的某一个字母，恭喜你，下次还得重新全部<br />
 输入。不过，到可以用来锻炼手速了。</p>
 
-<p><code>JDB</code>调试命令还是比较简单的，没有<code>javac</code>那么复杂。直接<code>jdb class</code>文件就可以，如果class不
+<p><code>JDB</code>调试命令还是比较简单的，没有<code>javac</code>那么复杂。直接<code>jdb class</code>文件就可以，如果class不<br />
 在当前目录下，需要指定一下<code>-classpath</code>，设定<code>class</code>文件的路径。</p>
 
 <p>但主要是<code>JDB</code>的list命令想要进行查看源码信息的时候，总会显示找不到源文件。下面分两种情况来说明下。</p>
 
-<h3>不包含Package</h3>
+<h3 id="package">不包含Package</h3>
 
-<p><code>jdb</code>中<code>use</code>命令可以指定源文件的位置。假设<code>src/</code>文件夹中存放的是源码文件，<code>class/</code>文件夹中存放
+<p><code>jdb</code>中<code>use</code>命令可以指定源文件的位置。假设<code>src/</code>文件夹中存放的是源码文件，<code>class/</code>文件夹中存放<br />
 的是类文件，我们在<code>class/</code>目录下进行<code>jdb</code>的时候，可以利用<code>use ../src</code>来找到源码的位置。</p>
 
 <p>具体可以参考 <a href="http://kingquake21.iteye.com/blog/1033464">在jdb中链接源码</a>，@kingquake21大神讲的很详细。</p>
 
-<h3>包含Package信息的源码链接</h3>
+<h3 id="package-1">包含Package信息的源码链接</h3>
 
-<p>当我们如果有一个java中包含package信息，假设是<code>cn.edu.school.group.project</code>，而该文件放在<code>src/</code>文件夹下的
-话，继续用上述方法也是找不到源码的。估计<code>jdb</code>查找源码的过程跟查找<code>class</code>的过程是差不多的，也是把
-<code>package</code>中<code>.</code>号转换成路径来查找，所以我们需要将<code>src/</code>下的文件放到<code>src/cn/edu/school/group/project/</code>中，这样
+<p>当我们如果有一个java中包含package信息，假设是<code>cn.edu.school.group.project</code>，而该文件放在<code>src/</code>文件夹下的<br />
+话，继续用上述方法也是找不到源码的。估计<code>jdb</code>查找源码的过程跟查找<code>class</code>的过程是差不多的，也是把<br />
+<code>package</code>中<code>.</code>号转换成路径来查找，所以我们需要将<code>src/</code>下的文件放到<code>src/cn/edu/school/group/project/</code>中，这样<br />
 在list才能找到源码信息。</p>
+
 
         <hr>
         <p>16 Nov 2015</p>
@@ -242,7 +243,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

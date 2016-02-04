@@ -20,5 +20,3 @@ Hey! This is ***Meta Coder***!
 
 
 ---
-
-Holo Alfa is open source, [MIT license](http://opensource.org/licenses/MIT).

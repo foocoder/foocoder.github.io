@@ -31,11 +31,11 @@ Liquid for Designers | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/jekyll/2015/10/05/liquid-for-designers/">
+<meta property="og:url" content="http://foocoder.github.io/jekyll/2015/10/05/liquid-for-designers/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -167,46 +167,39 @@ header::after {
 
 <p>功夫不负有心人,让我找到了 <a href="http://havee.me">@Havee</a>的这篇<a href="http://havee.me/internet/2013-11/jekyll-liquid-designer.html">Jekyll扩展的Liquid设计</a>,虽然这篇也是转自<a href="http://yanshasha.com/2013/01/22/Liquid-for-designers/">http://yanshasha.com/2013/01/22/Liquid-for-designers/</a>,不过可惜原文已挂,为了防止这么好的母语翻译文档继续挂掉,so,我还是转过来吧,以备不时之需.</p>
 
-<blockquote><p><center>原文:Jekyll扩展的Liquid设计</center></p></blockquote>
+<blockquote>
+  <center>原文:Jekyll扩展的Liquid设计</center>
+</blockquote>
 
 <p>在Liquid中有两种类型的标记:<code>Output</code>和<code>Tag</code>.</p>
 
 <ul>
-<li><code>Output</code>标记(有些可能解析文本)被包含在:</li>
+  <li><code>Output</code>标记(有些可能解析文本)被包含在:</li>
 </ul>
-
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{{</span><span class="w"> </span><span class="err">两个配对的花括号中</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
 
-
 <ul>
-<li><code>Tag</code>标记(不能被解析文本)被包含在:</li>
+  <li><code>Tag</code>标记(不能被解析文本)被包含在:</li>
 </ul>
-
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">成对的花括号和百分号中</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
-<h2>Output</h2>
-
+<h2 id="output">Output</h2>
 <hr />
-
 <p>下面是关于输出标记的简单实例:</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid">Hello <span class="p">{{</span><span class="w"> </span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
 Hello <span class="p">{{</span><span class="w"> </span><span class="nv">user</span><span class="p">.</span><span class="nv">name</span><span class="w"> </span><span class="p">}}</span>
 Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
 
-
-<h3>高级输入:过滤器</h3>
-
+<h3 id="section">高级输入:过滤器</h3>
 <p>输入标记带有过滤器,方法很简单.第一个参数总是过滤器左边值的输出.当下个过滤器运行时,刚刚所得到的过滤器的返回值就会成为新的左边值.知道最后没有过滤器时,模板就会接受最后的结果字符串.</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid">Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">upcase</span><span class="w"> </span><span class="p">}}</span>
 Hello tobi has <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">}}</span><span class="w"> </span><span class="nf">letters</span><span class="w"></span>
 Hello<span class="w"> </span>{{<span class="w"> </span><span class="s1">&#39;tobi&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">capitalize</span><span class="w"> </span><span class="p">}}</span>
 Hello <span class="p">{{</span><span class="w"> </span><span class="s1">&#39;1982-02-01&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="s2">&quot;%Y&quot;</span><span class="w"> </span><span class="p">}}</span></code></pre></div>
-
 
 <p>输出的结果是:</p>
 
@@ -215,80 +208,73 @@ Hello tobi has 4 letters
 Hello Tobi
 Hello 1982</code></pre></div>
 
-
-<h3>标准过滤器</h3>
+<h3 id="section-1">标准过滤器</h3>
 
 <ul>
-<li><code>data</code> - 格式化日期</li>
-<li><code>capitalize</code> - 将输入语句的首字母大写</li>
-<li><code>downcase</code> - 将输入字符串转为小写</li>
-<li><code>upcase</code> - 将输入字符串转为大写</li>
-<li><code>first</code> - 获取传递数组的第一个元素</li>
-<li><code>last</code> - 获取传递数组的最后一个元素</li>
-<li><code>join</code> - 将数组中元素连成一串,中间通过某些字符分隔</li>
-<li><code>sort</code> - 对数组元素进行排序</li>
-<li><code>map</code> - 从一个给定属性中映射/收集一个数组</li>
-<li><code>size</code> - 返回一个数组或字符串的大小</li>
-<li><code>escape</code> - 对一串字符串进行编码</li>
-<li><code>escape_once</code> - 返回一个转义的html版本,而不影响现有的转义文本</li>
-<li><code>strip_html</code> - 去除一串字符串中的所有html标签</li>
-<li><code>strip_newlines</code> - 从字符串中去除所有换行符(\n)</li>
-<li><code>newline_to_br</code> - 将所有的换行符(\n)换成html的换行标记</li>
-<li><code>replace</code> - 替换每一处匹配字符串,如:<code>{{ 'foofoo'|replace:'foo','bar' }}</code> #=> <code>barbar</code></li>
-<li><code>replace_first</code> - 替换第一处匹配字符串,如:<code>{{ 'barbar'|replace_first:'bar','foo' }}</code> #=> <code>foobar</code></li>
-<li><code>remove</code> - 删除每一处匹配的字符串,如:<code>{{ 'foobarfoobar'|remove:'foo' }}</code> #=> <code>barbar</code></li>
-<li><code>remove_first</code> - 删除第一处匹配的字符串，如:<code>{{ 'barbar'|remove_first:'bar' }}</code> #=> <code>bar</code></li>
-<li><code>truncate</code> - 将一串字符串截断其前x个字符,而且，也可以在第二个参数上来为其追加字符，如: <code>{{ 'foobarfoobar'|truncate:5,'.' }}</code> #=> <code>foob.</code></li>
-<li><code>truncatewords</code> - 将一串字符串截断其前x个单词</li>
-<li><code>prepend</code> - 在一串字符串前添加指定字符串,如:<code>{{ 'bar'|prepend:'foo' }}</code> #=> <code>foobar</code></li>
-<li><code>append</code> - 在一串字符串后添加指定字符串，如:<code>{{ 'foo'|append:'bar' }}</code> #=> <code>foobar</code></li>
-<li><code>slice</code> - 切割字符串，需要输入切割位置以及切割长度(暂不支持)，如:<code>{{ 'hello'|slice:-3,3 }}</code> #=> <code>hello</code></li>
-<li><code>minus</code> - 减法运算，如:<code>{{ 4|minus:2 }}</code> #=> <code>2</code></li>
-<li><code>plus</code> - 加法运算，如:<code>{{ '1'|plus:'1' }}</code> #=> <code>2</code></li>
-<li><code>times</code> - 乘法运算，如:<code>{{ 5|times:4 }}</code> #=> <code>20</code></li>
-<li><code>divided_by</code> - 整型除法，如:<code>{{ 10|divided_by:3 }}</code> #=> <code>3</code></li>
-<li><code>round</code> - 将输入的数近似到最接近的整数或者指定小数点后面的位数(暂不支持)</li>
-<li><code>split</code> - 将一串字符串根据匹配模式分割成数组，如:<code>{{ 'a~b'|split:'~' }}</code> #=> <code>ab</code></li>
-<li><code>modulo</code> - 取余，如:<code>{{ 3|modulo:2 }}</code> #=> <code>1</code></li>
+  <li><code>data</code> - 格式化日期</li>
+  <li><code>capitalize</code> - 将输入语句的首字母大写</li>
+  <li><code>downcase</code> - 将输入字符串转为小写</li>
+  <li><code>upcase</code> - 将输入字符串转为大写</li>
+  <li><code>first</code> - 获取传递数组的第一个元素</li>
+  <li><code>last</code> - 获取传递数组的最后一个元素</li>
+  <li><code>join</code> - 将数组中元素连成一串,中间通过某些字符分隔</li>
+  <li><code>sort</code> - 对数组元素进行排序</li>
+  <li><code>map</code> - 从一个给定属性中映射/收集一个数组</li>
+  <li><code>size</code> - 返回一个数组或字符串的大小</li>
+  <li><code>escape</code> - 对一串字符串进行编码</li>
+  <li><code>escape_once</code> - 返回一个转义的html版本,而不影响现有的转义文本</li>
+  <li><code>strip_html</code> - 去除一串字符串中的所有html标签</li>
+  <li><code>strip_newlines</code> - 从字符串中去除所有换行符(\n)</li>
+  <li><code>newline_to_br</code> - 将所有的换行符(\n)换成html的换行标记</li>
+  <li><code>replace</code> - 替换每一处匹配字符串,如:<code>{{ 'foofoo'|replace:'foo','bar' }}</code> #=&gt; <code>barbar</code></li>
+  <li><code>replace_first</code> - 替换第一处匹配字符串,如:<code>{{ 'barbar'|replace_first:'bar','foo' }}</code> #=&gt; <code>foobar</code></li>
+  <li><code>remove</code> - 删除每一处匹配的字符串,如:<code>{{ 'foobarfoobar'|remove:'foo' }}</code> #=&gt; <code>barbar</code></li>
+  <li><code>remove_first</code> - 删除第一处匹配的字符串，如:<code>{{ 'barbar'|remove_first:'bar' }}</code> #=&gt; <code>bar</code></li>
+  <li><code>truncate</code> - 将一串字符串截断其前x个字符,而且，也可以在第二个参数上来为其追加字符，如: <code>{{ 'foobarfoobar'|truncate:5,'.' }}</code> #=&gt; <code>foob.</code></li>
+  <li><code>truncatewords</code> - 将一串字符串截断其前x个单词</li>
+  <li><code>prepend</code> - 在一串字符串前添加指定字符串,如:<code>{{ 'bar'|prepend:'foo' }}</code> #=&gt; <code>foobar</code></li>
+  <li><code>append</code> - 在一串字符串后添加指定字符串，如:<code>{{ 'foo'|append:'bar' }}</code> #=&gt; <code>foobar</code></li>
+  <li><code>slice</code> - 切割字符串，需要输入切割位置以及切割长度(暂不支持)，如:<code>{{ 'hello'|slice:-3,3 }}</code> #=&gt; <code>hello</code></li>
+  <li><code>minus</code> - 减法运算，如:<code>{{ 4|minus:2 }}</code> #=&gt; <code>2</code></li>
+  <li><code>plus</code> - 加法运算，如:<code>{{ '1'|plus:'1' }}</code> #=&gt; <code>2</code></li>
+  <li><code>times</code> - 乘法运算，如:<code>{{ 5|times:4 }}</code> #=&gt; <code>20</code></li>
+  <li><code>divided_by</code> - 整型除法，如:<code>{{ 10|divided_by:3 }}</code> #=&gt; <code>3</code></li>
+  <li><code>round</code> - 将输入的数近似到最接近的整数或者指定小数点后面的位数(暂不支持)</li>
+  <li><code>split</code> - 将一串字符串根据匹配模式分割成数组，如:<code>{{ 'a~b'|split:'~' }}</code> #=&gt; <code>ab</code></li>
+  <li><code>modulo</code> - 取余，如:<code>{{ 3|modulo:2 }}</code> #=&gt; <code>1</code></li>
 </ul>
 
-
-<h2>Tags</h2>
-
+<h2 id="tags">Tags</h2>
 <hr />
-
-<p><code>tags</code>用于你的模板中的逻辑，新的标签很容易开发，因此我希望在发布这些代码以后，大家可以为标准标签库增加更多的内容。
+<p><code>tags</code>用于你的模板中的逻辑，新的标签很容易开发，因此我希望在发布这些代码以后，大家可以为标准标签库增加更多的内容。<br />
 下列是当前已经支持的标签：</p>
 
 <ul>
-<li><strong>assign</strong> - 将一些值赋给一个变量</li>
-<li><strong>capture</strong> - 块标记，把一些文本捕捉到一个变量中</li>
-<li><strong>case</strong> - 块标记，标准的case语句</li>
-<li><strong>comment</strong> - 块标记，将一块文本作为注释</li>
-<li><strong>cycle</strong> - Cycle通常用于循环轮换值，如颜色或DOM类</li>
-<li><strong>for</strong> - 用于循环<code>for...loop</code></li>
-<li><strong>break</strong> - 退出for循环</li>
-<li><strong>continue</strong> - 跳过当前循环剩下语句，执行下一次循环</li>
-<li><strong>if</strong> - 标准if/else区块</li>
-<li><strong>include</strong> - 包含其他模板，对于区块化非常有效</li>
-<li><strong>raw</strong> - 暂时性的禁用标签解析</li>
-<li><strong>unless</strong> - if语句的简版</li>
+  <li><strong>assign</strong> - 将一些值赋给一个变量</li>
+  <li><strong>capture</strong> - 块标记，把一些文本捕捉到一个变量中</li>
+  <li><strong>case</strong> - 块标记，标准的case语句</li>
+  <li><strong>comment</strong> - 块标记，将一块文本作为注释</li>
+  <li><strong>cycle</strong> - Cycle通常用于循环轮换值，如颜色或DOM类</li>
+  <li><strong>for</strong> - 用于循环<code>for...loop</code></li>
+  <li><strong>break</strong> - 退出for循环</li>
+  <li><strong>continue</strong> - 跳过当前循环剩下语句，执行下一次循环</li>
+  <li><strong>if</strong> - 标准if/else区块</li>
+  <li><strong>include</strong> - 包含其他模板，对于区块化非常有效</li>
+  <li><strong>raw</strong> - 暂时性的禁用标签解析</li>
+  <li><strong>unless</strong> - if语句的简版</li>
 </ul>
 
-
-<h3>注释</h3>
+<h3 id="section-2">注释</h3>
 
 <p>任何被包含在<code>{% comment %}</code>以及<code>{% endcomment %}</code>之间的语句被解析为注释，也就是说这些语句不会被显示出来</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid">We made 1 million dollars <span class="p">{%</span><span class="w"> </span><span class="nt">comment</span><span class="w"> </span><span class="p">%}</span><span class="c"> in losses </span><span class="p">{%</span><span class="w"> </span><span class="nt">endcomment</span><span class="w"> </span><span class="p">%}</span> this year</code></pre></div>
 
-
 <p>输出的结果是：</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid">We made 1 million dollars  this year</code></pre></div>
 
-
-<h3>Raw</h3>
+<h3 id="raw">Raw</h3>
 
 <p><code>raw</code>会暂时性的禁用对标签的解析功能。这在需要展示一些可能产生冲突的内容（如下代码中，要展示liquid语句，就需要包含在<code>raw</code>标签之间，否则就会被解析）时非常有用。</p>
 
@@ -298,8 +284,7 @@ Hello 1982</code></pre></div>
 
 {% endraw %}</code></pre></div>
 
-
-<h3>if/else</h3>
+<h3 id="ifelse">if/else</h3>
 
 <p><code>if/else</code>在其他编程语言里应该已经被熟知了。Liquid使得你可以通过<code>if</code>或<code>unless</code>(<code>elsif</code>和<code>else</code>为可选)编写简单的表达式：</p>
 
@@ -360,8 +345,7 @@ Hello 1982</code></pre></div>
    string includes &#39;hello&#39;
 <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
-<h3>Case语句</h3>
+<h3 id="case">Case语句</h3>
 
 <p>如果你需要更多的条件判断，你可以使用 <code>case</code> 语句:</p>
 
@@ -374,7 +358,6 @@ Hello 1982</code></pre></div>
         ... else ...
 <span class="p">{%</span><span class="w"> </span><span class="kr">endcase</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
 <p>Example:</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="kr">case</span><span class="w"> </span><span class="nv">template</span><span class="w"> </span><span class="p">%}</span>
@@ -386,8 +369,7 @@ Hello 1982</code></pre></div>
         // <span class="p">{{</span><span class="nv">page_title</span><span class="p">}}</span>
 <span class="p">{%</span><span class="w"> </span><span class="kr">endcase</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
-<h3>Cycle</h3>
+<h3 id="cycle">Cycle</h3>
 
 <p>我们常常需要在不同的颜色或类似的任务间轮流切换。Liquid 对于这样的操作有内置支持，通过使用 <code>cycle</code> 标签。</p>
 
@@ -396,7 +378,6 @@ Hello 1982</code></pre></div>
 <span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
 <p>输出结果是</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid">one
@@ -404,15 +385,13 @@ two
 three
 one</code></pre></div>
 
-
-<p>如果一组 <code>cycle</code> 没有命名，那默认情况下有用相同参数的会被认为是一个组。
+<p>如果一组 <code>cycle</code> 没有命名，那默认情况下有用相同参数的会被认为是一个组。<br />
 如果你希望完全控制 <code>cycle</code> 组，你可以指定一个组名，这个组名甚至可以是一个变量。</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;group 1&#39;</span>:<span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;group 1&#39;</span>:<span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;group 2&#39;</span>:<span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">cycle</span><span class="w"> </span><span class="s1">&#39;group 2&#39;</span>:<span class="w"> </span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;three&#39;</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
-
 
 <p>输出结果是：</p>
 
@@ -421,8 +400,7 @@ two
 one
 two</code></pre></div>
 
-
-<h3>循环</h3>
+<h3 id="section-3">循环</h3>
 
 <p>Liquid 允许循环一个集合 :</p>
 
@@ -430,13 +408,11 @@ two</code></pre></div>
     <span class="p">{{</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="p">}}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
 <p>而当迭代循环一个哈希表时，<code>item[0]</code>存放的是key，<code>item[1]</code>存放的是value：</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>item<span class="w"> </span>in<span class="w"> </span>hash<span class="w"> </span><span class="p">%}</span>
   <span class="p">{{</span><span class="w"> </span><span class="nv">item</span><span class="err">[</span><span class="mi">0</span><span class="err">]</span><span class="w"> </span><span class="p">}}</span>: <span class="p">{{</span><span class="w"> </span><span class="nv">item</span><span class="err">[</span><span class="mi">1</span><span class="err">]</span><span class="w"> </span><span class="p">}}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
-
 
 <p>在每次循环期间，下列的帮助变量都可用于额外的展示需要:</p>
 
@@ -448,8 +424,7 @@ forloop.rindex0     # =&gt; how many items are still left? (zero based)
 forloop.first       # =&gt; is this the first iteration?
 forloop.last        # =&gt; is this the last iteration?</code></pre></div>
 
-
-<p>你可以使用一些属性来影响接受循环中的哪项。
+<p>你可以使用一些属性来影响接受循环中的哪项。<br />
 <code>limit:int</code> 使你可以限制接受的循环项个数；<code>offset:int</code> 可以可以让你从循环集合的第 n 项开始.</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"># array = [1,2,3,4,5,6]
@@ -458,13 +433,11 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
 # results in 3,4</code></pre></div>
 
-
 <p>反转循环</p>
 
 <div class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span>item<span class="w"> </span>in<span class="w"> </span>collection<span class="w"> </span>reversed<span class="w"> </span><span class="p">%}</span>
     <span class="p">{{</span><span class="nv">item</span><span class="p">}}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
-
 
 <p>除了对一个已经存在的集合进行循环，你还可以定义一段范围区域内的数字进行循环。这段区域既可以通过文字也可以通过变量数定义得到:</p>
 
@@ -473,7 +446,6 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
     <span class="p">{{</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="p">}}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
 # results in 1,2,3,4</code></pre></div>
-
 
 <p>一个<code>for</code>循环可以通过<code>else</code>语句来处理当集合中不存在元素的情况：</p>
 
@@ -484,8 +456,7 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
    There are no items!
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
-<h3>变量赋值</h3>
+<h3 id="section-4">变量赋值</h3>
 
 <p>你可以把数据存储在你自己定义的变量中，以便在输出或者其他标签中使用。创建一个变量的最简单方式是使用 <code>assign</code> 标签，其语法也是简单明了的：</p>
 
@@ -496,7 +467,6 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
         &lt;p&gt;Freestyle!&lt;/p&gt;
     <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span>
 <span class="p">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
-
 
 <p>另一种常见用法是把 <code>true/false</code> 值赋给变量:</p>
 
@@ -512,7 +482,6 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
     &lt;p&gt;Freestyle!&lt;/p&gt;
 <span class="p">{%</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">%}</span></code></pre></div>
 
-
 <p>如果你希望把一系列字符串连接为一个字符串，并将其存储到变量中，你可以使用 <code>capture</code> 标签。这个标签是一个块级标签，它会 captures 任何在其中渲染的元素，并把捕获的值赋给给定的变量，而不是把这些值渲染在页面中。</p>
 
 <div class="highlight"><pre><code class="language-html" data-lang="html">{% capture attribute_name %}{{ item.title | handleize }}-{{ i }}-color{% endcapture %}
@@ -523,8 +492,6 @@ forloop.last        # =&gt; is this the last iteration?</code></pre></div>
   <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;green&quot;</span><span class="nt">&gt;</span>Green<span class="nt">&lt;/option&gt;</span>
   <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;blue&quot;</span><span class="nt">&gt;</span>Blue<span class="nt">&lt;/option&gt;</span>
 <span class="nt">&lt;/select&gt;</span></code></pre></div>
-
-
 
 
         <hr>
@@ -583,7 +550,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

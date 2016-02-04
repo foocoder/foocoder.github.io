@@ -31,11 +31,11 @@ Redis批量删除 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/20/Redis-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4/">
+<meta property="og:url" content="http://foocoder.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/20/Redis-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -159,7 +159,7 @@ header::after {
         </div>
 
         <hr>
-        <h2>Redis 通配符删除</h2>
+        <h2 id="redis-">Redis 通配符删除</h2>
 
 <p>Redis 由于是不支持正则的，只支持通配符的<code>pattern</code>，诸如<code>*</code>,<code>?</code>以及<code>[]</code>，类似这样子：</p>
 
@@ -168,14 +168,13 @@ keys a?c
 keys a[Bb]c
 keys a\*c</code></pre></div>
 
-
-<p>可是当我准备<code>del</code> key的时候，却发现<code>del</code>又不支持<code>pattern</code>，这倒又是个头疼的事了，查看下redis的文档，貌似支持<code>pattern</code>的命令也就寥寥几个，<code>scan</code>，<code>sort</code>之类的。
+<p>可是当我准备<code>del</code> key的时候，却发现<code>del</code>又不支持<code>pattern</code>，这倒又是个头疼的事了，查看下redis的文档，貌似支持<code>pattern</code>的命令也就寥寥几个，<code>scan</code>，<code>sort</code>之类的。<br />
 怎么办呢，上千万条数据总不能一个一个<code>del</code>吧，外事不决问google，还是求助下大牛们，毕竟我们还是站在巨人的肩膀上的，终于找到这样一个方式：</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">redis-cli keys <span class="s2">&quot;cat:\*:item&quot;</span> <span class="p">|</span>xargs redis-cli del</code></pre></div>
 
-
 <p>是通过<code>keys</code>匹配到所有match的记录后通过<code>xargs</code>命令传递给<code>redis-cli</code>的<code>del</code>然后进行删除。需要注意的是<code>xargs</code>后的<code>redis</code>如果没有设置环境变量的话需要输入绝对路径。</p>
+
 
         <hr>
         <p>20 Oct 2015</p>
@@ -233,7 +232,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 

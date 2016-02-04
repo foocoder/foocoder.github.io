@@ -31,11 +31,11 @@ Python 的Main函数 | Meta Coder
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://127.0.0.1:4000/img/9.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://127.0.0.1:4000/python/2015/10/16/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF1/">
+<meta property="og:url" content="http://foocoder.github.io/python/2015/10/16/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF1/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -161,13 +161,12 @@ header::after {
         <hr>
         <p>Python 之前由于有一些数据要处理，从网上东一块西一块的看过一些资料，但要说系统的学习还是没有的，所以最近这段时间决心看些书查些资料，对Python有些个系统的了解。在这里记录一些学习笔记，希望能坚持下去。</p>
 
-<h2>(1) 关于Python的Main函数在哪？</h2>
+<h2 id="pythonmain">(1) 关于Python的Main函数在哪？</h2>
 
 <p>一开始刚接触到Python的时候,看一个py的代码经常第一反应是去找这段代码的main函数，经常却只能见到这么一段代码:</p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno">1</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
 <span class="lineno">2</span>     <span class="c">#主函数语句</span></code></pre></div>
-
 
 <p>原来Python里的Main函数并不需要直接显式的定义调用的，Python是一种解释型语言，所以我们看到py文件中尽管没有任何函数块或者主函数入口也可以执行运行。</p>
 
@@ -182,7 +181,6 @@ header::after {
 <span class="lineno">5</span>     <span class="n">funcname</span><span class="p">();</span>
 <span class="lineno">6</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Testnamespace Run in Main Namespace&quot;</span><span class="p">);</span></code></pre></div>
 
-
 <p>如果我们直接调用<code>python TestNamespace.py</code>两句话都会输出</p>
 
 <pre><code>This is a Test
@@ -195,8 +193,8 @@ Testnamespace Run in Main Namespace
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Testnamespace</span><span class="o">.</span><span class="n">funcname</span><span class="p">()</span>
 <span class="go">This is a Test</span></code></pre></div>
 
-
 <p>从而我们可以在每个模块对代码在<code>__main__</code>空间下进行测试,而import该模块后,测试语句则不再起任何作用。</p>
+
 
         <hr>
         <p>16 Oct 2015</p>
@@ -254,7 +252,7 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
         </div>
         <footer>
   <div class="inner">
-    <p>This is the footer.<br><a href="http://steinvc.github.io/holo-alfa/">Holo Alfa</a> Jekyll theme crafted by <a href="http://steinvc.github.io/holo-alfa/">Stijn</a>.</p>
+    <p>Copyright © MetaCoder 2016</p>
   </div>
 </footer>
 
