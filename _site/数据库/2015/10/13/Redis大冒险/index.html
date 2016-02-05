@@ -70,6 +70,40 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script>
+// 给图片添加链接
+$(document).ready(function() {
+  $('.img-only-source img').each(function () {
+    var $image = $(this);
+    var $imageWrapLink = $image.parent('a');
+
+    if ($imageWrapLink.size() < 1) {
+      $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+    }
+    $imageWrapLink.addClass('fancybox');
+    if ($image.attr("alt")) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+      $imageWrapLink.attr("title",$image.attr("alt")); 
+    };
+  });
+});
+
+// fancybox
+$(".fancybox").fancybox({
+  openEffect    : 'fade',
+  closeEffect   : 'fade',
+  helpers: {
+    overlay: {
+      locked: false
+    }
+  }
+});
+</script>
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -77,7 +111,6 @@ $(document).ready(function () {
     }
   </style>
 <![endif]-->
-
 
 <style>
 header {
@@ -162,11 +195,8 @@ header::after {
         <p>最近在搞一组实验，但数据用mysql存储的话好多数据项是不定长的，于是决定改用Redis。看到关于Redis简介的一篇很好的文章，特此转载过来。</p>
 
 <blockquote>
-  <p>英文原文: <a href="http://labs.alcacoop.it/doku.php?id=articles:redis_land">ALCA in Redis-Land</a></p>
-</blockquote>
-
-<blockquote>
-  <p>译文原文: <a href="http://www.cnblogs.com/enjiex/p/3618546.html">Redis大冒险</a></p>
+  <p>英文原文: <a href="http://labs.alcacoop.it/doku.php?id=articles:redis_land">ALCA in Redis-Land</a>
+<br />译文原文: <a href="http://www.cnblogs.com/enjiex/p/3618546.html">Redis大冒险</a></p>
 </blockquote>
 
 <p>一篇对使用Redis在NoSQL的世界中冒险之旅的总结。</p>

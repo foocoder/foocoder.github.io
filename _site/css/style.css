@@ -46,17 +46,17 @@ a {
   color: inherit;
   text-decoration: none;
   position: relative;
-  /* background: -webkit-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76)); */
-  background: -moz-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));
-  background: -o-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));
-  background: -ms-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));
-  /* background: linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76)); */
-  -webkit-background-size: 1px 1px;
-  -moz-background-size: 1px 1px;
-  background-size: 1px 1px;
-  background-repeat: repeat-x;
-  background-size: 1px 1px;
-  background-position: 0 87%;
+   /*background: -webkit-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76)); */
+  /*background: -moz-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));*/
+  /*background: -o-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));*/
+  /*background: -ms-linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76));*/
+   /*background: linear-gradient(rgba(0, 0, 0,.76),rgba(0, 0, 0,.76)); */
+  /*-webkit-background-size: 1px 1px;*/
+  /*-moz-background-size: 1px 1px;*/
+  /*background-size: 1px 1px;*/
+  /*background-repeat: repeat-x;*/
+  /*background-size: 1px 1px;*/
+  /*background-position: 0 87%;*/
 }
 .no-cssgradients a {
   text-decoration: underline;
@@ -85,11 +85,12 @@ img {
   margin: 0 auto;
 }
 .img-only {
-  margin: 0 -15px;
+  margin: 0 15px;
   background-color: rgba(0, 0, 0,.05);
 }
 .img-only-source {
-  margin: 0 -15px;
+  margin: 0 15px;
+  width:80%;
   text-align: center;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -213,11 +214,11 @@ small {
 }
 small a {
   color: inherit;
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));
-  background-image: -moz-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));
-  background-image: -o-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));
-  background-image: -ms-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));
-  background-image: linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));
+  /*background-image: -webkit-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));*/
+  /*background-image: -moz-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));*/
+  /*background-image: -o-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));*/
+  /*background-image: -ms-linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));*/
+  /*background-image: linear-gradient(rgba(0, 0, 0,.5),rgba(0, 0, 0,.5));*/
 }
 hr {
   border:none;
@@ -280,6 +281,9 @@ nav {
 article {
   text-align:justify;
   margin-top: 30px;
+}
+article p a{
+    color:rgba(149, 0, 0, 0.5);
 }
 article::after,
 header::after {
@@ -443,10 +447,10 @@ nav a.current {
     margin: 20px;
   }
   .img-only {
-    margin: 0 -30px;
+    margin: 0 30px;
   }
   .img-only-source {
-    margin: 0 -30px;
+    margin: 0 30px;
   }
   blockquote {
     padding: 0 30px;

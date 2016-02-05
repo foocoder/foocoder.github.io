@@ -70,6 +70,40 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script>
+// 给图片添加链接
+$(document).ready(function() {
+  $('.img-only-source img').each(function () {
+    var $image = $(this);
+    var $imageWrapLink = $image.parent('a');
+
+    if ($imageWrapLink.size() < 1) {
+      $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+    }
+    $imageWrapLink.addClass('fancybox');
+    if ($image.attr("alt")) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+      $imageWrapLink.attr("title",$image.attr("alt")); 
+    };
+  });
+});
+
+// fancybox
+$(".fancybox").fancybox({
+  openEffect    : 'fade',
+  closeEffect   : 'fade',
+  helpers: {
+    overlay: {
+      locked: false
+    }
+  }
+});
+</script>
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -77,7 +111,6 @@ $(document).ready(function () {
     }
   </style>
 <![endif]-->
-
 
 <style>
 header {
@@ -162,42 +195,41 @@ header::after {
 
 <p>对于<code class="highlighter-rouge">javac</code>，发现并没有多少书来解释这个命令，通过<code class="highlighter-rouge">javac -help</code>能看到一堆对参数的说明。</p>
 
-<p><code class="highlighter-rouge">
-Usage: javac &lt;options&gt; &lt;source files&gt;
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Usage: javac &lt;options&gt; &lt;<span class="nb">source </span>files&gt;
 where possible options include:
   -g                         Generate all debugging info
   -g:none                    Generate no debugging info
-  -g:{lines,vars,source}     Generate only some debugging info
+  -g:<span class="o">{</span>lines,vars,source<span class="o">}</span>     Generate only some debugging info
   -nowarn                    Generate no warnings
   -verbose                   Output messages about what the compiler is doing
-  -deprecation               Output source locations where deprecated APIs are used
+  -deprecation               Output <span class="nb">source </span>locations where deprecated APIs are used
   -classpath &lt;path&gt;          Specify where to find user class files and annotation processors
   -cp &lt;path&gt;                 Specify where to find user class files and annotation processors
-  -sourcepath &lt;path&gt;         Specify where to find input source files
+  -sourcepath &lt;path&gt;         Specify where to find input <span class="nb">source </span>files
   -bootclasspath &lt;path&gt;      Override location of bootstrap class files
-  -extdirs &lt;dirs&gt;            Override location of installed extensions
-  -endorseddirs &lt;dirs&gt;       Override location of endorsed standards path
-  -proc:{none,only}          Control whether annotation processing and/or compilation is done.
+  -extdirs &lt;<span class="nb">dirs</span>&gt;            Override location of installed extensions
+  -endorseddirs &lt;<span class="nb">dirs</span>&gt;       Override location of endorsed standards path
+  -proc:<span class="o">{</span>none,only<span class="o">}</span>          Control whether annotation processing and/or compilation is <span class="k">done</span>.
   -processor &lt;class1&gt;[,&lt;class2&gt;,&lt;class3&gt;...] Names of the annotation processors to run; bypasses default discovery process
   -processorpath &lt;path&gt;      Specify where to find annotation processors
-  -parameters                Generate metadata for reflection on method parameters
+  -parameters                Generate metadata <span class="k">for </span>reflection on method parameters
   -d &lt;directory&gt;             Specify where to place generated class files
-  -s &lt;directory&gt;             Specify where to place generated source files
+  -s &lt;directory&gt;             Specify where to place generated <span class="nb">source </span>files
   -h &lt;directory&gt;             Specify where to place generated native header files
-  -implicit:{none,class}     Specify whether or not to generate class files for implicitly referenced files
-  -encoding &lt;encoding&gt;       Specify character encoding used by source files
-  -source &lt;release&gt;          Provide source compatibility with specified release
-  -target &lt;release&gt;          Generate class files for specific VM version
-  -profile &lt;profile&gt;         Check that API used is available in the specified profile
+  -implicit:<span class="o">{</span>none,class<span class="o">}</span>     Specify whether or not to generate class files <span class="k">for </span>implicitly referenced files
+  -encoding &lt;encoding&gt;       Specify character encoding used by <span class="nb">source </span>files
+  -source &lt;release&gt;          Provide <span class="nb">source </span>compatibility with specified release
+  -target &lt;release&gt;          Generate class files <span class="k">for </span>specific VM version
+  -profile &lt;profile&gt;         Check that API used is available <span class="k">in </span>the specified profile
   -version                   Version information
   -help                      Print a synopsis of standard options
-  -Akey[=value]              Options to pass to annotation processors
+  -Akey[<span class="o">=</span>value]              Options to pass to annotation processors
   -X                         Print a synopsis of nonstandard options
   -J&lt;flag&gt;                   Pass &lt;flag&gt; directly to the runtime system
-  -Werror                    Terminate compilation if warnings occur
-  @&lt;filename&gt;                Read options and filenames from file
-</code>
-看着都眼晕，不过我们只需要对某几个Option来关注就可以。</p>
+  -Werror                    Terminate compilation <span class="k">if </span>warnings occur
+  @&lt;filename&gt;                Read options and filenames from file</code></pre></figure>
+
+<p>看着都眼晕，不过我们只需要对某几个Option来关注就可以。</p>
 
 <h3 id="argfiles">@argfiles</h3>
 

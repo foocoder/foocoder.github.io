@@ -70,6 +70,40 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script>
+// 给图片添加链接
+$(document).ready(function() {
+  $('.img-only-source img').each(function () {
+    var $image = $(this);
+    var $imageWrapLink = $image.parent('a');
+
+    if ($imageWrapLink.size() < 1) {
+      $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+    }
+    $imageWrapLink.addClass('fancybox');
+    if ($image.attr("alt")) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+      $imageWrapLink.attr("title",$image.attr("alt")); 
+    };
+  });
+});
+
+// fancybox
+$(".fancybox").fancybox({
+  openEffect    : 'fade',
+  closeEffect   : 'fade',
+  helpers: {
+    overlay: {
+      locked: false
+    }
+  }
+});
+</script>
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -77,7 +111,6 @@ $(document).ready(function () {
     }
   </style>
 <![endif]-->
-
 
 <style>
 header {
@@ -163,10 +196,8 @@ header::after {
 
 <p>一开始刚接触到Python的时候,看一个py的代码经常第一反应是去找这段代码的main函数，经常却只能见到这么一段代码:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2</pre></td><td class="code"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
-    <span class="c">#主函数语句</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="c">#主函数语句</span></code></pre></figure>
 
 <p>原来Python里的Main函数并不需要直接显式的定义调用的，Python是一种解释型语言，所以我们看到py文件中尽管没有任何函数块或者主函数入口也可以执行运行。</p>
 
@@ -174,18 +205,12 @@ header::after {
 
 <p>如以下例子：</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6</pre></td><td class="code"><pre><span class="c">#Filename TestNamespace.py</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">#Filename TestNamespace.py</span>
 <span class="k">def</span> <span class="nf">funcName</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="s">"This is a Test"</span><span class="p">);</span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
     <span class="n">funcname</span><span class="p">();</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Testnamespace Run in Main Namespace"</span><span class="p">);</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Testnamespace Run in Main Namespace"</span><span class="p">);</span></code></pre></figure>
 
 <p>如果我们直接调用<code class="highlighter-rouge">python TestNamespace.py</code>两句话都会输出</p>
 

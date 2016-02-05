@@ -70,6 +70,40 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script>
+// 给图片添加链接
+$(document).ready(function() {
+  $('.img-only-source img').each(function () {
+    var $image = $(this);
+    var $imageWrapLink = $image.parent('a');
+
+    if ($imageWrapLink.size() < 1) {
+      $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+    }
+    $imageWrapLink.addClass('fancybox');
+    if ($image.attr("alt")) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+      $imageWrapLink.attr("title",$image.attr("alt")); 
+    };
+  });
+});
+
+// fancybox
+$(".fancybox").fancybox({
+  openEffect    : 'fade',
+  closeEffect   : 'fade',
+  helpers: {
+    overlay: {
+      locked: false
+    }
+  }
+});
+</script>
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -77,7 +111,6 @@ $(document).ready(function () {
     }
   </style>
 <![endif]-->
-
 
 <style>
 header {
@@ -159,30 +192,15 @@ header::after {
 
 <p>话说前段时间在用超算中心跑实验的时候，由于学校的战斗力为5的渣渣网速，<code class="highlighter-rouge">ssh</code>以及<code class="highlighter-rouge">sshfs</code>每隔几分钟就断掉一次，而每次连接又耗费大量时间等待其身份验证，于是从google上查找了一下，在<code class="highlighter-rouge">~/.ssh/config</code>添加两行：</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3</pre></td><td class="code"><pre>ControlMaster auto
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">ControlMaster auto
 ControlPath <span class="sr">/tmp/</span>ssh_mux_%h_%p_%<span class="k">r</span>
-ControlPersist <span class="m">4</span><span class="k">h</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+ControlPersist <span class="m">4</span><span class="k">h</span></code></pre></figure>
 
 <p>好吧，瞬间有一种便秘了好多天突然畅通无阻的感觉（我承认我是有够低俗的），心情舒畅了不少。但具体是什么意思自己也没细想，就把他搁那儿了。</p>
 
 <p>然后的然后，在设置多个<code class="highlighter-rouge">github</code>登陆时，又修改了<code class="highlighter-rouge">.ssh/config</code>文件如下:</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13</pre></td><td class="code"><pre>ControlMaster auto
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">ControlMaster auto
 ControlPath <span class="sr">/tmp/</span>ssh_mux_%h_%p_%<span class="k">r</span>
 ControlPersist <span class="m">4</span><span class="k">h</span>
 
@@ -194,8 +212,7 @@ IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa1
 Host user2<span class="p">.</span>github<span class="p">.</span><span class="k">com</span>
 Host github<span class="p">.</span><span class="k">com</span>
 <span class="nb">User</span> git
-IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2<span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+IdentityFile <span class="p">~</span><span class="sr">/.ssh/</span>id_rsa2</code></pre></figure>
 
 <p>然后<code class="highlighter-rouge">ssh</code>分别进行测试两个Host能否联通，但令人抓狂的是每次return的都是<code class="highlighter-rouge">Hi, User1</code>，而且对User2的repo进行<code class="highlighter-rouge">push</code>也无法认证，因为是User1的sshkey，如此几次怎么查找都找不出问题所在，后来一怒之下关机重启了。</p>
 

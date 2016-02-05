@@ -70,6 +70,40 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+<script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script>
+// 给图片添加链接
+$(document).ready(function() {
+  $('.img-only-source img').each(function () {
+    var $image = $(this);
+    var $imageWrapLink = $image.parent('a');
+
+    if ($imageWrapLink.size() < 1) {
+      $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+    }
+    $imageWrapLink.addClass('fancybox');
+    if ($image.attr("alt")) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+      $imageWrapLink.attr("title",$image.attr("alt")); 
+    };
+  });
+});
+
+// fancybox
+$(".fancybox").fancybox({
+  openEffect    : 'fade',
+  closeEffect   : 'fade',
+  helpers: {
+    overlay: {
+      locked: false
+    }
+  }
+});
+</script>
 <!--[if gte IE 9]>
   <style type="text/css">
     .gradient {
@@ -77,7 +111,6 @@ $(document).ready(function () {
     }
   </style>
 <![endif]-->
-
 
 <style>
 header {
@@ -151,7 +184,7 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar"style="font-size:large" > Oct 10, 2015 • 1&nbsp;min read</span>
+            <span class="fa fa-calendar"style="font-size:large" > Oct 10, 2015 • Less than a minute read</span>
         </div>
 
         <hr>
@@ -170,44 +203,33 @@ header::after {
 
 <p>这是colde大神的配置，不过貌似没看到锁屏什么事。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3</pre></td><td class="code"><pre><span class="c">#!/usr/bin/env bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 gnome-settings-daeman &amp; <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
-nm-applet --sm-disable &amp; <span class="c">#网络管理器</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+nm-applet --sm-disable &amp; <span class="c">#网络管理器</span></code></pre></figure>
 
 <p>不过想想看，我们可以把<code class="highlighter-rouge">xscreensaver</code>直接添加到启动脚本里边应该可以了吧。就像这样子：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
-2
-3
-4
-5</pre></td><td class="code"><pre><span class="c">#!/usr/bin/env bash</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 gnome-settings-daeman &amp; <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
 xscreensaver &amp; <span class="c">#屏保</span>
 nm-applet --sm-disable &amp; <span class="c">#网络管理器</span>
-update-notifier &amp; 自动更新程序<span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+update-notifier &amp; 自动更新程序</code></pre></figure>
 
 <p>然而，悲催的是，现在开始报错了，“未能启动通知守护进程”！我去，这又是什么鬼，什么是<code class="highlighter-rouge">通知守护进程</code>？连谷歌都谷不到！后来几经波折，才发现原来是个叫<code class="highlighter-rouge">notification daemon</code>的东东，可能翻译成中文后还真找不到相关文献了，gnome下的系统通知工具，类似Windows系统右边的通知栏。好吧，第二次重启DE后又没问题了，我也是醉了。</p>
 
 <p>接下来在<code class="highlighter-rouge">rc.lua</code>里边帮定锁屏的快捷键，如下:</p>
 
-<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">"Control"</span> <span class="p">},</span> <span class="s2">"Delete"</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">'xscreensaver-command -lock'</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">"Control"</span> <span class="p">},</span> <span class="s2">"Delete"</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">'xscreensaver-command -lock'</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span></code></pre></figure>
 
 <p>不过每次启动后都有个<code class="highlighter-rouge">xscreensaver</code>的logo画面怪惹人烦的， 后来看到<code class="highlighter-rouge">Awesome</code>的官网添加<code class="highlighter-rouge">xscreensaver</code>是这样的：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>xscreensaver -nosplash &amp;<span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">xscreensaver -nosplash &amp;</code></pre></figure>
 
 <p>通过添加<code class="highlighter-rouge">-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净多了。</p>
 
 <p>哦，对了，如果遇到启用<code class="highlighter-rouge">gnome-settings-daemon</code>时发现鼠标指针不见的情况下，输入以下命令。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span></code></pre></figure>
 
 <p>完成！</p>
 
