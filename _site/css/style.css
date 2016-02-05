@@ -173,13 +173,14 @@ blockquote::after {
   margin-bottom: 30px;
 }
 code {
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", monospace, sans-serif;
+  line-height:1.4;
 }
 p code {
-  font-size: .7em;
+  font-size: 1em;
   display: inline-block;
   border-radius: 2px;
-  background-color: rgba(0, 0, 0,.05);
+  background-color: rgba(0, 0, 0,.1);
   border: 1px solid rgba(0, 0, 0,.1);
   padding: 0 3px;
 }

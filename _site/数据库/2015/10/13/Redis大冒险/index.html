@@ -133,8 +133,6 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Redis大冒险</h1>
@@ -195,11 +193,11 @@ header::after {
 
 <h2 id="span-idtitle2available-datatypesspan"><span id="title2">探索之二：Available datatypes</span></h2>
 
-<p>下面我们深入看下这个奇怪的数据库是如何工作的。如上所见，Redis是基于key-value范式存储数据，所以先来重点看下<code>key</code>的概念。</p>
+<p>下面我们深入看下这个奇怪的数据库是如何工作的。如上所见，Redis是基于key-value范式存储数据，所以先来重点看下<code class="highlighter-rouge">key</code>的概念。</p>
 
-<p>key本质上就是简单的字符串，诸如<code>username</code>、<code>password</code>等。在定义key时，除了不能使用空格，你可以随意的使用普通的字符、数字等，像”.”,”:”,”_“等在定义key时都能正常使用，所以像<code>user_name</code>, <code>user:123:age</code>, <code>user:123:username</code>都是不错的key的定义方式。</p>
+<p>key本质上就是简单的字符串，诸如<code class="highlighter-rouge">username</code>、<code class="highlighter-rouge">password</code>等。在定义key时，除了不能使用空格，你可以随意的使用普通的字符、数字等，像”.”,”:”,”_“等在定义key时都能正常使用，所以像<code class="highlighter-rouge">user_name</code>, <code class="highlighter-rouge">user:123:age</code>, <code class="highlighter-rouge">user:123:username</code>都是不错的key的定义方式。</p>
 
-<p>不像RDBMS中的字段名称，这里的key是Redis中的重要组成部分，所以我们必须在处理key时多加小心。在下面的讲述中，Redis并没有table的概念，所以像<code>SELECT username from users WHERE user_id=123;</code>这种简单任务都只能换种方式实现，为了达到这种目的，在Redis上，一种方式是通过key <code>user:123:username</code>来获取结果value。如你所见，key的定义中携带了神秘信息(像user ids)。在Redis中，key的重要性可见一斑。(其他key-value数据库中key的地位也是如此。)</p>
+<p>不像RDBMS中的字段名称，这里的key是Redis中的重要组成部分，所以我们必须在处理key时多加小心。在下面的讲述中，Redis并没有table的概念，所以像<code class="highlighter-rouge">SELECT username from users WHERE user_id=123;</code>这种简单任务都只能换种方式实现，为了达到这种目的，在Redis上，一种方式是通过key <code class="highlighter-rouge">user:123:username</code>来获取结果value。如你所见，key的定义中携带了神秘信息(像user ids)。在Redis中，key的重要性可见一斑。(其他key-value数据库中key的地位也是如此。)</p>
 
 <p>现在你应该对key有了清楚的了解，下面带你进入可用的数据类型的神奇世界。</p>
 
@@ -217,7 +215,7 @@ header::after {
 
 <h3 id="hashes">Hashes</h3>
 
-<p>Hashes以简洁的方式存储关系更为紧密的数据。Hashes为每个存储的key实现一个内置的key-value对来存储数据，例如对于<code>user</code>这个key，它的值可以是多个字段以及与每个字符相应的值对组成数据集。如果你熟悉像ruby或javascript等编程语言，这里的hashes与那些语言中的hash概念大同小异。</p>
+<p>Hashes以简洁的方式存储关系更为紧密的数据。Hashes为每个存储的key实现一个内置的key-value对来存储数据，例如对于<code class="highlighter-rouge">user</code>这个key，它的值可以是多个字段以及与每个字符相应的值对组成数据集。如果你熟悉像ruby或javascript等编程语言，这里的hashes与那些语言中的hash概念大同小异。</p>
 
 <h3 id="sets">Sets</h3>
 
@@ -312,11 +310,11 @@ header::after {
   </tbody>
 </table>
 
-<p>那么，给出任一个用户id，我们就可以通过key <code>user:id:username</code>,<code>user:id:password</code>,<code>user:id:name</code>,<code>user:id:surname</code>的形式读出用户信息。</p>
+<p>那么，给出任一个用户id，我们就可以通过key <code class="highlighter-rouge">user:id:username</code>,<code class="highlighter-rouge">user:id:password</code>,<code class="highlighter-rouge">user:id:name</code>,<code class="highlighter-rouge">user:id:surname</code>的形式读出用户信息。</p>
 
 <h3 id="section-1">用户登录</h3>
 
-<p>上面的存储形式也能用于用户登录，但需要一种方式能根据username来查询用户的id。也就是说我们还需要在username和id之间建立联系。这可以通过添加另外一个redis key <code>user:username:id</code>来实现。</p>
+<p>上面的存储形式也能用于用户登录，但需要一种方式能根据username来查询用户的id。也就是说我们还需要在username和id之间建立联系。这可以通过添加另外一个redis key <code class="highlighter-rouge">user:username:id</code>来实现。</p>
 
 <table>
   <thead>
@@ -337,21 +335,21 @@ header::after {
   </tbody>
 </table>
 
-<p>现在如果Mario Rossi想要登录进来，我们可以通过key <code>user:user2:id</code>先查出username，进而获得用户的所有信息。</p>
+<p>现在如果Mario Rossi想要登录进来，我们可以通过key <code class="highlighter-rouge">user:user2:id</code>先查出username，进而获得用户的所有信息。</p>
 
 <h3 id="section-2">主键</h3>
 
-<p>在Redis中如何保证id值的唯一性呢。在SQL中，可以通过<code>id int primary key auto_increment</code>定义自增主键来实现，现在我们也需要一种类似的方式为每个用户生成一个不同的id。根据前面可用的数据类型中提到的数字数据，Redis中的方案是这样的：创建一个key <code>user:next_id</code>，并把它作为计数器，每当要添加新用户时，就对key <code>user:next_id</code>执行INCR命令。</p>
+<p>在Redis中如何保证id值的唯一性呢。在SQL中，可以通过<code class="highlighter-rouge">id int primary key auto_increment</code>定义自增主键来实现，现在我们也需要一种类似的方式为每个用户生成一个不同的id。根据前面可用的数据类型中提到的数字数据，Redis中的方案是这样的：创建一个key <code class="highlighter-rouge">user:next_id</code>，并把它作为计数器，每当要添加新用户时，就对key <code class="highlighter-rouge">user:next_id</code>执行INCR命令。</p>
 
-<div class="highlight"><pre><code class="language-mysql" data-lang="mysql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span><span class="p">;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-mysql" data-lang="mysql">SELECT * FROM users;</code></pre></figure>
 
-<p>下一个面临的问题是查询用户列表。也许你认为我们上面的数据存储已经足以查询出用户列表：可以先获得<code>user:next_id</code>的当前值counter，然后通过一步或多步遍历0到counter获得用户数据。但如果某个用户从系统中删除(下面会讲到删除操作)，而我们会遍历0到counter中的所有id，这时就会有些id查询不到任何数据。</p>
+<p>下一个面临的问题是查询用户列表。也许你认为我们上面的数据存储已经足以查询出用户列表：可以先获得<code class="highlighter-rouge">user:next_id</code>的当前值counter，然后通过一步或多步遍历0到counter获得用户数据。但如果某个用户从系统中删除(下面会讲到删除操作)，而我们会遍历0到counter中的所有id，这时就会有些id查询不到任何数据。</p>
 
-<p>尽管这通常不是问题，但我们不想在不存在的用户数据上浪费时间，所以需要创建另外一个key <code>user:list</code>，其value为list或set类型，用于存储每一个新增的用户id，并在必要的时候从<code>user:list</code>中删除该id。我更倾向于使用list，因为它可能通过LRANGE命令实现分页功能。</p>
+<p>尽管这通常不是问题，但我们不想在不存在的用户数据上浪费时间，所以需要创建另外一个key <code class="highlighter-rouge">user:list</code>，其value为list或set类型，用于存储每一个新增的用户id，并在必要的时候从<code class="highlighter-rouge">user:list</code>中删除该id。我更倾向于使用list，因为它可能通过LRANGE命令实现分页功能。</p>
 
 <h3 id="section-3">删除用户</h3>
 
-<p>还有一个要面临的问题是”数据完整性”,看看我们在删除用户时会发生什么吧。我们需要删除每一个对此用户的引用，也就是说，需要删除下面所有的key <code>user:id:*</code>,<code>user:username:id</code>，以及<code>user:list</code>中的用户id。</p>
+<p>还有一个要面临的问题是”数据完整性”,看看我们在删除用户时会发生什么吧。我们需要删除每一个对此用户的引用，也就是说，需要删除下面所有的key <code class="highlighter-rouge">user:id:*</code>,<code class="highlighter-rouge">user:username:id</code>，以及<code class="highlighter-rouge">user:list</code>中的用户id。</p>
 
 <h2 id="span-idtitle4a-simple-use-casespan"><span id="title4">探索之四：A Simple use case</span></h2>
 
@@ -530,64 +528,64 @@ header::after {
 
 <p>前面已经介绍了如何在Redis中存储数据，所以这里理解Books,Authors和Topics这三张表应该不成问题。但当面对Books-Authors和Book-Topics这种表之间的多对多关联时，问题变得复杂起来。下面以Topic为例来看如何解决Book与Topic之间的关联，一旦对这个关系清楚了，Book与Author之间的关系也就迎刃而解了。</p>
 
-<p>对于每本book，我们需要知道它属于哪些topics；同样对于每个topic，也要处理它包含的每本book。换句话说，对每本book，需要一个存储它所关联的topic的id列表，对于每个topic，同样需要一个存储它关联的book的id列表。这正是set大展身手的地方。我们将创建两个sets:<code>book:id:topic</code>和<code>topic:id:books</code>，前者保存book的topics’id列表，后者存储topic的books’id列表。以前面SQL场景中的数据为例，图书”Programming Erlang”(books表中的id为2)，将有一个key为<code>book:2:topics</code>，value为set类型且数据为(1,3)的数据信息；而主题”programming”则会有一个key为<code>topic:1:books</code>，值为(1,2)的数据集。</p>
+<p>对于每本book，我们需要知道它属于哪些topics；同样对于每个topic，也要处理它包含的每本book。换句话说，对每本book，需要一个存储它所关联的topic的id列表，对于每个topic，同样需要一个存储它关联的book的id列表。这正是set大展身手的地方。我们将创建两个sets:<code class="highlighter-rouge">book:id:topic</code>和<code class="highlighter-rouge">topic:id:books</code>，前者保存book的topics’id列表，后者存储topic的books’id列表。以前面SQL场景中的数据为例，图书”Programming Erlang”(books表中的id为2)，将有一个key为<code class="highlighter-rouge">book:2:topics</code>，value为set类型且数据为(1,3)的数据信息；而主题”programming”则会有一个key为<code class="highlighter-rouge">topic:1:books</code>，值为(1,2)的数据集。</p>
 
 <p>经过分析，就得出了Redis场景下的数据模型：</p>
 
 <h4 id="authors-1">Authors</h4>
 
-<p>Strings<br />
--　author:id<br />
--　author:id:name<br />
+<p>Strings
+-　author:id
+-　author:id:name
 -　author:id:surname</p>
 
-<p>Sets<br />
+<p>Sets
 else -　author:id:books</p>
 
-<p>Lists<br />
+<p>Lists
 -　authorlist</p>
 
 <h4 id="books-1">Books</h4>
 
-<p>Strings<br />
--　book:id<br />
--　book:id:title<br />
--　book:id:pages<br />
--　book:id:price<br />
--　book:id:isbn<br />
+<p>Strings
+-　book:id
+-　book:id:title
+-　book:id:pages
+-　book:id:price
+-　book:id:isbn
 -　book:id:description</p>
 
-<p>Sets<br />
+<p>Sets
 -　books:id:authors -　books:id:opics</p>
 
-<p>Lists<br />
+<p>Lists
 -　book:list</p>
 
 <h4 id="topics-1">Topics</h4>
 
-<p>String<br />
--　topic:id<br />
--　topic:id:name<br />
+<p>String
+-　topic:id
+-　topic:id:name
 -　topic:id:description</p>
 
-<p>Sets<br />
+<p>Sets
 -　topic:id:books</p>
 
-<p>Lists<br />
+<p>Lists
 -　topic:list</p>
 
-<p>可以看出，在SQL中的多对多关联，在Redis中可以通过两个set来实现。你会发现这种实现相当有用，它给我们提供了一种可以自由获得其他信息的能力：可以通过对所有感兴趣的<code>topic:id:books</code>集合中交集操作，从而获得隶属于多个主题的图书。例如对集合<code>topic:1:books</code>(programming主题)和<code>topic:2:books</code>(ruby主题)做交集，会得到只有一个元素(1)的集合，从而获得id=1的图书：programming Ruby。</p>
+<p>可以看出，在SQL中的多对多关联，在Redis中可以通过两个set来实现。你会发现这种实现相当有用，它给我们提供了一种可以自由获得其他信息的能力：可以通过对所有感兴趣的<code class="highlighter-rouge">topic:id:books</code>集合中交集操作，从而获得隶属于多个主题的图书。例如对集合<code class="highlighter-rouge">topic:1:books</code>(programming主题)和<code class="highlighter-rouge">topic:2:books</code>(ruby主题)做交集，会得到只有一个元素(1)的集合，从而获得id=1的图书：programming Ruby。</p>
 
-<p>对于这种实现，你必须特别关注对数据的删除操作。因为topics里有对books的引用，同样books里有对topics的引用，那删除如何操作？以删除books中的数据为例，首先想到的是要删除每个key为<code>book:id:*</code>的数据，但执行此操作前需要先遍历topics中的所有key为<code>topic:id:books</code>的集合，并从中删除待删除图书的id，当然也要从books中key为<code>book:list</code>的列表中删除此id。如果想删除一个topic，操作也很类似：从topics中删除所有key为<code>topic:id:*</code>信息之前，需要先遍历books中的key为<code>books:id:topics</code>的topic id集，并从中删除待删除topic的id，同时从<code>topic:list</code>列表中也删除此id。同样的操作对于authors一样适用。</p>
+<p>对于这种实现，你必须特别关注对数据的删除操作。因为topics里有对books的引用，同样books里有对topics的引用，那删除如何操作？以删除books中的数据为例，首先想到的是要删除每个key为<code class="highlighter-rouge">book:id:*</code>的数据，但执行此操作前需要先遍历topics中的所有key为<code class="highlighter-rouge">topic:id:books</code>的集合，并从中删除待删除图书的id，当然也要从books中key为<code class="highlighter-rouge">book:list</code>的列表中删除此id。如果想删除一个topic，操作也很类似：从topics中删除所有key为<code class="highlighter-rouge">topic:id:*</code>信息之前，需要先遍历books中的key为<code class="highlighter-rouge">books:id:topics</code>的topic id集，并从中删除待删除topic的id，同时从<code class="highlighter-rouge">topic:list</code>列表中也删除此id。同样的操作对于authors一样适用。</p>
 
 <h2 id="span-idtitle5back-homespan"><span id="title5">探索之五：Back home</span></h2>
 
-<p>对于Redis的探索到一段落，现在回头看看我们的旅行包里收获了哪些精彩。<br />
+<p>对于Redis的探索到一段落，现在回头看看我们的旅行包里收获了哪些精彩。
 我们学习了Redis中的数据类型及操作命令，还有一些其他有趣的东西。 是不是还有几段记忆深刻的故事呢：</p>
 
 <ul>
   <li>通过对String数据执行INCR命令解决唯一自增主键问题</li>
-  <li>通过含义丰富的key:<code>user:username:id</code>处理用户登录场景</li>
+  <li>通过含义丰富的key:<code class="highlighter-rouge">user:username:id</code>处理用户登录场景</li>
   <li>通过set实现数据间的多对多关联</li>
 </ul>
 

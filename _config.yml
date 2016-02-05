@@ -72,6 +72,9 @@ date_format: "%b %-d, %Y"
 # vertical to horizontal.
 nav-breaking-point: 520px
 
+# Pagination
+gems:
+    - jekyll-paginate
 # Number of posts on each page.
 paginate: 10
 
@@ -148,7 +151,7 @@ var_your_message: Your message
 # You don't have to change these.
 
 exclude: [vendor]
-highlighter: pygments
+highlighter: rouge
 kramdown:
   input: GFM
 paginate_path: "/page-:num/"

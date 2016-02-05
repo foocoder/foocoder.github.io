@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Python 的Main函数</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#python" title="python"> Python</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Python" title="Python"> Python</a>
             
         </div>
         <div class="tags">
@@ -165,35 +163,44 @@ header::after {
 
 <p>一开始刚接触到Python的时候,看一个py的代码经常第一反应是去找这段代码的main函数，经常却只能见到这么一段代码:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno">1</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-<span class="lineno">2</span>     <span class="c">#主函数语句</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="c">#主函数语句</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>原来Python里的Main函数并不需要直接显式的定义调用的，Python是一种解释型语言，所以我们看到py文件中尽管没有任何函数块或者主函数入口也可以执行运行。</p>
 
-<p>在Python里边有着“命名空间”的概念，也就是<code>__name__</code>的值,Python中所有的代码都会有一个命名空间与之相关联。其中，主程序（即python命令直接执行的程序或者python shell中的代码）会与<code>__main__</code>命名空间相关联，而每个模块中的代码（即import要导入的代码）则是与该模块名相同的命名空间里。</p>
+<p>在Python里边有着“命名空间”的概念，也就是<code class="highlighter-rouge">__name__</code>的值,Python中所有的代码都会有一个命名空间与之相关联。其中，主程序（即python命令直接执行的程序或者python shell中的代码）会与<code class="highlighter-rouge">__main__</code>命名空间相关联，而每个模块中的代码（即import要导入的代码）则是与该模块名相同的命名空间里。</p>
 
 <p>如以下例子：</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno">1</span> <span class="c">#Filename TestNamespace.py</span>
-<span class="lineno">2</span> <span class="k">def</span> <span class="nf">funcName</span><span class="p">():</span>
-<span class="lineno">3</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;This is a Test&quot;</span><span class="p">);</span>
-<span class="lineno">4</span> <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-<span class="lineno">5</span>     <span class="n">funcname</span><span class="p">();</span>
-<span class="lineno">6</span>     <span class="k">print</span><span class="p">(</span><span class="s">&quot;Testnamespace Run in Main Namespace&quot;</span><span class="p">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="c">#Filename TestNamespace.py</span>
+<span class="k">def</span> <span class="nf">funcName</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"This is a Test"</span><span class="p">);</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">funcname</span><span class="p">();</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Testnamespace Run in Main Namespace"</span><span class="p">);</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>如果我们直接调用<code>python TestNamespace.py</code>两句话都会输出</p>
+<p>如果我们直接调用<code class="highlighter-rouge">python TestNamespace.py</code>两句话都会输出</p>
 
-<pre><code>This is a Test
+<p><code class="highlighter-rouge">
+This is a Test
 Testnamespace Run in Main Namespace
-</code></pre>
+</code></p>
 
-<p>而如果在代码中先<code>import Testnamespace</code>,第二个print则永远调用不出来</p>
+<p>而如果在代码中先<code class="highlighter-rouge">import Testnamespace</code>,第二个print则永远调用不出来</p>
 
-<div class="highlight"><pre><code class="language-pycon" data-lang="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Testnamespace</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Testnamespace</span><span class="o">.</span><span class="n">funcname</span><span class="p">()</span>
-<span class="go">This is a Test</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-pycon" data-lang="pycon">&gt;&gt;&gt; import Testnamespace
+&gt;&gt;&gt; Testnamespace.funcname()
+This is a Test</code></pre></figure>
 
-<p>从而我们可以在每个模块对代码在<code>__main__</code>空间下进行测试,而import该模块后,测试语句则不再起任何作用。</p>
+<p>从而我们可以在每个模块对代码在<code class="highlighter-rouge">__main__</code>空间下进行测试,而import该模块后,测试语句则不再起任何作用。</p>
 
 
         <hr>

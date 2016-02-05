@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Awesome 锁屏</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#linux" title="linux"> Linux</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Linux" title="Linux"> Linux</a>
             
         </div>
         <div class="tags">
@@ -153,56 +151,67 @@ header::after {
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar"style="font-size:large" > Oct 10, 2015 • Less than a minute read</span>
+            <span class="fa fa-calendar"style="font-size:large" > Oct 10, 2015 • 1&nbsp;min read</span>
         </div>
 
         <hr>
         <p>Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。</p>
 
-<p>可是，用了不久突然反应过来，没有屏保，没有锁屏。虽说你也可以直接<code>ctrl+alt+F1</code>然后拔掉键盘再走掉，但是作为一个有着轻微强迫症的自己绝不允许这么挫的事情发生，于是，还是去折腾吧，骚年！</p>
+<p>可是，用了不久突然反应过来，没有屏保，没有锁屏。虽说你也可以直接<code class="highlighter-rouge">ctrl+alt+F1</code>然后拔掉键盘再走掉，但是作为一个有着轻微强迫症的自己绝不允许这么挫的事情发生，于是，还是去折腾吧，骚年！</p>
 
-<p>记得之前xfce4下一直用的是<code>xscreensaver</code>，屏保很有像素感，非常喜欢，可是怎么调出来使用呢？</p>
+<p>记得之前xfce4下一直用的是<code class="highlighter-rouge">xscreensaver</code>，屏保很有像素感，非常喜欢，可是怎么调出来使用呢？</p>
 
-<p>首先查阅<a href="http://ju.outofmemory.con/entry/94124">@cold</a>大神的文章,貌似我们需要配置一下<code>~/.xinitrc</code>这个文件。</p>
+<p>首先查阅<a href="http://ju.outofmemory.con/entry/94124">@cold</a>大神的文章,貌似我们需要配置一下<code class="highlighter-rouge">~/.xinitrc</code>这个文件。</p>
 
 <blockquote>
-  <p><code>~/.xinitrc</code>文件是<code>xinit</code>和他的前端<code>startx</code>第一次启动时会读取的脚本，通常在启动X时执行窗口管理器或其他程序，例如启动守护进程和设置环境变量。<br />
+  <p><code class="highlighter-rouge">~/.xinitrc</code>文件是<code class="highlighter-rouge">xinit</code>和他的前端<code class="highlighter-rouge">startx</code>第一次启动时会读取的脚本，通常在启动X时执行窗口管理器或其他程序，例如启动守护进程和设置环境变量。
 <small>—— <a href="https://wiki.archlinux.org/index.php/xinitrc_(简体中文)">ArchWiki</a></small></p>
 </blockquote>
 
 <p>这是colde大神的配置，不过貌似没看到锁屏什么事。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="c">#!/usr/bin/env bash</span>
-<span class="lineno">2</span> gnome-settings-daeman <span class="p">&amp;</span> <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
-<span class="lineno">3</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="c">#!/usr/bin/env bash</span>
+gnome-settings-daeman &amp; <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
+nm-applet --sm-disable &amp; <span class="c">#网络管理器</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>不过想想看，我们可以把<code>xscreensaver</code>直接添加到启动脚本里边应该可以了吧。就像这样子：</p>
+<p>不过想想看，我们可以把<code class="highlighter-rouge">xscreensaver</code>直接添加到启动脚本里边应该可以了吧。就像这样子：</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="c">#!/usr/bin/env bash</span>
-<span class="lineno">2</span> gnome-settings-daeman <span class="p">&amp;</span> <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
-<span class="lineno">3</span> xscreensaver <span class="p">&amp;</span> <span class="c">#屏保</span>
-<span class="lineno">4</span> nm-applet --sm-disable <span class="p">&amp;</span> <span class="c">#网络管理器</span>
-<span class="lineno">5</span> update-notifier <span class="p">&amp;</span> 自动更新程序</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="c">#!/usr/bin/env bash</span>
+gnome-settings-daeman &amp; <span class="c">#启动gnome桌面元素，否则Awesome默认X元素会非常丑陋！</span>
+xscreensaver &amp; <span class="c">#屏保</span>
+nm-applet --sm-disable &amp; <span class="c">#网络管理器</span>
+update-notifier &amp; 自动更新程序<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>然而，悲催的是，现在开始报错了，“未能启动通知守护进程”！我去，这又是什么鬼，什么是<code>通知守护进程</code>？连谷歌都谷不到！后来几经波折，才发现原来是个叫<code>notification daemon</code>的东东，可能翻译成中文后还真找不到相关文献了，gnome下的系统通知工具，类似Windows系统右边的通知栏。好吧，第二次重启DE后又没问题了，我也是醉了。</p>
+<p>然而，悲催的是，现在开始报错了，“未能启动通知守护进程”！我去，这又是什么鬼，什么是<code class="highlighter-rouge">通知守护进程</code>？连谷歌都谷不到！后来几经波折，才发现原来是个叫<code class="highlighter-rouge">notification daemon</code>的东东，可能翻译成中文后还真找不到相关文献了，gnome下的系统通知工具，类似Windows系统右边的通知栏。好吧，第二次重启DE后又没问题了，我也是醉了。</p>
 
-<p>接下来在<code>rc.lua</code>里边帮定锁屏的快捷键，如下:</p>
+<p>接下来在<code class="highlighter-rouge">rc.lua</code>里边帮定锁屏的快捷键，如下:</p>
 
-<div class="highlight"><pre><code class="language-lua" data-lang="lua"><span class="lineno">1</span> <span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Control&quot;</span> <span class="p">},</span> <span class="s2">&quot;</span><span class="s">Delete&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">xscreensaver-command -lock&#39;</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-lua" data-lang="lua"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="n">awful</span><span class="p">.</span><span class="n">key</span><span class="p">({</span> <span class="n">modkey</span><span class="p">,</span> <span class="s2">"Control"</span> <span class="p">},</span> <span class="s2">"Delete"</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="n">awful</span><span class="p">.</span><span class="n">util</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">'xscreensaver-command -lock'</span><span class="p">)</span> <span class="k">end</span><span class="p">),</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>不过每次启动后都有个<code>xscreensaver</code>的logo画面怪惹人烦的， 后来看到<code>Awesome</code>的官网添加<code>xscreensaver</code>是这样的：</p>
+<p>不过每次启动后都有个<code class="highlighter-rouge">xscreensaver</code>的logo画面怪惹人烦的， 后来看到<code class="highlighter-rouge">Awesome</code>的官网添加<code class="highlighter-rouge">xscreensaver</code>是这样的：</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> xscreensaver -nosplash <span class="p">&amp;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>xscreensaver -nosplash &amp;<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
-<p>通过添加<code>-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净多了。</p>
+<p>通过添加<code class="highlighter-rouge">-nosplash</code>参数可以去掉启动程序的等待时间出现的logo，世界一下子就清净多了。</p>
 
-<p>哦，对了，如果遇到启用<code>gnome-settings-daemon</code>时发现鼠标指针不见的情况下，输入以下命令。</p>
+<p>哦，对了，如果遇到启用<code class="highlighter-rouge">gnome-settings-daemon</code>时发现鼠标指针不见的情况下，输入以下命令。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>gsetting <span class="nb">set </span>org.gnome.settings-daemon.plugins.cursor active <span class="nb">false</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>完成！</p>
 
-<p>Ps. 总结一下，这次安装屏保的过程又折腾了好久，主要因素是由于自己的大意好多命令给拼错了，导致很多莫名奇妙的问题，如<code>gnome-settings-daemon</code>成了<code>gnome-setting-daemon</code>，<code>xscreensvaer</code>又成了<code>xscreen-saver</code>，切记不要太粗心!</p>
+<p>Ps. 总结一下，这次安装屏保的过程又折腾了好久，主要因素是由于自己的大意好多命令给拼错了，导致很多莫名奇妙的问题，如<code class="highlighter-rouge">gnome-settings-daemon</code>成了<code class="highlighter-rouge">gnome-setting-daemon</code>，<code class="highlighter-rouge">xscreensvaer</code>又成了<code class="highlighter-rouge">xscreen-saver</code>，切记不要太粗心!</p>
 
         <hr>
         <p>10 Oct 2015</p>

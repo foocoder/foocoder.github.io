@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Gem Source相关</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#jekyll" title="jekyll"> Jekyll</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Jekyll" title="Jekyll"> Jekyll</a>
             
         </div>
         <div class="tags">
@@ -157,46 +155,46 @@ header::after {
         </div>
 
         <hr>
-        <p>之前由于<code>Markdown</code>的引擎问题，导致在<code>md</code>文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把<code>Markdown</code>引擎换成了<code>rdiscount</code>。<br />
+        <p>之前由于<code class="highlighter-rouge">Markdown</code>的引擎问题，导致在<code class="highlighter-rouge">md</code>文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把<code class="highlighter-rouge">Markdown</code>引擎换成了<code class="highlighter-rouge">rdiscount</code>。
 在笔记本上实验成功，分段的话需要空一行。</p>
 
-<p>然后回到实验时<code>yekyll server</code>的时候报错了，发现并没有安装<code>rdiscount</code>软件包。这个简单，<code>gem install</code>一下就可以了。可是可是，事与愿违</p>
+<p>然后回到实验时<code class="highlighter-rouge">yekyll server</code>的时候报错了，发现并没有安装<code class="highlighter-rouge">rdiscount</code>软件包。这个简单，<code class="highlighter-rouge">gem install</code>一下就可以了。可是可是，事与愿违</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install rdiscount
-ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
-Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>gem install rdiscount
+ERROR:  Could not find a valid gem <span class="s1">'rdiscount'</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></figure>
 
-<p>看来是<code>source</code>出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。</p>
+<p>看来是<code class="highlighter-rouge">source</code>出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem <span class="nb">source</span> --remove http://ruby.taobao.org/
-<span class="nv">$ </span>gem <span class="nb">source</span> -a https://ruby.taobao.org/
-<span class="nv">$ </span>gem install rdiscount
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>gem <span class="nb">source</span> --remove http://ruby.taobao.org/
+<span class="gp">$ </span>gem <span class="nb">source</span> -a https://ruby.taobao.org/
+<span class="gp">$ </span>gem install rdiscount
 ERROR:  While executing gem ... <span class="o">(</span>Gem::FilePermissionError<span class="o">)</span>
-You don<span class="err">&#39;</span>t have write permissions <span class="k">for</span> the /var/lib/gems/2.1.0 directory.</code></pre></div>
+You don<span class="s1">'t have write permissions for the /var/lib/gems/2.1.0 directory.</span></code></pre></figure>
 
-<p>需要<code>root</code>用户权限，那就<code>sudo !!</code>，可是，老问题又出现了。</p>
+<p>需要<code class="highlighter-rouge">root</code>用户权限，那就<code class="highlighter-rouge">sudo !!</code>，可是，老问题又出现了。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo !!
-<span class="nv">$ </span>sudo gem install rdiscount
-ERROR:  Could not find a valid gem <span class="s1">&#39;rdiscount&#39;</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
-Unable to download data from http://ruby.taobao.org/ - bad response Not Found <span class="m">404</span> <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo !!
+<span class="gp">$ </span>sudo gem install rdiscount
+ERROR:  Could not find a valid gem <span class="s1">'rdiscount'</span> <span class="o">(</span>&gt;<span class="o">=</span> 0<span class="o">)</span>, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 <span class="o">(</span>http://ruby.taobao.org/specs.4.8.gz<span class="o">)</span></code></pre></figure>
 
-<p>想起来了，只是给当前用户修改了<code>source</code>，<code>root</code>用户的<code>source</code>还没改呢。好吧，那就继续改掉</p>
+<p>想起来了，只是给当前用户修改了<code class="highlighter-rouge">source</code>，<code class="highlighter-rouge">root</code>用户的<code class="highlighter-rouge">source</code>还没改呢。好吧，那就继续改掉</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>sudo gem <span class="nb">source</span> --remove http://ruby.taobao.org/
-<span class="nv">$ </span>sudo gem <span class="nb">source</span> -a https://ruby.taobao.org/
-<span class="nv">$ </span>sudo gem install rdiscount
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo gem <span class="nb">source</span> --remove http://ruby.taobao.org/
+<span class="gp">$ </span>sudo gem <span class="nb">source</span> -a https://ruby.taobao.org/
+<span class="gp">$ </span>sudo gem install rdiscount
 Fetching: rdiscount-2.1.8.gem <span class="o">(</span>100%<span class="o">)</span>
 Building native extensions.  This could take a <span class="k">while</span>...
 Successfully installed rdiscount-2.1.8
-Parsing documentation <span class="k">for</span> rdiscount-2.1.8
-Installing ri documentation <span class="k">for</span> rdiscount-2.1.8
-Done installing documentation <span class="k">for</span> rdiscount after <span class="m">0</span> seconds
-<span class="m">1</span> gem installed</code></pre></div>
+Parsing documentation <span class="k">for </span>rdiscount-2.1.8
+Installing ri documentation <span class="k">for </span>rdiscount-2.1.8
+Done installing documentation <span class="k">for </span>rdiscount after 0 seconds
+1 gem installed</code></pre></figure>
 
-<p>现在问题解决了，终于可以启动<code>jekyll server</code>了。</p>
+<p>现在问题解决了，终于可以启动<code class="highlighter-rouge">jekyll server</code>了。</p>
 
-<p>不过后来看到<code>gem source</code>配置其实都在<code>~/.gemrc</code>里边，想修改<code>source</code>只要<code>vim ~/.gemrc</code>以及<code>/root/.gemrc</code>就可以了，真是后知后觉。</p>
+<p>不过后来看到<code class="highlighter-rouge">gem source</code>配置其实都在<code class="highlighter-rouge">~/.gemrc</code>里边，想修改<code class="highlighter-rouge">source</code>只要<code class="highlighter-rouge">vim ~/.gemrc</code>以及<code class="highlighter-rouge">/root/.gemrc</code>就可以了，真是后知后觉。</p>
 
         <hr>
         <p>18 Oct 2015</p>

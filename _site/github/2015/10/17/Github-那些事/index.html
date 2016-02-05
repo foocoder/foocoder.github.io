@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Github那些事</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#github" title="github"> Github</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Github" title="Github"> Github</a>
             
         </div>
         <div class="tags">
@@ -167,34 +165,34 @@ header::after {
 
 <p>对于Github使用，简单来讲只有下面的几条命令就OK了。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git add -A
-git commit -m <span class="s2">&quot;The Code Information&quot;</span>
-git push origin master</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git add -A
+git commit -m <span class="s2">"The Code Information"</span>
+git push origin master</code></pre></figure>
 
-<p><code>git add</code>将要提交的文件放到一个缓存区(index)里边,其中<code>-A</code>命令是将仓库中所有的修改的文件都提交，包括新添加的以及以及删除掉的文件信息。<br />
-<code>git commit</code>则将缓存区中的文件提交到当前的分支(branch)中，这里边需要<code>-m</code>命令来添加本次提交代码说明，否则大家提交代码时你一个版本我一个版本没有任何说明就没办法来管理了。<br />
-最后由<code>git push</code>来将本地的分支推送到远程（这里一般用Github）的相应的分支(master)上去。当然，在<code>push</code>命令之前首先要<code>git remote add</code>命令来链接远程仓库。</p>
+<p><code class="highlighter-rouge">git add</code>将要提交的文件放到一个缓存区(index)里边,其中<code class="highlighter-rouge">-A</code>命令是将仓库中所有的修改的文件都提交，包括新添加的以及以及删除掉的文件信息。
+<code class="highlighter-rouge">git commit</code>则将缓存区中的文件提交到当前的分支(branch)中，这里边需要<code class="highlighter-rouge">-m</code>命令来添加本次提交代码说明，否则大家提交代码时你一个版本我一个版本没有任何说明就没办法来管理了。
+最后由<code class="highlighter-rouge">git push</code>来将本地的分支推送到远程（这里一般用Github）的相应的分支(master)上去。当然，在<code class="highlighter-rouge">push</code>命令之前首先要<code class="highlighter-rouge">git remote add</code>命令来链接远程仓库。</p>
 
 <p>还有一条就是</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git status</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git status</code></pre></figure>
 
 <p>用来查看当前缓存区状态，或者说来查看当前工作区域与缓存区域有什么区别。</p>
 
-<p>基本上这四条命令是我使用最频繁的，不过可能还有一点小小的瑕疵，比如说某天我可能突然失手把一些重要的私人信息给<code>git add</code>了，这该怎么办。<br />
-我们可以使用<code>git checkout --file</code>来撤消掉对缓存区的<code>file</code>的修改，而又有可能，我不仅<code>git add</code>到缓存区，甚至还<code>git commit</code>提交到了分支上去。<br />
-不过还好，只要文件还在本地就没问题的，我们可以<code>git reset HEAD file</code>来撤销分支里边<code>file</code>的修改。</p>
+<p>基本上这四条命令是我使用最频繁的，不过可能还有一点小小的瑕疵，比如说某天我可能突然失手把一些重要的私人信息给<code class="highlighter-rouge">git add</code>了，这该怎么办。
+我们可以使用<code class="highlighter-rouge">git checkout --file</code>来撤消掉对缓存区的<code class="highlighter-rouge">file</code>的修改，而又有可能，我不仅<code class="highlighter-rouge">git add</code>到缓存区，甚至还<code class="highlighter-rouge">git commit</code>提交到了分支上去。
+不过还好，只要文件还在本地就没问题的，我们可以<code class="highlighter-rouge">git reset HEAD file</code>来撤销分支里边<code class="highlighter-rouge">file</code>的修改。</p>
 
 <p>对于维护一个博客来讲，这些个命令基本上以经足够了。</p>
 
-<p>当然，我们现在使用电脑往往不止一台，比如说学校或者公司有一台，家里又有一台。但如果我可能在两台以上的电脑上更新博客的话，这样会导致我这两台电脑上本地博客进度不统一怎么办。<br />
+<p>当然，我们现在使用电脑往往不止一台，比如说学校或者公司有一台，家里又有一台。但如果我可能在两台以上的电脑上更新博客的话，这样会导致我这两台电脑上本地博客进度不统一怎么办。
 还好Git天生就是为解决这些个项目中的分支与冲突而存在的。</p>
 
 <p>我们可以在每次写博前先从Github里同步到本地</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git pull origin master</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git pull origin master</code></pre></figure>
 
-<p>然后再继续写完之后进行<code>push</code>。</p>
+<p>然后再继续写完之后进行<code class="highlighter-rouge">push</code>。</p>
 
 
         <hr>

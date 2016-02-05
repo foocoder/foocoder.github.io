@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Awesome 初体验</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#linux" title="linux"> Linux</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Linux" title="Linux"> Linux</a>
             
         </div>
         <div class="tags">
@@ -169,27 +167,27 @@ header::after {
 
 <h2 id="tmux">tmux</h2>
 
-<p><code>tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code>tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。</p>
+<p><code class="highlighter-rouge">tmux</code> 是我原本一直爱不释手的一个终端复用软件，尤其是在远程连接的情况下，<code class="highlighter-rouge">tmux</code>不会因为ssh的断开而导致bash的终端，实乃居家旅行必备之良品。具体的优势谷歌之便有一大堆，我就不再赘述。</p>
 
-<p>安装的话只要<code>apt-get</code>就可以了</p>
+<p>安装的话只要<code class="highlighter-rouge">apt-get</code>就可以了</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install tmux</code></pre></figure>
 
 <h2 id="gnome-do">gnome-do</h2>
 
-<p><code>gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code>Super+Space</code>调出<code>gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code>everything</code>。</p>
+<p><code class="highlighter-rouge">gnome-do</code>又是一款神一般的应用程序起动器，随时随地只有点击<code class="highlighter-rouge">Super+Space</code>调出<code class="highlighter-rouge">gnome-do</code>输入想要打开应用程序的几个字母就可以调用相应程序，而且不仅仅是应用程序，还支持多种用户创建的内容，几乎是<code class="highlighter-rouge">everything</code>。</p>
 
 <p>安装也很简单</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install gnome-do</code></pre></figure>
 
-<p>但这里有个问题是，当我在Ununtu 15.10下调用<code>gnome-do</code>(版本是0.95.3)时，点击<code>首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
+<p>但这里有个问题是，当我在Ununtu 15.10下调用<code class="highlighter-rouge">gnome-do</code>(版本是0.95.3)时，点击<code class="highlighter-rouge">首选项</code>会自动退出，因此没法修改默认的快捷键，郁闷。求大神能来解答下什么原因。</p>
 
 <h2 id="awesome">Awesome</h2>
 
-<p>当使用 <code>Awesome</code> 的时候，给我的感觉确实如其名所示, Awesome，不仅仅是他的美观，更主要的是他的高效性。</p>
+<p>当使用 <code class="highlighter-rouge">Awesome</code> 的时候，给我的感觉确实如其名所示, Awesome，不仅仅是他的美观，更主要的是他的高效性。</p>
 
-<p>一开始不明白什么是所谓的平铺式窗口管理，原来不是相互重叠一起的便是平铺了，不过确实，平铺式管理要比折叠式的窗口管理方便的多，首先就是不用再<code>Alt+Tab</code>的切来切去的了，不过当然，前提是你的显示屏要得足够的大才行。</p>
+<p>一开始不明白什么是所谓的平铺式窗口管理，原来不是相互重叠一起的便是平铺了，不过确实，平铺式管理要比折叠式的窗口管理方便的多，首先就是不用再<code class="highlighter-rouge">Alt+Tab</code>的切来切去的了，不过当然，前提是你的显示屏要得足够的大才行。</p>
 
 <p>下边来秀一下自己的桌面吧。</p>
 
@@ -201,13 +199,13 @@ header::after {
 
 <p><img src="/img/awesome_multi.png" alt="awesome-multi-screen" /><small>Source: <a href="http://wiki.ubuntu.org.cn/awesome">Unbuntu中文</a></small></p>
 
-<p>简直是酷毙了，<code>awesome</code>对多屏幕的兼容也是浑然天成。只需要<code>Ctrl+Super+j/k</code>便可来回切换使用屏幕，完全可以把鼠标扔掉了！</p>
+<p>简直是酷毙了，<code class="highlighter-rouge">awesome</code>对多屏幕的兼容也是浑然天成。只需要<code class="highlighter-rouge">Ctrl+Super+j/k</code>便可来回切换使用屏幕，完全可以把鼠标扔掉了！</p>
 
 <p>Awesome的安装其实也是非常简单的。</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install awesome</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install awesome</code></pre></figure>
 
-<p>然后我们需要在<code>home/</code>下的<code>.config/</code>文件夹中新建一个<code>awesome</code>的文件夹,将<code>/etc/xdg/awesome/rc.lua</code>配置文件copy其中就可以了。具体的配置我也不多说了，网上依旧是好多文献。哦，对了，这样安装的是awesome3.4版，如果想安装3.5的就得自己下载源码编译了。</p>
+<p>然后我们需要在<code class="highlighter-rouge">home/</code>下的<code class="highlighter-rouge">.config/</code>文件夹中新建一个<code class="highlighter-rouge">awesome</code>的文件夹,将<code class="highlighter-rouge">/etc/xdg/awesome/rc.lua</code>配置文件copy其中就可以了。具体的配置我也不多说了，网上依旧是好多文献。哦，对了，这样安装的是awesome3.4版，如果想安装3.5的就得自己下载源码编译了。</p>
 
 <p>下面列出相关资源，用来方便查找。</p>
 

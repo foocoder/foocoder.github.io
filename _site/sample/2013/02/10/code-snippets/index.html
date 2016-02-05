@@ -133,14 +133,12 @@ header::after {
 
             
 
-    
-
 
 <article>
         <h1>Code Snippets</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#sample" title="sample"> Sample</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Sample" title="Sample"> Sample</a>
             
         </div>
         <div class="tags">
@@ -157,37 +155,52 @@ header::after {
         </div>
 
         <hr>
-        <p>Whenever you need to post a code snippet, use the liquid tags <code>hilight</code> and <code>endhilight</code>.</p>
+        <p>Whenever you need to post a code snippet, use the liquid tags <code class="highlighter-rouge">hilight</code> and <code class="highlighter-rouge">endhilight</code>.</p>
 
 <p>like this:</p>
 
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">nav</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
-  <span class="k">color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,.</span><span class="m">72</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">nav</span> <span class="nt">a</span><span class="nd">:hover</span> <span class="p">{</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">.72</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nt">nav</span> <span class="nt">a</span><span class="nc">.current</span> <span class="p">{</span>
-  <span class="k">color</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="m">0</span><span class="o">,</span> <span class="o">.</span><span class="m">72</span><span class="p">)</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">.72</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="nc">.subtitle</span> <span class="p">{</span>
-  <span class="k">margin</span><span class="o">:</span> <span class="m">30px</span> <span class="m">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">30px</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>You can also add line numbers by setting <code>linenos</code>. Like in this example:</p>
+<p>You can also add line numbers by setting <code class="highlighter-rouge">linenos</code>. Like in this example:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno"> 1</span> <span class="c">#!/bin/bash</span>
-<span class="lineno"> 2</span> 
-<span class="lineno"> 3</span> <span class="c">###### CONFIG</span>
-<span class="lineno"> 4</span> <span class="nv">ACCEPTED_HOSTS</span><span class="o">=</span><span class="s2">&quot;/root/.hag_accepted.conf&quot;</span>
-<span class="lineno"> 5</span> <span class="nv">BE_VERBOSE</span><span class="o">=</span><span class="nb">false</span>
-<span class="lineno"> 6</span> 
-<span class="lineno"> 7</span> <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$UID&quot;</span> -ne <span class="m">0</span> <span class="o">]</span>
-<span class="lineno"> 8</span> <span class="k">then</span>
-<span class="lineno"> 9</span>  <span class="nb">echo</span> <span class="s2">&quot;Superuser rights required&quot;</span>
-<span class="lineno">10</span>  <span class="nb">exit </span>2
-<span class="lineno">11</span> <span class="k">fi</span>
-<span class="lineno">12</span> 
-<span class="lineno">13</span> genApacheConf<span class="o">(){</span>
-<span class="lineno">14</span>  <span class="nb">echo</span> -e <span class="s2">&quot;# Host ${HOME_DIR}$1/$2 :&quot;</span>
-<span class="lineno">15</span> <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre></td><td class="code"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c">###### CONFIG</span>
+<span class="nv">ACCEPTED_HOSTS</span><span class="o">=</span><span class="s2">"/root/.hag_accepted.conf"</span>
+<span class="nv">BE_VERBOSE</span><span class="o">=</span><span class="nb">false
+
+</span><span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$UID</span><span class="s2">"</span> -ne 0 <span class="o">]</span>
+<span class="k">then
+ </span><span class="nb">echo</span> <span class="s2">"Superuser rights required"</span>
+ <span class="nb">exit </span>2
+<span class="k">fi
+
+</span>genApacheConf<span class="o">(){</span>
+ <span class="nb">echo</span> -e <span class="s2">"# Host </span><span class="k">${</span><span class="nv">HOME_DIR</span><span class="k">}</span><span class="nv">$1</span><span class="s2">/</span><span class="nv">$2</span><span class="s2"> :"</span>
+<span class="o">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>Note that when you try to copy this code block the line numbers will be copied too.</p>
 

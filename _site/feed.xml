@@ -14,9 +14,62 @@
 					
 				
 				
-					<description>&lt;p&gt;Java中除了8中primitive主数据类型外，其他类型基本都是引用(Reference)，所以对其的复制我们需要时刻小心究竟是&lt;br /&gt;
-要对该对象进行一个链接的指向还是要将其复制(Copy)一份。而Python的使用感觉跟java类似，我们也需要关注着复制过&lt;br /&gt;
+					<description>&lt;p&gt;Java中除了8中primitive主数据类型外，其他类型基本都是引用(Reference)，所以对其的复制我们需要时刻小心究竟是
+要对该对象进行一个链接的指向还是要将其复制(Copy)一份。而Python的使用感觉跟java类似，我们也需要关注着复制过
 来的究竟是个Reference还是整个的Copy。&lt;/p&gt;
+
+&lt;p&gt;在python中，&lt;strong&gt;赋值操作总是存储对象的引用，而不是这些对象的拷贝&lt;/strong&gt;，比如下边一个例子：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;c列表中是直接对a,b列表的一个引用，所以一旦a,b指向的对象发生变化，c列表也会改变。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;123&#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;123&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样可以在程序传递较大的对象而不必将其整个内容进行拷贝。不过有时候我们可能确实需要对对象进行拷贝有该怎么办？
+参见《Python学习手册》提供四种明确拷贝的方式:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;没有限制条件的分片表达式(L[:])能够复制序列;&lt;/li&gt;
+  &lt;li&gt;字典中的Copy方法(X.copy())能够复制字典;&lt;/li&gt;
+  &lt;li&gt;一些内置函数(如，list)能够生成拷贝(list(L));&lt;/li&gt;
+  &lt;li&gt;copy标准库模块能够生成完整拷贝。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;但需要注意的是，前三项的复制方式都只能算是浅复制，只有copy标准库中的&lt;code class=&quot;highlighter-rouge&quot;&gt;copy.deepcopy()&lt;/code&gt;才能提供深复制。那什么是
+浅复制和深复制呢？&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;浅复制&lt;/strong&gt;：当我们呢的list中含有其他的嵌套对象时，浅复制会将list中的所有项简单的复制到另一个list，也就是说，list中最顶层的元素是什么，它复制的就是什么，
+例如第一个例子中，c列表中包含的是a,b列表的引用，所以浅复制的话只是简单的将a,b,这两个引用复制到另一个list中，而如果a,b列表中的
+值改变的话，新的list值也会改变，所以并没有摆脱与旧list的关系。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;copy&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;我们可以看到无条件值的分片以及&lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;内置函数以及&lt;code class=&quot;highlighter-rouge&quot;&gt;copy.copy()&lt;/code&gt;方法进行的都是浅复制，在a列表改变之后新的list值也会改变了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;深复制&lt;/strong&gt;:有时候我们需要的是对整个list以及list中的list甚至list中的list中的list的等等全部嵌套的完整的完全独立的一个
+复制，需要跟旧有的list完全脱离关系，这时候就只能用到深拷贝，也就是copy模块中的&lt;code class=&quot;highlighter-rouge&quot;&gt;copy.deepcopy()&lt;/code&gt;来执行。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deepcopy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;testdeepcopy&#39;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
 				
@@ -33,8 +86,32 @@
 					
 				
 				
-					<description>&lt;p&gt;IDE 的操作会有一个好处，一键集成式编程，底层什么都不必考虑，但会导致一个问题是————&lt;br /&gt;
+					<description>&lt;p&gt;IDE 的操作会有一个好处，一键集成式编程，底层什么都不必考虑，但会导致一个问题是————
 一旦离开了IDE，你会发现到处都是问题。&lt;/p&gt;
+
+&lt;p&gt;没有IDE的debug工具，我们进行debug的话只能利用最原始的方式&lt;code class=&quot;highlighter-rouge&quot;&gt;JDB&lt;/code&gt;。不过个人感觉，&lt;code class=&quot;highlighter-rouge&quot;&gt;JDB&lt;/code&gt;比之
+&lt;code class=&quot;highlighter-rouge&quot;&gt;GDB&lt;/code&gt;还是有很大的不足之处的，最大的问题是没有缩写，每个命令得多敲好多字母。另外就是没法
+上翻历史记录，如果某次你不小心打错了很长一个class的某一个字母，恭喜你，下次还得重新全部
+输入。不过，到可以用来锻炼手速了。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;JDB&lt;/code&gt;调试命令还是比较简单的，没有&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;那么复杂。直接&lt;code class=&quot;highlighter-rouge&quot;&gt;jdb class&lt;/code&gt;文件就可以，如果class不
+在当前目录下，需要指定一下&lt;code class=&quot;highlighter-rouge&quot;&gt;-classpath&lt;/code&gt;，设定&lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;文件的路径。&lt;/p&gt;
+
+&lt;p&gt;但主要是&lt;code class=&quot;highlighter-rouge&quot;&gt;JDB&lt;/code&gt;的list命令想要进行查看源码信息的时候，总会显示找不到源文件。下面分两种情况来说明下。&lt;/p&gt;
+
+&lt;h3 id=&quot;package&quot;&gt;不包含Package&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jdb&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt;命令可以指定源文件的位置。假设&lt;code class=&quot;highlighter-rouge&quot;&gt;src/&lt;/code&gt;文件夹中存放的是源码文件，&lt;code class=&quot;highlighter-rouge&quot;&gt;class/&lt;/code&gt;文件夹中存放
+的是类文件，我们在&lt;code class=&quot;highlighter-rouge&quot;&gt;class/&lt;/code&gt;目录下进行&lt;code class=&quot;highlighter-rouge&quot;&gt;jdb&lt;/code&gt;的时候，可以利用&lt;code class=&quot;highlighter-rouge&quot;&gt;use ../src&lt;/code&gt;来找到源码的位置。&lt;/p&gt;
+
+&lt;p&gt;具体可以参考 &lt;a href=&quot;http://kingquake21.iteye.com/blog/1033464&quot;&gt;在jdb中链接源码&lt;/a&gt;，@kingquake21大神讲的很详细。&lt;/p&gt;
+
+&lt;h3 id=&quot;package-1&quot;&gt;包含Package信息的源码链接&lt;/h3&gt;
+
+&lt;p&gt;当我们如果有一个java中包含package信息，假设是&lt;code class=&quot;highlighter-rouge&quot;&gt;cn.edu.school.group.project&lt;/code&gt;，而该文件放在&lt;code class=&quot;highlighter-rouge&quot;&gt;src/&lt;/code&gt;文件夹下的
+话，继续用上述方法也是找不到源码的。估计&lt;code class=&quot;highlighter-rouge&quot;&gt;jdb&lt;/code&gt;查找源码的过程跟查找&lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;的过程是差不多的，也是把
+&lt;code class=&quot;highlighter-rouge&quot;&gt;package&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;号转换成路径来查找，所以我们需要将&lt;code class=&quot;highlighter-rouge&quot;&gt;src/&lt;/code&gt;下的文件放到&lt;code class=&quot;highlighter-rouge&quot;&gt;src/cn/edu/school/group/project/&lt;/code&gt;中，这样
+在list才能找到源码信息。&lt;/p&gt;
 
 </description>
 				
@@ -51,9 +128,149 @@
 					
 				
 				
-					<description>&lt;p&gt;用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。&lt;br /&gt;
+					<description>&lt;p&gt;用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。
 但IDE有IDE的方便，直接编译还是有着直接编译的好处的。毕竟是可以更深层次的接触的编译的过程。&lt;/p&gt;
 
+&lt;p&gt;对于&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;，发现并没有多少书来解释这个命令，通过&lt;code class=&quot;highlighter-rouge&quot;&gt;javac -help&lt;/code&gt;能看到一堆对参数的说明。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+Usage: javac &amp;lt;options&amp;gt; &amp;lt;source files&amp;gt;
+where possible options include:
+  -g                         Generate all debugging info
+  -g:none                    Generate no debugging info
+  -g:{lines,vars,source}     Generate only some debugging info
+  -nowarn                    Generate no warnings
+  -verbose                   Output messages about what the compiler is doing
+  -deprecation               Output source locations where deprecated APIs are used
+  -classpath &amp;lt;path&amp;gt;          Specify where to find user class files and annotation processors
+  -cp &amp;lt;path&amp;gt;                 Specify where to find user class files and annotation processors
+  -sourcepath &amp;lt;path&amp;gt;         Specify where to find input source files
+  -bootclasspath &amp;lt;path&amp;gt;      Override location of bootstrap class files
+  -extdirs &amp;lt;dirs&amp;gt;            Override location of installed extensions
+  -endorseddirs &amp;lt;dirs&amp;gt;       Override location of endorsed standards path
+  -proc:{none,only}          Control whether annotation processing and/or compilation is done.
+  -processor &amp;lt;class1&amp;gt;[,&amp;lt;class2&amp;gt;,&amp;lt;class3&amp;gt;...] Names of the annotation processors to run; bypasses default discovery process
+  -processorpath &amp;lt;path&amp;gt;      Specify where to find annotation processors
+  -parameters                Generate metadata for reflection on method parameters
+  -d &amp;lt;directory&amp;gt;             Specify where to place generated class files
+  -s &amp;lt;directory&amp;gt;             Specify where to place generated source files
+  -h &amp;lt;directory&amp;gt;             Specify where to place generated native header files
+  -implicit:{none,class}     Specify whether or not to generate class files for implicitly referenced files
+  -encoding &amp;lt;encoding&amp;gt;       Specify character encoding used by source files
+  -source &amp;lt;release&amp;gt;          Provide source compatibility with specified release
+  -target &amp;lt;release&amp;gt;          Generate class files for specific VM version
+  -profile &amp;lt;profile&amp;gt;         Check that API used is available in the specified profile
+  -version                   Version information
+  -help                      Print a synopsis of standard options
+  -Akey[=value]              Options to pass to annotation processors
+  -X                         Print a synopsis of nonstandard options
+  -J&amp;lt;flag&amp;gt;                   Pass &amp;lt;flag&amp;gt; directly to the runtime system
+  -Werror                    Terminate compilation if warnings occur
+  @&amp;lt;filename&amp;gt;                Read options and filenames from file
+&lt;/code&gt;
+看着都眼晕，不过我们只需要对某几个Option来关注就可以。&lt;/p&gt;
+
+&lt;h3 id=&quot;argfiles&quot;&gt;@argfiles&lt;/h3&gt;
+
+&lt;p&gt;话说用了这么久的&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;还头一次知道有这么个&lt;code class=&quot;highlighter-rouge&quot;&gt;option&lt;/code&gt;，在javac编译的时候我们可以不必每次都要
+敲那么长的一串命令，可以先通过把编译的&lt;code class=&quot;highlighter-rouge&quot;&gt;option&lt;/code&gt;或是&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefiles&lt;/code&gt;写入到一个文件中然后通过&lt;code class=&quot;highlighter-rouge&quot;&gt;@&lt;/code&gt;来编译。
+比如说，我们把&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;的参数放到options文件中，把&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;放到source文件中，类似下边例子：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#Options
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;sourcepath &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#srcFiles
+testA&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;java
+testB&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;之后，通过命令&lt;code class=&quot;highlighter-rouge&quot;&gt;javac @Options @srcFiles&lt;/code&gt;来编译文件。&lt;/p&gt;
+
+&lt;h3 id=&quot;classpath---sourcepath&quot;&gt;-classpath 与 -sourcepath&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;classpath&lt;/code&gt; 设定java要搜索的类的路径，即编译&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;所需要依赖的class的路径。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt; 设定java要搜索类的源码的路径，即编译&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;所需要依赖的class的源码的路径。&lt;/p&gt;
+
+&lt;p&gt;一开始并不明白sourcepath的意义，以为是需要编译的源码的路径。后来看了看文档以及相关资料，才知道
+sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的路径。只不过classpath指明的是已经编译好的
+&lt;code class=&quot;highlighter-rouge&quot;&gt;.class&lt;/code&gt;文件的位置，而sourcepath指明的是依赖的class的源码的位置，如果&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;发现不存在或者现在的&lt;code class=&quot;highlighter-rouge&quot;&gt;.class&lt;/code&gt;
+不是最新版文件，会重新编译依赖文件来产生class文件。&lt;/p&gt;
+
+&lt;p&gt;我们可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;-verbose&lt;/code&gt;来查看编译过程。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$javac&lt;/span&gt; -verbose -sourcepath . testB.java
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析开始时间 RegularFileObject[testB.java]]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析已完成, 用时 14 毫秒]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;源文件的搜索路径: .]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;类文件的搜索路径: /lib/jvm/jdk7/jre/lib/resources.jar,/lib/jvm/jdk7/jre/lib/rt.jar,/lib/jvm/jdk7/jre/lib/sunrsasign.jar,/lib/jvm/jdk7/jre/lib/jsse.jar,/lib/jvm/jdk7/jre/lib/jce.jar,/lib/jvm/jdk7/jre/lib/charsets.jar,/lib/jvm/jdk7/jre/lib/jfr.jar,/lib/jvm/jdk7/jre/classes,/lib/jvm/jdk7/jre/lib/ext/zipfs.jar,/lib/jvm/jdk7/jre/lib/ext/sunpkcs11.jar,/lib/jvm/jdk7/jre/lib/ext/localedata.jar,/lib/jvm/jdk7/jre/lib/ext/dnsns.jar,/lib/jvm/jdk7/jre/lib/ext/sunec.jar,/lib/jvm/jdk7/jre/lib/ext/sunjce_provider.jar,.,/lib/jvm/jdk7/lib.tools.jar,/home/yeoman123/Workspace/java/MOECPM,/home/yeoman123/Workspace/java/public/colt-1.2.0.jar,/home/yeoman123/Workspace/java/public/slf4j-api-1.7.12.jar]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/Object.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/String.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在检查testB]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/AutoCloseable.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/System.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/PrintStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/FilterOutputStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/OutputStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载RegularFileObject[./testA.java]]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析开始时间 RegularFileObject[./testA.java]]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析已完成, 用时 1 毫秒]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;已写入RegularFileObject[testB.class]]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在检查testA]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;已写入RegularFileObject[./testA.class]]
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;共 307 毫秒]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;其中文件&lt;code class=&quot;highlighter-rouge&quot;&gt;testB.java&lt;/code&gt;里边对&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;里的类进行调用，然而并没有事先编译&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;文件，而是指定了&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt;为
+当前目录，我们可以看到编译进程中首先找到&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;对其进行编译生成&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.class&lt;/code&gt;，然后再对&lt;code class=&quot;highlighter-rouge&quot;&gt;testB.java&lt;/code&gt;进行编译。&lt;/p&gt;
+
+&lt;p&gt;需要注意的是：&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt;的默认路径与&lt;code class=&quot;highlighter-rouge&quot;&gt;classpath&lt;/code&gt;路径相同，但如果指定了之后会将原路径覆盖。&lt;/p&gt;
+
+&lt;h3 id=&quot;d&quot;&gt;-d&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;选项设定了类文件的目标目录，即你编译出来的class文件所存放的位置，这里是指存放的根目录。什么意思呢？如果你的文件中没有进行打包(package)
+那么直接就把class文件生成到该目录下边。如果文件中声明了package的信息，那么就会以&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;后的path为根目录生成整个package的文件目录中。举个例子&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;school&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//...&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;javac -d /home/user/java/bin/ testA.java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;之后会将&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.class&lt;/code&gt;生成到/home/user/java/bin/cn/edu/school/group/project中。如果想要&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;该类，则需要指定
+该类的根目录，即&lt;code class=&quot;highlighter-rouge&quot;&gt;-cp /home/user/java/bin&lt;/code&gt;即可。例如我在&lt;code class=&quot;highlighter-rouge&quot;&gt;testB&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;cn.edu.school.group.project.testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This is B Initialize&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;testA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;javac -d /home/user/java/bin -cp /home/user/java/bin testB.java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;如果不指定&lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;的话就会编译出错，或者将该目录添加到环境变量中其实也可以，但如果每个project都把classpath添加到环境变量中，
+那环境变量会变得相当臃肿。&lt;/p&gt;
+
+&lt;p&gt;另外，关于classpath的搜索规则，参考@haolujun 大神的说明，java的类的寻找规则是这样子的：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
+class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&#39;\&#39;
+&lt;/code&gt;
+### debug 选项 ###&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;选项为编译提供了调试信息，包括行号信息，源文件信息以及局部变量信息。缺省情况只生成行号以及源文件信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:none&lt;/code&gt; 不生成任何调试信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:{keylist}&lt;/code&gt; 指定生成调试信息的类型，&lt;code class=&quot;highlighter-rouge&quot;&gt;keylist&lt;/code&gt;包括&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;提供源文件调试信息，&lt;code class=&quot;highlighter-rouge&quot;&gt;lines&lt;/code&gt;提供行号调试信息，以及
+&lt;code class=&quot;highlighter-rouge&quot;&gt;vars&lt;/code&gt;提供局部变量调试信息。类型之间用逗号来分隔。&lt;/p&gt;
+
+&lt;p&gt;如果你不想生成任何调试信息的话，需要&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:none&lt;/code&gt;来指定，不指定的话，即使不加&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;默认也会生成行号以及源文件信息的。&lt;/p&gt;
 </description>
 				
 				<pubDate>Tue, 10 Nov 2015 23:29:36 +0000</pubDate>
@@ -69,9 +286,98 @@
 					
 				
 				
-					<description>&lt;p&gt;Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个&lt;code&gt;&amp;gt;&lt;/code&gt;代表覆盖重写而&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;代表对文件中追加，并不覆盖。&lt;br /&gt;
-今天在用&lt;code&gt;mplayer&lt;/code&gt;播放提示音希望不显示输出，从网上看到这个命令瞬间泪奔&lt;/p&gt;
+					<description>&lt;p&gt;Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;代表覆盖重写而&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;代表对文件中追加，并不覆盖。
+今天在用&lt;code class=&quot;highlighter-rouge&quot;&gt;mplayer&lt;/code&gt;播放提示音希望不显示输出，从网上看到这个命令瞬间泪奔&lt;/p&gt;
 
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$mplayer&lt;/span&gt; test.mp3 &amp;lt; /dev/null &amp;gt; /dev/null 2&amp;gt;1&amp;amp;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这到底什么个含义，决心花点时间来好好补补这一块的内容。&lt;/p&gt;
+
+&lt;h2 id=&quot;io-&quot;&gt;I/O 重定向&lt;/h2&gt;
+
+&lt;p&gt;通常在Shell命令中最常见到三种输入输出类型，标准输入(stdin)，标准输出(stdout)以及标准错误输出(stderr)，感觉跟C/C++里边文件划分类似。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;一般指&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;接受的输入流，&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;指&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;正常输出情况，默认输出显示到终端，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;则是&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;的错误输出，默认也是输出显示到终端。
+而文件描述符则是与一个打开的文件或数据流相对应的一个整数，系统将0,1,2分别与标准输入，标准输出以及标准错误输出相对应。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;输出重定向&lt;/h3&gt;
+
+&lt;p&gt;重定向符号&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;意为输出重定向，包括标准输出以及标准错误输出，也是一般命令中比较常见的情况，与&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;及&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;两两组合就是四种情况&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1&amp;gt;&lt;/code&gt; 表示标准输出重定向，覆盖&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1&amp;gt;&amp;gt;&lt;/code&gt; 表示标准输出重定向，追加&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&lt;/code&gt; 表示标准错误输出重定向，覆盖&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&amp;gt;&lt;/code&gt; 表示标准错误输出重定向，追加&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中默认缺省表示标准输出，即&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;与前两个命令含义相同。&lt;/p&gt;
+
+&lt;p&gt;由于&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;命令会将存在的文件进行覆盖，我们可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;set -o noclobber&lt;/code&gt;来进行相应的限制。设置成功后，如果再次进行重定向到已有的文件中就会报错，这时便
+需要通过&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;|&lt;/code&gt;来进行命令。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$set&lt;/span&gt; -o noclobber
+&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt;
+test1 test2 test3
+&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; &amp;gt; test1
+zsh: 文件已存在:test1
+&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; &amp;gt;| test1
+&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; test1
+test1 test2 test3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;另外就是&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;的使用，不过这里&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;并不是指将命令在后台运行。&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&amp;gt;&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&amp;gt;&amp;gt;&lt;/code&gt;可以将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定义到同一文件中。这样就不用一个一个的指定了。
+另一种方式这样&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&amp;amp;1&lt;/code&gt;，表示将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;的位置，即&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;输出到哪，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;也输出到哪。“IBM developerWorks”上有个很不错的例子，&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt; 2&amp;gt;&amp;amp;1 &amp;gt;output.txt
+&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt; &amp;gt;output.txt 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这两个命令&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定向的位置并不相同。第一个先将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;，而此时&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;的定向是默认的终端，所以&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;被定向到终端，之后
+&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;被重定向到文件&lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;中。第二条命令先将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;定向到文件&lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;，然后将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;上，因此&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;最终被定向到文件中。&lt;/p&gt;
+
+&lt;p&gt;最后要提的是&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/null&lt;/code&gt;这个空设备，被称为&lt;code class=&quot;highlighter-rouge&quot;&gt;bit bucket&lt;/code&gt;或者黑洞，正如它名字所示，它会将一切写入到其中的数据流吞噬并丢弃，常用来将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;
+内容丢弃掉。但&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/null&lt;/code&gt;是一个文件而不是目录，所以不能类似的将文件&lt;code class=&quot;highlighter-rouge&quot;&gt;mv&lt;/code&gt;其中来删除。&lt;/p&gt;
+
+&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;命令，其实也有时候，我们希望输出不仅重定向到文件中，而且希望它能够在终端中显示出来，这样就不需要重定向后再继续打开文件来检查是否出问题。
+这时候我们可以用到&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;命令。&lt;code class=&quot;highlighter-rouge&quot;&gt;man tee&lt;/code&gt;的解释是这样，从标准输入复制到每一个文件并复制到标准输出中。例如这样&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; |tee file1 file2
+test1 test2 test3
+&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; file1
+test1 test2 test3
+&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; file2
+test1 test2 test3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;而在一般的Linux tricks 有时候会利用&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;来帮忙解决vim时忘记加&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;。可以这样子使用&lt;code class=&quot;highlighter-rouge&quot;&gt;:w !sudo tee %&lt;/code&gt;。其中&lt;code class=&quot;highlighter-rouge&quot;&gt;:w&lt;/code&gt;将更改后的文件作为标准输出传递给tee，
+而&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;代表当前文件名，然后利用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;权限把标准输出传到当前文件中去。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;输入重定向&lt;/h3&gt;
+
+&lt;p&gt;输入重定向自己平常到用的不多，可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&lt;/code&gt;来接受文件内容来作为标准输入。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;&lt;/code&gt;则通常与一个单词来构成一个结束标识符来接受终端的输入。如&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$sort&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;END
+heredoc&amp;gt;2
+heredoc&amp;gt;1
+heredoc&amp;gt;3
+heredoc&amp;gt;END
+1
+2
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;管道&lt;/h2&gt;
+
+&lt;p&gt;相对与重定向，管道就没那么复杂了。一般来讲可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt;来将上一个命令的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;作为当前命令的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;来使用。但需要注意的是，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;是不会被处理的。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$command1&lt;/span&gt; |command2 |command3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;比较牛的地方是可以将标准输入来作为命令的参数传到命令中，而管道传给命令的只能是命令接受的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;通常与&lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt;连用来查找文件。
+记忆中自己用到&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;的地方是在Redis。由于Redis删除key的时候不支持通配符，而上万条的数据又不能一个一个手动删除，所以可以利用&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$redis&lt;/span&gt;-cli -n 0 keys &lt;span class=&quot;s1&quot;&gt;&#39;keys:*&#39;&lt;/span&gt; |xargs redis-cli -n 0 del&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;先用&lt;code class=&quot;highlighter-rouge&quot;&gt;keys&lt;/code&gt;命令找到数据库中所有匹配数据，然后通过xargs将输出作为&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt;的参数来进行删除。&lt;/p&gt;
+
+&lt;p&gt;参考资料：&lt;a href=&quot;http://www.ibm.com/developerworks/cn/linux/l-lpic1-v3-103-4/&quot;&gt;学习Linux,101:流，管道，重定向&lt;/a&gt;&lt;/p&gt;
 </description>
 				
 				<pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
@@ -88,6 +394,63 @@
 				
 				
 					<description>&lt;p&gt;历时将近一个月的搭配比赛第一赛季落幕了，而自己也是毫无悬念的被Pass掉了，最优排名72，成绩是2.56%。总结经验，吸收教训。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;教训&lt;/h2&gt;
+
+&lt;p&gt;毕竟是第一次参加天池竞赛，没见过什么世面，当第一天提交数据的时候看到第六名的成绩自己乐的屁颠屁颠的，现在看来，大牛们一般在后期才参赛的，
+前期在排行榜上折腾来折腾去也提高不了零点几的小虾米在后期一天被刷下去十几名，看来自己还是&lt;code class=&quot;highlighter-rouge&quot;&gt;Too Yonge Too Simple&lt;/code&gt;。
+总结下问题应该大致分一下几点：&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;1.靠人脑来搭配&lt;/h3&gt;
+
+&lt;p&gt;事实上，从比赛开始一直到结束自己几乎都是靠感觉来进行搭配的，然后简单的通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Shell&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt;处理下就提交了，这样往往导致&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;思路混乱，比如说购买信息&lt;code class=&quot;highlighter-rouge&quot;&gt;session&lt;/code&gt;的划分，从一天划分改到三天划分最后改到七天划分，却发现并没什么卵用；&lt;/li&gt;
+  &lt;li&gt;思路混乱直接导致代码的混乱，看&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;文件下一大堆各式各样的&lt;code class=&quot;highlighter-rouge&quot;&gt;.sh&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;.awk&lt;/code&gt;，基本上全是用一次就扔的&lt;code class=&quot;highlighter-rouge&quot;&gt;臭代码&lt;/code&gt;。&lt;/li&gt;
+  &lt;li&gt;最终的结果是没有什么技术含量，说白了就是“拼凑”&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不过这也看出了自己的不足————对学习方面的东西简直一窍不通。虽然整天听到什么&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt;这样的词汇，但真正
+想用的时候却发现自己还是没有一点储备量的。毕竟是隔行如隔山，我一个做演化算法的去搞学习，一开始还是有点适应期的。既然发现问题也就得
+解决问题，缺什么补什么，看来接下来花时间好好研究下学习相关内容。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;2.眼高手低&lt;/h3&gt;
+
+&lt;p&gt;比赛初期其实就想系统的看看学习方面的相关知识，借由此契机来入门机器学习。但看到一开始简单处理的数据就在前50内基本上就没准备什么后续
+处理了，随想在临结束前两天被甩出50，然后一跌千里。只有在最后一天才临时抱佛脚的尝试了用&lt;code class=&quot;highlighter-rouge&quot;&gt;tf-idf&lt;/code&gt;以及文本余弦相似度来进行预测，但
+却没有时间了。整个赛季连模型都没有建立更别提什么训练了。只能说，自作孽，不可活。程序员毕竟是个实践的职业，不上手只会&lt;code class=&quot;highlighter-rouge&quot;&gt;Go Die&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;3.数据没有充分利用&lt;/h3&gt;
+
+&lt;p&gt;比赛总共提供了大致三项的可利用信息，一是用户购买历史信息，二是商品的&lt;code class=&quot;highlighter-rouge&quot;&gt;Title&lt;/code&gt;信息，三是商品的图像信息。但自己只是用了用户的购买信息。
+将每个用户的购买信息按时间分成不同&lt;code class=&quot;highlighter-rouge&quot;&gt;session&lt;/code&gt;，然后直接提取来作为搭配。其实通过处理可以发现，购买的历史信息中只存在大约一半的&lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt;
+集中的商品，即一半的要预测的商品并没有出现过购买记录。所以自己这种方案天生的弊端就是一半的商品没法进行搭配。而大量的信息隐藏在
+&lt;code class=&quot;highlighter-rouge&quot;&gt;term&lt;/code&gt;跟&lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt;里边自己却无法利用。看来短板还是很多的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;4.线下评测系统搭建的较晚&lt;/h3&gt;
+
+&lt;p&gt;因为天池只提供一天一次的评测数据的机会，整个来讲还是太少了，有人利用小号来进行评价，可是毕竟没有那么多的手机号。所以搭建一个
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Off-line&lt;/code&gt;的评估系统对整个算法的评测过程来讲还是很重要的。然而自己真正做这个是却是在数据切换之后开始的，也就是说离第一赛季结束
+还有没有几天了，时间太晚了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;收获&lt;/h2&gt;
+
+&lt;p&gt;当然也有些许的收获，毕竟这一遭走下来也并不是纯粹的打酱油下来的。&lt;/p&gt;
+
+&lt;h3 id=&quot;redis&quot;&gt;1.Redis&lt;/h3&gt;
+
+&lt;p&gt;一开始面对这些数据第一反应是导入到数据库里，首先选择的是&lt;code class=&quot;highlighter-rouge&quot;&gt;MySQL&lt;/code&gt;，然而对商品的&lt;code class=&quot;highlighter-rouge&quot;&gt;Term&lt;/code&gt;以及标记的搭配&lt;code class=&quot;highlighter-rouge&quot;&gt;MatchSet&lt;/code&gt;这种长短不一的数据存储就
+犯难了，按照&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;类型存的话每次使用的话还得进行处理，但按照&lt;code class=&quot;highlighter-rouge&quot;&gt;属性-值&lt;/code&gt;存的话长短不一又好处理。于是选择了Redis这个传说中的“数据结构
+数据库”，这样的话存取数据方便多了，而且Redis是对内存的操作，速度上也会很有优势。但后来想到，用Python的数据结构不也可以处理么，用的
+时候把数据&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;内存里，不用的时候将数据&lt;code class=&quot;highlighter-rouge&quot;&gt;dump&lt;/code&gt;到硬盘上。不知到速度上或其他性能上有没有大的区别。不过，Redis毕竟是作为数据库存在的，
+数据库就是一种有条理的对文件的组织形式。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;2.线下评测系统&lt;/h3&gt;
+
+&lt;p&gt;虽然这该线下评测系统写的有点晚，但进行过几次测试与线上测试结果对比发现整个逻辑还是没有问题的，最让自己泪奔的是用&lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;tf-idf&lt;/code&gt;
+文本余弦相似度预测的结果在线下评测是0.008，本来寄希望自己的评测系统写的不准确，水乡在线上测试也是0.008左右，大差不差，这真不知道
+自己到底是该哭还是该笑。唯一的好处是可以自己研究学习的时候来搞着玩了。&lt;/p&gt;
 
 </description>
 				
@@ -106,6 +469,29 @@
 				
 					<description>&lt;h2 id=&quot;redis-&quot;&gt;Redis 总览&lt;/h2&gt;
 
+&lt;p&gt;Redis 全称(REmote DIctionary Service)，远程字典服务，是一个简单易用的&lt;code class=&quot;highlighter-rouge&quot;&gt;Key-Value&lt;/code&gt;数据库。
+Redis是内存数据库，相比其他数据库，其速度是最大的一个优势，但能力大责任就越大，其成本代价则是昂贵的内存。
+虽说现在内存也是白菜价了，但对于动辄就是几十上百个G的数据来说，还是吃不消的。&lt;/p&gt;
+
+&lt;p&gt;Redis 最主要的特点是其丰富的数据类型，创始人 Salvatore Sanfilippo 也将其成为“数据结构服务器”，足以体现其特点。
+除了最基本的&lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;已经&lt;code class=&quot;highlighter-rouge&quot;&gt;numerical&lt;/code&gt;类型，还支持&lt;code class=&quot;highlighter-rouge&quot;&gt;Hash&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;List&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;Set&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;SortedSet&lt;/code&gt;等复杂数据结构，且提供着非常方便的操作方式，简单易用。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;一些资源&lt;/h2&gt;
+
+&lt;p&gt;当然，Redis常见的还是出现在Web Case中，如博客网站或其他类似的社交网站，这里有个&lt;a href=&quot;http://highscalability.com/blog/2011/7/6/11-common-web-use-cases-solved-in-redis.html&quot;&gt;《11个Redis常用Web Case》&lt;/a&gt;。
+至于Redis内容相关，这里的&lt;a href=&quot;http://www.searchdatabase.com.cn/showcontent_70423.htm&quot;&gt;关于Redis的一些常识&lt;/a&gt;，也提供了一些Redis的相关资料。
+不过不管学习什么，有文档最好参考文档，毕竟文档才是王道，&lt;a href=&quot;http://redisdoc.com&quot;&gt;Redis命令参考&lt;/a&gt;，中文版的，简洁易懂。
+发现自己学了这么多年英语，最后还是喜欢看中文文档————除非翻译的实在看不下去。
+这里还有&lt;a href=&quot;http://redis.cn&quot;&gt;Redis中文网站&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;一些常识&lt;/h2&gt;
+
+&lt;p&gt;Redis 的 keys 命名没有什么限制，诸如&lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;都可以用。
+一开始并不清楚，看到好多人命名&lt;code class=&quot;highlighter-rouge&quot;&gt;usr:1:name:zhang&lt;/code&gt;之类的，还以为有什么特别之处，其实并没有什么深层含义，只不过作者建议&lt;code class=&quot;highlighter-rouge&quot;&gt;:&lt;/code&gt;用作字段分隔，&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;号用作单词的连接符，大致是一种约定俗成。
+你想用&lt;code class=&quot;highlighter-rouge&quot;&gt;_&lt;/code&gt;来分隔或连接也并无不可。&lt;/p&gt;
+
+&lt;p&gt;另外Redis的复杂数据类型并不能嵌套使用，也就是说&lt;code class=&quot;highlighter-rouge&quot;&gt;Hash&lt;/code&gt;啊，&lt;code class=&quot;highlighter-rouge&quot;&gt;list&lt;/code&gt;等等里边的value只能是&lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;或者数值类型，与python不同。一开始一直想将一个&lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt;作为value存到一个&lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt;里边，最终发现存的只是&lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt;的key的字符窜而已。&lt;/p&gt;
+
 </description>
 				
 				<pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>
@@ -122,6 +508,20 @@
 				
 				
 					<description>&lt;h2 id=&quot;redis-&quot;&gt;Redis 通配符删除&lt;/h2&gt;
+
+&lt;p&gt;Redis 由于是不支持正则的，只支持通配符的&lt;code class=&quot;highlighter-rouge&quot;&gt;pattern&lt;/code&gt;，诸如&lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;,&lt;code class=&quot;highlighter-rouge&quot;&gt;?&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;[]&lt;/code&gt;，类似这样子：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;keys *
+keys a?c
+keys a[Bb]c
+keys a\*c&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;可是当我准备&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt; key的时候，却发现&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt;又不支持&lt;code class=&quot;highlighter-rouge&quot;&gt;pattern&lt;/code&gt;，这倒又是个头疼的事了，查看下redis的文档，貌似支持&lt;code class=&quot;highlighter-rouge&quot;&gt;pattern&lt;/code&gt;的命令也就寥寥几个，&lt;code class=&quot;highlighter-rouge&quot;&gt;scan&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;sort&lt;/code&gt;之类的。
+怎么办呢，上千万条数据总不能一个一个&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt;吧，外事不决问google，还是求助下大牛们，毕竟我们还是站在巨人的肩膀上的，终于找到这样一个方式：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;redis-cli keys &lt;span class=&quot;s2&quot;&gt;&quot;cat:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:item&quot;&lt;/span&gt; |xargs redis-cli del&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;是通过&lt;code class=&quot;highlighter-rouge&quot;&gt;keys&lt;/code&gt;匹配到所有match的记录后通过&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;命令传递给&lt;code class=&quot;highlighter-rouge&quot;&gt;redis-cli&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt;然后进行删除。需要注意的是&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;后的&lt;code class=&quot;highlighter-rouge&quot;&gt;redis&lt;/code&gt;如果没有设置环境变量的话需要输入绝对路径。&lt;/p&gt;
 
 </description>
 				
@@ -140,6 +540,37 @@
 				
 					<description>&lt;h2 id=&quot;python-io&quot;&gt;Python I/O&lt;/h2&gt;
 
+&lt;p&gt;我们知道，在程序中打开文件的时候，往往需要考虑一些乱七八糟的异常出现的情况，例如文件不存在啦，没有可读可写的权限啦，亦或是硬盘已满。所以我们经常会用到&lt;code class=&quot;highlighter-rouge&quot;&gt;try/except&lt;/code&gt;语句来捕获异常，
+而为了防止文件被破坏，我们还需要&lt;code class=&quot;highlighter-rouge&quot;&gt;finally&lt;/code&gt;语句来保证文件的关闭，如下例子：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;IOError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Error happened!&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这么冗长臃肿的代码，显然不是我们这些强迫症患者所喜爱的，必需要找个方式把他解决掉，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;是python2.5引入的，到了2.6就已经成为默认关键字。加了&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;的代码是以下形式：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;然后我们还可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;nested&lt;/code&gt;这样用：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contextlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nested&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nested&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;从此以后，妈妈再也不用担心我的文件打开后忘记关闭了。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;语句引入了一个“上下文管理协议”(Context Management Protocol)，对资源访问后发生异常能够正常关闭资源。具体实现是通过定义两个方法&lt;code class=&quot;highlighter-rouge&quot;&gt;__enter__()&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;__exit__()&lt;/code&gt;方法来操作。
+这里有一篇参考文献&lt;a href=&quot;https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/&quot;&gt;《浅谈Python的with语句》&lt;/a&gt;。&lt;/p&gt;
 </description>
 				
 				<pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
@@ -155,9 +586,46 @@
 					
 				
 				
-					<description>&lt;p&gt;之前由于&lt;code&gt;Markdown&lt;/code&gt;的引擎问题，导致在&lt;code&gt;md&lt;/code&gt;文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把&lt;code&gt;Markdown&lt;/code&gt;引擎换成了&lt;code&gt;rdiscount&lt;/code&gt;。&lt;br /&gt;
+					<description>&lt;p&gt;之前由于&lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt;的引擎问题，导致在&lt;code class=&quot;highlighter-rouge&quot;&gt;md&lt;/code&gt;文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把&lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt;引擎换成了&lt;code class=&quot;highlighter-rouge&quot;&gt;rdiscount&lt;/code&gt;。
 在笔记本上实验成功，分段的话需要空一行。&lt;/p&gt;
 
+&lt;p&gt;然后回到实验时&lt;code class=&quot;highlighter-rouge&quot;&gt;yekyll server&lt;/code&gt;的时候报错了，发现并没有安装&lt;code class=&quot;highlighter-rouge&quot;&gt;rdiscount&lt;/code&gt;软件包。这个简单，&lt;code class=&quot;highlighter-rouge&quot;&gt;gem install&lt;/code&gt;一下就可以了。可是可是，事与愿违&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install rdiscount
+ERROR:  Could not find a valid gem &lt;span class=&quot;s1&quot;&gt;&#39;rdiscount&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://ruby.taobao.org/specs.4.8.gz&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;看来是&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; --remove http://ruby.taobao.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; -a https://ruby.taobao.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install rdiscount
+ERROR:  While executing gem ... &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Gem::FilePermissionError&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+You don&lt;span class=&quot;s1&quot;&gt;&#39;t have write permissions for the /var/lib/gems/2.1.0 directory.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;需要&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;用户权限，那就&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo !!&lt;/code&gt;，可是，老问题又出现了。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo !!
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install rdiscount
+ERROR:  Could not find a valid gem &lt;span class=&quot;s1&quot;&gt;&#39;rdiscount&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, here is why:
+Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://ruby.taobao.org/specs.4.8.gz&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;想起来了，只是给当前用户修改了&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;还没改呢。好吧，那就继续改掉&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; --remove http://ruby.taobao.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; -a https://ruby.taobao.org/
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install rdiscount
+Fetching: rdiscount-2.1.8.gem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Building native extensions.  This could take a &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;...
+Successfully installed rdiscount-2.1.8
+Parsing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount-2.1.8
+Installing ri documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount-2.1.8
+Done installing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount after 0 seconds
+1 gem installed&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;现在问题解决了，终于可以启动&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll server&lt;/code&gt;了。&lt;/p&gt;
+
+&lt;p&gt;不过后来看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gem source&lt;/code&gt;配置其实都在&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.gemrc&lt;/code&gt;里边，想修改&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;只要&lt;code class=&quot;highlighter-rouge&quot;&gt;vim ~/.gemrc&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;/root/.gemrc&lt;/code&gt;就可以了，真是后知后觉。&lt;/p&gt;
 </description>
 				
 				<pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
@@ -174,6 +642,43 @@
 				
 				
 					<description>&lt;p&gt;Git——一个由大神Linus花两周写的C版本的分布式版本控制器，又一款神话般的大作，真可谓Linus出品，必属精品。有机会一定要膜拜下Git的源码。&lt;/p&gt;
+
+&lt;p&gt;而Github则又是最流行的Git访问网站，现在可以说已经是世界上最大的代码存放库。&lt;/p&gt;
+
+&lt;p&gt;这么NB的工具以及这么NB的站点，自己怎么能不跟下风呢？我也来记录下自己的Git使用过程。&lt;/p&gt;
+
+&lt;p&gt;最初接触Github已经不记得是什么时候了，但最初使用还是从建博开始。当时由于被各种酷炫的个人博客所诱惑，于是乎花了些时间与脑细胞来搭了个自己的博客。&lt;/p&gt;
+
+&lt;p&gt;对于Github使用，简单来讲只有下面的几条命令就OK了。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git add -A
+git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;The Code Information&quot;&lt;/span&gt;
+git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;将要提交的文件放到一个缓存区(index)里边,其中&lt;code class=&quot;highlighter-rouge&quot;&gt;-A&lt;/code&gt;命令是将仓库中所有的修改的文件都提交，包括新添加的以及以及删除掉的文件信息。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;则将缓存区中的文件提交到当前的分支(branch)中，这里边需要&lt;code class=&quot;highlighter-rouge&quot;&gt;-m&lt;/code&gt;命令来添加本次提交代码说明，否则大家提交代码时你一个版本我一个版本没有任何说明就没办法来管理了。
+最后由&lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;来将本地的分支推送到远程（这里一般用Github）的相应的分支(master)上去。当然，在&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;命令之前首先要&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add&lt;/code&gt;命令来链接远程仓库。&lt;/p&gt;
+
+&lt;p&gt;还有一条就是&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git status&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;用来查看当前缓存区状态，或者说来查看当前工作区域与缓存区域有什么区别。&lt;/p&gt;
+
+&lt;p&gt;基本上这四条命令是我使用最频繁的，不过可能还有一点小小的瑕疵，比如说某天我可能突然失手把一些重要的私人信息给&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;了，这该怎么办。
+我们可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout --file&lt;/code&gt;来撤消掉对缓存区的&lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt;的修改，而又有可能，我不仅&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;到缓存区，甚至还&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;提交到了分支上去。
+不过还好，只要文件还在本地就没问题的，我们可以&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset HEAD file&lt;/code&gt;来撤销分支里边&lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt;的修改。&lt;/p&gt;
+
+&lt;p&gt;对于维护一个博客来讲，这些个命令基本上以经足够了。&lt;/p&gt;
+
+&lt;p&gt;当然，我们现在使用电脑往往不止一台，比如说学校或者公司有一台，家里又有一台。但如果我可能在两台以上的电脑上更新博客的话，这样会导致我这两台电脑上本地博客进度不统一怎么办。
+还好Git天生就是为解决这些个项目中的分支与冲突而存在的。&lt;/p&gt;
+
+&lt;p&gt;我们可以在每次写博前先从Github里同步到本地&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;然后再继续写完之后进行&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;。&lt;/p&gt;
 
 </description>
 				
