@@ -10,11 +10,9 @@ Python with 语句 | Meta Coder
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
-
 <!-- include Font Awesome -->
 <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
 <!-- include Font Awesome -->
-
 <!-- icons -->
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
@@ -24,7 +22,6 @@ Python with 语句 | Meta Coder
 <meta name="msapplication-TileColor" content="#00f0ff">
 <meta name="msapplication-TileImage" content="/mstile-310x310.png">
 <!-- /icons -->
-
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
 <meta property="og:title" content="Python with 语句 • Meta Coder">
@@ -41,7 +38,6 @@ Python with 语句 | Meta Coder
 Reading, Thinking, Coding
 ">
 <!-- /og tags -->
-
 <script src="/js/jquery-2.1.4.min.js"></script>
 <script src="/js/modernizr.js"></script>
 <script src="/js/fitvids.js"></script>
@@ -70,11 +66,12 @@ $(document).ready(function () {
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="/css/style.css">
-
 <!-- FancyBox -->
 <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
 <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
 <script>
 // 给图片添加链接
 $(document).ready(function() {
@@ -103,6 +100,15 @@ $(".fancybox").fancybox({
     }
   }
 });
+</script>
+<!-- lazyload -->
+<script type="text/javascript">
+    $(function () {
+      $("p").find('img').lazyload({
+        placeholder: "/img/loading.gif",
+        effect: "fadeIn"
+      });
+    });
 </script>
 <!--[if gte IE 9]>
   <style type="text/css">

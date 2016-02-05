@@ -9,11 +9,9 @@
 </title>
 <meta name="description" content="{{ page.summary }} {{ site.description.meta }}">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ site.baseurl }}/feed.xml">
-
 <!-- include Font Awesome -->
 <link rel="stylesheet" href="{{ site.baseurl }}/font_awesome/css/font-awesome.min.css" >
 <!-- include Font Awesome -->
-
 <!-- icons -->
 <link rel="apple-touch-icon" href="{{ site.baseurl }}/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon-96x96.png" sizes="96x96">
@@ -23,7 +21,6 @@
 <meta name="msapplication-TileColor" content="{{ site.ms-tile-color }}">
 <meta name="msapplication-TileImage" content="{{ site.baseurl }}/mstile-310x310.png">
 <!-- /icons -->
-
 <!-- og tags -->
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:title" content="{% if page.title %}{{ page.title }} • {{ site.name }}{% else %}{{ site.name }}{% endif %}">
@@ -46,7 +43,6 @@
 {{ site.description.meta }}
 {% endif %}">
 <!-- /og tags -->
-
 <script src="{{ site.baseurl }}/js/jquery-2.1.4.min.js"></script>
 <script src="{{ site.baseurl }}/js/modernizr.js"></script>
 <script src="{{ site.baseurl }}/js/fitvids.js"></script>
@@ -75,11 +71,12 @@ $(document).ready(function () {
     <link rel="stylesheet" href="{{ site.baseurl }}/font_awesome/css/font-awesome.min.css">
 {% endif %}
 <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
-
 <!-- FancyBox -->
 <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
 <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
 <script>
 // 给图片添加链接
 $(document).ready(function() {
@@ -108,6 +105,15 @@ $(".fancybox").fancybox({
     }
   }
 });
+</script>
+<!-- lazyload -->
+<script type="text/javascript">
+    $(function () {
+      $("p").find('img').lazyload({
+        placeholder: "/img/loading.gif",
+        effect: "fadeIn"
+      });
+    });
 </script>
 <!--[if gte IE 9]>
   <style type="text/css">
