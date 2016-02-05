@@ -70,8 +70,6 @@ $(document).ready(function () {
 <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
 <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
-<!-- lazyload -->
-<script type="text/javascript" src="/js/lazyload.js"></script>
 <script>
 // 给图片添加链接
 $(document).ready(function() {
@@ -100,15 +98,6 @@ $(".fancybox").fancybox({
     }
   }
 });
-</script>
-<!-- lazyload -->
-<script type="text/javascript">
-    $(function () {
-      $("p").find('img').lazyload({
-        placeholder: "/img/loading.gif",
-        effect: "fadeIn"
-      });
-    });
 </script>
 <!--[if gte IE 9]>
   <style type="text/css">
