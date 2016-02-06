@@ -19,8 +19,8 @@
           </a>
         </div>
         {% endif %}
+        {% include header.html %}
         <div class="wrap">
-            {% include header.html %}
             {{ content }}
             <script>
                 $("article").fitVids();

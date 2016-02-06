@@ -75,6 +75,7 @@ nav-breaking-point: 520px
 # Pagination
 gems:
     - jekyll-paginate
+
 # Number of posts on each page.
 paginate: 5
 
@@ -142,7 +143,6 @@ var_post_by: Post by
 var_guest_post_by: Guest post by
 var_your_email: Your email
 var_your_message: Your message
-
 
 ##################
 # BUILD SETTINGS #

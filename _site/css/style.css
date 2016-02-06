@@ -58,6 +58,9 @@ a {
   /*background-size: 1px 1px;*/
   /*background-position: 0 87%;*/
 }
+a:hover{
+    color:rgba(0, 0, 0, 1);
+}
 .no-cssgradients a {
   text-decoration: underline;
 }
@@ -267,7 +270,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
   height: 141px;
 }
 header {
-  padding-top: 20px;
+  padding-top: 10px;
   position: relative;
   color: rgba(0, 0, 0,.5);
 }
@@ -276,6 +279,7 @@ header img {
   display: inline-block;
 }
 nav {
+  font-family: "Source Sans Pro", Verdana, sans-serif;
   margin: 20px 0;
 }
 article {
@@ -483,8 +487,8 @@ nav a.current {
   nav {
     font-family: "Source Sans Pro", Verdana, sans-serif;
     position: absolute;
-    top: 37px;
-    right: 0;
+    top: 25px;
+    right: 5px;
     margin: 0;
     font-size: 24px;
     font-weight: 600;
