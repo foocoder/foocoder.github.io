@@ -488,12 +488,14 @@ a.booklink{
 @media all and (min-width: 520px) {
   .website-title {
     text-align: left;
+    margin-bottom: 80px;
+    margin-left: 15px;
   }
   nav {
     font-family: "Source Sans Pro", Verdana, sans-serif;
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 15px;
     margin: 0;
     font-size: 24px;
     font-weight: 600;
@@ -503,9 +505,6 @@ a.booklink{
     color: rgba(0, 0, 0, .76);
     display: inline-block;
     padding: 5px 5px;
-  }
-  .website-title {
-    margin-bottom: 80px;
   }
 }
 @media all and (min-width: 760px) {
