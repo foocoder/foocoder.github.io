@@ -329,6 +329,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 .pagination {
+  display:block;
   margin-top: -30px;
   font-family: "Source Sans Pro", Verdana, sans-serif;
   font-weight: 600;
@@ -339,7 +340,7 @@ input[type="submit"] {
   text-decoration: none !important;
 }
 .pagination .disabled {
-  color: rgba({{ site.text-color }},.1);
+  color: rgba({{ site.text-color }},.2);
 }
 .pagination .left {
   float: left;
