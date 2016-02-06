@@ -1,10 +1,11 @@
 ---
 layout: default
 ---
+<h1>{{ page.title }}</h1>
+<hr>
 <div class="row">
   <div class="col-md-13 aside3-title">
     <br>
-    <h2 id="#identifier">{{ page.title }}</h2>
   </div>
   <div class="col-md-13 aside3-content">
     <br />
@@ -15,25 +16,32 @@ layout: default
     <div class="row">
       {% for book in page.books %}
         <div class="col-md-12">
-          <div class="panel panel-primary">
+          <div class="panel panel-default">
             <div class="panel-heading">{{ book.title }}</div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-4 col-xs-12 center">
-                  <img src="{{ book.cover }}" alt="cover" class="img-thumbnail">
+                    <table class="table table-bordered" style="border:#FFF">
+                        <tbody>
+                            <tr><td><p class="img-with-source" ><img src="/img/books/{{ book.cover }}" alt="{{ book.title }}" class="img-thumbnail"></p></td></tr>
+                        </tbody>
+                  </table>
                 </div>
                 <div class="col-md-8 col-xs-12">
                   <table class="table table-bordered">
                     <tbody>
                       <tr><td style="width:80px;">作者</td><td>{{ book.author }}</td></tr>
-                      <tr><td>出版商</td><td>{{ book.publisher }}</td></tr>
+                      {% if book.origin_title %}
+                      <tr><td>原作名</td><td>{{ book.origin_title }}</td></tr>
+                      {% endif %}
+                      {% if book.translator %}
+                      <tr><td>译者</td><td>{{ book.translator }}</td></tr>
+                      {% endif %}
+                      <tr><td>出版社</td><td>{{ book.publisher }}</td></tr>
                       <tr><td>语言</td><td>{{ book.language }}</td></tr>
-                      <tr>
-                        <td>链接</td><td>
-                        <a href="{{ book.link }}" title="{{ book.link }}">图书链接</a>
-                      </td></tr>
-                      <tr>
-                        <td>状态</td>
+                      <tr><td>豆瓣链接</td><td><a class="booklink" target="_blank" href="https://book.douban.com/subject/{{ book.link }}" title="{{ book.link }}">图书链接</a> </td></tr>
+                      <tr><td>豆瓣评分</td><td><span>{{ book.score }}</span></td></tr>
+                      <tr><td>状态</td>
                         <td>
                           {% if book.status == '已读' %}
                             <span class="label label-success">{{ book.status }}</span>
@@ -42,14 +50,28 @@ layout: default
                           {% elsif book.status == '未读' %}
                             <span class="label label-default">{{ book.status }}</span>
                           {% endif %}
-                        </td></tr>
+                        </td>
+                      </tr>
+                      {% if book.description %}
                       <tr><td>评论</td><td>{{ book.description }}</td></tr>
+                      {% endif %}
+                      {% if book.tags %}
+                      <tr>
+                          <td>标签</td>
+                          <td>
+                              {% for tag in book.tags %}
+                                <span class="label label-default">{{ tag }}</span>
+                              {% endfor %}
+                          </td>
+                      </tr>
+                      {% endif %}
+                      <tr><td>阅读时间</td><td>{{ book.start_time }} ~ {{ book.end_time }}</td></tr>
                     </tbody>
                   </table>
                 </div>
-              </div>  
+              </div>
             </div>
-          </div>      
+          </div>
         </div>
       {% endfor %}
     </div>

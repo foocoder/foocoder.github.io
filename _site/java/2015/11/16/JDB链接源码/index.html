@@ -65,6 +65,8 @@ $(document).ready(function () {
 
     <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/style.css">
 <!--[if gte IE 9]>
   <style type="text/css">
@@ -207,8 +209,6 @@ header::after {
 
 
 
-
-
 <div id="disqus_thread"></div>
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -231,9 +231,42 @@ var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your f
                         $(this).addClass('img-only');
                     }
                     if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
-                        $(this).addClass('img-only-source');
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
                     }
                 });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
             </script>
         </div>
         <footer>

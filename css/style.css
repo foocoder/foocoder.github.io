@@ -20,7 +20,8 @@
 
 body {
   font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Hiragino Sans GB", Arial, "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.42857143;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   color: rgba({{ site.text-color }}, .76);
@@ -46,7 +47,8 @@ i, em {
   /*font-style: italic;*/
 }
 a {
-  color: inherit;
+  /*color: inherit;*/
+  color: rgba({{ site.text-color }}, .76);
   text-decoration: none;
   position: relative;
    /*background: -webkit-linear-gradient(rgba({{ site.text-color }},.76),rgba({{ site.text-color }},.76)); */
@@ -91,11 +93,11 @@ img {
   margin: 0 auto;
 }
 .img-only {
-  margin: 0 15px;
+  /*margin: 0 15px;*/
   background-color: rgba({{ site.text-color }},.05);
 }
-.img-only-source {
-  margin: 0 15px;
+.img-with-source {
+  /*margin: 0 15px;*/
   width:80%;
   text-align: center;
 }
@@ -136,7 +138,7 @@ h3, h4, h5, h6 {
 }
 table {
   border-collapse: collapse;
-  margin: 30px auto;
+  margin: 20px auto;
 }
 td, th {
   padding: .8rem
@@ -172,11 +174,9 @@ blockquote::after {
   font-style: normal;
 }
 blockquote::before {
-  content: "“";
   margin-top: 30px;
 }
 blockquote::after {
-  content: "”";
   margin-bottom: 30px;
 }
 code {
@@ -396,6 +396,7 @@ p .pic-title span{
     line-height: 1.7;
 }
 nav a {
+  color: rgba({{ site.text-color }}, .76);
   display: block;
   padding: 5px;
   text-align: center;
@@ -411,6 +412,9 @@ nav a:hover {
 }
 nav a.current {
   color: rgba({{ site.text-color }}, .76)
+}
+a.booklink{
+    color:rgba(149, 0, 0, 0.5);
 }
 .subtitle {
   font-size:22px;
@@ -434,7 +438,7 @@ nav a.current {
     font-size: 22px;
   }
 }
-@media all and (min-width: 850px) {
+@media all and (min-width: 550px) {
   .wrap {
     padding: 0 30px;
   }
@@ -455,7 +459,7 @@ nav a.current {
     text-align: -webkit-auto;
   }
   table {
-    margin: 40px auto;
+    margin: 20px auto;
   }
   article::after,
   header::after {
@@ -464,7 +468,7 @@ nav a.current {
   .img-only {
     margin: 0 30px;
   }
-  .img-only-source {
+  .img-with-source {
     margin: 0 30px;
   }
   blockquote {
@@ -482,14 +486,15 @@ nav a.current {
   nav {
     font-family: "Source Sans Pro", Verdana, sans-serif;
     position: absolute;
-    top: 25px;
-    right: 5px;
+    top: 20px;
+    right: 20px;
     margin: 0;
     font-size: 24px;
     font-weight: 600;
     color: rgba({{ site.text-color }}, .76);
   }
   nav a {
+    color: rgba({{ site.text-color }}, .76);
     display: inline-block;
     padding: 5px 5px;
   }
@@ -530,6 +535,10 @@ p a:hover{
   position: fixed;
   bottom: 30px;
   margin-left: 80%;
+  z-index: 9999;
+  color:rgba({{ site.text-color }},.5);
+}
+#back-top a{
   color:rgba({{ site.text-color }},.5);
 }
 #back-top a:hover{
