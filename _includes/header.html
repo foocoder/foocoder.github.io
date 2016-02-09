@@ -1,17 +1,3 @@
-<!--<header>
-    <div class="website-title">
-  <a href="{{ site.baseurl }}/">
-    {% if site.logo-image %}
-      <img alt="{{ site.name }}" src="{{ site.baseurl }}{{ site.logo-image }}" style="height:100%">
-    {% else %}
-      {{ site.name }}
-    {% endif %}
-  </a>
-  </div>
-  {% if page.home and site.show-subtitle or page.home and site.display-social-icons %}
-{% include subtitle.html %}
-  {% endif %}
-</header>-->
 <header class="intro-header-container" style="background-image: url('{{ site.baseurl }}/img/covers/{{ page.cover-image }}'); background-size:cover">
   <div class="intro-header">
     <div class="container">
@@ -22,6 +8,178 @@
                     <h1>{{ page.title }}</h1>
                     <hr class="small">
                     <span class="subheading">{{ page.subtitle }}</span>
+                        {% if page.home %}
+                            <p>
+                            {% if site.twitter %}
+                                <a href="{{ site.twitter }}" >
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.youtube %}
+                                <a href="{{ site.youtube }}" >
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.instagram %}
+                                <a href="{{ site.instagram }}" >
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.tumblr %}
+                                <a href="{{ site.tumblr }}" >
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-tumblr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.facebook %}
+                                <a href="{{ site.facebook }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook-official fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.google-plus %}
+                                <a href="{{ site.google-plus }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.flickr %}
+                                <a href="{{ site.flickr }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.reddit %}
+                                <a href="{{ site.reddit }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.soundcloud %}
+                                <a href="{{ site.soundcloud }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-soundcloud fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.medium %}
+                                <a href="{{ site.medium }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-medium fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.linkedin %}
+                                <a href="{{ site.linkedin }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.github %}
+                                <a href="{{ site.github }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.behance %}
+                                <a href="{{ site.behance }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-behance fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.codepen %}
+                                <a href="{{ site.codepen }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-codepen fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.dribbble %}
+                                <a href="{{ site.dribbble }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-dribbble fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.trello %}
+                                <a href="{{ site.trello }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-trello fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.stack-overflow %}
+                                <a href="{{ site.stack-overflow }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.bitcoin %}
+                                <a href="{{ site.bitcoin }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-bitcoin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.paypal %}
+                                <a href="{{ site.paypal }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-paypal fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.weibo %}
+                                <a href="{{ site.weibo }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                            {% if site.zhihu %}
+                                <a href="{{ site.zhihu }}">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x " ></i>
+                                        <i class="fa fa-stack-1x fa-inverse">知</i>
+                                    </span>
+                                </a>
+                            {% endif %}
+                          </p>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
