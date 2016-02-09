@@ -1,4 +1,4 @@
-<header>
+<!--<header>
     <div class="website-title">
   <a href="{{ site.baseurl }}/">
     {% if site.logo-image %}
@@ -8,8 +8,25 @@
     {% endif %}
   </a>
   </div>
-  {% include navigation.html %}
   {% if page.home and site.show-subtitle or page.home and site.display-social-icons %}
 {% include subtitle.html %}
   {% endif %}
+</header>-->
+<header class="intro-header-container" style="background-image: url('{{ site.baseurl }}/img/covers/{{ page.cover-image }}'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    {% if page.layout == "default" or page.layout == "book" %}
+                    <h1>{{ page.title }}</h1>
+                    <hr class="small">
+                    <span class="subheading">{{ page.subtitle }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 </header>
+{% include navigation.html %}

@@ -1,12 +1,12 @@
 ---
 title: Gallery
-layout: page
+subtitle: the Classification of Articles
+layout: default
 cover-image: 7.jpg
 ---
 
 
   {% for category in site.categories %}
-    <hr>
         <h2 class="fa fa-coffee" style="font-size:large" id="{{ category|first }}">
             {{ category | first | capitalize }}
             <span>({{ category | last | size }})</span>

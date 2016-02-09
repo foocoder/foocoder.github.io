@@ -1,10 +1,10 @@
 ---
-layout: page
-title: About
+layout: default
+title: About Me
+subtitle: A little Code Money
 cover-image: 6.jpg
 ---
 
----
 Hey! This is ***Meta Coder***!
 
 本人安徽大学尚未毕业的小硕一枚～

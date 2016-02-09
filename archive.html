@@ -1,6 +1,7 @@
 ---
 title: Time Machine
-layout: page
+subtitle: Meta Coder's Timeline
+layout: default
 cover-image: 4.jpg
 ---
 
@@ -8,7 +9,6 @@ cover-image: 4.jpg
   {% for post in site.posts %}
 
     {% unless post.next %}
-      <hr>
       <h2 class="fa fa-laptop" style="font-size:large">
           <span>{{ post.date | date: '%B,%Y' }}</span>
       </h2>
