@@ -18,7 +18,7 @@ author:
 
   # Optional text (html) to display after author name. Leave empty if you don't
   # want it.
-  info: who is just a Coder Monkey!
+  info:
 
 url: http://foocoder.github.io
 baseurl: ""
