@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Python引用与复制 | Meta Coder
+Blue Screen,Page-Fault-In-Non-Paged-Area修复历程 | Meta Coder
 
 </title>
-<meta name="description" content=" Reading, Thinking, Coding">
+<meta name="description" content="Page-Fualt-In-Non-Paged-Area， 听名字就能看出来，是由于种种原因想要访问Non-Paged区域，从而导致系统的crash蓝屏。 Reading, Thinking, Coding">
 <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
 <!-- include Font Awesome -->
 <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
@@ -24,7 +24,7 @@ Python引用与复制 | Meta Coder
 <!-- /icons -->
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Python引用与复制 • Meta Coder">
+<meta property="og:title" content="Blue Screen,Page-Fault-In-Non-Paged-Area修复历程 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
@@ -32,10 +32,10 @@ Python引用与复制 | Meta Coder
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://foocoder.github.io/python/2015/11/19/Python%E5%BC%95%E7%94%A8%E4%B8%8E%E5%A4%8D%E5%88%B6/">
+<meta property="og:url" content="http://foocoder.github.io/windows/2016/02/10/BlueScreenPageFaultInNoPagedAree%E4%BF%AE%E5%A4%8D%E5%8E%86%E7%A8%8B/">
 <meta property="og:description" content="
 
-Reading, Thinking, Coding
+Page-Fualt-In-Non-Paged-Area， 听名字就能看出来，是由于种种原因想要访问Non-Paged区域，从而导致系统的crash蓝屏。
 ">
 <!-- /og tags -->
 <script src="/js/jquery-2.1.4.min.js"></script>
@@ -219,86 +219,115 @@ header::after {
 
 
 <article>
-        <h1>Python引用与复制</h1>
+        <h1>Blue Screen,Page-Fault-In-Non-Paged-Area修复历程</h1>
         <div class="category">
             
-                <a class="fa fa-coffee" style="font-size:large" href="/category/#Python" title="Python"> Python</a>
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Windows" title="Windows"> Windows</a>
             
         </div>
         <div class="tags">
             
-            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Python" title="Python">  Python</a>
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#BlueScreen" title="BlueScreen">  BlueScreen</a>
             
-            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Code" title="Code">  Code</a>
-            
-            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#学习笔记" title="学习笔记">  学习笔记</a>
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Windows" title="Windows">  Windows</a>
             
         </div>
         <div class="times">
-            <span class="fa fa-calendar"style="font-size:large" > Nov 19, 2015 • 1&nbsp;min read</span>
+            <span class="fa fa-calendar"style="font-size:large" > Feb 10, 2016 • Less than a minute read</span>
         </div>
 
         <hr>
-        <p>Java中除了8中primitive主数据类型外，其他类型基本都是引用(Reference)，所以对其的复制我们需要时刻小心究竟是
-要对该对象进行一个链接的指向还是要将其复制(Copy)一份。而Python的使用感觉跟java类似，我们也需要关注着复制过
-来的究竟是个Reference还是整个的Copy。</p>
+        <p>本身平时都基本脱离了Windows的魔爪，因为Linux下的工作效率真是杠杠的。
+因此也只有在假期的时候会开个Windows来休闲娱乐下，打打游戏什么的，毕竟Linux环境的游戏还真没玩过几个。</p>
 
-<p>在python中，<strong>赋值操作总是存储对象的引用，而不是这些对象的拷贝</strong>，比如下边一个例子：</p>
+<p>然而天不遂人意，不晓得前一天游戏的时候装了什么插件，直接导致今天进入Windows时中头彩，蓝屏了。
+欲哭无泪，话说本来自个没准备折腾它，没想到它却过来折腾我了。没办法，解决问题吧先。</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span>
-<span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></figure>
+<p><code class="highlighter-rouge">Page-Fualt-In-Non-Paged-Area</code>，从名字中我们能看出来，问题应该是一个不知道什么玩意的想要访问系统的<code class="highlighter-rouge">Non-Paged</code>区域，从而引起的<code class="highlighter-rouge">BSOD</code>。
+感觉有点像平时程序里遇到的<code class="highlighter-rouge">野指针</code>的感觉，估摸着是内存泄露了把。
+如果是自个的程序还好，好歹能跟踪<code class="highlighter-rouge">Debug</code>下，但这么大个的Windows，该怎么下手？
+心想还是先Google下吧，找找经验之谈。</p>
 
-<p>c列表中是直接对a,b列表的一个引用，所以一旦a,b指向的对象发生变化，c列表也会改变。</p>
+<h2 id="section">安全模式启动</h2>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">'123'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span>
-<span class="p">[[</span><span class="s">'123'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></figure>
+<p>解铃还须系铃人， 要解决问题，最好还是先安全模式启动Windows， 然后排查错误。
+不过现在面临的尴尬问题是，Win8的安全模式设置已经不是在开机黑屏的间隔时狂按<code class="highlighter-rouge">F8</code>就可以进入的。
+需要在进入系统后通过<code class="highlighter-rouge">msconfig</code>设置，亦或是<code class="highlighter-rouge">shift</code>+<code class="highlighter-rouge">重启</code>来开启安全模式。
+然而我的系统现在连系统的登陆界面还没到的时候就<code class="highlighter-rouge">BlueScreen</code>了，哪能进入系统设置呢？</p>
 
-<p>这样可以在程序传递较大的对象而不必将其整个内容进行拷贝。不过有时候我们可能确实需要对对象进行拷贝有该怎么办？
-参见《Python学习手册》提供四种明确拷贝的方式:</p>
+<p>既然想通过Windows本身的接口不能进入安全模式，只能通过修改<code class="highlighter-rouge">boot</code>的配置文件或者利用第三方工具了。
+于是自己找来一个<code class="highlighter-rouge">Winpe</code>先引导进入<code class="highlighter-rouge">Winpe</code>系统， 好在工具包里个<code class="highlighter-rouge">BCDTool</code>可以修改系统引导项。
+在<code class="highlighter-rouge">BCDTool</code>中，找到<code class="highlighter-rouge">Windows Load Manager</code>，可以看到下边有一个启动项，该启动项是我出问题的启动项。
+先复制该启动项并创建一个新的，然后可以将之名称<code class="highlighter-rouge">description</code>修改为<code class="highlighter-rouge">SafeMode</code>。
+之后在新的启动项下添加参数<code class="highlighter-rouge">safeboot</code>，并将值设为<code class="highlighter-rouge">Minimal</code>，意味最小化加载系统驱动什么的。
+还有参数<code class="highlighter-rouge">Network</code>，即带网络的安全模式。
+不过也可以在<code class="highlighter-rouge">Windows Load Manager</code>里边添加参数<code class="highlighter-rouge">displaybootmenu</code>，值为<code class="highlighter-rouge">yes</code>，这样就可以在进入Windows时显示启动选项，然后选择进入安全模式。</p>
 
-<ul>
-  <li>没有限制条件的分片表达式(L[:])能够复制序列;</li>
-  <li>字典中的Copy方法(X.copy())能够复制字典;</li>
-  <li>一些内置函数(如，list)能够生成拷贝(list(L));</li>
-  <li>copy标准库模块能够生成完整拷贝。</li>
-</ul>
+<p>启动项设置好后，就可以重新启动了。
+进入启动项的界面，会发现比之前多了个<code class="highlighter-rouge">SafeMode</code>的选项，然后选择进入。
+哈哈，终于完成了第一步，好歹总算是进入了系统。</p>
 
-<p>但需要注意的是，前三项的复制方式都只能算是浅复制，只有copy标准库中的<code class="highlighter-rouge">copy.deepcopy()</code>才能提供深复制。那什么是
-浅复制和深复制呢？</p>
+<h2 id="fix-page-fault-in-nonpaged-area">Fix Page Fault in Nonpaged Area</h2>
 
-<p><strong>浅复制</strong>：当我们呢的list中含有其他的嵌套对象时，浅复制会将list中的所有项简单的复制到另一个list，也就是说，list中最顶层的元素是什么，它复制的就是什么，
-例如第一个例子中，c列表中包含的是a,b列表的引用，所以浅复制的话只是简单的将a,b,这两个引用复制到另一个list中，而如果a,b列表中的
-值改变的话，新的list值也会改变，所以并没有摆脱与旧list的关系。</p>
+<p>一般出现蓝屏后可能由许多问题导致，比如添加硬件，更新驱动，添加软件等等。
+如果是上述原因的话，那么第一步就是先把添加的卸掉，更新的驱动回滚原版。
+这样或多或少能解决一部分通用蓝屏问题。
+针对<code class="highlighter-rouge">Page-Fault-In-Non-Paged-Aree</code>问题，大致有这么三种解决方式，下面一一列举出来。</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">c</span><span class="p">[:]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">copy</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">'test'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
-<span class="p">[[</span><span class="s">'test'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">e</span>
-<span class="p">[[</span><span class="s">'test'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span>
-<span class="p">[[</span><span class="s">'test'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></figure>
+<h3 id="section-1">重设虚拟内存</h3>
 
-<p>我们可以看到无条件值的分片以及<code class="highlighter-rouge">list</code>内置函数以及<code class="highlighter-rouge">copy.copy()</code>方法进行的都是浅复制，在a列表改变之后新的list值也会改变了。</p>
+<p>在电脑属性&gt;高级设置&gt;性能 里边来修改系统的虚拟内存。
+首先将已经勾选的 “自动管理所有驱动器的分页文件大小”， 选择”无分页文件“，之后应用并重启，使配置生效。
+接下来继续进入虚拟内存的配置界面，在下边勾选”系统管理的大小“，然后勾选”自动管理所有驱动器的分页文件大小“。然后再应用并重启。
+大致意思是重新分配下虚拟内存的<code class="highlighter-rouge">Pagefile</code>。</p>
 
-<p><strong>深复制</strong>:有时候我们需要的是对整个list以及list中的list甚至list中的list中的list的等等全部嵌套的完整的完全独立的一个
-复制，需要跟旧有的list完全脱离关系，这时候就只能用到深拷贝，也就是copy模块中的<code class="highlighter-rouge">copy.deepcopy()</code>来执行。</p>
+<h3 id="chkdsk">ChkDSK</h3>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">'testdeepcopy'</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">g</span>
-<span class="p">[[</span><span class="s">'test'</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span></code></pre></figure>
+<p>另一个方式是利用系统的<code class="highlighter-rouge">ChkDsk</code>自动扫描并修复硬盘。
+因为<code class="highlighter-rouge">pagefile.sys</code>文件在C盘，所以可以的C盘进行下扫描修复，查看下有没有坏道什么的。
+这也有可能导致<code class="highlighter-rouge">Page-Fault</code>的蓝屏问题。</p>
+
+<p>具体执行就是打开<code class="highlighter-rouge">cmd</code>然后输入<code class="highlighter-rouge">ChkDSK /f /r c:</code>。
+其中<code class="highlighter-rouge">/f</code>参数是指要求修复磁盘上的错误。
+<code class="highlighter-rouge">/r</code>参数是指找到坏扇区并且回复可读取的信息。
+然后修复完成再查看问题有没解决。</p>
+
+<h3 id="check-memory">Check Memory</h3>
+
+<p>还有一个可能就是内存的损坏也会有可能导致该问题。
+所以可以利用一些内存检查的软件来<code class="highlighter-rouge">check</code>下内存是否存在问题。
+或是是将内存条拔下来擦拭一下内存条的金手指。</p>
+
+<h3 id="others">Others</h3>
+
+<p>当然，导致<code class="highlighter-rouge">BSOD</code>的原因往往不止这么几种。
+各种各样的奇葩原因都能看的到。刚才就查到一个由于电源供电不足导致的。
+不过因为自己不怎么玩硬件，所以这一类问题还是可以避免的。
+当然，最好的解决方式就是备份还原点。出现问题的话只要还原到最近一次正常的还原点上就好了。
+能够秒杀掉一大堆莫名奇妙的问题，简直是神器！
+不过本人由于偷懒的性格，很少吧备份，而且也舍不得还原点占的空间。
+所以导致每次出问题都只能靠手动来解决。</p>
+
+<h2 id="blue-screen-view">Blue Screen View</h2>
+
+<p>问题解决了，系统又能进入了，开心。
+但是究竟是什么导致的蓝屏，是装的什么软件还是什么乱七八糟的驱动，总得像个办法把找出原因来，不然也不符合本人这睚疵必报的性格。</p>
+
+<p>一般Windows蓝屏之后都去会生成内存转储的文件，<code class="highlighter-rouge">Memory.dmp</code>。
+里边包含了故障发生前的程序信息。
+不过由于修炼的不够，自个读这个二进制文件还是很痛苦的。
+好歹我们是站在巨人的肩膀上的。
+因此我们可以借助<code class="highlighter-rouge">Blue Screen View</code>这个程序来分析蓝屏生成的内存转储文件。
+里边会详细显示出系统崩溃时的文件以及内存地址，从而方便我们来查询原因。</p>
+
+<p>文已至此，该解决的基本上都解决了，只不过最后是要吐槽下百度。
+为毛百度下技术性问题搜到的不是重装系统就是要换台电脑。
+不能提供一点建设性的意见，除了浪费时间还能干什么。
+实在是无语了。</p>
 
 
         <hr>
-        <p>19 Nov 2015</p>
+        <p>10 Feb 2016</p>
         
             
                 
@@ -312,12 +341,12 @@ header::after {
 <div class="pagination clearfix">
     <div class="left">
         
-        <a href="/windows/2016/02/10/BlueScreenPageFaultInNoPagedAree%E4%BF%AE%E5%A4%8D%E5%8E%86%E7%A8%8B/">‹ Next post</a>
+        <span class="disabled">‹ Next post</span>
         
     </div>
     <div class="right">
         
-        <a href="/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/">Previous post ›</a>
+        <a href="/python/2015/11/19/Python%E5%BC%95%E7%94%A8%E4%B8%8E%E5%A4%8D%E5%88%B6/">Previous post ›</a>
         
     </div>
 </div>

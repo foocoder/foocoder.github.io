@@ -7,6 +7,109 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Blue Screen,Page-Fault-In-Non-Paged-Area修复历程</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;本身平时都基本脱离了Windows的魔爪，因为Linux下的工作效率真是杠杠的。
+因此也只有在假期的时候会开个Windows来休闲娱乐下，打打游戏什么的，毕竟Linux环境的游戏还真没玩过几个。&lt;/p&gt;
+
+&lt;p&gt;然而天不遂人意，不晓得前一天游戏的时候装了什么插件，直接导致今天进入Windows时中头彩，蓝屏了。
+欲哭无泪，话说本来自个没准备折腾它，没想到它却过来折腾我了。没办法，解决问题吧先。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Page-Fualt-In-Non-Paged-Area&lt;/code&gt;，从名字中我们能看出来，问题应该是一个不知道什么玩意的想要访问系统的&lt;code class=&quot;highlighter-rouge&quot;&gt;Non-Paged&lt;/code&gt;区域，从而引起的&lt;code class=&quot;highlighter-rouge&quot;&gt;BSOD&lt;/code&gt;。
+感觉有点像平时程序里遇到的&lt;code class=&quot;highlighter-rouge&quot;&gt;野指针&lt;/code&gt;的感觉，估摸着是内存泄露了把。
+如果是自个的程序还好，好歹能跟踪&lt;code class=&quot;highlighter-rouge&quot;&gt;Debug&lt;/code&gt;下，但这么大个的Windows，该怎么下手？
+心想还是先Google下吧，找找经验之谈。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安全模式启动&lt;/h2&gt;
+
+&lt;p&gt;解铃还须系铃人， 要解决问题，最好还是先安全模式启动Windows， 然后排查错误。
+不过现在面临的尴尬问题是，Win8的安全模式设置已经不是在开机黑屏的间隔时狂按&lt;code class=&quot;highlighter-rouge&quot;&gt;F8&lt;/code&gt;就可以进入的。
+需要在进入系统后通过&lt;code class=&quot;highlighter-rouge&quot;&gt;msconfig&lt;/code&gt;设置，亦或是&lt;code class=&quot;highlighter-rouge&quot;&gt;shift&lt;/code&gt;+&lt;code class=&quot;highlighter-rouge&quot;&gt;重启&lt;/code&gt;来开启安全模式。
+然而我的系统现在连系统的登陆界面还没到的时候就&lt;code class=&quot;highlighter-rouge&quot;&gt;BlueScreen&lt;/code&gt;了，哪能进入系统设置呢？&lt;/p&gt;
+
+&lt;p&gt;既然想通过Windows本身的接口不能进入安全模式，只能通过修改&lt;code class=&quot;highlighter-rouge&quot;&gt;boot&lt;/code&gt;的配置文件或者利用第三方工具了。
+于是自己找来一个&lt;code class=&quot;highlighter-rouge&quot;&gt;Winpe&lt;/code&gt;先引导进入&lt;code class=&quot;highlighter-rouge&quot;&gt;Winpe&lt;/code&gt;系统， 好在工具包里个&lt;code class=&quot;highlighter-rouge&quot;&gt;BCDTool&lt;/code&gt;可以修改系统引导项。
+在&lt;code class=&quot;highlighter-rouge&quot;&gt;BCDTool&lt;/code&gt;中，找到&lt;code class=&quot;highlighter-rouge&quot;&gt;Windows Load Manager&lt;/code&gt;，可以看到下边有一个启动项，该启动项是我出问题的启动项。
+先复制该启动项并创建一个新的，然后可以将之名称&lt;code class=&quot;highlighter-rouge&quot;&gt;description&lt;/code&gt;修改为&lt;code class=&quot;highlighter-rouge&quot;&gt;SafeMode&lt;/code&gt;。
+之后在新的启动项下添加参数&lt;code class=&quot;highlighter-rouge&quot;&gt;safeboot&lt;/code&gt;，并将值设为&lt;code class=&quot;highlighter-rouge&quot;&gt;Minimal&lt;/code&gt;，意味最小化加载系统驱动什么的。
+还有参数&lt;code class=&quot;highlighter-rouge&quot;&gt;Network&lt;/code&gt;，即带网络的安全模式。
+不过也可以在&lt;code class=&quot;highlighter-rouge&quot;&gt;Windows Load Manager&lt;/code&gt;里边添加参数&lt;code class=&quot;highlighter-rouge&quot;&gt;displaybootmenu&lt;/code&gt;，值为&lt;code class=&quot;highlighter-rouge&quot;&gt;yes&lt;/code&gt;，这样就可以在进入Windows时显示启动选项，然后选择进入安全模式。&lt;/p&gt;
+
+&lt;p&gt;启动项设置好后，就可以重新启动了。
+进入启动项的界面，会发现比之前多了个&lt;code class=&quot;highlighter-rouge&quot;&gt;SafeMode&lt;/code&gt;的选项，然后选择进入。
+哈哈，终于完成了第一步，好歹总算是进入了系统。&lt;/p&gt;
+
+&lt;h2 id=&quot;fix-page-fault-in-nonpaged-area&quot;&gt;Fix Page Fault in Nonpaged Area&lt;/h2&gt;
+
+&lt;p&gt;一般出现蓝屏后可能由许多问题导致，比如添加硬件，更新驱动，添加软件等等。
+如果是上述原因的话，那么第一步就是先把添加的卸掉，更新的驱动回滚原版。
+这样或多或少能解决一部分通用蓝屏问题。
+针对&lt;code class=&quot;highlighter-rouge&quot;&gt;Page-Fault-In-Non-Paged-Aree&lt;/code&gt;问题，大致有这么三种解决方式，下面一一列举出来。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;重设虚拟内存&lt;/h3&gt;
+
+&lt;p&gt;在电脑属性&amp;gt;高级设置&amp;gt;性能 里边来修改系统的虚拟内存。
+首先将已经勾选的 “自动管理所有驱动器的分页文件大小”， 选择”无分页文件“，之后应用并重启，使配置生效。
+接下来继续进入虚拟内存的配置界面，在下边勾选”系统管理的大小“，然后勾选”自动管理所有驱动器的分页文件大小“。然后再应用并重启。
+大致意思是重新分配下虚拟内存的&lt;code class=&quot;highlighter-rouge&quot;&gt;Pagefile&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;chkdsk&quot;&gt;ChkDSK&lt;/h3&gt;
+
+&lt;p&gt;另一个方式是利用系统的&lt;code class=&quot;highlighter-rouge&quot;&gt;ChkDsk&lt;/code&gt;自动扫描并修复硬盘。
+因为&lt;code class=&quot;highlighter-rouge&quot;&gt;pagefile.sys&lt;/code&gt;文件在C盘，所以可以的C盘进行下扫描修复，查看下有没有坏道什么的。
+这也有可能导致&lt;code class=&quot;highlighter-rouge&quot;&gt;Page-Fault&lt;/code&gt;的蓝屏问题。&lt;/p&gt;
+
+&lt;p&gt;具体执行就是打开&lt;code class=&quot;highlighter-rouge&quot;&gt;cmd&lt;/code&gt;然后输入&lt;code class=&quot;highlighter-rouge&quot;&gt;ChkDSK /f /r c:&lt;/code&gt;。
+其中&lt;code class=&quot;highlighter-rouge&quot;&gt;/f&lt;/code&gt;参数是指要求修复磁盘上的错误。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/r&lt;/code&gt;参数是指找到坏扇区并且回复可读取的信息。
+然后修复完成再查看问题有没解决。&lt;/p&gt;
+
+&lt;h3 id=&quot;check-memory&quot;&gt;Check Memory&lt;/h3&gt;
+
+&lt;p&gt;还有一个可能就是内存的损坏也会有可能导致该问题。
+所以可以利用一些内存检查的软件来&lt;code class=&quot;highlighter-rouge&quot;&gt;check&lt;/code&gt;下内存是否存在问题。
+或是是将内存条拔下来擦拭一下内存条的金手指。&lt;/p&gt;
+
+&lt;h3 id=&quot;others&quot;&gt;Others&lt;/h3&gt;
+
+&lt;p&gt;当然，导致&lt;code class=&quot;highlighter-rouge&quot;&gt;BSOD&lt;/code&gt;的原因往往不止这么几种。
+各种各样的奇葩原因都能看的到。刚才就查到一个由于电源供电不足导致的。
+不过因为自己不怎么玩硬件，所以这一类问题还是可以避免的。
+当然，最好的解决方式就是备份还原点。出现问题的话只要还原到最近一次正常的还原点上就好了。
+能够秒杀掉一大堆莫名奇妙的问题，简直是神器！
+不过本人由于偷懒的性格，很少吧备份，而且也舍不得还原点占的空间。
+所以导致每次出问题都只能靠手动来解决。&lt;/p&gt;
+
+&lt;h2 id=&quot;blue-screen-view&quot;&gt;Blue Screen View&lt;/h2&gt;
+
+&lt;p&gt;问题解决了，系统又能进入了，开心。
+但是究竟是什么导致的蓝屏，是装的什么软件还是什么乱七八糟的驱动，总得像个办法把找出原因来，不然也不符合本人这睚疵必报的性格。&lt;/p&gt;
+
+&lt;p&gt;一般Windows蓝屏之后都去会生成内存转储的文件，&lt;code class=&quot;highlighter-rouge&quot;&gt;Memory.dmp&lt;/code&gt;。
+里边包含了故障发生前的程序信息。
+不过由于修炼的不够，自个读这个二进制文件还是很痛苦的。
+好歹我们是站在巨人的肩膀上的。
+因此我们可以借助&lt;code class=&quot;highlighter-rouge&quot;&gt;Blue Screen View&lt;/code&gt;这个程序来分析蓝屏生成的内存转储文件。
+里边会详细显示出系统崩溃时的文件以及内存地址，从而方便我们来查询原因。&lt;/p&gt;
+
+&lt;p&gt;文已至此，该解决的基本上都解决了，只不过最后是要吐槽下百度。
+为毛百度下技术性问题搜到的不是重装系统就是要换台电脑。
+不能提供一点建设性的意见，除了浪费时间还能干什么。
+实在是无语了。&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 10 Feb 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/windows/2016/02/10/BlueScreenPageFaultInNoPagedAree%E4%BF%AE%E5%A4%8D%E5%8E%86%E7%A8%8B/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/windows/2016/02/10/BlueScreenPageFaultInNoPagedAree%E4%BF%AE%E5%A4%8D%E5%8E%86%E7%A8%8B/</guid>
+			</item>
+		
+			<item>
 				<title>Python引用与复制</title>
 				
 					
@@ -73,7 +176,7 @@
 
 </description>
 				
-				<pubDate>Thu, 19 Nov 2015 18:17:59 +0000</pubDate>
+				<pubDate>Thu, 19 Nov 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/python/2015/11/19/Python%E5%BC%95%E7%94%A8%E4%B8%8E%E5%A4%8D%E5%88%B6/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/python/2015/11/19/Python%E5%BC%95%E7%94%A8%E4%B8%8E%E5%A4%8D%E5%88%B6/</guid>
 			</item>
@@ -115,7 +218,7 @@
 
 </description>
 				
-				<pubDate>Mon, 16 Nov 2015 20:43:33 +0000</pubDate>
+				<pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/</guid>
 			</item>
@@ -272,7 +375,7 @@ class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&
 &lt;p&gt;如果你不想生成任何调试信息的话，需要&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:none&lt;/code&gt;来指定，不指定的话，即使不加&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;默认也会生成行号以及源文件信息的。&lt;/p&gt;
 </description>
 				
-				<pubDate>Tue, 10 Nov 2015 23:29:36 +0000</pubDate>
+				<pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</guid>
 			</item>
@@ -630,60 +733,6 @@ Done installing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;r
 				<pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</guid>
-			</item>
-		
-			<item>
-				<title>Github那些事</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;Git——一个由大神Linus花两周写的C版本的分布式版本控制器，又一款神话般的大作，真可谓Linus出品，必属精品。有机会一定要膜拜下Git的源码。&lt;/p&gt;
-
-&lt;p&gt;而Github则又是最流行的Git访问网站，现在可以说已经是世界上最大的代码存放库。&lt;/p&gt;
-
-&lt;p&gt;这么NB的工具以及这么NB的站点，自己怎么能不跟下风呢？我也来记录下自己的Git使用过程。&lt;/p&gt;
-
-&lt;p&gt;最初接触Github已经不记得是什么时候了，但最初使用还是从建博开始。当时由于被各种酷炫的个人博客所诱惑，于是乎花了些时间与脑细胞来搭了个自己的博客。&lt;/p&gt;
-
-&lt;p&gt;对于Github使用，简单来讲只有下面的几条命令就OK了。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git add -A
-git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;The Code Information&quot;&lt;/span&gt;
-git push origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;将要提交的文件放到一个缓存区(index)里边,其中&lt;code class=&quot;highlighter-rouge&quot;&gt;-A&lt;/code&gt;命令是将仓库中所有的修改的文件都提交，包括新添加的以及以及删除掉的文件信息。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;则将缓存区中的文件提交到当前的分支(branch)中，这里边需要&lt;code class=&quot;highlighter-rouge&quot;&gt;-m&lt;/code&gt;命令来添加本次提交代码说明，否则大家提交代码时你一个版本我一个版本没有任何说明就没办法来管理了。
-最后由&lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt;来将本地的分支推送到远程（这里一般用Github）的相应的分支(master)上去。当然，在&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;命令之前首先要&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add&lt;/code&gt;命令来链接远程仓库。&lt;/p&gt;
-
-&lt;p&gt;还有一条就是&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git status&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;用来查看当前缓存区状态，或者说来查看当前工作区域与缓存区域有什么区别。&lt;/p&gt;
-
-&lt;p&gt;基本上这四条命令是我使用最频繁的，不过可能还有一点小小的瑕疵，比如说某天我可能突然失手把一些重要的私人信息给&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;了，这该怎么办。
-我们可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout --file&lt;/code&gt;来撤消掉对缓存区的&lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt;的修改，而又有可能，我不仅&lt;code class=&quot;highlighter-rouge&quot;&gt;git add&lt;/code&gt;到缓存区，甚至还&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;提交到了分支上去。
-不过还好，只要文件还在本地就没问题的，我们可以&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset HEAD file&lt;/code&gt;来撤销分支里边&lt;code class=&quot;highlighter-rouge&quot;&gt;file&lt;/code&gt;的修改。&lt;/p&gt;
-
-&lt;p&gt;对于维护一个博客来讲，这些个命令基本上以经足够了。&lt;/p&gt;
-
-&lt;p&gt;当然，我们现在使用电脑往往不止一台，比如说学校或者公司有一台，家里又有一台。但如果我可能在两台以上的电脑上更新博客的话，这样会导致我这两台电脑上本地博客进度不统一怎么办。
-还好Git天生就是为解决这些个项目中的分支与冲突而存在的。&lt;/p&gt;
-
-&lt;p&gt;我们可以在每次写博前先从Github里同步到本地&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git pull origin master&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;然后再继续写完之后进行&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;。&lt;/p&gt;
-
-</description>
-				
-				<pubDate>Sat, 17 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/github/2015/10/17/Github-%E9%82%A3%E4%BA%9B%E4%BA%8B/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/github/2015/10/17/Github-%E9%82%A3%E4%BA%9B%E4%BA%8B/</guid>
 			</item>
 		
 	</channel>
