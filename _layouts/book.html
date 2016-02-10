@@ -12,7 +12,8 @@ layout: default
     </div>
     <br />
     <div class="row">
-      {% for book in page.books %}
+      {% assign sortbook = page.books|sort:"start_time" %}
+      {% for book in sortbook reversed %}
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading">{{ book.title }}</div>
