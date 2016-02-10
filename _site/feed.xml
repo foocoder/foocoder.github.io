@@ -10,7 +10,7 @@
 				<title>Python引用与复制</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -82,7 +82,7 @@
 				<title>JDB链接源码</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -124,7 +124,7 @@
 				<title>有关Javac的探究</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -281,7 +281,7 @@ class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&
 				<title>Linux管道与重定向</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -388,7 +388,7 @@ heredoc&amp;gt;END
 				<title>淘宝穿衣搭配比赛有感</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -462,7 +462,7 @@ heredoc&amp;gt;END
 				<title>Redis 初体验</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -502,7 +502,7 @@ Redis是内存数据库，相比其他数据库，其速度是最大的一个优
 				<title>Redis批量删除</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -533,7 +533,7 @@ keys a\*c&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 				<title>Python with 语句</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -581,7 +581,7 @@ keys a\*c&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 				<title>Gem Source相关</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
@@ -636,7 +636,7 @@ Done installing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;r
 				<title>Github那些事</title>
 				
 					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;&quot;who is just a Coder Monkey!&quot;}</dc:creator>
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
 					
 				
 				
