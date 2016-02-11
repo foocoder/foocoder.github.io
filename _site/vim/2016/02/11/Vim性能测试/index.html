@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+Vim性能测试工具 | Meta Coder
+
+</title>
+<meta name="description" content="Vim 的各种各样的工具为编程提供了便利的条件，像德芙巧克力，让编程如丝般的顺滑。然而过多的插件又有可能过分的冗余，使得在使用Vim的时候卡壳，这时候就需要Vim自带的一系列性能测试工具上场了。 Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="Vim性能测试工具 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+<meta property="og:description" content="
+
+Vim 的各种各样的工具为编程提供了便利的条件，像德芙巧克力，让编程如丝般的顺滑。然而过多的插件又有可能过分的冗余，使得在使用Vim的时候卡壳，这时候就需要Vim自带的一系列性能测试工具上场了。
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>Vim性能测试工具</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Vim" title="Vim"> Vim</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Vim" title="Vim">  Vim</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#工具" title="工具">  工具</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#译文" title="译文">  译文</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Feb 11, 2016</span>
+        </div>
+
+        <hr>
+        <p>本文内容主要来自于翻译”Vimberlin.de”上的一篇<a href="http://vimberlin.de/data/vimberlin-2013-09_vimprofiling">Profiling Vim</a>。
+并且其中附加本人的一些测试说明等。
+主要提供了一些关于Vim的<code class="highlighter-rouge">Built-in</code>的性能测试工具。</p>
+
+<h2 id="vim">如何查看Vim的工作日志</h2>
+
+<p>这里我们需要利用<code class="highlighter-rouge">-V</code>来开启Vim的<code class="highlighter-rouge">verbose</code>模式。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$vim</span> -V filename</code></pre></figure>
+
+<p>这样会将vim的运行时加载的插件或者执行的脚本命令详细的显示出来并记录在<code class="highlighter-rouge">messages</code>里边。
+记录的详细程度跟<code class="highlighter-rouge">verbose level</code>的值有关，默认值是10。
+我们可以通过命令<code class="highlighter-rouge">:messages</code>来显示该记录内容。</p>
+
+<h3 id="verbose-level">关于 Verbose Level</h3>
+
+<p>如下命令</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$vim</span> -V20/tmp/vim.log filename</code></pre></figure>
+
+<p>是指将vim的运行记录以20等级的<code class="highlighter-rouge">verbose level</code>存放到<code class="highlighter-rouge">/tmp/vim.log</code>中。
+Ps:需要注意的是，参数<code class="highlighter-rouge">-V20</code>与log文件之间不能有空格，有空格的话就成了vim打开两个文件了。
+若制定的log存放位置，运行的时候就不再显示具体内容，而是都写入到log文件中。
+否则的话，所有信息都将显示在屏幕中。</p>
+
+<p>其中<code class="highlighter-rouge">Verbose Level</code>有如下几个类别：</p>
+
+<ul>
+  <li>=0: 当level设置为0的话只是简单的给出Vim正在做什么(Vim will give messages about what it is doing)；</li>
+  <li>&gt;=1: 这里会给出<code class="highlighter-rouge">viminfo</code>文件读写的信息(When the viminfo file is read or written)；</li>
+  <li>&gt;=2: 这里会给出文件被<code class="highlighter-rouge">:source</code>的信息(When a file is <code class="highlighter-rouge">:source</code>ed)；</li>
+  <li>&gt;=5: 显示了所有搜到的<code class="highlighter-rouge">tags</code>文件与<code class="highlighter-rouge">include</code>的文件(Every searched tags file and include file)；</li>
+  <li>&gt;=8: 显示了一组要执行的<code class="highlighter-rouge">autocommand</code>的文件(Files for which a group of autocommands is executed)；</li>
+  <li>&gt;=9: 显示所有执行的<code class="highlighter-rouge">autocommand</code>(Every executed autocommadns);</li>
+  <li>&gt;=12: 显示所有执行的<code class="highlighter-rouge">function</code>(Every executed function);</li>
+  <li>&gt;=13: 显示异常的抛出，捕获，结束或者消除(When an exceptions is thrown, caught, finished or discarded)；</li>
+  <li>&gt;=14: 显示所有在<code class="highlighter-rouge">:finally</code>期间的所有(Anything pending in a <code class="highlighter-rouge">:finally</code> clause)；</li>
+  <li>&gt;=15: 显示所有执行的<code class="highlighter-rouge">Ex command</code>(Every executed Ex commands, truncated at 200 characters)；</li>
+</ul>
+
+<p>需要注意的是，这些记录并不像真正的日志那样带有<code class="highlighter-rouge">timestamps</code>。</p>
+
+<h3 id="runtimeverbose">在runtime修改verbose信息</h3>
+
+<p>如果想在vim运行时修改<code class="highlighter-rouge">verbose</code>的存放位置或者修改<code class="highlighter-rouge">verbose level</code>的话，可以用如下命令</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> verbosefile<span class="p">=</span>newlog
+<span class="p">:</span><span class="k">set</span> <span class="k">verbose</span><span class="p">=</span><span class="m">15</span></code></pre></figure>
+
+<h2 id="vim-">vim 启动时间</h2>
+
+<p>如果想查看vim启动时间的详细内容，可以这样</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">vim --startuptime /tmp/vimstartuptime.log filename</code></pre></figure>
+
+<p>该参数与<code class="highlighter-rouge">-V</code>参数不同，参数后边文件位置与参数直接必须要有空格。
+另外存放log的文件位置不能省略，否则会直接把你要打开的<code class="highlighter-rouge">filename</code>当做log文件来记录信息。</p>
+
+<p>不过该命令只支持7.2.269及以后的版本</p>
+
+<h2 id="vim-profile-">vim 的profile 模式</h2>
+
+<p>XXX: profile模式需要vim在编译的时候带<code class="highlighter-rouge">+profile</code>的标志。
+Ps: 如果不确定是否含有<code class="highlighter-rouge">+profile</code>标志位的话可以在vim里用<code class="highlighter-rouge">:version</code>来查看。</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">profile <span class="k">start</span> <span class="sr">/tmp/</span><span class="k">vim</span><span class="p">.</span>log
+profile func *
+profile <span class="k">file</span> *</code></pre></figure>
+
+<p>这样当vim关闭的时候会生成vim运行时详细的性能分析报告。
+参见<a href="http://stackoverflow.com/questions/12213597/how-to-see-which-plugins-are-making-vim-slow">http://stackoverflow.com/questions/12213597/how-to-see-which-plugins-are-making-vim-slow</a>,
+我们可以在这几条命令之后执行使vim运行缓慢的操作，从而可以查找到问题的元凶。</p>
+
+<p>我们也可以在vim启动的时候开启<code class="highlighter-rouge">profile</code>模式</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">vim --cmd <span class="s1">'profile start profile.log'</span> --cmd <span class="s1">'profile func *'</span> --cmd <span class="s1">'profile file *'</span></code></pre></figure>
+
+<p><code class="highlighter-rouge">:help profile</code>里边会提醒到：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Profiling</code>在多处理器系统中有可能出现<code class="highlighter-rouge">weird</code>结果，比如说在睡眠模式的时候或者处理器降频省电时候(Profiling may give weird results on multi-processor systems, when sleep mode kicks in or the processor frequency is reduced to save power)。</li>
+  <li>当函数是递归函数时，其<code class="highlighter-rouge">self</code>的时间是错误的(The “self” time is wrong when a function is used recursively)。</li>
+</ul>
+
+<h2 id="profile-on-syntax">profile on syntax</h2>
+
+<p>XXX: 需要vim在编译的时候带<code class="highlighter-rouge">+profile</code>的标志。</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">syntime</span> <span class="k">on</span>
+<span class="p">:</span><span class="k">syntime</span> report</code></pre></figure>
+
+<p>用来报告vim在匹配当前文件语法的耗时。
+该命令支持7.4及以后版本。</p>
+
+<h2 id="insert-timestamps">insert timestamps</h2>
+
+<p>参见<a href="http://stackoverflow.com/questions/1687799/profiling-vim-startup-time">http://stackoverflow.com/questions/1687799/profiling-vim-startup-time</a></p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">vim -V 2&gt; &gt;<span class="o">(</span> ruby -n -e <span class="s1">'puts "#{Time.now.to_f}: #{$_}"'</span> &gt; /tmp/profile.log <span class="o">)</span></code></pre></figure>
+
+<p>-&gt; only working at the beginning tip is very old (2009) - maybe vim changed since then</p>
+
+<h3 id="fifo">fifo</h3>
+
+<p>-&gt; work around: use fifo -&gt; but vim closes the file -&gt; use while loop</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">mkfifo ./startuptime
+vim -V./startuptime
+
+<span class="k">while </span><span class="nb">true</span>;  <span class="k">do </span>cat startuptime | ruby -n  -e <span class="s1">'puts "#{Time.now.to_f}: #{$_}"'</span> &gt;&gt; /tmp/vilog2; <span class="k">done</span></code></pre></figure>
+
+
+        <hr>
+        <p>11 Feb 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>

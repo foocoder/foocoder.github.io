@@ -7,6 +7,132 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Vim性能测试工具</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;本文内容主要来自于翻译”Vimberlin.de”上的一篇&lt;a href=&quot;http://vimberlin.de/data/vimberlin-2013-09_vimprofiling&quot;&gt;Profiling Vim&lt;/a&gt;。
+并且其中附加本人的一些测试说明等。
+主要提供了一些关于Vim的&lt;code class=&quot;highlighter-rouge&quot;&gt;Built-in&lt;/code&gt;的性能测试工具。&lt;/p&gt;
+
+&lt;h2 id=&quot;vim&quot;&gt;如何查看Vim的工作日志&lt;/h2&gt;
+
+&lt;p&gt;这里我们需要利用&lt;code class=&quot;highlighter-rouge&quot;&gt;-V&lt;/code&gt;来开启Vim的&lt;code class=&quot;highlighter-rouge&quot;&gt;verbose&lt;/code&gt;模式。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$vim&lt;/span&gt; -V filename&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样会将vim的运行时加载的插件或者执行的脚本命令详细的显示出来并记录在&lt;code class=&quot;highlighter-rouge&quot;&gt;messages&lt;/code&gt;里边。
+记录的详细程度跟&lt;code class=&quot;highlighter-rouge&quot;&gt;verbose level&lt;/code&gt;的值有关，默认值是10。
+我们可以通过命令&lt;code class=&quot;highlighter-rouge&quot;&gt;:messages&lt;/code&gt;来显示该记录内容。&lt;/p&gt;
+
+&lt;h3 id=&quot;verbose-level&quot;&gt;关于 Verbose Level&lt;/h3&gt;
+
+&lt;p&gt;如下命令&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$vim&lt;/span&gt; -V20/tmp/vim.log filename&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;是指将vim的运行记录以20等级的&lt;code class=&quot;highlighter-rouge&quot;&gt;verbose level&lt;/code&gt;存放到&lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/vim.log&lt;/code&gt;中。
+Ps:需要注意的是，参数&lt;code class=&quot;highlighter-rouge&quot;&gt;-V20&lt;/code&gt;与log文件之间不能有空格，有空格的话就成了vim打开两个文件了。
+若制定的log存放位置，运行的时候就不再显示具体内容，而是都写入到log文件中。
+否则的话，所有信息都将显示在屏幕中。&lt;/p&gt;
+
+&lt;p&gt;其中&lt;code class=&quot;highlighter-rouge&quot;&gt;Verbose Level&lt;/code&gt;有如下几个类别：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;=0: 当level设置为0的话只是简单的给出Vim正在做什么(Vim will give messages about what it is doing)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=1: 这里会给出&lt;code class=&quot;highlighter-rouge&quot;&gt;viminfo&lt;/code&gt;文件读写的信息(When the viminfo file is read or written)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=2: 这里会给出文件被&lt;code class=&quot;highlighter-rouge&quot;&gt;:source&lt;/code&gt;的信息(When a file is &lt;code class=&quot;highlighter-rouge&quot;&gt;:source&lt;/code&gt;ed)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=5: 显示了所有搜到的&lt;code class=&quot;highlighter-rouge&quot;&gt;tags&lt;/code&gt;文件与&lt;code class=&quot;highlighter-rouge&quot;&gt;include&lt;/code&gt;的文件(Every searched tags file and include file)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=8: 显示了一组要执行的&lt;code class=&quot;highlighter-rouge&quot;&gt;autocommand&lt;/code&gt;的文件(Files for which a group of autocommands is executed)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=9: 显示所有执行的&lt;code class=&quot;highlighter-rouge&quot;&gt;autocommand&lt;/code&gt;(Every executed autocommadns);&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=12: 显示所有执行的&lt;code class=&quot;highlighter-rouge&quot;&gt;function&lt;/code&gt;(Every executed function);&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=13: 显示异常的抛出，捕获，结束或者消除(When an exceptions is thrown, caught, finished or discarded)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=14: 显示所有在&lt;code class=&quot;highlighter-rouge&quot;&gt;:finally&lt;/code&gt;期间的所有(Anything pending in a &lt;code class=&quot;highlighter-rouge&quot;&gt;:finally&lt;/code&gt; clause)；&lt;/li&gt;
+  &lt;li&gt;&amp;gt;=15: 显示所有执行的&lt;code class=&quot;highlighter-rouge&quot;&gt;Ex command&lt;/code&gt;(Every executed Ex commands, truncated at 200 characters)；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;需要注意的是，这些记录并不像真正的日志那样带有&lt;code class=&quot;highlighter-rouge&quot;&gt;timestamps&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;runtimeverbose&quot;&gt;在runtime修改verbose信息&lt;/h3&gt;
+
+&lt;p&gt;如果想在vim运行时修改&lt;code class=&quot;highlighter-rouge&quot;&gt;verbose&lt;/code&gt;的存放位置或者修改&lt;code class=&quot;highlighter-rouge&quot;&gt;verbose level&lt;/code&gt;的话，可以用如下命令&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; verbosefile&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;newlog
+&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;15&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;vim-&quot;&gt;vim 启动时间&lt;/h2&gt;
+
+&lt;p&gt;如果想查看vim启动时间的详细内容，可以这样&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim --startuptime /tmp/vimstartuptime.log filename&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;该参数与&lt;code class=&quot;highlighter-rouge&quot;&gt;-V&lt;/code&gt;参数不同，参数后边文件位置与参数直接必须要有空格。
+另外存放log的文件位置不能省略，否则会直接把你要打开的&lt;code class=&quot;highlighter-rouge&quot;&gt;filename&lt;/code&gt;当做log文件来记录信息。&lt;/p&gt;
+
+&lt;p&gt;不过该命令只支持7.2.269及以后的版本&lt;/p&gt;
+
+&lt;h2 id=&quot;vim-profile-&quot;&gt;vim 的profile 模式&lt;/h2&gt;
+
+&lt;p&gt;XXX: profile模式需要vim在编译的时候带&lt;code class=&quot;highlighter-rouge&quot;&gt;+profile&lt;/code&gt;的标志。
+Ps: 如果不确定是否含有&lt;code class=&quot;highlighter-rouge&quot;&gt;+profile&lt;/code&gt;标志位的话可以在vim里用&lt;code class=&quot;highlighter-rouge&quot;&gt;:version&lt;/code&gt;来查看。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;profile &lt;span class=&quot;k&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/tmp/&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;vim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;log
+profile func *
+profile &lt;span class=&quot;k&quot;&gt;file&lt;/span&gt; *&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样当vim关闭的时候会生成vim运行时详细的性能分析报告。
+参见&lt;a href=&quot;http://stackoverflow.com/questions/12213597/how-to-see-which-plugins-are-making-vim-slow&quot;&gt;http://stackoverflow.com/questions/12213597/how-to-see-which-plugins-are-making-vim-slow&lt;/a&gt;,
+我们可以在这几条命令之后执行使vim运行缓慢的操作，从而可以查找到问题的元凶。&lt;/p&gt;
+
+&lt;p&gt;我们也可以在vim启动的时候开启&lt;code class=&quot;highlighter-rouge&quot;&gt;profile&lt;/code&gt;模式&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim --cmd &lt;span class=&quot;s1&quot;&gt;&#39;profile start profile.log&#39;&lt;/span&gt; --cmd &lt;span class=&quot;s1&quot;&gt;&#39;profile func *&#39;&lt;/span&gt; --cmd &lt;span class=&quot;s1&quot;&gt;&#39;profile file *&#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:help profile&lt;/code&gt;里边会提醒到：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Profiling&lt;/code&gt;在多处理器系统中有可能出现&lt;code class=&quot;highlighter-rouge&quot;&gt;weird&lt;/code&gt;结果，比如说在睡眠模式的时候或者处理器降频省电时候(Profiling may give weird results on multi-processor systems, when sleep mode kicks in or the processor frequency is reduced to save power)。&lt;/li&gt;
+  &lt;li&gt;当函数是递归函数时，其&lt;code class=&quot;highlighter-rouge&quot;&gt;self&lt;/code&gt;的时间是错误的(The “self” time is wrong when a function is used recursively)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;profile-on-syntax&quot;&gt;profile on syntax&lt;/h2&gt;
+
+&lt;p&gt;XXX: 需要vim在编译的时候带&lt;code class=&quot;highlighter-rouge&quot;&gt;+profile&lt;/code&gt;的标志。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;syntime&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;syntime&lt;/span&gt; report&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;用来报告vim在匹配当前文件语法的耗时。
+该命令支持7.4及以后版本。&lt;/p&gt;
+
+&lt;h2 id=&quot;insert-timestamps&quot;&gt;insert timestamps&lt;/h2&gt;
+
+&lt;p&gt;参见&lt;a href=&quot;http://stackoverflow.com/questions/1687799/profiling-vim-startup-time&quot;&gt;http://stackoverflow.com/questions/1687799/profiling-vim-startup-time&lt;/a&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim -V 2&amp;gt; &amp;gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; ruby -n -e &lt;span class=&quot;s1&quot;&gt;&#39;puts &quot;#{Time.now.to_f}: #{$_}&quot;&#39;&lt;/span&gt; &amp;gt; /tmp/profile.log &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;-&amp;gt; only working at the beginning tip is very old (2009) - maybe vim changed since then&lt;/p&gt;
+
+&lt;h3 id=&quot;fifo&quot;&gt;fifo&lt;/h3&gt;
+
+&lt;p&gt;-&amp;gt; work around: use fifo -&amp;gt; but vim closes the file -&amp;gt; use while loop&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkfifo ./startuptime
+vim -V./startuptime
+
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;;  &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;cat startuptime | ruby -n  -e &lt;span class=&quot;s1&quot;&gt;&#39;puts &quot;#{Time.now.to_f}: #{$_}&quot;&#39;&lt;/span&gt; &amp;gt;&amp;gt; /tmp/vilog2; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+				
+				<pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+			</item>
+		
+			<item>
 				<title>Vim复制粘贴探秘</title>
 				
 					
@@ -793,54 +919,6 @@ keys a\*c&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 				<pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/20/Redis-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/2015/10/20/Redis-%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4/</guid>
-			</item>
-		
-			<item>
-				<title>Python with 语句</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;h2 id=&quot;python-io&quot;&gt;Python I/O&lt;/h2&gt;
-
-&lt;p&gt;我们知道，在程序中打开文件的时候，往往需要考虑一些乱七八糟的异常出现的情况，例如文件不存在啦，没有可读可写的权限啦，亦或是硬盘已满。所以我们经常会用到&lt;code class=&quot;highlighter-rouge&quot;&gt;try/except&lt;/code&gt;语句来捕获异常，
-而为了防止文件被破坏，我们还需要&lt;code class=&quot;highlighter-rouge&quot;&gt;finally&lt;/code&gt;语句来保证文件的关闭，如下例子：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;except&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;IOError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Error happened!&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这么冗长臃肿的代码，显然不是我们这些强迫症患者所喜爱的，必需要找个方式把他解决掉，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;是python2.5引入的，到了2.6就已经成为默认关键字。加了&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;的代码是以下形式：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;然后我们还可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;nested&lt;/code&gt;这样用：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;form&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contextlib&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;nested&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nested&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filepath2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;从此以后，妈妈再也不用担心我的文件打开后忘记关闭了。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;with&lt;/code&gt;语句引入了一个“上下文管理协议”(Context Management Protocol)，对资源访问后发生异常能够正常关闭资源。具体实现是通过定义两个方法&lt;code class=&quot;highlighter-rouge&quot;&gt;__enter__()&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;__exit__()&lt;/code&gt;方法来操作。
-这里有一篇参考文献&lt;a href=&quot;https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/&quot;&gt;《浅谈Python的with语句》&lt;/a&gt;。&lt;/p&gt;
-</description>
-				
-				<pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/</guid>
 			</item>
 		
 	</channel>
