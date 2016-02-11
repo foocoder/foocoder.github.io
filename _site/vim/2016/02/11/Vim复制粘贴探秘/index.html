@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+Vim复制粘贴探秘 | Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="Vim复制粘贴探秘 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>Vim复制粘贴探秘</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Vim" title="Vim"> Vim</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#转载" title="转载">  转载</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Vim" title="Vim">  Vim</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#工具" title="工具">  工具</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Feb 11, 2016</span>
+        </div>
+
+        <hr>
+        <p>Vim作为最好用的文本编辑器之一，使用vim来编文档，写代码实在是很惬意的事情。每当学会了vim的一个新功能，就会很大地提高工作效率。有人使用vim几十年，还没有完全掌握vim的功能，这也说明了vim的强大。而这样何尝不是一件好事呢，只要有的学习，就有的提高。</p>
+
+<p>最近使用Vim来写博客，发现在Vim中粘贴Python代码后，缩进就全乱了。仔细研究了以下，原来是自动缩进的缘故，于是做如下设置：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> noai nosi</code></pre></figure>
+
+<p>取消了自动缩进和智能缩进，这样粘贴就不会错行了。但在有的vim中不行，还是排版错乱。</p>
+
+<p>后来发现了更好用的设置：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> paste</code></pre></figure>
+
+<p>进入<code class="highlighter-rouge">paste</code>模式以后，可以在插入模式下粘贴内容，不会有任何变形。这个真是灰常好用，情不自禁看了一下帮助，发现它做了这么多事：</p>
+
+<ul>
+  <li>textwidth设置为0</li>
+  <li>wrapmargin设置为0</li>
+  <li>set noai</li>
+  <li>set nosi</li>
+  <li>softtabstop设置为0</li>
+  <li>revins重置</li>
+  <li>ruler重置</li>
+  <li>showmatch重置</li>
+  <li>formatoptions使用空值</li>
+</ul>
+
+<p>下面的选项值不变，但却被禁用：</p>
+
+<ul>
+  <li>lisp</li>
+  <li>indentexpr</li>
+  <li>cindent</li>
+</ul>
+
+<p>怪不得之前只设置<code class="highlighter-rouge">noai</code>和<code class="highlighter-rouge">nosi</code>不行，原来与这么多因素有关！</p>
+
+<p>但这样还是比较麻烦的，每次要粘贴的话，先<code class="highlighter-rouge">set paste</code>，然后粘贴，然后再<code class="highlighter-rouge">set nopaste</code>。有没有更方便的呢？你可能想到了，使用键盘映射呀，对。我们可以这样设置：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span>map <span class="p">&lt;</span>F10<span class="p">&gt;</span> <span class="p">:</span><span class="k">set</span> paste<span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<span class="p">:</span>map <span class="p">&lt;</span>F11<span class="p">&gt;</span> <span class="p">:</span><span class="k">set</span> nopaste<span class="p">&lt;</span>CR<span class="p">&gt;</span></code></pre></figure>
+
+<p>这样在粘贴前按<code class="highlighter-rouge">F10</code>键启动<code class="highlighter-rouge">paste</code>模式，粘贴后按<code class="highlighter-rouge">F11</code>取消<code class="highlighter-rouge">paste</code>模式即可。其实，<code class="highlighter-rouge">paste</code>有一个切换<code class="highlighter-rouge">paste</code>开关的选项，这就是<code class="highlighter-rouge">pastetoggle</code>。通过它可以绑定快捷键来激活/取消 <code class="highlighter-rouge">paste</code>模式。比如：</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> pastetoggle<span class="p">=&lt;</span>F11<span class="p">&gt;</span></code></pre></figure>
+
+<p>这样减少了一个快捷键的占用，使用起来也更方便一些。</p>
+
+<p>但，这是最方便的吗？Vimer们对高效的追求永无止境。还有其他更好地方法吗？</p>
+
+<p>你可能想到了，vim寄存器。对，使用vim寄存器 <code class="highlighter-rouge">“+p</code> 粘贴即可。根本不用考虑是否自动缩进，是否<code class="highlighter-rouge">paste</code>模式，直接原文传递！</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">"+p</span></code></pre></figure>
+
+<p>要说vim寄存器，就要从vim文件间的复制粘贴说起。</p>
+
+<p>Vim中，若要复制当前行，普通模式下按 yy 即可，在要粘贴的地方按 p 。这是vim将复制内容保存到了自己的寄存器中的缘故。如果在其他地方执行yy，新的内容将覆盖掉原寄存器中内容。如果想保存原寄存器中内容而同时增加新的内容呢？这时就要在yy前增加标签了。标签以双引号开始，跟着的是标签名称，可以是数字0-9，也可以是26个字母，然后就是复制操作，这样就把复制内容保存到该标签寄存器里。通过下面命令显示所有寄存器内容：:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">reg</span></code></pre></figure>
+
+<p>其中注意两个特殊的寄存器：”* 和 “+。这两个寄存器是和系统相通的，前者关联系统选择缓冲区，后者关联系统剪切板。通过它们可以和其他程序进行数据交换。</p>
+
+<p>备注：
+若寄存器列表里无”* 或 “+ 寄存器，则可能是由于没有安装vim的图形界面所致。Debian/Ubuntu下可以通过安装vim-gnome解决。</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo apt-get install vim-gnome</code></pre></figure>
+
+<p>选择缓冲区和系统剪切板啥子区别？让我们继续研究。</p>
+
+<h2 id="section">选择缓冲区和剪切板</h2>
+
+<p>不同于Windows，Linux系统里存在两个剪切板：一个叫做选择缓冲区(X11 selection buffer)，另一个才是剪切板(clipboard)。</p>
+
+<p>选择缓冲区是实时的，当使用鼠标或键盘选择内容时，内容已经存在于选择缓冲区了，这或许就是选择缓冲区的由来吧。</p>
+
+<p>使用下面的命令查看选择缓冲区的内容：:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>xclip -out</code></pre></figure>
+
+<p>如果没有xclip命令，Debian/Ubuntu下可以通过如下命令安装：:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>sudo apt-get install xclip</code></pre></figure>
+
+<p>可以使用鼠标中键或键入Shift+Insert来粘贴选择缓冲区的内容。但对于有些GUI程序，比如gedit，只能通过鼠标中键调用选择缓冲区的内容，使用Shift+Insert的话，调用的是剪切板的内容。</p>
+
+<p>剪切板和Windows的剪切板类似，在选择文字内容后，执行Ctrl + c或在菜单里选择‘复制’的话，这时内容才存放到剪切板里。</p>
+
+<p>使用下面的命令查看剪切板的内容：:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>xclip -out -sel clipboard</code></pre></figure>
+
+<p>而使用剪切板的内容，则是Ctrl+v。 但在有些情况下，比如gnome-terminal，不能直接使用Ctrl+c，Ctrl+v，这时就要用Shift+Ctrl+c，Shift+Ctrl+v代替。</p>
+
+<h2 id="section-1">原格式粘贴</h2>
+
+<p>好了，了解了选择缓冲区和剪切板，下面就是实现保留格式粘贴的完美解决方案：</p>
+
+<ul>
+  <li>方案一：
+    <ol>
+      <li>选择文本内容</li>
+      <li>vim普通模式下按 “*p 将选择缓冲区中内容粘贴进来</li>
+    </ol>
+  </li>
+  <li>方案二：
+    <ol>
+      <li>复制文件内容</li>
+      <li>vim普通模式下按 “+ p 将剪切板内容粘贴进来</li>
+    </ol>
+  </li>
+</ul>
+
+<p>这时，如果要复制的内容也是vim编辑器中的内容，那么如何复制才更方便呢？</p>
+
+<h2 id="vim">vim中的复制</h2>
+
+<p>vim有一个可视模式(Visual Mode)，在此模式下可以选择区域。可以在普通模式下键入v进入可视模式，也可以个性化一点，键入V进入行可视模式，或者键入Ctrl+v进入列可视模式。这时移动光标就可以选择内容了。注意这时被选内容已经实时保存于选择缓冲区了，当然你也可以键入”+y将此内容也保存到剪切板里，或者”ay将内容保存到标签为a的寄存器中。但要知道，只有前两个中的内容可以在其他程序中使用，而a寄存器中的内容只能在该vim编辑器内使用。</p>
+
+<p>也可以通过鼠标来复制。这里首先要打开鼠标模式。:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> mouse<span class="p">=</span><span class="k">a</span></code></pre></figure>
+
+<p>这样在普通模式下可以直接使用鼠标选择区域复制到选择缓冲区。但这种情况下不能复制到剪切板。</p>
+
+<p>若要使用鼠标复制内容到剪切板，则需要做如下设置：:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="p">:</span><span class="k">set</span> mouse<span class="p">=</span><span class="k">v</span></code></pre></figure>
+
+<p>这种情况下，除了可以像上面一样直接使用鼠标选择区域复制到选择缓冲区以外，还可以在右键菜单中选择“复制”来保存到剪切板里。但新问题又出来了。若显示行号，也会将行号一并选择。你会想到，这好办呀，如果不需要行号的话，在复制前，先执行set nonu来取消行号显示呗。</p>
+
+<p>其实没必要这样，如果不需要复制行号的话，用在可视模式下用键盘来选择不就可以吗？</p>
+
+<p>并且，从上面的讨论，我们不难得出，使用选择缓冲区比使用剪切板要方便的多，可以节省很多步骤。</p>
+
+<p>所以，最终我们得到了vim文件间复制粘贴的完美方案，文件传输的中转使用选择缓冲区。</p>
+
+<h2 id="vim-1">vim文件间复制粘贴完美方案</h2>
+
+<p>在~/.vimrc中增加如下一行：:</p>
+
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">set</span> mouse<span class="p">=</span><span class="k">v</span></code></pre></figure>
+
+<p>复制内容到选择缓冲区。</p>
+
+<p>带行号时，使用鼠标选择内容区域。
+不要行号，使用 “<em>yny 复制n行或可视模式下选择。
+将选择缓冲区中内容粘贴到vim文件：普通模式下按 “</em>p 。</p>
+
+<p>（原文地址： <a href="http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html">http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html</a>）</p>
+
+        <hr>
+        <p>11 Feb 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/windows/2016/02/10/BlueScreenPageFaultInNoPagedAree%E4%BF%AE%E5%A4%8D%E5%8E%86%E7%A8%8B/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>

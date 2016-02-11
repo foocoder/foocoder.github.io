@@ -7,6 +7,169 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Vim复制粘贴探秘</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Vim作为最好用的文本编辑器之一，使用vim来编文档，写代码实在是很惬意的事情。每当学会了vim的一个新功能，就会很大地提高工作效率。有人使用vim几十年，还没有完全掌握vim的功能，这也说明了vim的强大。而这样何尝不是一件好事呢，只要有的学习，就有的提高。&lt;/p&gt;
+
+&lt;p&gt;最近使用Vim来写博客，发现在Vim中粘贴Python代码后，缩进就全乱了。仔细研究了以下，原来是自动缩进的缘故，于是做如下设置：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; noai nosi&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;取消了自动缩进和智能缩进，这样粘贴就不会错行了。但在有的vim中不行，还是排版错乱。&lt;/p&gt;
+
+&lt;p&gt;后来发现了更好用的设置：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; paste&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;进入&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式以后，可以在插入模式下粘贴内容，不会有任何变形。这个真是灰常好用，情不自禁看了一下帮助，发现它做了这么多事：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;textwidth设置为0&lt;/li&gt;
+  &lt;li&gt;wrapmargin设置为0&lt;/li&gt;
+  &lt;li&gt;set noai&lt;/li&gt;
+  &lt;li&gt;set nosi&lt;/li&gt;
+  &lt;li&gt;softtabstop设置为0&lt;/li&gt;
+  &lt;li&gt;revins重置&lt;/li&gt;
+  &lt;li&gt;ruler重置&lt;/li&gt;
+  &lt;li&gt;showmatch重置&lt;/li&gt;
+  &lt;li&gt;formatoptions使用空值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面的选项值不变，但却被禁用：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;lisp&lt;/li&gt;
+  &lt;li&gt;indentexpr&lt;/li&gt;
+  &lt;li&gt;cindent&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;怪不得之前只设置&lt;code class=&quot;highlighter-rouge&quot;&gt;noai&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;nosi&lt;/code&gt;不行，原来与这么多因素有关！&lt;/p&gt;
+
+&lt;p&gt;但这样还是比较麻烦的，每次要粘贴的话，先&lt;code class=&quot;highlighter-rouge&quot;&gt;set paste&lt;/code&gt;，然后粘贴，然后再&lt;code class=&quot;highlighter-rouge&quot;&gt;set nopaste&lt;/code&gt;。有没有更方便的呢？你可能想到了，使用键盘映射呀，对。我们可以这样设置：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F10&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; paste&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F11&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; nopaste&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样在粘贴前按&lt;code class=&quot;highlighter-rouge&quot;&gt;F10&lt;/code&gt;键启动&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式，粘贴后按&lt;code class=&quot;highlighter-rouge&quot;&gt;F11&lt;/code&gt;取消&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式即可。其实，&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;有一个切换&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;开关的选项，这就是&lt;code class=&quot;highlighter-rouge&quot;&gt;pastetoggle&lt;/code&gt;。通过它可以绑定快捷键来激活/取消 &lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式。比如：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; pastetoggle&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;F11&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样减少了一个快捷键的占用，使用起来也更方便一些。&lt;/p&gt;
+
+&lt;p&gt;但，这是最方便的吗？Vimer们对高效的追求永无止境。还有其他更好地方法吗？&lt;/p&gt;
+
+&lt;p&gt;你可能想到了，vim寄存器。对，使用vim寄存器 &lt;code class=&quot;highlighter-rouge&quot;&gt;“+p&lt;/code&gt; 粘贴即可。根本不用考虑是否自动缩进，是否&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式，直接原文传递！&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;c&quot;&gt;&quot;+p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;要说vim寄存器，就要从vim文件间的复制粘贴说起。&lt;/p&gt;
+
+&lt;p&gt;Vim中，若要复制当前行，普通模式下按 yy 即可，在要粘贴的地方按 p 。这是vim将复制内容保存到了自己的寄存器中的缘故。如果在其他地方执行yy，新的内容将覆盖掉原寄存器中内容。如果想保存原寄存器中内容而同时增加新的内容呢？这时就要在yy前增加标签了。标签以双引号开始，跟着的是标签名称，可以是数字0-9，也可以是26个字母，然后就是复制操作，这样就把复制内容保存到该标签寄存器里。通过下面命令显示所有寄存器内容：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;reg&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;其中注意两个特殊的寄存器：”* 和 “+。这两个寄存器是和系统相通的，前者关联系统选择缓冲区，后者关联系统剪切板。通过它们可以和其他程序进行数据交换。&lt;/p&gt;
+
+&lt;p&gt;备注：
+若寄存器列表里无”* 或 “+ 寄存器，则可能是由于没有安装vim的图形界面所致。Debian/Ubuntu下可以通过安装vim-gnome解决。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install vim-gnome&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;选择缓冲区和系统剪切板啥子区别？让我们继续研究。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;选择缓冲区和剪切板&lt;/h2&gt;
+
+&lt;p&gt;不同于Windows，Linux系统里存在两个剪切板：一个叫做选择缓冲区(X11 selection buffer)，另一个才是剪切板(clipboard)。&lt;/p&gt;
+
+&lt;p&gt;选择缓冲区是实时的，当使用鼠标或键盘选择内容时，内容已经存在于选择缓冲区了，这或许就是选择缓冲区的由来吧。&lt;/p&gt;
+
+&lt;p&gt;使用下面的命令查看选择缓冲区的内容：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;xclip -out&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;如果没有xclip命令，Debian/Ubuntu下可以通过如下命令安装：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install xclip&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;可以使用鼠标中键或键入Shift+Insert来粘贴选择缓冲区的内容。但对于有些GUI程序，比如gedit，只能通过鼠标中键调用选择缓冲区的内容，使用Shift+Insert的话，调用的是剪切板的内容。&lt;/p&gt;
+
+&lt;p&gt;剪切板和Windows的剪切板类似，在选择文字内容后，执行Ctrl + c或在菜单里选择‘复制’的话，这时内容才存放到剪切板里。&lt;/p&gt;
+
+&lt;p&gt;使用下面的命令查看剪切板的内容：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;xclip -out -sel clipboard&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;而使用剪切板的内容，则是Ctrl+v。 但在有些情况下，比如gnome-terminal，不能直接使用Ctrl+c，Ctrl+v，这时就要用Shift+Ctrl+c，Shift+Ctrl+v代替。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;原格式粘贴&lt;/h2&gt;
+
+&lt;p&gt;好了，了解了选择缓冲区和剪切板，下面就是实现保留格式粘贴的完美解决方案：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;方案一：
+    &lt;ol&gt;
+      &lt;li&gt;选择文本内容&lt;/li&gt;
+      &lt;li&gt;vim普通模式下按 “*p 将选择缓冲区中内容粘贴进来&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;方案二：
+    &lt;ol&gt;
+      &lt;li&gt;复制文件内容&lt;/li&gt;
+      &lt;li&gt;vim普通模式下按 “+ p 将剪切板内容粘贴进来&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这时，如果要复制的内容也是vim编辑器中的内容，那么如何复制才更方便呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;vim&quot;&gt;vim中的复制&lt;/h2&gt;
+
+&lt;p&gt;vim有一个可视模式(Visual Mode)，在此模式下可以选择区域。可以在普通模式下键入v进入可视模式，也可以个性化一点，键入V进入行可视模式，或者键入Ctrl+v进入列可视模式。这时移动光标就可以选择内容了。注意这时被选内容已经实时保存于选择缓冲区了，当然你也可以键入”+y将此内容也保存到剪切板里，或者”ay将内容保存到标签为a的寄存器中。但要知道，只有前两个中的内容可以在其他程序中使用，而a寄存器中的内容只能在该vim编辑器内使用。&lt;/p&gt;
+
+&lt;p&gt;也可以通过鼠标来复制。这里首先要打开鼠标模式。:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这样在普通模式下可以直接使用鼠标选择区域复制到选择缓冲区。但这种情况下不能复制到剪切板。&lt;/p&gt;
+
+&lt;p&gt;若要使用鼠标复制内容到剪切板，则需要做如下设置：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;这种情况下，除了可以像上面一样直接使用鼠标选择区域复制到选择缓冲区以外，还可以在右键菜单中选择“复制”来保存到剪切板里。但新问题又出来了。若显示行号，也会将行号一并选择。你会想到，这好办呀，如果不需要行号的话，在复制前，先执行set nonu来取消行号显示呗。&lt;/p&gt;
+
+&lt;p&gt;其实没必要这样，如果不需要复制行号的话，用在可视模式下用键盘来选择不就可以吗？&lt;/p&gt;
+
+&lt;p&gt;并且，从上面的讨论，我们不难得出，使用选择缓冲区比使用剪切板要方便的多，可以节省很多步骤。&lt;/p&gt;
+
+&lt;p&gt;所以，最终我们得到了vim文件间复制粘贴的完美方案，文件传输的中转使用选择缓冲区。&lt;/p&gt;
+
+&lt;h2 id=&quot;vim-1&quot;&gt;vim文件间复制粘贴完美方案&lt;/h2&gt;
+
+&lt;p&gt;在~/.vimrc中增加如下一行：:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;复制内容到选择缓冲区。&lt;/p&gt;
+
+&lt;p&gt;带行号时，使用鼠标选择内容区域。
+不要行号，使用 “&lt;em&gt;yny 复制n行或可视模式下选择。
+将选择缓冲区中内容粘贴到vim文件：普通模式下按 “&lt;/em&gt;p 。&lt;/p&gt;
+
+&lt;p&gt;（原文地址： &lt;a href=&quot;http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html&quot;&gt;http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html&lt;/a&gt;）&lt;/p&gt;
+</description>
+				
+				<pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/</guid>
+			</item>
+		
+			<item>
 				<title>Blue Screen, Page-Fault-In-Non-Paged-Area 修复历程</title>
 				
 					
@@ -678,61 +841,6 @@ keys a\*c&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 				<pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/python/2015/10/19/Python%E4%BB%8E%E8%8F%9C%E9%B8%9F%E5%88%B0%E4%B8%8D%E5%A4%AA%E8%8F%9C%E4%B9%8B%E8%B7%AF2/</guid>
-			</item>
-		
-			<item>
-				<title>Gem Source相关</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;之前由于&lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt;的引擎问题，导致在&lt;code class=&quot;highlighter-rouge&quot;&gt;md&lt;/code&gt;文件中普通换行就被解析成了一段，导致每次写一段的话得拖的好长好长，但自己又没有那么宽的屏幕，于是把&lt;code class=&quot;highlighter-rouge&quot;&gt;Markdown&lt;/code&gt;引擎换成了&lt;code class=&quot;highlighter-rouge&quot;&gt;rdiscount&lt;/code&gt;。
-在笔记本上实验成功，分段的话需要空一行。&lt;/p&gt;
-
-&lt;p&gt;然后回到实验时&lt;code class=&quot;highlighter-rouge&quot;&gt;yekyll server&lt;/code&gt;的时候报错了，发现并没有安装&lt;code class=&quot;highlighter-rouge&quot;&gt;rdiscount&lt;/code&gt;软件包。这个简单，&lt;code class=&quot;highlighter-rouge&quot;&gt;gem install&lt;/code&gt;一下就可以了。可是可是，事与愿违&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install rdiscount
-ERROR:  Could not find a valid gem &lt;span class=&quot;s1&quot;&gt;&#39;rdiscount&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, here is why:
-Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://ruby.taobao.org/specs.4.8.gz&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;看来是&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;出问题了，谷歌一下，讲淘宝已经停止了http协议的镜像服务，使用https协议了，那就改吧。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; --remove http://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; -a https://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gem install rdiscount
-ERROR:  While executing gem ... &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Gem::FilePermissionError&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-You don&lt;span class=&quot;s1&quot;&gt;&#39;t have write permissions for the /var/lib/gems/2.1.0 directory.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;需要&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;用户权限，那就&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo !!&lt;/code&gt;，可是，老问题又出现了。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo !!
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install rdiscount
-ERROR:  Could not find a valid gem &lt;span class=&quot;s1&quot;&gt;&#39;rdiscount&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&amp;gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, here is why:
-Unable to download data from http://ruby.taobao.org/ - bad response Not Found 404 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;http://ruby.taobao.org/specs.4.8.gz&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;想起来了，只是给当前用户修改了&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt;用户的&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;还没改呢。好吧，那就继续改掉&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; --remove http://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; -a https://ruby.taobao.org/
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo gem install rdiscount
-Fetching: rdiscount-2.1.8.gem &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;100%&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Building native extensions.  This could take a &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;...
-Successfully installed rdiscount-2.1.8
-Parsing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount-2.1.8
-Installing ri documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount-2.1.8
-Done installing documentation &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;rdiscount after 0 seconds
-1 gem installed&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;现在问题解决了，终于可以启动&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll server&lt;/code&gt;了。&lt;/p&gt;
-
-&lt;p&gt;不过后来看到&lt;code class=&quot;highlighter-rouge&quot;&gt;gem source&lt;/code&gt;配置其实都在&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.gemrc&lt;/code&gt;里边，想修改&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;只要&lt;code class=&quot;highlighter-rouge&quot;&gt;vim ~/.gemrc&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;/root/.gemrc&lt;/code&gt;就可以了，真是后知后觉。&lt;/p&gt;
-</description>
-				
-				<pubDate>Sun, 18 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/jekyll/2015/10/18/Gem-Source%E7%9B%B8%E5%85%B3/</guid>
 			</item>
 		
 	</channel>
