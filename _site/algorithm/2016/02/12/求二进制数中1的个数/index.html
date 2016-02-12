@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+求二进制数中1的个数 | Meta Coder
+
+</title>
+<meta name="description" content="给定任意一个无符号整型，求其二进制表示中1的个数。 Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="求二进制数中1的个数 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/algorithm/2016/02/12/%E6%B1%82%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/">
+<meta property="og:description" content="
+
+给定任意一个无符号整型，求其二进制表示中1的个数。
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>求二进制数中1的个数</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Algorithm" title="Algorithm"> Algorithm</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#转载" title="转载">  转载</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Code" title="Code">  Code</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Algorithm" title="Algorithm">  Algorithm</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#C/C++" title="C/C++">  C/C++</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Feb 12, 2016</span>
+        </div>
+
+        <hr>
+        <p>本文主要转载自zzd的<a href="http://www.cnblogs.com/graphics/archive/2010/06/21/1752421.html">算法-求二进制数中1的个数</a>。
+除此之外，本文还对原文中供的几种算法进行测试以及做了一定的分析。</p>
+
+<h2 id="section">问题描述</h2>
+
+<p>任意给定一个32位无符号整数n，求n的二进制表示中1的个数，比如n = 5(0101)时，返回2，n = 15(1111)时，返回4。</p>
+
+<p>这也是一道比较经典的题目了，相信不少人面试的时候可能遇到过这道题吧，下面介绍了几种方法来实现这道题，相信很多人可能见过下面的算法，但我相信很少有人见到本文中所有的算法。如果您上头上有更好的算法，或者本文没有提到的算法，请不要吝惜您的代码，分享的时候，也是学习和交流的时候。</p>
+
+<h2 id="section-1">普通法</h2>
+
+<p>我总是习惯叫普通法，因为我实在找不到一个合适的名字来描述它，其实就是最简单的方法，有点程序基础的人都能想得到，那就是移位+计数，很简单，不多说了，直接上代码，这种方法的运算次数与输入n最高位1的位置有关，最多循环32次。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//普通法
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Normal</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="c1">// 计数器
+</span>    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">((</span><span class="n">n</span> <span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 当前位是1
+</span>            <span class="o">++</span><span class="n">c</span> <span class="p">;</span> <span class="c1">// 计数器加1
+</span>        <span class="n">n</span> <span class="o">&gt;&gt;=</span><span class="mi">1</span> <span class="p">;</span> <span class="c1">// 移位
+</span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>一个更精简的版本如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//普通法精简版
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Normal_Simplify</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="c1">// 计数器
+</span>    <span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">n</span><span class="p">;</span> <span class="n">n</span> <span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 循环移位
+</span>        <span class="n">c</span> <span class="o">+=</span> <span class="n">n</span> <span class="o">&amp;</span><span class="mi">1</span> <span class="p">;</span> <span class="c1">// 如果当前位是1，则计数器加1
+</span>    <span class="k">return</span> <span class="n">c</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="section-2">性能测试及分析</h3>
+
+<p>Note: 本文函数是统计从<code class="highlighter-rouge">0</code>到<code class="highlighter-rouge">0xFFFFFF</code>所有二进制数的1的个数。
+结果分别包含了算法的运行结果以及算法运行时间。
+毕竟一个算法首先要求其准确性，之后才要求性能。</p>
+
+<p>对普通法及其精简版进行测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Normal</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">2.67302</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Normal_Simplify</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">1.24171</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>从结果中可以看出，精简的版本要比原版本省时一倍多。
+这是因为原版相对于精简版本多了一个判断语句<code class="highlighter-rouge">if((n&amp;1)==1)</code>。</p>
+
+<p>我们可以通过汇编代码来看出两者的区别。</p>
+
+<figure class="highlight"><pre><code class="language-asm" data-lang="asm">; 普通版
+	movl	$0, -4(%rbp)
+.L4:
+	cmpl	$0, -20(%rbp)
+	je	.L2
+	movl	-20(%rbp), %eax
+	andl	$1, %eax
+	testl	%eax, %eax
+	je	.L3
+	addl	$1, -4(%rbp)
+.L3:
+	shrl	-20(%rbp)
+	jmp	.L4
+.L2:
+	movl	-4(%rbp), %eax</code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-asm" data-lang="asm">; 精简版
+	movl	$0, -4(%rbp)
+.L8:
+	cmpl	$0, -20(%rbp)
+	je	.L7
+	movl	-20(%rbp), %eax
+	andl	$1, %eax
+	addl	%eax, -4(%rbp)
+	shrl	-20(%rbp)
+	jmp	.L8
+.L7:
+	movl	-4(%rbp), %eax</code></pre></figure>
+
+<p>从汇编中可以看出原版比精简版不仅要多一些指令，更主要的是多了一个跳转的分支。
+我们知道汇编中跳转因为需要查询地址所以是比较耗时的，因此多的这个<code class="highlighter-rouge">if</code>语句导致普通版比精简版多耗时一倍多。</p>
+
+<p>其实我们也可以把普通版代码去掉<code class="highlighter-rouge">if</code>语句</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//普通法改进
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Normal</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span> <span class="c1">// 计数器
+</span>    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">c</span> <span class="o">+=</span> <span class="n">n</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span><span class="mi">1</span> <span class="p">;</span> <span class="c1">// 移位
+</span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这样结果就跟精简版的结果差不多了</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Normal</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">1.24487</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Normal_Simplify</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">1.23572</span> <span class="n">seconds</span></code></pre></figure>
+
+<h2 id="section-3">快速法</h2>
+
+<p>这种方法速度比较快，其运算次数与输入n的大小无关，只与n中1的个数有关。如果n的二进制表示中有k个1，那么这个方法只需要循环k次即可。其原理是不断清除n的二进制表示中最右边的1，同时累加计数器，直至n为0，代码如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//快速法
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Fast</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">c</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">n</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">;</span> <span class="c1">// 清除最低位的1
+</span>    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>为什么n &amp;= (n – 1)能清除最右边的1呢？因为从二进制的角度讲，n相当于在n - 1的最低位加上1。举个例子，8(1000)= 7(0111)+ 1(0001)，所以8 &amp; 7 = (1000)&amp;(0111)= 0(0000)，清除了8最右边的1(其实就是最高位的1，因为8的二进制中只有一个1)。再比如7(0111)= 6(0110)+ 1(0001)，所以7 &amp; 6 = (0111)&amp;(0110)= 6(0110)，清除了7的二进制表示中最右边的1(也就是最低位的1)。</p>
+
+<h3 id="section-4">性能测试及分析</h3>
+
+<p>对快速法进行测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Fast</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.930146</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>快速法的速度要比普通法的速度更快，这是很正常的，因为快速法的时间复杂度跟数字里的1的个数成正比，
+而普通法则跟数字的最大长度成正比。明显快速的时间复杂度要低。</p>
+
+<h2 id="section-5">查表法</h2>
+
+<h3 id="section-6">动态建表</h3>
+
+<p>由于表示在程序运行时动态创建的，所以速度上肯定会慢一些，把这个版本放在这里，有两个原因</p>
+
+<ol>
+  <li>
+    <p>介绍填表的方法，因为这个方法的确很巧妙。</p>
+  </li>
+  <li>
+    <p>类型转换，这里不能使用传统的强制转换，而是先取地址再转换成对应的指针类型。也是常用的类型转换方法。</p>
+  </li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//查表法-动态建表
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Dynamic_Table</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="c1">// 建表
+</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">BitsSetTable256</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span> <span class="p">;</span>
+
+    <span class="c1">// 初始化表
+</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="mi">256</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">i</span> <span class="o">/</span><span class="mi">2</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+
+    <span class="c1">// 查表
+</span>    <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">n</span> <span class="p">;</span>
+
+    <span class="n">c</span> <span class="o">=</span> <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span>
+        <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span>
+        <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">+</span>
+        <span class="n">BitsSetTable256</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]];</span>
+
+    <span class="k">return</span> <span class="n">c</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>先说一下填表的原理，根据奇偶性来分析，对于任意一个正整数n</p>
+
+<ol>
+  <li>
+    <p>如果它是偶数，那么n的二进制中1的个数与n/2中1的个数是相同的，比如4和2的二进制中都有一个1，6和3的二进制中都有两个1。为啥？因为n是由n/2左移一位而来，而移位并不会增加1的个数。</p>
+  </li>
+  <li>
+    <p>如果n是奇数，那么n的二进制中1的个数是n/2中1的个数+1，比如7的二进制中有三个1，7/2 = 3的二进制中有两个1。为啥？因为当n是奇数时，n相当于n/2左移一位再加1。</p>
+  </li>
+</ol>
+
+<p>再说一下查表的原理</p>
+
+<p>对于任意一个32位无符号整数，将其分割为4部分，每部分8bit，对于这四个部分分别求出1的个数，再累加起来即可。而8bit对应2^8 = 256种01组合方式，这也是为什么表的大小为256的原因。</p>
+
+<p>注意类型转换的时候，先取到n的地址，然后转换为unsigned char * ，这样一个unsigned int(4 bytes)对应四个unsigned char(1 bytes)，分别取出来计算即可。举个例子吧，以87654321(十六进制)为例，先写成二进制形式-8bit一组，共四组，以不同颜色区分，这四组中1的个数分别为4，4，3，2，所以一共是13个1，如下面所示。</p>
+
+<p>10000111 01100101 01000011 00100001 = 4 + 4 + 3 + 2 = 13</p>
+
+<h3 id="bit">静态表-4bit</h3>
+
+<p>原理和8-bit表相同，详见8-bit表的解释</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//查表法-静态表-4bit
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Static_Table_4</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">table</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span>
+    <span class="p">}</span> <span class="p">;</span>
+
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">table</span><span class="p">[</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0xf</span><span class="p">]</span> <span class="p">;</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span><span class="mi">4</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="bit-1">静态表-8bit</h3>
+
+<p>首先构造一个包含256个元素的表table，table[i]即i中1的个数，这里的i是[0-255]之间任意一个值。然后对于任意一个32bit无符号整数n，我们将其拆分成四个8bit，然后分别求出每个8bit中1的个数，再累加求和即可，这里用移位的方法，每次右移8位，并与0xff相与，取得最低位的8bit，累加后继续移位，如此往复，直到n为0。所以对于任意一个32位整数，需要查表4次。以十进制数2882400018为例，其对应的二进制数为10101011110011011110111100010010，对应的四次查表过程如下：红色表示当前8bit，绿色表示右移后高位补零。</p>
+
+<p>第一次（n &amp; 0xff）        10101011110011011110111100010010</p>
+
+<p>第二次（(n » 8) &amp; 0xff） 00000000101010111100110111101111</p>
+
+<p>第三次（(n » 16) &amp; 0xff）00000000000000001010101111001101</p>
+
+<p>第四次（(n » 24) &amp; 0xff）00000000000000000000000010101011</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//查表法-静态表-8Bit
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Static_Table_8</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">table</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="n">table</span><span class="p">[</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">24</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>当然也可以搞一个16bit的表，或者更极端一点32bit的表，速度将会更快。</p>
+
+<h3 id="section-7">性能测试及分析</h3>
+
+<p>对查表法进行测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Dynamic_Table</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">15.119</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Static_Table_4</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.434318</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Static_Table_8</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.861671</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>从中可以看出动态建表的话由于每次都需要重新建表，所以一个表被重复建立了好多次，因此耗时较长。
+然而我们在实际应用中需要先建立好一个查询表，这样的话动态查询就演变成静态表。</p>
+
+<p>而4-bit表本身较8-bit表小，因此需要查询计算量会增大，但结果显示4-bit表要比8-bit表耗时，这是很奇怪的。
+参见stl中bitset的建表方式(Ps:stl中bitcount采用的是8-bit的查表法)，发现建表的格式以<code class="highlighter-rouge">unsigned char</code>的话会节省时间以及空间。
+因此对将两个版本的<code class="highlighter-rouge">unsigned int</code>改为<code class="highlighter-rouge">unsigned char</code>后结果</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Static_Table_4</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.461647</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Static_Table_8</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.473212</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>现在的话8-bit时间要较之前少很多，然而还有问题。
+8-bit建表理应速度比4-bit块，怎么耗时还比4-bit多呢。
+后来经过查找，发现问题根源在于对<code class="highlighter-rouge">table</code>的初始化耗时。
+每次运行<code class="highlighter-rouge">bitcount</code>时都要对<code class="highlighter-rouge">table</code>重新进行赋值，而这整个过程都是冗余的，因此将<code class="highlighter-rouge">table</code>移到函数外面如下：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//查表法-静态表-4bit
+</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">table4</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span>
+<span class="p">}</span> <span class="p">;</span>
+<span class="kt">int</span> <span class="n">Fn_BitCount_Static_Table_4</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span><span class="mi">0</span> <span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">table4</span><span class="p">[</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0xf</span><span class="p">]</span> <span class="p">;</span>
+        <span class="n">n</span> <span class="o">&gt;&gt;=</span><span class="mi">4</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span> <span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//查表法-静态表-8Bit
+</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">table8</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">{</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="n">Fn_BitCount_Static_Table_8</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">table8</span><span class="p">[</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table8</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table8</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="o">+</span>
+        <span class="n">table8</span><span class="p">[(</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">24</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>现在运行结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Static_Table_4</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.399976</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_Static_Table_8</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.134553</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>这样的话结果就正常了。
+查表法的效率很高的，如果用32-bit的表，速度可能会更快，当然这是一种以空间换时间的做法。
+具体就看需求是什么样的。</p>
+
+<h2 id="section-8">平行算法</h2>
+
+<p>网上都这么叫，我也这么叫吧，不过话说回来，的确有平行的意味在里面，先看代码，稍后解释</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//平行计算法
+</span><span class="kt">int</span> <span class="nf">Fn_BitCount_Parallel</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0x55555555</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0x55555555</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0x33333333</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0x33333333</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0x0f0f0f0f</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0x0f0f0f0f</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0x00ff00ff</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0x00ff00ff</span><span class="p">)</span> <span class="p">;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span><span class="mh">0x0000ffff</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span> <span class="o">&amp;</span><span class="mh">0x0000ffff</span><span class="p">)</span> <span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">n</span> <span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>速度不一定最快，但是想法绝对巧妙。 说一下其中奥妙，其实很简单，先将n写成二进制形式，然后相邻位相加，重复这个过程，直到只剩下一位。</p>
+
+<p>以217(11011001)为例，有图有真相，下面的图足以说明一切了。217的二进制表示中有5个1</p>
+
+<p><img src="/img/parallelversion.jpg" alt="Parallel Version" /></p>
+
+<h3 id="section-9">性能测试及分析</h3>
+
+<p>对平行算法进行测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Parallel</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.230439</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>并行性，速度也是很快的，整体效果要堪比查表法。
+因为该版本并不需要大量的空间支持。</p>
+
+<h2 id="section-10">完美法</h2>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//完美法
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_Perfect</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span><span class="mo">033333333333</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="n">n</span> <span class="o">&gt;&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span><span class="mo">011111111111</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">tmp</span> <span class="o">+</span> <span class="p">(</span><span class="n">tmp</span> <span class="o">&gt;&gt;</span><span class="mi">3</span><span class="p">))</span> <span class="o">&amp;</span><span class="mo">030707070707</span><span class="p">)</span> <span class="o">%</span><span class="mi">63</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>最喜欢这个，代码太简洁啦，只是有个取模运算，可能速度上慢一些。区区两行代码，就能计算出1的个数，到底有何奥妙呢？为了解释的清楚一点，我尽量多说几句。</p>
+
+<p>第一行代码的作用</p>
+
+<p>先说明一点，以0开头的是8进制数，以0x开头的是十六进制数，上面代码中使用了三个8进制数。</p>
+
+<p>将n的二进制表示写出来，然后每3bit分成一组，求出每一组中1的个数，再表示成二进制的形式。比如n = 50，其二进制表示为110010，分组后是110和010，这两组中1的个数本别是2和3。2对应010，3对应011，所以第一行代码结束后，tmp = 010011，具体是怎么实现的呢？由于每组3bit，所以这3bit对应的十进制数都能表示为2^2 * a + 2^1 * b + c的形式，也就是4a + 2b + c的形式，这里a,b,c的值为0或1，如果为0表示对应的二进制位上是0，如果为1表示对应的二进制位上是1，所以a + b + c的值也就是4a + 2b + c的二进制数中1的个数了。举个例子，十进制数6(0110)= 4 * 1 + 2 * 1 + 0，这里a = 1, b = 1, c = 0, a + b + c = 2，所以6的二进制表示中有两个1。现在的问题是，如何得到a + b + c呢？注意位运算中，右移一位相当于除2，就利用这个性质！</p>
+
+<p>4a + 2b + c 右移一位等于2a + b</p>
+
+<p>4a + 2b + c 右移量位等于a</p>
+
+<p>然后做减法</p>
+
+<p>4a + 2b + c –(2a + b) – a = a + b + c，这就是第一行代码所作的事，明白了吧。</p>
+
+<p>第二行代码的作用</p>
+
+<p>在第一行的基础上，将tmp中相邻的两组中1的个数累加，由于累加到过程中有些组被重复加了一次，所以要舍弃这些多加的部分，这就是&amp;030707070707的作用，又由于最终结果可能大于63，所以要取模。</p>
+
+<p>需要注意的是，经过第一行代码后，从右侧起，每相邻的3bit只有四种可能，即000, 001, 010, 011，为啥呢？因为每3bit中1的个数最多为3。所以下面的加法中不存在进位的问题，因为3 + 3 = 6，不足8，不会产生进位。</p>
+
+<p>tmp + (tmp » 3)-这句就是是相邻组相加，注意会产生重复相加的部分，比如tmp = 659 = 001 010 010 011时，tmp » 3 = 000 001 010 010，相加得</p>
+
+<p>001 010 010 011</p>
+
+<p>000 001 010 010</p>
+
+<p>-——————–</p>
+
+<p>001 011 100 101</p>
+
+<p>011 + 101 = 3 + 5 = 8。</p>
+
+<p>注意，659只是个中间变量，这个结果不代表659这个数的二进制形式中有8个1。</p>
+
+<p>注意我们想要的只是第二组和最后一组（绿色部分），而第一组和第三组（红色部分）属于重复相加的部分，要消除掉，这就是&amp;030707070707所完成的任务（每隔三位删除三位），最后为什么还要%63呢？因为上面相当于每次计算相连的6bit中1的个数，最多是111111 = 77（八进制）= 63（十进制），所以最后要对63取模。</p>
+
+<h3 id="section-11">性能测试及分析</h3>
+
+<p>对完美法进行测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_Perfect</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.191481</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>完美法效率也很高，但不知道不同编译器间是否有差别。
+代码简介，效率高能，堪称完美。</p>
+
+<h2 id="section-12">位标志法</h2>
+
+<p>感谢网友 gussing提供</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">_byte</span> 
+<span class="p">{</span> 
+    <span class="kt">unsigned</span> <span class="n">a</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">b</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">c</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">d</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">e</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">f</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">g</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">h</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span> 
+
+<span class="kt">long</span> <span class="nf">get_bit_count</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">b</span> <span class="p">)</span> 
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="n">by</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">_byte</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span> 
+    <span class="k">return</span> <span class="p">(</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">a</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">b</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">c</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">d</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">e</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">f</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">g</span><span class="o">+</span><span class="n">by</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">);</span> 
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="section-13">性能测试与分析</h3>
+
+<p>由于原文提供的代码只能计算8bit二进制数的1的数目，因此将之改为32bit的版本如下：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//位标志法
+</span><span class="k">struct</span> <span class="n">_byte</span><span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="n">a</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">b</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">c</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">d</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">e</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">f</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">g</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="n">h</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="n">Fn_BitCount_BitFlags</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">n</span> <span class="p">;</span>
+    <span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="n">by</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{(</span><span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                          <span class="p">(</span><span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                          <span class="p">(</span><span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                          <span class="p">(</span><span class="k">struct</span> <span class="n">_byte</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]};</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">a</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">c</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">d</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">e</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">f</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">;</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">a</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">c</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">d</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">e</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">f</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">;</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">a</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">c</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">d</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">e</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">f</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">;</span>
+    <span class="n">c</span> <span class="o">+=</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">a</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">c</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">d</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">e</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">f</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">+</span> <span class="n">by</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>其测试结果如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_BitFlags</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.882302</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>一开始这个版本究竟什么意思并没有看懂。
+因为原文中并没有给出解释。
+后来偶然了解到<code class="highlighter-rouge">struct</code>位字段表示(bit-field)。</p>
+
+<p>诸如此类定义</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">is_keyword</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">is_extern</span>  <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">is_static</span>  <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span><span class="n">flags</span><span class="p">;</span></code></pre></figure>
+
+<p>这里是定义了一个变量flags，它包含了3个1位的字段。
+冒号后的数字表示的是字段的宽度（用二进制表示时的宽度）。
+因此该flags变量只占3个bit。</p>
+
+<p>同理，该版本中定义一个 _byte 的结构体包含8个位字段， 每个字段的长度为1。
+从而该结体占8个bit。
+之后只要将整数拆分成每8bit一份，就可以利用_byte轻松的访问到整数的每一个二进制位了。</p>
+
+<p>想法也是比较巧妙的。</p>
+
+<h2 id="sse4">SSE4指令</h2>
+
+<p>感谢网友 Milo Yip提供</p>
+
+<p>使用微软提供的指令，首先要确保你的CPU支持SSE4指令，用Everest和CPU-Z可以查看是否支持。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span><span class="mi">127</span> <span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bitCount</span> <span class="o">=</span> <span class="n">_mm_popcnt_u32</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">;</span></code></pre></figure>
+
+<h3 id="section-14">性能测试及分析</h3>
+
+<p>原文并没有给出详细的关于SSE4指令的介绍，因此特地查询了一下相关指令。</p>
+
+<blockquote>
+  <p>参考<a href="https://msdn.microsoft.com/zh-cn/library/bb514083(v=vs.90).aspx">_mm_popcnt_u32</a>
+<br />参考<a href="https://msdn.microsoft.com/zh-cn/library/bb531475(v=vs.90).aspx">_mm_popcnt_u64</a></p>
+</blockquote>
+
+<p>该指令的头文件<code class="highlighter-rouge">&lt;nmmintrin.h&gt;</code></p>
+
+<p>其中 _mm_popcnt_u32 接受的参数是32bit的整型。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">_mm_popcnt_u32</span> <span class="p">(</span>
+   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>而_mm_popcnt_u64 接受的参数是64bit的整型。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">_mm_popcnt_u64</span> <span class="p">(</span>
+   <span class="kt">unsigned</span> <span class="n">__int64</span> <span class="n">a</span>
+<span class="p">);</span></code></pre></figure>
+
+<p>测试代码如下所示：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//SSE4指令-32bit
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_SSE4_32</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">_mm_popcnt_u32</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//SSE4指令-64bit
+</span><span class="kt">int</span> <span class="n">Fn_BitCount_SSE4_64</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">_mm_popcnt_u64</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>下面显示了运行结果：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_BitCount_SSE4_32</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.086371</span> <span class="n">seconds</span>
+<span class="n">Fn_BitCount_SSE4_64</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">201326568</span><span class="p">,</span> <span class="n">Time</span> <span class="n">Consuming</span><span class="o">:</span> <span class="mf">0.089418</span> <span class="n">seconds</span></code></pre></figure>
+
+<p>由此可见，SSE4指令的速度是最快的。
+从汇编中可以看到，该函数只需要一条简单的指令</p>
+
+<figure class="highlight"><pre><code class="language-asm" data-lang="asm">	popcntl	-4(%rbp), %eax ;_mm_popcnt_u32 </code></pre></figure>
+
+<p>上边是对于32bit的函数或者是下边的64bit的函数</p>
+
+<figure class="highlight"><pre><code class="language-asm" data-lang="asm">	popcntq	-4(%rbp), %eax ;_mm_popcnt_u64</code></pre></figure>
+
+<p>对于指令级别的代码，速度当然是很快的，有种开了金手指的感觉。</p>
+
+<p>不过需要注意的是，该指令在编译的时候需要添加<code class="highlighter-rouge">-msse4.2</code>的参数。
+因为该版本对机器有所要求，所以可移植性会有所降低。</p>
+
+<h2 id="section-15">总结</h2>
+
+<p>这几种方法来讲，SSE4指令速度是最快的，然而其对机器的配置有所依赖，可移植性不高。
+对于其他方法，还是查表法速度最快，这样是<code class="highlighter-rouge">stl</code>中<code class="highlighter-rouge">bitset</code>类型里采用的策略。
+完美法跟并行法的构思很巧妙，算法精致，堪称神作。</p>
+
+<p>最后，我已经把整个的测试代码上传到我的github上，地址是
+<a href="https://github.com/foocoder/testbitcount">https://github.com/foocoder/testbitcount</a></p>
+
+        <hr>
+        <p>12 Feb 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>
