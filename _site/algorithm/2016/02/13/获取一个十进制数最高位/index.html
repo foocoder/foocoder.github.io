@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+获取一个十进制数的最高位 | Meta Coder
+
+</title>
+<meta name="description" content="问题描述，给定一个十进制整数，如何快速的求得其十进制的最高位数是多少？ Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="获取一个十进制数的最高位 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/algorithm/2016/02/13/%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E6%9C%80%E9%AB%98%E4%BD%8D/">
+<meta property="og:description" content="
+
+问题描述，给定一个十进制整数，如何快速的求得其十进制的最高位数是多少？
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>获取一个十进制数的最高位</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#Algorithm" title="Algorithm"> Algorithm</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Algorithm" title="Algorithm">  Algorithm</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#C/C++" title="C/C++">  C/C++</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Stackoverflow" title="Stackoverflow">  Stackoverflow</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Feb 13, 2016</span>
+        </div>
+
+        <hr>
+        <p>整理来自于<code class="highlighter-rouge">Stackoverflow</code>的这里<a href="http://stackoverflow.com/questions/701322/how-can-you-get-the-first-digit-in-an-int-c/701621#701621">http://stackoverflow.com/questions/701322/how-can-you-get-the-first-digit-in-an-int-c/701621#701621</a>。</p>
+
+<p>问题描述：在给定的一个十进制的整数，如何能够快速的求得其十进制的最高位数值是多少？</p>
+
+<h2 id="method-1">Method 1</h2>
+
+<p>利用<code class="highlighter-rouge">to_string</code>函数，将整数强制转换为<code class="highlighter-rouge">string</code>类型，然后取数组中第一个字符，再将之转换为<code class="highlighter-rouge">int</code>类型。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//Method 1
+</span><span class="kt">int</span> <span class="n">Fn_Get_First_By_String</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>很简单的一种思路，想当然的想法，但其效率肯定会很差的。</p>
+
+<h2 id="method-2">Method 2</h2>
+
+<p>利用<code class="highlighter-rouge">math</code>中库函数，直接用整数除以不大于该整数最大的10的整数幂值，来获取其商。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//Method 2
+</span><span class="kt">int</span> <span class="n">Fn_Get_First_By_MathFunc</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">n</span> <span class="o">/</span> <span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">floor</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="p">))));</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>数学思路，比如11/10商1， 321/100 商3，非常简单，也没什么可讲的。
+不过需要注意一点是log函数的参数必须为正值，如果测试代码中包含0的话需要特别处理下。
+处理后应该如下：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">Fn_Get_First_By_MathFunc</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">n</span> <span class="o">/</span> <span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">floor</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="n">n</span><span class="p">))));</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="method-3">Method 3</h2>
+
+<p>前两类方法都是利用外部函数调用，相较而言速度肯定会比较慢的。
+这里有一种相对速度较快的，也是比较好想的方法。
+通过整除10的方法来循环得到整数的各位以及最高位。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//Method 3
+</span><span class="kt">int</span> <span class="n">Fn_Get_First_By_Looping</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>时间复杂度跟整数的十进制最高位数成正比。</p>
+
+<h2 id="method-4">Method 4</h2>
+
+<p>条件判断法。</p>
+
+<p>因为我们知道一个整数在计算机的存储中范围是有限的。
+那我们就分情况来讨论该整数最邻近的10的指数幂，然后利用整除方式得到最高位值。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// Method 4
+</span><span class="kt">int</span> <span class="n">Fn_Get_First_By_Conditional</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">digit</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">10</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">100</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">10</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">1000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">10000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">100000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">10000</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">1000000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">100000</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">10000000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">1000000</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">100000000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">10000000</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&lt;</span><span class="mi">1000000000</span> <span class="p">)</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">100000000</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">1000000000</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">digit</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>可以看到，代码是最长的一个，因为我们需要讨论从1到最大范围内的10的幂值，但相对其他方式来说速度也是很快的。</p>
+
+<h2 id="method-5">Method 5</h2>
+
+<p>最后这个方法堪称完美。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//Method 5
+</span><span class="kt">int</span> <span class="n">Fn_Get_First_By_Unrolled_Optimized</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">n</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&gt;=</span><span class="mi">100000000</span> <span class="p">)</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">100000000</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&gt;=</span><span class="mi">10000</span> <span class="p">)</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">10000</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&gt;=</span><span class="mi">100</span> <span class="p">)</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">n</span><span class="o">&gt;=</span><span class="mi">10</span> <span class="p">)</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>巧妙的利用二分法将<code class="highlighter-rouge">Method 4</code>中的条件进一步拆解。最高可以处理到(10^16 - 1)的数值。
+比如说3872865， 首先经过第二个<code class="highlighter-rouge">if</code>剩下387，然后第三个<code class="highlighter-rouge">if</code>后得到38，最后一个<code class="highlighter-rouge">if</code>则出来最终结果3。
+简洁凝练迅速，太完美了。</p>
+
+<h2 id="section">性能对比</h2>
+
+<p>通过测试代码，<code class="highlighter-rouge">for</code>循环从0到10^9次，间隔为5，统计所有数的最高位数的总和。
+结果如下所示:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Fn_Get_First_By_String</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">999999996</span><span class="p">,</span> <span class="n">Time</span><span class="o">:</span> <span class="mf">48.2231</span>
+<span class="n">Fn_Get_First_By_MathFunc</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">999999996</span><span class="p">,</span> <span class="n">Time</span><span class="o">:</span> <span class="mf">32.8894</span>
+<span class="n">Fn_Get_First_By_Looping</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">999999996</span><span class="p">,</span> <span class="n">Time</span><span class="o">:</span> <span class="mf">8.66428</span>
+<span class="n">Fn_Get_First_By_Conditional</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">999999996</span><span class="p">,</span> <span class="n">Time</span><span class="o">:</span> <span class="mf">2.68092</span>
+<span class="n">Fn_Get_First_By_Unrolled_Optimized</span> <span class="n">Result</span><span class="o">:</span> <span class="mi">999999996</span><span class="p">,</span> <span class="n">Time</span><span class="o">:</span> <span class="mf">1.87899</span></code></pre></figure>
+
+<p>还是方法5的速度最快。
+而第一种方式跟第二种方式由于调用外部函数，很是耗时。</p>
+
+
+        <hr>
+        <p>13 Feb 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/algorithm/2016/02/12/%E6%B1%82%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>
