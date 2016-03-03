@@ -14,7 +14,7 @@ cover-image: 9.jpg
 
 进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。
 
-最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。
+最近，我读到一篇[材料](http://www.qnx.com/developers/docs/6.4.1/neutrino/getting_started/s1_procs.html)，发现有一个很好的类比，可以把它们解释地清晰易懂。
 
 1.
 
