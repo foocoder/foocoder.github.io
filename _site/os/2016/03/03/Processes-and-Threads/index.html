@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width">
 <title>
 
-Meta Code | Meta Coder
+进程与线程的一个简单解释 | Meta Coder
 
 </title>
 <meta name="description" content=" Reading, Thinking, Coding">
@@ -24,15 +24,15 @@ Meta Code | Meta Coder
 <!-- /icons -->
 <!-- og tags -->
 <meta property="og:site_name" content="Meta Coder">
-<meta property="og:title" content="Meta Code • Meta Coder">
+<meta property="og:title" content="进程与线程的一个简单解释 • Meta Coder">
 <meta property="og:locale" content="en">
 
   
-    <meta property="og:image" content="http://foocoder.github.io/img/beats.jpg">
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
   
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="http://foocoder.github.io/page-5/">
+<meta property="og:url" content="http://foocoder.github.io/os/2016/03/03/Processes-and-Threads/">
 <meta property="og:description" content="
 
 Reading, Thinking, Coding
@@ -76,12 +76,26 @@ $(document).ready(function () {
   </style>
 <![endif]-->
 
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
 
     </head>
     <body>
         
         <div class="cover-image-container">
-            <img alt="Cover image" src="/img/covers/beats.jpg" style="width:100%">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
         </div>
         
         
@@ -94,83 +108,12 @@ $(document).ready(function () {
           </a>
         </div>
         
-        <header class="intro-header-container" style="background-image: url('/img/covers/beats.jpg'); background-size:cover">
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
   <div class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    
-                    <h1>Meta Code</h1>
-                    <hr class="small">
-                    <span class="subheading">Just for Fun</span>
-                        
-                            <p>
-                            
-                            
-                            
-                            
-                            
-                                <a href="https://www.facebook.com/yeoman.slow/" target="_blank">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook-official fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            
-                            
-                                <a href="https://plus.google.com/u/0/101257011987309990194/posts/p/pub/" target="_blank">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            
-                            
-                                <a href="https://www.flickr.com/photos/yeomanslow">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-flickr fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            
-                            
-                            
-                            
-                            
-                            
-                                <a href="https://github.com/foocoder/" target="_blank">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                                <a href="http://weibo.com/yeomanslow/" target="_blank">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            
-                            
-                                <a href="http://zhihu.com/people/yeomanslow/" target="_blank">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x " ></i>
-                                        <i class="fa fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            
-                          </p>
-                        
                     
                 </div>
             </div>
@@ -272,130 +215,151 @@ $(document).ready(function () {
 
 
         <div class="wrap">
+            <article>
+        <h1>进程与线程的一个简单解释</h1>
+        <div class="category">
             
-    <article>
-        <a href="/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/"><h1>Awesome 锁屏</h1></a>
-        <span class="meta">
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#OS" title="OS"> OS</a>
             
-                
-                    
-                        MetaCoder •
-                    
-                
+        </div>
+        <div class="tags">
             
-            Oct 10, 2015 • 
-        </span>
-        <p>
-        
-        <p>Awesome装好后用起来得心应手，感觉工作效率明显提高了一个档次。开心。
-            <br/><a class="read-more" href="/linux/2015/10/10/Awesome-%E9%94%81%E5%B1%8F/"><br/>Read More  →</a>
-        
-        </p>
-    </article>
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#转载" title="转载">  转载</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#OS" title="OS">  OS</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Mar 3, 2016</span>
+        </div>
 
-    <article>
-        <a href="/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/"><h1>Awesome 初体验</h1></a>
-        <span class="meta">
-            
-                
-                    
-                        MetaCoder •
-                    
-                
-            
-            Oct 9, 2015 • 
-        </span>
-        <p>
-        
-        <p>话说自从转到Xfce4以来，就一直有赶紧换主题的冲动。默认的主题实在有种Win95的感觉。还好感谢<a href="http://www.linuxzen.com">@cold</a>的分享，让我体验到awesome + tmux + gnome-do 的强大组合。不仅解决了美观的问题，还大大提升了工作效率，超赞！
-            <br/><a class="read-more" href="/linux/2015/10/09/Awesome-%E5%88%9D%E4%BD%93%E9%AA%8C/"><br/>Read More  →</a>
-        
-        </p>
-    </article>
+        <hr>
+        <p>本文转载于阮一峰老师的博客，对进程与线程做了一个生动的解释，理解起来清晰易懂，Very Nice!</p>
 
-    <article>
-        <a href="/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/"><h1>Github多sshkey管理</h1></a>
-        <span class="meta">
-            
-                
-                    
-                        MetaCoder •
-                    
-                
-            
-            Oct 8, 2015 • 
-        </span>
-        <p>
-        
-        <p>
-断断续续的牺牲了一个十一黄金周的时间，终于配置好了这个blog，
-虽说还有一些不足之处，留着以后再来逐步的完善就好。可是这个blog被妹子给瞧见了，
-非要也给她也搭一个。好吧，还好这个repo已经建好，直接给clone过去就OK了，倒是省了不少事。
+<blockquote>
+  <p>原文地址：<a href="http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html">进程与线程的一个简单解释</a></p>
+</blockquote>
 
-            <br/><a class="read-more" href="/github/2015/10/08/github-%E5%A4%9Asshkey%E7%AE%A1%E7%90%86/"><br/>Read More  →</a>
-        
-        </p>
-    </article>
+<p>进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。</p>
 
-    <article>
-        <a href="/jekyll/2015/10/05/liquid-for-designers/"><h1>Liquid for Designers[转]</h1></a>
-        <span class="meta">
-            
-                
-                    
-                        MetaCoder •
-                    
-                
-            
-            Oct 5, 2015 • 
-        </span>
-        <p>
-        
-        <p>这两天在用jekyll搭博客,一看是liquid语言立刻傻眼了!
-            <br/><a class="read-more" href="/jekyll/2015/10/05/liquid-for-designers/"><br/>Read More  →</a>
-        
-        </p>
-    </article>
+<p>最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。</p>
 
-    <article>
-        <a href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"><h1>我的第一篇博客</h1></a>
-        <span class="meta">
-            
-                
-                    
-                        MetaCoder •
-                    
-                
-            
-            Aug 30, 2015 • 
-        </span>
-        <p>
-        
-        <p>
-折腾了整整两天，总算把这个看起来依然“残破不堪”的博客搭建起来，当页面终于不再显示404的时候，我激动的眼泪儿都下来了。
+<p>1.</p>
 
-            <br/><a class="read-more" href="/%E9%9A%8F%E6%84%9F/2015/08/30/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"><br/>Read More  →</a>
-        
-        </p>
-    </article>
+<p><img src="/img/procAndThre1.jpg" alt="" /></p>
+
+<p>计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。</p>
+
+<p>2.</p>
+
+<p><img src="/img/procAndThre2.png" alt="" /></p>
+
+<p>假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。</p>
+
+<p>3.</p>
+
+<p><img src="/img/procAndThre3.jpg" alt="" /></p>
+
+<p>进程就好比工厂的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。</p>
+
+<p>4.</p>
+
+<p><img src="/img/procAndThre4.jpg" alt="" /></p>
+
+<p>一个车间里，可以有很多工人。他们协同完成一个任务。</p>
+
+<p>5.</p>
+
+<p><img src="/img/procAndThre5.jpg" alt="" /></p>
+
+<p>线程就好比车间里的工人。一个进程可以包括多个线程。</p>
+
+<p>6.</p>
+
+<p><img src="/img/procAndThre6.png" alt="" /></p>
+
+<p>车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。</p>
+
+<p>7.</p>
+
+<p><img src="/img/procAndThre7.jpg" alt="" /></p>
+
+<p>可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。</p>
+
+<p>8.</p>
+
+<p><img src="/img/procAndThre8.jpg" alt="" /></p>
+
+<p>一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫”互斥锁”（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。</p>
+
+<p>9.</p>
+
+<p><img src="/img/procAndThre9.jpg" alt="" /></p>
+
+<p>还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。</p>
+
+<p>10.</p>
+
+<p><img src="/img/procAndThre10.jpg" alt="" /></p>
+
+<p>这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做”信号量”（Semaphore），用来保证多个线程不会互相冲突。
+不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。</p>
+
+<p>11.</p>
+
+<p><img src="/img/procAndThre11.png" alt="" /></p>
+
+<p>操作系统的设计，因此可以归结为三点：</p>
+
+<ol>
+  <li>以多进程形式，允许多个任务同时运行；</li>
+  <li>以多线程形式，允许单个任务分成不同的部分运行；</li>
+  <li>提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。</li>
+</ol>
+
+<p>（完）</p>
 
 
+        <hr>
+        <p>03 Mar 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
 
-    <div class="pagination clearfix">
-  <div class="left">
-    
-      
-        <a href="/page-4/">‹ Newer</a>
-      
-    
-  </div>
-  <div class="right">
-    
-      <a href="/page-6/">Older ›</a>
-    
-  </div>
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <a href="/c/c++/2016/03/03/Stack-vs-Heap/">‹ Next post</a>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/algorithm/2016/02/13/%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E6%9C%80%E9%AB%98%E4%BD%8D/">Previous post ›</a>
+        
+    </div>
 </div>
 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
             <script>

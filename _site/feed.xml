@@ -202,6 +202,106 @@ We will talk about dynamically allocated data structures after we talk about poi
 			</item>
 		
 			<item>
+				<title>进程与线程的一个简单解释</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;本文转载于阮一峰老师的博客，对进程与线程做了一个生动的解释，理解起来清晰易懂，Very Nice!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;原文地址：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html&quot;&gt;进程与线程的一个简单解释&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;进程（process）和线程（thread）是操作系统的基本概念，但是它们比较抽象，不容易掌握。&lt;/p&gt;
+
+&lt;p&gt;最近，我读到一篇材料，发现有一个很好的类比，可以把它们解释地清晰易懂。&lt;/p&gt;
+
+&lt;p&gt;1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。&lt;/p&gt;
+
+&lt;p&gt;2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。&lt;/p&gt;
+
+&lt;p&gt;3.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;进程就好比工厂的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。&lt;/p&gt;
+
+&lt;p&gt;4.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一个车间里，可以有很多工人。他们协同完成一个任务。&lt;/p&gt;
+
+&lt;p&gt;5.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre5.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;线程就好比车间里的工人。一个进程可以包括多个线程。&lt;/p&gt;
+
+&lt;p&gt;6.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre6.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。&lt;/p&gt;
+
+&lt;p&gt;7.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。&lt;/p&gt;
+
+&lt;p&gt;8.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫”互斥锁”（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。&lt;/p&gt;
+
+&lt;p&gt;9.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。&lt;/p&gt;
+
+&lt;p&gt;10.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做”信号量”（Semaphore），用来保证多个线程不会互相冲突。
+不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。&lt;/p&gt;
+
+&lt;p&gt;11.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/procAndThre11.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;操作系统的设计，因此可以归结为三点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;以多进程形式，允许多个任务同时运行；&lt;/li&gt;
+  &lt;li&gt;以多线程形式，允许单个任务分成不同的部分运行；&lt;/li&gt;
+  &lt;li&gt;提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;（完）&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/os/2016/03/03/Processes-and-Threads/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/os/2016/03/03/Processes-and-Threads/</guid>
+			</item>
+		
+			<item>
 				<title>获取一个十进制数的最高位</title>
 				
 					
@@ -1564,113 +1664,6 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
 				<pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</guid>
-			</item>
-		
-			<item>
-				<title>Linux管道与重定向</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;Shell里边的文件输入输出重定向什么的一直都是一知半解，只知道个&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;代表覆盖重写而&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;代表对文件中追加，并不覆盖。
-今天在用&lt;code class=&quot;highlighter-rouge&quot;&gt;mplayer&lt;/code&gt;播放提示音希望不显示输出，从网上看到这个命令瞬间泪奔&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$mplayer&lt;/span&gt; test.mp3 &amp;lt; /dev/null &amp;gt; /dev/null 2&amp;gt;1&amp;amp;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这到底什么个含义，决心花点时间来好好补补这一块的内容。&lt;/p&gt;
-
-&lt;h2 id=&quot;io-&quot;&gt;I/O 重定向&lt;/h2&gt;
-
-&lt;p&gt;通常在Shell命令中最常见到三种输入输出类型，标准输入(stdin)，标准输出(stdout)以及标准错误输出(stderr)，感觉跟C/C++里边文件划分类似。
-&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;一般指&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;接受的输入流，&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;指&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;正常输出情况，默认输出显示到终端，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;则是&lt;code class=&quot;highlighter-rouge&quot;&gt;command&lt;/code&gt;的错误输出，默认也是输出显示到终端。
-而文件描述符则是与一个打开的文件或数据流相对应的一个整数，系统将0,1,2分别与标准输入，标准输出以及标准错误输出相对应。&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;输出重定向&lt;/h3&gt;
-
-&lt;p&gt;重定向符号&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;意为输出重定向，包括标准输出以及标准错误输出，也是一般命令中比较常见的情况，与&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;及&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;两两组合就是四种情况&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1&amp;gt;&lt;/code&gt; 表示标准输出重定向，覆盖&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;1&amp;gt;&amp;gt;&lt;/code&gt; 表示标准输出重定向，追加&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&lt;/code&gt; 表示标准错误输出重定向，覆盖&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&amp;gt;&lt;/code&gt; 表示标准错误输出重定向，追加&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;其中默认缺省表示标准输出，即&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&amp;gt;&lt;/code&gt;与前两个命令含义相同。&lt;/p&gt;
-
-&lt;p&gt;由于&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;&lt;/code&gt;命令会将存在的文件进行覆盖，我们可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;set -o noclobber&lt;/code&gt;来进行相应的限制。设置成功后，如果再次进行重定向到已有的文件中就会报错，这时便
-需要通过&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt;|&lt;/code&gt;来进行命令。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$set&lt;/span&gt; -o noclobber
-&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt;
-test1 test2 test3
-&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; &amp;gt; test1
-zsh: 文件已存在:test1
-&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; &amp;gt;| test1
-&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; test1
-test1 test2 test3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;另外就是&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;的使用，不过这里&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;并不是指将命令在后台运行。&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&amp;gt;&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;&amp;gt;&amp;gt;&lt;/code&gt;可以将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定义到同一文件中。这样就不用一个一个的指定了。
-另一种方式这样&lt;code class=&quot;highlighter-rouge&quot;&gt;2&amp;gt;&amp;amp;1&lt;/code&gt;，表示将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;的位置，即&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;输出到哪，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;也输出到哪。“IBM developerWorks”上有个很不错的例子，&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt; 2&amp;gt;&amp;amp;1 &amp;gt;output.txt
-&lt;span class=&quot;nv&quot;&gt;$command&lt;/span&gt; &amp;gt;output.txt 2&amp;gt;&amp;amp;1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这两个命令&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;重定向的位置并不相同。第一个先将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;，而此时&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;的定向是默认的终端，所以&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;被定向到终端，之后
-&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;被重定向到文件&lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;中。第二条命令先将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;定向到文件&lt;code class=&quot;highlighter-rouge&quot;&gt;output&lt;/code&gt;，然后将&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;定向到&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;上，因此&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;最终被定向到文件中。&lt;/p&gt;
-
-&lt;p&gt;最后要提的是&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/null&lt;/code&gt;这个空设备，被称为&lt;code class=&quot;highlighter-rouge&quot;&gt;bit bucket&lt;/code&gt;或者黑洞，正如它名字所示，它会将一切写入到其中的数据流吞噬并丢弃，常用来将&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;
-内容丢弃掉。但&lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/null&lt;/code&gt;是一个文件而不是目录，所以不能类似的将文件&lt;code class=&quot;highlighter-rouge&quot;&gt;mv&lt;/code&gt;其中来删除。&lt;/p&gt;
-
-&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;命令，其实也有时候，我们希望输出不仅重定向到文件中，而且希望它能够在终端中显示出来，这样就不需要重定向后再继续打开文件来检查是否出问题。
-这时候我们可以用到&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;命令。&lt;code class=&quot;highlighter-rouge&quot;&gt;man tee&lt;/code&gt;的解释是这样，从标准输入复制到每一个文件并复制到标准输出中。例如这样&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ls&lt;/span&gt; |tee file1 file2
-test1 test2 test3
-&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; file1
-test1 test2 test3
-&lt;span class=&quot;nv&quot;&gt;$cat&lt;/span&gt; file2
-test1 test2 test3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;而在一般的Linux tricks 有时候会利用&lt;code class=&quot;highlighter-rouge&quot;&gt;tee&lt;/code&gt;来帮忙解决vim时忘记加&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;。可以这样子使用&lt;code class=&quot;highlighter-rouge&quot;&gt;:w !sudo tee %&lt;/code&gt;。其中&lt;code class=&quot;highlighter-rouge&quot;&gt;:w&lt;/code&gt;将更改后的文件作为标准输出传递给tee，
-而&lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;代表当前文件名，然后利用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;权限把标准输出传到当前文件中去。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;输入重定向&lt;/h3&gt;
-
-&lt;p&gt;输入重定向自己平常到用的不多，可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&lt;/code&gt;来接受文件内容来作为标准输入。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;&amp;lt;&lt;/code&gt;则通常与一个单词来构成一个结束标识符来接受终端的输入。如&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$sort&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&amp;lt;&amp;lt;END
-heredoc&amp;gt;2
-heredoc&amp;gt;1
-heredoc&amp;gt;3
-heredoc&amp;gt;END
-1
-2
-&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;管道&lt;/h2&gt;
-
-&lt;p&gt;相对与重定向，管道就没那么复杂了。一般来讲可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt;来将上一个命令的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdout&lt;/code&gt;作为当前命令的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;来使用。但需要注意的是，&lt;code class=&quot;highlighter-rouge&quot;&gt;stderr&lt;/code&gt;是不会被处理的。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$command1&lt;/span&gt; |command2 |command3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;比较牛的地方是可以将标准输入来作为命令的参数传到命令中，而管道传给命令的只能是命令接受的&lt;code class=&quot;highlighter-rouge&quot;&gt;stdin&lt;/code&gt;。&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;通常与&lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt;连用来查找文件。
-记忆中自己用到&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;的地方是在Redis。由于Redis删除key的时候不支持通配符，而上万条的数据又不能一个一个手动删除，所以可以利用&lt;code class=&quot;highlighter-rouge&quot;&gt;xargs&lt;/code&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$redis&lt;/span&gt;-cli -n 0 keys &lt;span class=&quot;s1&quot;&gt;&#39;keys:*&#39;&lt;/span&gt; |xargs redis-cli -n 0 del&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;先用&lt;code class=&quot;highlighter-rouge&quot;&gt;keys&lt;/code&gt;命令找到数据库中所有匹配数据，然后通过xargs将输出作为&lt;code class=&quot;highlighter-rouge&quot;&gt;del&lt;/code&gt;的参数来进行删除。&lt;/p&gt;
-
-&lt;p&gt;参考资料：&lt;a href=&quot;http://www.ibm.com/developerworks/cn/linux/l-lpic1-v3-103-4/&quot;&gt;学习Linux,101:流，管道，重定向&lt;/a&gt;&lt;/p&gt;
-</description>
-				
-				<pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</guid>
 			</item>
 		
 	</channel>
