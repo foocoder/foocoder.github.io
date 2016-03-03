@@ -8,7 +8,7 @@ cover-image: 7.jpg
 
   {% for category in site.categories %}
         <h2 class="fa fa-coffee" style="font-size:large" id="{{ category|first }}">
-            {{ category | first | capitalize }}
+            {{ category | first }}
             <span>({{ category | last | size }})</span>
         </h2>
         {% for post in category.last %}

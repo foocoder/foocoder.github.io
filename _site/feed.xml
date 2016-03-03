@@ -7,6 +7,201 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Stack vs Heap</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;关于操作系统的内存管理方面有很多文献，最主要的方面在于&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;之间的区别与联系。
+这里翻译一篇&lt;a href=&quot;http://gribblelab.org/CBootcamp/7_Memory_Stack_vs_Heap.html&quot;&gt;gribblelab.org&lt;/a&gt;的教程，对&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;于&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;有个初步的了解。&lt;/p&gt;
+
+&lt;p&gt;简单的介绍下文章的结构&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#part1&quot;&gt;Stack vs Heap&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part2&quot;&gt;The Stack&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part3&quot;&gt;The Heap&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part4&quot;&gt;Stack vs Heap Pros and Cons&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#part4_1&quot;&gt;Stack&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#part4_2&quot;&gt;Heap&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part5&quot;&gt;Examples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part6&quot;&gt;When to use the Heap?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#part7&quot;&gt;Links&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;span-idpart1stack-vs-heapspan&quot;&gt;&lt;span id=&quot;part1&quot;&gt;Stack vs Heap&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;一般来讲，&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;即为栈，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;即为堆。
+两者分别是&lt;code class=&quot;highlighter-rouge&quot;&gt;C/C++&lt;/code&gt;内存管理过程中的两大不同类型的存储空间。&lt;/p&gt;
+
+&lt;h2 id=&quot;span-idpart2the-stackspan&quot;&gt;&lt;span id=&quot;part2&quot;&gt;The Stack&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;什么是&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;？它是内存中用来存储程序执行过程中各个函数(也包括&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;函数)创建的临时变量的区域。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;字如其名，其本质的结构就是数据结构中的&lt;code class=&quot;highlighter-rouge&quot;&gt;stack&lt;/code&gt;类型。
+它是一种&lt;code class=&quot;highlighter-rouge&quot;&gt;FILO&lt;/code&gt;(先入后出)类型的数据结构，这里的&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;完全由CPU进行操作与维护。
+每当一个函数声明一个新临时变量的时候，系统会将这个变量&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;到&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;里边中去。
+而一旦一个函数执行完毕退出的时候，所有的由该函数创建的临时变量会被&lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;出来，也就是说该变量的生存周期已经到期被删除了。
+而本来存放该变量的&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;区域就可以重新被&lt;code class=&quot;highlighter-rouge&quot;&gt;Push&lt;/code&gt;一个新的变量。&lt;/p&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;的最大的优势在于，&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;的内存的管理由CPU来进行操作，并不需要你来操心。
+你可以不用手动的分配内存，释放内存，因为这些工作都已经被CPU做了。
+而且CPU操作的方式会更加高效，从而使用&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;方式来读写变量的速度会很快的。&lt;/p&gt;
+
+&lt;p&gt;要理解&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;最关键的一点是理解一旦一个函数退出，其所有的临时变量都会被从&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;Pop&lt;/code&gt;出来。
+因此本质上&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;中的变量都是&lt;code class=&quot;highlighter-rouge&quot;&gt;Local&lt;/code&gt;的。
+与之相对应的概念就是&lt;code class=&quot;highlighter-rouge&quot;&gt;Variable scope&lt;/code&gt;，我们称之为变量的生命周期，或者说&lt;code class=&quot;highlighter-rouge&quot;&gt;local&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;global&lt;/code&gt;的概念。
+C程序中经常遇到的一个Bug就是尝试从一个函数的外边访问该函数内部的变量或者当该函数退出后访问其内部变量。&lt;/p&gt;
+
+&lt;p&gt;另外一个需要注意的是&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;的总的存储空间是有限制的，如果超出该存储大小会出现&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack Overflow&lt;/code&gt;的错误而导致Crash。&lt;/p&gt;
+
+&lt;p&gt;总结起来如下几点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;里的存储的内容会随着函数&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;局部变量而增加缩小。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;中不需要我们来手动的管理内存，变量的分配与内存的释放都是系统进行。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;有着大小的限制，具体大小跟操作系统有关。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack Variables&lt;/code&gt;只有当创建该变量的函数运行时才有效。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;span-idpart3the-heapspan&quot;&gt;&lt;span id=&quot;part3&quot;&gt;The Heap&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;则是内存中可以由程序员来管理的变量存储区域。相对于&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;而言，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;有着更大的自由性。
+要想分配内存空间，你可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;malloc()&lt;/code&gt;函数或者&lt;code class=&quot;highlighter-rouge&quot;&gt;calloc()&lt;/code&gt;函数来申请空闲空间。
+而当我们使用完内存，也必须通过&lt;code class=&quot;highlighter-rouge&quot;&gt;free()&lt;/code&gt;函数来释放掉已经分配好的空间。
+也就是说&lt;code class=&quot;highlighter-rouge&quot;&gt;malloc&lt;/code&gt;要有与之相对的&lt;code class=&quot;highlighter-rouge&quot;&gt;free&lt;/code&gt;来对应。
+否则的话就会导致&lt;code class=&quot;highlighter-rouge&quot;&gt;Memory Leak&lt;/code&gt;的现象。
+因为我们申请的空间没有被释放，所以这块空间会一直被占用而得不到重新利用。
+我们通常利用&lt;code class=&quot;highlighter-rouge&quot;&gt;valgrind&lt;/code&gt;这个工具来检测程序有没有&lt;code class=&quot;highlighter-rouge&quot;&gt;memory leak&lt;/code&gt;的现象。&lt;/p&gt;
+
+&lt;p&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;不同的是，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;的大小都没有限制。
+但一般而言，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;上变量的读取速度相对&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;是有点慢的。
+因为从底层考虑，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;需要利用指针来访问内存的数据，而&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;直接访问就可以了。
+间接访问总会比直接访问多一些指令。&lt;/p&gt;
+
+&lt;p&gt;另外一点与&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;不同的是，&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;上的变量可以由任何函数访问到，也就是说&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;上的变量本质上全局的。
+但前提是你得有指向&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;区域的地址。&lt;/p&gt;
+
+&lt;h2 id=&quot;span-idpart4stack-vs-heap-pros-and-consspan&quot;&gt;&lt;span id=&quot;part4&quot;&gt;Stack vs Heap Pros and Cons&lt;/span&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;span-idpart41stackspan&quot;&gt;&lt;span id=&quot;part4_1&quot;&gt;Stack&lt;/span&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;快速访问&lt;/li&gt;
+  &lt;li&gt;不需要显式回收变量，释放内存&lt;/li&gt;
+  &lt;li&gt;内存空间可以由CPU来进行高效管理，不会出现碎片&lt;/li&gt;
+  &lt;li&gt;只针对局部变量&lt;/li&gt;
+  &lt;li&gt;大小有限制&lt;/li&gt;
+  &lt;li&gt;变量空间的大小不能改变&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;span-idpart42heapspan&quot;&gt;&lt;span id=&quot;part4_2&quot;&gt;Heap&lt;/span&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;变量可以在全局访问到&lt;/li&gt;
+  &lt;li&gt;对内存大小没有限制&lt;/li&gt;
+  &lt;li&gt;相对较慢的访问速度&lt;/li&gt;
+  &lt;li&gt;空间的利用率不能被保障，可能由于内存的不断分配释放导致空间不连续产生碎片&lt;/li&gt;
+  &lt;li&gt;程序员需要手动管理内存(申请释放空间)&lt;/li&gt;
+  &lt;li&gt;变量空间大小可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;realloc&lt;/code&gt;函数来重新分配大小&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;span-idpart5examplesspan&quot;&gt;&lt;span id=&quot;part5&quot;&gt;Examples&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;一个关于&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;的小例子。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;multiplyByTwo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;12345.67&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;double your salary is %.3f&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;multiplyByTwo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;double your salary is 24691.340&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;函数里前三行分别定义了一个&lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;，一个&lt;code class=&quot;highlighter-rouge&quot;&gt;double&lt;/code&gt;以及一个三元素的&lt;code class=&quot;highlighter-rouge&quot;&gt;double&lt;/code&gt;数组。
+这三个变量会在&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;函数中被&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;到&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;区间。
+一旦&lt;code class=&quot;highlighter-rouge&quot;&gt;main&lt;/code&gt;函数退出程序结束，这些变量便会被从&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;出来而删除。
+同样的函数&lt;code class=&quot;highlighter-rouge&quot;&gt;multiplyByTwo&lt;/code&gt;，在被调用的时候两个&lt;code class=&quot;highlighter-rouge&quot;&gt;double&lt;/code&gt;变量会被&lt;code class=&quot;highlighter-rouge&quot;&gt;push&lt;/code&gt;到&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;中去。
+而当函数执行完毕，这两个变量也从而被&lt;code class=&quot;highlighter-rouge&quot;&gt;pop&lt;/code&gt;出来删除了。&lt;/p&gt;
+
+&lt;p&gt;另外有个特例就是&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;变量。&lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt;变量并不会被存放在&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;上，而是存放到内存区域的&lt;code class=&quot;highlighter-rouge&quot;&gt;data&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;bss&lt;/code&gt;区域。
+因为静态变量并不随着其创建函数的退出而消亡，因此不能放置到&lt;code class=&quot;highlighter-rouge&quot;&gt;Stack&lt;/code&gt;区域上。&lt;/p&gt;
+
+&lt;p&gt;下面一个关于&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;的小例子。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;multiplyByTwo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;twice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;12345.67&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;twiceSalary&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;multiplyByTwo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;double your salary is %.3f&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;twiceSalary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;salary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;twiceSalary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;我们利用&lt;code class=&quot;highlighter-rouge&quot;&gt;malloc&lt;/code&gt;来申请&lt;code class=&quot;highlighter-rouge&quot;&gt;Heap&lt;/code&gt;上的空闲空间然后用&lt;code class=&quot;highlighter-rouge&quot;&gt;free&lt;/code&gt;来释放不需要的空间。&lt;/p&gt;
+
+&lt;h2 id=&quot;span-idpart6when-to-use-the-heapspan&quot;&gt;&lt;span id=&quot;part6&quot;&gt;When to use the Heap&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;When should you use the heap, and when should you use the stack?
+If you need to allocate a large block of memory (e.g. a large array, or a big struct), and you need to keep that variable around a long time (like a global), then you should allocate it on the heap.
+If you are dealing with relatively small variables that only need to persist as long as the function using them is alive, then you should use the stack, it’s easier and faster.
+If you need variables like arrays and structs that can change size dynamically (e.g. arrays that can grow or shrink as needed) then you will likely need to allocate them on the heap, and use dynamic memory allocation functions like malloc(), calloc(), realloc() and free() to manage that memory “by hand”.
+We will talk about dynamically allocated data structures after we talk about pointers.&lt;/p&gt;
+
+&lt;h2 id=&quot;span-idpart7linksspan&quot;&gt;&lt;span id=&quot;part7&quot;&gt;Links&lt;/span&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.learncpp.com/cpp-tutorial/79-the-stack-and-the-heap/&quot;&gt;The Stack and the Heap&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap&quot;&gt;What and Where are the stack and heap&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+				
+				<pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/c/c++/2016/03/03/Stack-vs-Heap/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/c/c++/2016/03/03/Stack-vs-Heap/</guid>
+			</item>
+		
+			<item>
 				<title>获取一个十进制数的最高位</title>
 				
 					
@@ -1351,10 +1546,10 @@ sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的�
 
 &lt;p&gt;另外，关于classpath的搜索规则，参考@haolujun 大神的说明，java的类的寻找规则是这样子的：&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;
-class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&#39;\&#39;
-&lt;/code&gt;
-### debug 选项 ###&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&#39;\&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;### debug 选项 ###&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;选项为编译提供了调试信息，包括行号信息，源文件信息以及局部变量信息。缺省情况只生成行号以及源文件信息。&lt;/p&gt;
 
@@ -1476,80 +1671,6 @@ heredoc&amp;gt;END
 				<pubDate>Tue, 27 Oct 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/linux/2015/10/27/Linux%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91/</guid>
-			</item>
-		
-			<item>
-				<title>淘宝穿衣搭配比赛有感</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;历时将近一个月的搭配比赛第一赛季落幕了，而自己也是毫无悬念的被Pass掉了，最优排名72，成绩是2.56%。总结经验，吸收教训。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;教训&lt;/h2&gt;
-
-&lt;p&gt;毕竟是第一次参加天池竞赛，没见过什么世面，当第一天提交数据的时候看到第六名的成绩自己乐的屁颠屁颠的，现在看来，大牛们一般在后期才参赛的，
-前期在排行榜上折腾来折腾去也提高不了零点几的小虾米在后期一天被刷下去十几名，看来自己还是&lt;code class=&quot;highlighter-rouge&quot;&gt;Too Yonge Too Simple&lt;/code&gt;。
-总结下问题应该大致分一下几点：&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;1.靠人脑来搭配&lt;/h3&gt;
-
-&lt;p&gt;事实上，从比赛开始一直到结束自己几乎都是靠感觉来进行搭配的，然后简单的通过&lt;code class=&quot;highlighter-rouge&quot;&gt;Shell&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt;处理下就提交了，这样往往导致&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;思路混乱，比如说购买信息&lt;code class=&quot;highlighter-rouge&quot;&gt;session&lt;/code&gt;的划分，从一天划分改到三天划分最后改到七天划分，却发现并没什么卵用；&lt;/li&gt;
-  &lt;li&gt;思路混乱直接导致代码的混乱，看&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt;文件下一大堆各式各样的&lt;code class=&quot;highlighter-rouge&quot;&gt;.sh&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;.awk&lt;/code&gt;，基本上全是用一次就扔的&lt;code class=&quot;highlighter-rouge&quot;&gt;臭代码&lt;/code&gt;。&lt;/li&gt;
-  &lt;li&gt;最终的结果是没有什么技术含量，说白了就是“拼凑”&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;不过这也看出了自己的不足————对学习方面的东西简直一窍不通。虽然整天听到什么&lt;code class=&quot;highlighter-rouge&quot;&gt;机器学习&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;神经网络&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;深度学习&lt;/code&gt;这样的词汇，但真正
-想用的时候却发现自己还是没有一点储备量的。毕竟是隔行如隔山，我一个做演化算法的去搞学习，一开始还是有点适应期的。既然发现问题也就得
-解决问题，缺什么补什么，看来接下来花时间好好研究下学习相关内容。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;2.眼高手低&lt;/h3&gt;
-
-&lt;p&gt;比赛初期其实就想系统的看看学习方面的相关知识，借由此契机来入门机器学习。但看到一开始简单处理的数据就在前50内基本上就没准备什么后续
-处理了，随想在临结束前两天被甩出50，然后一跌千里。只有在最后一天才临时抱佛脚的尝试了用&lt;code class=&quot;highlighter-rouge&quot;&gt;tf-idf&lt;/code&gt;以及文本余弦相似度来进行预测，但
-却没有时间了。整个赛季连模型都没有建立更别提什么训练了。只能说，自作孽，不可活。程序员毕竟是个实践的职业，不上手只会&lt;code class=&quot;highlighter-rouge&quot;&gt;Go Die&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;3.数据没有充分利用&lt;/h3&gt;
-
-&lt;p&gt;比赛总共提供了大致三项的可利用信息，一是用户购买历史信息，二是商品的&lt;code class=&quot;highlighter-rouge&quot;&gt;Title&lt;/code&gt;信息，三是商品的图像信息。但自己只是用了用户的购买信息。
-将每个用户的购买信息按时间分成不同&lt;code class=&quot;highlighter-rouge&quot;&gt;session&lt;/code&gt;，然后直接提取来作为搭配。其实通过处理可以发现，购买的历史信息中只存在大约一半的&lt;code class=&quot;highlighter-rouge&quot;&gt;test&lt;/code&gt;
-集中的商品，即一半的要预测的商品并没有出现过购买记录。所以自己这种方案天生的弊端就是一半的商品没法进行搭配。而大量的信息隐藏在
-&lt;code class=&quot;highlighter-rouge&quot;&gt;term&lt;/code&gt;跟&lt;code class=&quot;highlighter-rouge&quot;&gt;img&lt;/code&gt;里边自己却无法利用。看来短板还是很多的。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;4.线下评测系统搭建的较晚&lt;/h3&gt;
-
-&lt;p&gt;因为天池只提供一天一次的评测数据的机会，整个来讲还是太少了，有人利用小号来进行评价，可是毕竟没有那么多的手机号。所以搭建一个
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Off-line&lt;/code&gt;的评估系统对整个算法的评测过程来讲还是很重要的。然而自己真正做这个是却是在数据切换之后开始的，也就是说离第一赛季结束
-还有没有几天了，时间太晚了。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;收获&lt;/h2&gt;
-
-&lt;p&gt;当然也有些许的收获，毕竟这一遭走下来也并不是纯粹的打酱油下来的。&lt;/p&gt;
-
-&lt;h3 id=&quot;redis&quot;&gt;1.Redis&lt;/h3&gt;
-
-&lt;p&gt;一开始面对这些数据第一反应是导入到数据库里，首先选择的是&lt;code class=&quot;highlighter-rouge&quot;&gt;MySQL&lt;/code&gt;，然而对商品的&lt;code class=&quot;highlighter-rouge&quot;&gt;Term&lt;/code&gt;以及标记的搭配&lt;code class=&quot;highlighter-rouge&quot;&gt;MatchSet&lt;/code&gt;这种长短不一的数据存储就
-犯难了，按照&lt;code class=&quot;highlighter-rouge&quot;&gt;String&lt;/code&gt;类型存的话每次使用的话还得进行处理，但按照&lt;code class=&quot;highlighter-rouge&quot;&gt;属性-值&lt;/code&gt;存的话长短不一又好处理。于是选择了Redis这个传说中的“数据结构
-数据库”，这样的话存取数据方便多了，而且Redis是对内存的操作，速度上也会很有优势。但后来想到，用Python的数据结构不也可以处理么，用的
-时候把数据&lt;code class=&quot;highlighter-rouge&quot;&gt;load&lt;/code&gt;内存里，不用的时候将数据&lt;code class=&quot;highlighter-rouge&quot;&gt;dump&lt;/code&gt;到硬盘上。不知到速度上或其他性能上有没有大的区别。不过，Redis毕竟是作为数据库存在的，
-数据库就是一种有条理的对文件的组织形式。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;2.线下评测系统&lt;/h3&gt;
-
-&lt;p&gt;虽然这该线下评测系统写的有点晚，但进行过几次测试与线上测试结果对比发现整个逻辑还是没有问题的，最让自己泪奔的是用&lt;code class=&quot;highlighter-rouge&quot;&gt;title&lt;/code&gt;的&lt;code class=&quot;highlighter-rouge&quot;&gt;tf-idf&lt;/code&gt;
-文本余弦相似度预测的结果在线下评测是0.008，本来寄希望自己的评测系统写的不准确，水乡在线上测试也是0.008左右，大差不差，这真不知道
-自己到底是该哭还是该笑。唯一的好处是可以自己研究学习的时候来搞着玩了。&lt;/p&gt;
-
-</description>
-				
-				<pubDate>Mon, 26 Oct 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/%E9%9A%8F%E6%84%9F/2015/10/26/%E6%B7%98%E5%AE%9D%E7%A9%BF%E8%A1%A3%E6%90%AD%E9%85%8D%E7%AE%97%E6%B3%95%E6%9C%89%E6%84%9F/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/%E9%9A%8F%E6%84%9F/2015/10/26/%E6%B7%98%E5%AE%9D%E7%A9%BF%E8%A1%A3%E6%90%AD%E9%85%8D%E7%AE%97%E6%B3%95%E6%9C%89%E6%84%9F/</guid>
 			</item>
 		
 	</channel>
