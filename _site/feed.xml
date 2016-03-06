@@ -245,6 +245,23 @@
 &lt;p&gt;另外该属性也可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribute__&lt;/code&gt;来设置的。如&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribute__((packed))&lt;/code&gt;即设置为紧凑模式，不进行压缩。
 或者&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribut__((aligned(4)))&lt;/code&gt;来制定对齐的基本单位是几个字节。&lt;/p&gt;
 
+&lt;h4 id=&quot;struct-0&quot;&gt;struct 里长度为0的数组&lt;/h4&gt;
+
+&lt;p&gt;理论上说长度为0的数组在标准C和C++中是不被允许的，但在GNU中这种用法却是合法的，被网上称之为&lt;code class=&quot;highlighter-rouge&quot;&gt;柔性数组&lt;/code&gt;。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;可以看到柔性数组并不占用空间。
+它的最典型的用法就是位于数组中的最后一项，如上面所示，这样做主要是为了方便内存缓冲区的管理。
+如果你将上面的长度为的数组换为指针，那么在分配内存时，需采用两步：首先，需为结构体分配一块内存空间；其次再为结构体中的成员变量分配内存空间。
+这样两次分配的内存是不连续的，需要分别对其进行管理。
+当使用长度为的数组时，则是采用一次分配的原则，一次性将所需的内存全部分配给它。
+相反，释放时也是一样的。&lt;/p&gt;
+
 &lt;h2 id=&quot;section-4&quot;&gt;参考资料&lt;/h2&gt;
 
 &lt;blockquote&gt;
@@ -252,9 +269,9 @@
     &lt;li&gt;《C++ Primer》&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;http://baike.baidu.com/item/sizeof&quot;&gt;百度百科&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html&quot;&gt;内存对齐的规则以及作用&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://my.oschina.net/u/176416/blog/33054?fromerr=b73dXTh5&quot;&gt;浅析长度为0的数组&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
-
 </description>
 				
 				<pubDate>Sun, 06 Mar 2016 00:00:00 +0000</pubDate>

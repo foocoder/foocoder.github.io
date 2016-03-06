@@ -467,6 +467,23 @@ header::after {
 <p>另外该属性也可以通过<code class="highlighter-rouge">__attribute__</code>来设置的。如<code class="highlighter-rouge">__attribute__((packed))</code>即设置为紧凑模式，不进行压缩。
 或者<code class="highlighter-rouge">__attribut__((aligned(4)))</code>来制定对齐的基本单位是几个字节。</p>
 
+<h4 id="struct-0">struct 里长度为0的数组</h4>
+
+<p>理论上说长度为0的数组在标准C和C++中是不被允许的，但在GNU中这种用法却是合法的，被网上称之为<code class="highlighter-rouge">柔性数组</code>。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">s</span><span class="p">{</span>
+ <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+ <span class="kt">char</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="o">//</span><span class="mi">4</span></code></pre></figure>
+
+<p>可以看到柔性数组并不占用空间。
+它的最典型的用法就是位于数组中的最后一项，如上面所示，这样做主要是为了方便内存缓冲区的管理。
+如果你将上面的长度为的数组换为指针，那么在分配内存时，需采用两步：首先，需为结构体分配一块内存空间；其次再为结构体中的成员变量分配内存空间。
+这样两次分配的内存是不连续的，需要分别对其进行管理。
+当使用长度为的数组时，则是采用一次分配的原则，一次性将所需的内存全部分配给它。
+相反，释放时也是一样的。</p>
+
 <h2 id="section-4">参考资料</h2>
 
 <blockquote>
@@ -474,9 +491,9 @@ header::after {
     <li>《C++ Primer》</li>
     <li><a href="http://baike.baidu.com/item/sizeof">百度百科</a></li>
     <li><a href="http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html">内存对齐的规则以及作用</a></li>
+    <li><a href="http://my.oschina.net/u/176416/blog/33054?fromerr=b73dXTh5">浅析长度为0的数组</a></li>
   </ul>
 </blockquote>
-
 
         <hr>
         <p>06 Mar 2016</p>
