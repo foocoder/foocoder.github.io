@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+sizeof详解 | Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="sizeof详解 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/c/c++/2016/03/06/details-about-sizeof/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>sizeof详解</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#C/C++" title="C/C++"> C/C++</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#C/C++" title="C/C++">  C/C++</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Code" title="Code">  Code</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#内存" title="内存">  内存</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Mar 6, 2016</span>
+        </div>
+
+        <hr>
+        <p><code class="highlighter-rouge">sizeof</code> 操作符的作用是返回一个对象或类型名的长度， 返回类型是<code class="highlighter-rouge">size_t</code>，长度单位是字节。</p>
+
+<h2 id="section">语法</h2>
+
+<p><code class="highlighter-rouge">sizeof</code>的语法主要有三种形式。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">sizeof</span><span class="p">(</span><span class="n">type_name</span><span class="p">);</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">expression</span><span class="p">);</span>
+<span class="k">sizeof</span> <span class="n">expression</span><span class="p">;</span></code></pre></figure>
+
+<p>其中表示了获取类型变量的内存长度或获取一个具体对象的长度。最常用的方式还是前两种，最后一种方式见的比较少。
+需要注意的是，<code class="highlighter-rouge">sizeof</code>本质是一个操作符，所以会有<code class="highlighter-rouge">sizeof expr</code>形式的语法，但该格式只针对于<code class="highlighter-rouge">expression</code>，不能用于类型名。
+<code class="highlighter-rouge">sizeof</code>、<code class="highlighter-rouge">.(成员访问符)</code>、<code class="highlighter-rouge">.*(成员指针访问运算符)</code>、<code class="highlighter-rouge">::(域运算符)</code>以及<code class="highlighter-rouge">?:(条件运算符)</code>这5种运算符不能够被重载。
+其中<code class="highlighter-rouge">.</code>和<code class="highlighter-rouge">.*</code>不能被重载是为了保证访问成员的功能不被改变，而<code class="highlighter-rouge">::</code>与<code class="highlighter-rouge">sizeof</code>则是其运算对象是类型而不是变量或一般表达式，不具备重载的特征。</p>
+
+<h2 id="section-1">使用范围</h2>
+
+<p><code class="highlighter-rouge">sizeof</code>的计算一般发生在编译时，也就是说在程序编译的时候就可以计算出<code class="highlighter-rouge">sizeof</code>的大小。
+所以可以将之看为常量表达式，如：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">char</span> <span class="n">array</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">];</span><span class="o">//</span><span class="n">Ok</span></code></pre></figure>
+
+<p>不过C99标准规定了<code class="highlighter-rouge">sizeof</code>也可以在运行时来计算，因此运行时的<code class="highlighter-rouge">sizeof</code>的操作也是可以正常输出的</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">;</span><span class="c1">//输入n=10;
+</span><span class="kt">char</span> <span class="n">array</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+<span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">array</span><span class="p">);</span><span class="o">//</span><span class="err">输出</span><span class="mi">10</span><span class="p">;</span></code></pre></figure>
+
+<p>不过据说VC6中该代码编译不通过，可能由于C99的标准没有实现的原因。
+需要注意的一点是<code class="highlighter-rouge">sizeof</code>对表达式，函数返回值等进行运算的时候这些表达式函数等等并不会被调用。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">foo</span><span class="p">(){</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">);</span><span class="c1">//i=0;
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">foo</span><span class="p">());</span><span class="o">//</span><span class="err">不会调用</span><span class="n">foo</span><span class="p">();</span></code></pre></figure>
+
+<p>C99标准规定，函数、不能确定类型的表达式以及位域(bit-field)成员不能被计算<code class="highlighter-rouge">sizeof</code>的值：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">foo</span><span class="p">(){</span><span class="k">return</span> <span class="mi">0</span><span class="p">;}</span>
+<span class="kt">void</span> <span class="n">foo2</span><span class="p">(){}</span>
+
+<span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="c1">//error
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span><span class="c1">//error
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">foo</span><span class="p">());</span><span class="c1">//Ok, 4
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">foo2</span><span class="p">());</span><span class="c1">//error
+</span>
+<span class="k">struct</span> <span class="n">s</span><span class="p">{</span>
+ <span class="kt">int</span> <span class="n">f1</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">f2</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+ <span class="kt">int</span> <span class="n">f3</span><span class="o">:</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">s</span> <span class="n">s1</span><span class="p">;</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">s1</span><span class="p">.</span><span class="n">f1</span><span class="p">);</span><span class="c1">//error
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span><span class="o">//</span><span class="n">Ok</span> <span class="mi">4</span></code></pre></figure>
+
+<h2 id="section-2">用法</h2>
+
+<h3 id="sizeofchar--1">1. sizeof(char) = 1</h3>
+
+<p>在《C++ Primer》中提到，对<code class="highlighter-rouge">char</code>类型或者值为<code class="highlighter-rouge">char</code>类型的表达式进行<code class="highlighter-rouge">sizeof</code>操作保证得1。
+这样从而<code class="highlighter-rouge">char</code>类型作为一个度量标准，不管编译器或者系统怎样，<code class="highlighter-rouge">sizeof(char)</code>始终为1。</p>
+
+<h3 id="sizeof">2. 对引用的sizeof等于存放该引用对象的内存大小</h3>
+
+<p>也就是说，如果A是对B的引用的话，那么<code class="highlighter-rouge">sizeof(A)</code>将等译<code class="highlighter-rouge">sizeof(B)</code>。
+但是说从内部实现的角度来看引用的话，引用应该跟指针类似，引用本身占用的空间大小应该是机器字长。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">s</span><span class="p">{</span>
+ <span class="kt">char</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="o">//</span><span class="mi">64</span><span class="n">bit</span> <span class="mi">8</span></code></pre></figure>
+
+<p>但对引用的<code class="highlighter-rouge">sizeof</code>种种现象都显示出引用就是其本身的类型。诸如<code class="highlighter-rouge">typeid</code>，<code class="highlighter-rouge">sizeof</code>等等。
+这个引用跟指针的具体区别还需要继续研究。</p>
+
+<h3 id="sizeofsizeof">3. 对数组的sizeof等于对其元素的sizeof大小乘以数组的长度</h3>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">char</span> <span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">c1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="c1">//10
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span><span class="c1">//6
+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="o">//</span><span class="mi">12</span></code></pre></figure>
+
+<p>需要注意的是<code class="highlighter-rouge">sizeof</code>的结果不是数组的长度，要想获得数组的长度可以用<code class="highlighter-rouge">sizeof</code>结果除以每个元素的<code class="highlighter-rouge">sizeof</code>的大小。</p>
+
+<h3 id="sizeof-1">4. 对指针的sizeof等于存放该指针的内存大小</h3>
+
+<p>引用指针的区别，引用的<code class="highlighter-rouge">sizeof</code>给出的是指向的内存对象的大小，指针的<code class="highlighter-rouge">sizeof</code>给出的是指针的大小。
+所以对于32bit系统而言，所有的指针的<code class="highlighter-rouge">sizeof</code>都是4，而对于64bit系统，则是8。</p>
+
+<p>如果想获得指针所指的对象的内存大小，则需要解引用。<code class="highlighter-rouge">sizeof(*ptr)</code>。</p>
+
+<p>这里有一道经典的题，求i1,i2的值。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">foo</span><span class="p">(</span><span class="kt">char</span> <span class="n">c1</span><span class="p">[</span><span class="mi">3</span><span class="p">]){</span>
+ <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="n">foo2</span><span class="p">(</span><span class="kt">char</span> <span class="n">c2</span><span class="p">[]){</span>
+ <span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c2</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>可能大部分都会以为i1等于3。但实际上来看，这里的i1跟i2都是指针的长度。
+函数在参数传递的时候，数组已经蜕变成了指针。
+也就是说下面几种函数的声明是等价的</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">foo</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+
+<span class="kt">void</span> <span class="n">foo2</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">[]);</span>
+
+<span class="kt">void</span> <span class="n">foo3</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">c</span><span class="p">);</span></code></pre></figure>
+
+<p>传递进去的参数都将是指针，所以<code class="highlighter-rouge">sizeof</code>的长度也是指针的长度。</p>
+
+<h3 id="strlen">5. 与strlen的区别</h3>
+
+<p><code class="highlighter-rouge">strlen(char*)</code>是个求字符串实际长度的函数，返回字符串中不包括<code class="highlighter-rouge">\0</code>的长度。</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="kt">char</span> <span class="n">c0</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Hello"</span><span class="p">;</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">c0</span><span class="p">);</span><span class="c1">//10
+</span><span class="n">strlen</span><span class="p">(</span><span class="n">c0</span><span class="p">);</span><span class="c1">//5
+</span>
+<span class="kt">char</span> <span class="n">c1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'\0'</span><span class="p">};</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span><span class="c1">//10
+</span><span class="n">strlen</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span><span class="c1">//0
+</span>
+<span class="kt">char</span> <span class="n">c2</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s">"0123456789"</span><span class="p">;</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">c2</span><span class="p">);</span><span class="c1">//10
+</span><span class="n">strlen</span><span class="p">(</span><span class="n">c2</span><span class="p">);</span><span class="o">//</span><span class="n">Unkown</span></code></pre></figure>
+
+<p>需要注意的是最后一个例子，如果字符的长度大于等于字符数组的大小时，导致判断str终止的<code class="highlighter-rouge">\0</code>字符无法赋值进去，<code class="highlighter-rouge">c2</code>的结尾是<code class="highlighter-rouge">9</code>而不是<code class="highlighter-rouge">\0</code>，因此<code class="highlighter-rouge">strlen</code>会一直向后检索到遇到<code class="highlighter-rouge">\0</code>才停止，此时<code class="highlighter-rouge">strlen</code>的值是不可靠的。</p>
+
+<h3 id="struct">6. Struct的内存对齐</h3>
+
+<p>关于<code class="highlighter-rouge">struct</code>的内存大小就会涉及到内存对齐的问题了。</p>
+
+<p>举个简单的例子</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="n">S1</span><span class="p">{</span>
+    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">sizeof</span><span class="p">(</span><span class="n">S1</span><span class="p">);</span></code></pre></figure>
+
+<p>乍一看我们会以为<code class="highlighter-rouge">sizeof(S1) = sizeof(a)+sizeof(b)+sizeof(c)</code>，应该等于1+8+4=13。
+可实际上结果却是24。这正是内存对齐的影响。</p>
+
+<p>我们来看下内存对齐的几个规则：</p>
+
+<ul>
+  <li>对于<code class="highlighter-rouge">struct</code>或<code class="highlighter-rouge">union</code>的各个成员，第一个成员位于偏移量为0的位置，之后的每个数据成员的偏移量都必须是<code class="highlighter-rouge">min(#pragma pack(n),sizeof(data))</code>的整数倍。 (其中<code class="highlighter-rouge">#pragma pack(n)</code>用来设置为n字节对齐,而<code class="highlighter-rouge">sizeof(data)</code>指该数据成员本身的长度)</li>
+  <li>在数据成员完成各自的对齐之后，<code class="highlighter-rouge">struct</code>或<code class="highlighter-rouge">union</code>本身也需要进行对齐，对齐按照<code class="highlighter-rouge">min(#pragma pack(n), sizeof(maxdata))</code>的整数倍对齐。(<code class="highlighter-rouge">sizeof(maxdata)</code>指的是数据成员中占内存最大成员的大小。)</li>
+  <li>如果数据成员里边有复杂数据类型，诸如<code class="highlighter-rouge">struct</code>，<code class="highlighter-rouge">union</code>或者数组之类的数据成员，这里<code class="highlighter-rouge">sizeof(maxdata)</code>会将复杂数据成员拆分成基本成员，长度还是按照基本数据成员的最长数据来算。</li>
+</ul>
+
+<p>再来看上边那个例子，其中<code class="highlighter-rouge">char a</code>的偏移量是0，<code class="highlighter-rouge">double b</code>的偏移量应该是本身的整数倍，所以是8。最后<code class="highlighter-rouge">int c</code>的偏移量是16，满足规则。但整个<code class="highlighter-rouge">struct</code>的长度现在是16+4=20。
+要满足<code class="highlighter-rouge">struct</code>对齐后是最宽的数据的整数倍，所以要在<code class="highlighter-rouge">int</code>后边填充4个字节得到24。</p>
+
+<p><code class="highlighter-rouge">struct</code>的某个成员相对于<code class="highlighter-rouge">struct</code>首地址的偏移量可以通过宏<code class="highlighter-rouge">offsetof()</code>来获取。这个宏定义在<code class="highlighter-rouge">stddef.h</code>中，如下</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp">#define offsetof(s,m) (size_t) &amp; (((s * )0)-&gt;m)</span></code></pre></figure>
+
+<h4 id="bit-field">位域(bit-field)上的内存对齐</h4>
+
+<p>虽然说对<code class="highlighter-rouge">bit-field</code>的成员不能够进行<code class="highlighter-rouge">sizeof</code>操作，但是我们仍然可以对<code class="highlighter-rouge">bit-field</code>的整体来进行<code class="highlighter-rouge">sizeof</code>的操作的。
+<code class="highlighter-rouge">bit-field</code>的数据成员也要满足<code class="highlighter-rouge">struct</code>上的内存对齐规则。
+不过特别的，<code class="highlighter-rouge">bit-field</code>还有一套自己的内存对齐规则。</p>
+
+<ol>
+  <li>如果相邻位域字段的类型相同，且其位宽之和小于类型的sizeof大小，则后面的字段将紧邻前一个字段存储，直到不能容纳为止；</li>
+  <li>如果相邻位域字段的类型相同，但其位宽之和大于类型的sizeof大小，则后面的字段将从新的存储单元开始，其偏移量为其类型大小的整数倍；</li>
+  <li>如果相邻的位域字段的类型不同，则各编译器的具体实现有差异，VC6采取不压缩方式，Dev-C++采取压缩方式；</li>
+  <li>如果位域字段之间穿插着非位域字段，则不进行压缩；</li>
+  <li>整个结构体的总大小为最宽基本类型成员大小的整数倍。</li>
+</ol>
+
+<h4 id="section-3">内存对齐的作用</h4>
+
+<p>关于内存对齐的作用，这篇<a href="http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html">博客</a>有着详细的说明。
+然后本人就转了过来。</p>
+
+<p>内存对齐的主要作用是：</p>
+
+<ol>
+  <li>平台原因(移植原因)：不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</li>
+  <li>性能原因：经过内存对齐后，CPU的内存访问速度大大提升。具体原因稍后解释。</li>
+</ol>
+
+<p><img src="/img/sizeof0.jpg" alt="" /></p>
+
+<p>这是普通程序员心目中的内存印象，由一个个的字节组成，而CPU并不是这么看待的。</p>
+
+<p><img src="/img/sizeof1.jpg" alt="" /></p>
+
+<p>CPU把内存当成是一块一块的，块的大小可以是2，4，8，16字节大小，因此CPU在读取内存时是一块一块进行读取的。块大小成为memory access granularity（粒度） 本人把它翻译为“内存读取粒度” 。</p>
+
+<p>假设CPU要读取一个int型4字节大小的数据到寄存器中，分两种情况讨论：</p>
+
+<ol>
+  <li>数据从0字节开始</li>
+  <li>数据从1字节开始</li>
+</ol>
+
+<p>再次假设内存读取粒度为4。</p>
+
+<p><img src="/img/sizeof2.jpg" alt="" /></p>
+
+<ul>
+  <li>当该数据是从0字节开始时，很CPU只需读取内存一次即可把这4字节的数据完全读取到寄存器中。</li>
+  <li>当该数据是从1字节开始时，问题变的有些复杂，此时该int型数据不是位于内存读取边界上，这就是一类内存未对齐的数据。</li>
+</ul>
+
+<p><img src="/img/sizeof3.jpg" alt="" /></p>
+
+<p>此时CPU先访问一次内存，读取0—3字节的数据进寄存器，并再次读取4—5字节的数据进寄存器，接着把0字节和6，7，8字节的数据剔除，最后合并1，2，3，4字节的数据进寄存器。对一个内存未对齐的数据进行了这么多额外的操作，大大降低了CPU性能。</p>
+
+<p>这还属于乐观情况了，上文提到内存对齐的作用之一为平台的移植原因，因为以上操作只有有部分CPU肯干，其他一部分CPU遇到未对齐边界就直接罢工了。</p>
+
+<h4 id="pragma-pack">关于pragma pack()</h4>
+
+<p>系统的<code class="highlighter-rouge">#pragma pack(n)</code>，用来设置对齐单位的最大长度。
+因为对齐的几条规则取的基本长度要求是<code class="highlighter-rouge">#pragma pack()</code>设置的和数据中最长的基本数据类型的长度取<code class="highlighter-rouge">min</code>运算。也就是说如果<code class="highlighter-rouge">n</code>设置为4的话，最大的对齐单位都不会超过4的。</p>
+
+<p>例如<code class="highlighter-rouge">#pragma pack(1)</code>就是将所有的对齐按照1的整数倍来对齐，实际上就是没有进行对齐，所有数据都压缩紧凑排列。</p>
+
+<p>另外该属性也可以通过<code class="highlighter-rouge">__attribute__</code>来设置的。如<code class="highlighter-rouge">__attribute__((packed))</code>即设置为紧凑模式，不进行压缩。
+或者<code class="highlighter-rouge">__attribut__((aligned(4)))</code>来制定对齐的基本单位是几个字节。</p>
+
+<h2 id="section-4">参考资料</h2>
+
+<blockquote>
+  <ul>
+    <li>《C++ Primer》</li>
+    <li><a href="http://baike.baidu.com/item/sizeof">百度百科</a></li>
+    <li><a href="http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html">内存对齐的规则以及作用</a></li>
+  </ul>
+</blockquote>
+
+
+        <hr>
+        <p>06 Mar 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/c/c++/2016/03/03/Stack-vs-Heap/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>

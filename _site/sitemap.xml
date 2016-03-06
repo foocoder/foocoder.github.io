@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://foocoder.github.io/c/c++/2016/03/06/details-about-sizeof/</loc>
+    </url>
+    
+    <url>
         <loc>http://foocoder.github.io/c/c++/2016/03/03/Stack-vs-Heap/</loc>
     </url>
     

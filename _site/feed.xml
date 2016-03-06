@@ -7,6 +7,262 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>sizeof详解</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt; 操作符的作用是返回一个对象或类型名的长度， 返回类型是&lt;code class=&quot;highlighter-rouge&quot;&gt;size_t&lt;/code&gt;，长度单位是字节。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;语法&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的语法主要有三种形式。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;其中表示了获取类型变量的内存长度或获取一个具体对象的长度。最常用的方式还是前两种，最后一种方式见的比较少。
+需要注意的是，&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;本质是一个操作符，所以会有&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof expr&lt;/code&gt;形式的语法，但该格式只针对于&lt;code class=&quot;highlighter-rouge&quot;&gt;expression&lt;/code&gt;，不能用于类型名。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;.(成员访问符)&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;.*(成员指针访问运算符)&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;::(域运算符)&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;?:(条件运算符)&lt;/code&gt;这5种运算符不能够被重载。
+其中&lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;.*&lt;/code&gt;不能被重载是为了保证访问成员的功能不被改变，而&lt;code class=&quot;highlighter-rouge&quot;&gt;::&lt;/code&gt;与&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;则是其运算对象是类型而不是变量或一般表达式，不具备重载的特征。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;使用范围&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的计算一般发生在编译时，也就是说在程序编译的时候就可以计算出&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的大小。
+所以可以将之看为常量表达式，如：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ok&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;不过C99标准规定了&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;也可以在运行时来计算，因此运行时的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的操作也是可以正常输出的&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//输入n=10;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;输出&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;不过据说VC6中该代码编译不通过，可能由于C99的标准没有实现的原因。
+需要注意的一点是&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;对表达式，函数返回值等进行运算的时候这些表达式函数等等并不会被调用。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//i=0;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;不会调用&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;C99标准规定，函数、不能确定类型的表达式以及位域(bit-field)成员不能被计算&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的值：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//error
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//error
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//Ok, 4
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//error
+&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//error
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ok&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;用法&lt;/h2&gt;
+
+&lt;h3 id=&quot;sizeofchar--1&quot;&gt;1. sizeof(char) = 1&lt;/h3&gt;
+
+&lt;p&gt;在《C++ Primer》中提到，对&lt;code class=&quot;highlighter-rouge&quot;&gt;char&lt;/code&gt;类型或者值为&lt;code class=&quot;highlighter-rouge&quot;&gt;char&lt;/code&gt;类型的表达式进行&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;操作保证得1。
+这样从而&lt;code class=&quot;highlighter-rouge&quot;&gt;char&lt;/code&gt;类型作为一个度量标准，不管编译器或者系统怎样，&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(char)&lt;/code&gt;始终为1。&lt;/p&gt;
+
+&lt;h3 id=&quot;sizeof&quot;&gt;2. 对引用的sizeof等于存放该引用对象的内存大小&lt;/h3&gt;
+
+&lt;p&gt;也就是说，如果A是对B的引用的话，那么&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(A)&lt;/code&gt;将等译&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(B)&lt;/code&gt;。
+但是说从内部实现的角度来看引用的话，引用应该跟指针类似，引用本身占用的空间大小应该是机器字长。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bit&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;但对引用的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;种种现象都显示出引用就是其本身的类型。诸如&lt;code class=&quot;highlighter-rouge&quot;&gt;typeid&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;等等。
+这个引用跟指针的具体区别还需要继续研究。&lt;/p&gt;
+
+&lt;h3 id=&quot;sizeofsizeof&quot;&gt;3. 对数组的sizeof等于对其元素的sizeof大小乘以数组的长度&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//10
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//6
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;需要注意的是&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的结果不是数组的长度，要想获得数组的长度可以用&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;结果除以每个元素的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的大小。&lt;/p&gt;
+
+&lt;h3 id=&quot;sizeof-1&quot;&gt;4. 对指针的sizeof等于存放该指针的内存大小&lt;/h3&gt;
+
+&lt;p&gt;引用指针的区别，引用的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;给出的是指向的内存对象的大小，指针的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;给出的是指针的大小。
+所以对于32bit系统而言，所有的指针的&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;都是4，而对于64bit系统，则是8。&lt;/p&gt;
+
+&lt;p&gt;如果想获得指针所指的对象的内存大小，则需要解引用。&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(*ptr)&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;这里有一道经典的题，求i1,i2的值。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
+ &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;可能大部分都会以为i1等于3。但实际上来看，这里的i1跟i2都是指针的长度。
+函数在参数传递的时候，数组已经蜕变成了指针。
+也就是说下面几种函数的声明是等价的&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]);&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;foo3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;传递进去的参数都将是指针，所以&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的长度也是指针的长度。&lt;/p&gt;
+
+&lt;h3 id=&quot;strlen&quot;&gt;5. 与strlen的区别&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;strlen(char*)&lt;/code&gt;是个求字符串实际长度的函数，返回字符串中不包括&lt;code class=&quot;highlighter-rouge&quot;&gt;\0&lt;/code&gt;的长度。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//10
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//5
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;sc&quot;&gt;&#39;\0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//10
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//0
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;0123456789&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//10
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unkown&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;需要注意的是最后一个例子，如果字符的长度大于等于字符数组的大小时，导致判断str终止的&lt;code class=&quot;highlighter-rouge&quot;&gt;\0&lt;/code&gt;字符无法赋值进去，&lt;code class=&quot;highlighter-rouge&quot;&gt;c2&lt;/code&gt;的结尾是&lt;code class=&quot;highlighter-rouge&quot;&gt;9&lt;/code&gt;而不是&lt;code class=&quot;highlighter-rouge&quot;&gt;\0&lt;/code&gt;，因此&lt;code class=&quot;highlighter-rouge&quot;&gt;strlen&lt;/code&gt;会一直向后检索到遇到&lt;code class=&quot;highlighter-rouge&quot;&gt;\0&lt;/code&gt;才停止，此时&lt;code class=&quot;highlighter-rouge&quot;&gt;strlen&lt;/code&gt;的值是不可靠的。&lt;/p&gt;
+
+&lt;h3 id=&quot;struct&quot;&gt;6. Struct的内存对齐&lt;/h3&gt;
+
+&lt;p&gt;关于&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;的内存大小就会涉及到内存对齐的问题了。&lt;/p&gt;
+
+&lt;p&gt;举个简单的例子&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;乍一看我们会以为&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(S1) = sizeof(a)+sizeof(b)+sizeof(c)&lt;/code&gt;，应该等于1+8+4=13。
+可实际上结果却是24。这正是内存对齐的影响。&lt;/p&gt;
+
+&lt;p&gt;我们来看下内存对齐的几个规则：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对于&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;union&lt;/code&gt;的各个成员，第一个成员位于偏移量为0的位置，之后的每个数据成员的偏移量都必须是&lt;code class=&quot;highlighter-rouge&quot;&gt;min(#pragma pack(n),sizeof(data))&lt;/code&gt;的整数倍。 (其中&lt;code class=&quot;highlighter-rouge&quot;&gt;#pragma pack(n)&lt;/code&gt;用来设置为n字节对齐,而&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(data)&lt;/code&gt;指该数据成员本身的长度)&lt;/li&gt;
+  &lt;li&gt;在数据成员完成各自的对齐之后，&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;或&lt;code class=&quot;highlighter-rouge&quot;&gt;union&lt;/code&gt;本身也需要进行对齐，对齐按照&lt;code class=&quot;highlighter-rouge&quot;&gt;min(#pragma pack(n), sizeof(maxdata))&lt;/code&gt;的整数倍对齐。(&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(maxdata)&lt;/code&gt;指的是数据成员中占内存最大成员的大小。)&lt;/li&gt;
+  &lt;li&gt;如果数据成员里边有复杂数据类型，诸如&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;union&lt;/code&gt;或者数组之类的数据成员，这里&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof(maxdata)&lt;/code&gt;会将复杂数据成员拆分成基本成员，长度还是按照基本数据成员的最长数据来算。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;再来看上边那个例子，其中&lt;code class=&quot;highlighter-rouge&quot;&gt;char a&lt;/code&gt;的偏移量是0，&lt;code class=&quot;highlighter-rouge&quot;&gt;double b&lt;/code&gt;的偏移量应该是本身的整数倍，所以是8。最后&lt;code class=&quot;highlighter-rouge&quot;&gt;int c&lt;/code&gt;的偏移量是16，满足规则。但整个&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;的长度现在是16+4=20。
+要满足&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;对齐后是最宽的数据的整数倍，所以要在&lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;后边填充4个字节得到24。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;的某个成员相对于&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;首地址的偏移量可以通过宏&lt;code class=&quot;highlighter-rouge&quot;&gt;offsetof()&lt;/code&gt;来获取。这个宏定义在&lt;code class=&quot;highlighter-rouge&quot;&gt;stddef.h&lt;/code&gt;中，如下&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#define offsetof(s,m) (size_t) &amp;amp; (((s * )0)-&amp;gt;m)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;bit-field&quot;&gt;位域(bit-field)上的内存对齐&lt;/h4&gt;
+
+&lt;p&gt;虽然说对&lt;code class=&quot;highlighter-rouge&quot;&gt;bit-field&lt;/code&gt;的成员不能够进行&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;操作，但是我们仍然可以对&lt;code class=&quot;highlighter-rouge&quot;&gt;bit-field&lt;/code&gt;的整体来进行&lt;code class=&quot;highlighter-rouge&quot;&gt;sizeof&lt;/code&gt;的操作的。
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bit-field&lt;/code&gt;的数据成员也要满足&lt;code class=&quot;highlighter-rouge&quot;&gt;struct&lt;/code&gt;上的内存对齐规则。
+不过特别的，&lt;code class=&quot;highlighter-rouge&quot;&gt;bit-field&lt;/code&gt;还有一套自己的内存对齐规则。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;如果相邻位域字段的类型相同，且其位宽之和小于类型的sizeof大小，则后面的字段将紧邻前一个字段存储，直到不能容纳为止；&lt;/li&gt;
+  &lt;li&gt;如果相邻位域字段的类型相同，但其位宽之和大于类型的sizeof大小，则后面的字段将从新的存储单元开始，其偏移量为其类型大小的整数倍；&lt;/li&gt;
+  &lt;li&gt;如果相邻的位域字段的类型不同，则各编译器的具体实现有差异，VC6采取不压缩方式，Dev-C++采取压缩方式；&lt;/li&gt;
+  &lt;li&gt;如果位域字段之间穿插着非位域字段，则不进行压缩；&lt;/li&gt;
+  &lt;li&gt;整个结构体的总大小为最宽基本类型成员大小的整数倍。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;内存对齐的作用&lt;/h4&gt;
+
+&lt;p&gt;关于内存对齐的作用，这篇&lt;a href=&quot;http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html&quot;&gt;博客&lt;/a&gt;有着详细的说明。
+然后本人就转了过来。&lt;/p&gt;
+
+&lt;p&gt;内存对齐的主要作用是：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;平台原因(移植原因)：不是所有的硬件平台都能访问任意地址上的任意数据的；某些硬件平台只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。&lt;/li&gt;
+  &lt;li&gt;性能原因：经过内存对齐后，CPU的内存访问速度大大提升。具体原因稍后解释。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/sizeof0.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这是普通程序员心目中的内存印象，由一个个的字节组成，而CPU并不是这么看待的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/sizeof1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CPU把内存当成是一块一块的，块的大小可以是2，4，8，16字节大小，因此CPU在读取内存时是一块一块进行读取的。块大小成为memory access granularity（粒度） 本人把它翻译为“内存读取粒度” 。&lt;/p&gt;
+
+&lt;p&gt;假设CPU要读取一个int型4字节大小的数据到寄存器中，分两种情况讨论：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;数据从0字节开始&lt;/li&gt;
+  &lt;li&gt;数据从1字节开始&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;再次假设内存读取粒度为4。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/sizeof2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;当该数据是从0字节开始时，很CPU只需读取内存一次即可把这4字节的数据完全读取到寄存器中。&lt;/li&gt;
+  &lt;li&gt;当该数据是从1字节开始时，问题变的有些复杂，此时该int型数据不是位于内存读取边界上，这就是一类内存未对齐的数据。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/sizeof3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时CPU先访问一次内存，读取0—3字节的数据进寄存器，并再次读取4—5字节的数据进寄存器，接着把0字节和6，7，8字节的数据剔除，最后合并1，2，3，4字节的数据进寄存器。对一个内存未对齐的数据进行了这么多额外的操作，大大降低了CPU性能。&lt;/p&gt;
+
+&lt;p&gt;这还属于乐观情况了，上文提到内存对齐的作用之一为平台的移植原因，因为以上操作只有有部分CPU肯干，其他一部分CPU遇到未对齐边界就直接罢工了。&lt;/p&gt;
+
+&lt;h4 id=&quot;pragma-pack&quot;&gt;关于pragma pack()&lt;/h4&gt;
+
+&lt;p&gt;系统的&lt;code class=&quot;highlighter-rouge&quot;&gt;#pragma pack(n)&lt;/code&gt;，用来设置对齐单位的最大长度。
+因为对齐的几条规则取的基本长度要求是&lt;code class=&quot;highlighter-rouge&quot;&gt;#pragma pack()&lt;/code&gt;设置的和数据中最长的基本数据类型的长度取&lt;code class=&quot;highlighter-rouge&quot;&gt;min&lt;/code&gt;运算。也就是说如果&lt;code class=&quot;highlighter-rouge&quot;&gt;n&lt;/code&gt;设置为4的话，最大的对齐单位都不会超过4的。&lt;/p&gt;
+
+&lt;p&gt;例如&lt;code class=&quot;highlighter-rouge&quot;&gt;#pragma pack(1)&lt;/code&gt;就是将所有的对齐按照1的整数倍来对齐，实际上就是没有进行对齐，所有数据都压缩紧凑排列。&lt;/p&gt;
+
+&lt;p&gt;另外该属性也可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribute__&lt;/code&gt;来设置的。如&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribute__((packed))&lt;/code&gt;即设置为紧凑模式，不进行压缩。
+或者&lt;code class=&quot;highlighter-rouge&quot;&gt;__attribut__((aligned(4)))&lt;/code&gt;来制定对齐的基本单位是几个字节。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;《C++ Primer》&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://baike.baidu.com/item/sizeof&quot;&gt;百度百科&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://www.cppblog.com/snailcong/archive/2009/03/16/76705.html&quot;&gt;内存对齐的规则以及作用&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</description>
+				
+				<pubDate>Sun, 06 Mar 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/c/c++/2016/03/06/details-about-sizeof/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/c/c++/2016/03/06/details-about-sizeof/</guid>
+			</item>
+		
+			<item>
 				<title>Stack vs Heap</title>
 				
 					
@@ -1507,163 +1763,6 @@ vim -V./startuptime
 				<pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/java/2015/11/16/JDB%E9%93%BE%E6%8E%A5%E6%BA%90%E7%A0%81/</guid>
-			</item>
-		
-			<item>
-				<title>有关Javac的探究</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;用惯了IDE式的一键式编程，初次转到命令行中多少还是有些不适应的。
-但IDE有IDE的方便，直接编译还是有着直接编译的好处的。毕竟是可以更深层次的接触的编译的过程。&lt;/p&gt;
-
-&lt;p&gt;对于&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;，发现并没有多少书来解释这个命令，通过&lt;code class=&quot;highlighter-rouge&quot;&gt;javac -help&lt;/code&gt;能看到一堆对参数的说明。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Usage: javac &amp;lt;options&amp;gt; &amp;lt;&lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files&amp;gt;
-where possible options include:
-  -g                         Generate all debugging info
-  -g:none                    Generate no debugging info
-  -g:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;lines,vars,source&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;     Generate only some debugging info
-  -nowarn                    Generate no warnings
-  -verbose                   Output messages about what the compiler is doing
-  -deprecation               Output &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;locations where deprecated APIs are used
-  -classpath &amp;lt;path&amp;gt;          Specify where to find user class files and annotation processors
-  -cp &amp;lt;path&amp;gt;                 Specify where to find user class files and annotation processors
-  -sourcepath &amp;lt;path&amp;gt;         Specify where to find input &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files
-  -bootclasspath &amp;lt;path&amp;gt;      Override location of bootstrap class files
-  -extdirs &amp;lt;&lt;span class=&quot;nb&quot;&gt;dirs&lt;/span&gt;&amp;gt;            Override location of installed extensions
-  -endorseddirs &amp;lt;&lt;span class=&quot;nb&quot;&gt;dirs&lt;/span&gt;&amp;gt;       Override location of endorsed standards path
-  -proc:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;none,only&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;          Control whether annotation processing and/or compilation is &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;.
-  -processor &amp;lt;class1&amp;gt;[,&amp;lt;class2&amp;gt;,&amp;lt;class3&amp;gt;...] Names of the annotation processors to run; bypasses default discovery process
-  -processorpath &amp;lt;path&amp;gt;      Specify where to find annotation processors
-  -parameters                Generate metadata &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;reflection on method parameters
-  -d &amp;lt;directory&amp;gt;             Specify where to place generated class files
-  -s &amp;lt;directory&amp;gt;             Specify where to place generated &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files
-  -h &amp;lt;directory&amp;gt;             Specify where to place generated native header files
-  -implicit:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;none,class&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;     Specify whether or not to generate class files &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;implicitly referenced files
-  -encoding &amp;lt;encoding&amp;gt;       Specify character encoding used by &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;files
-  -source &amp;lt;release&amp;gt;          Provide &lt;span class=&quot;nb&quot;&gt;source &lt;/span&gt;compatibility with specified release
-  -target &amp;lt;release&amp;gt;          Generate class files &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;specific VM version
-  -profile &amp;lt;profile&amp;gt;         Check that API used is available &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the specified profile
-  -version                   Version information
-  -help                      Print a synopsis of standard options
-  -Akey[&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;value]              Options to pass to annotation processors
-  -X                         Print a synopsis of nonstandard options
-  -J&amp;lt;flag&amp;gt;                   Pass &amp;lt;flag&amp;gt; directly to the runtime system
-  -Werror                    Terminate compilation &lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;warnings occur
-  @&amp;lt;filename&amp;gt;                Read options and filenames from file&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;看着都眼晕，不过我们只需要对某几个Option来关注就可以。&lt;/p&gt;
-
-&lt;h3 id=&quot;argfiles&quot;&gt;@argfiles&lt;/h3&gt;
-
-&lt;p&gt;话说用了这么久的&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;还头一次知道有这么个&lt;code class=&quot;highlighter-rouge&quot;&gt;option&lt;/code&gt;，在javac编译的时候我们可以不必每次都要
-敲那么长的一串命令，可以先通过把编译的&lt;code class=&quot;highlighter-rouge&quot;&gt;option&lt;/code&gt;或是&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefiles&lt;/code&gt;写入到一个文件中然后通过&lt;code class=&quot;highlighter-rouge&quot;&gt;@&lt;/code&gt;来编译。
-比如说，我们把&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;的参数放到options文件中，把&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;放到source文件中，类似下边例子：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#Options
-&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;..&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/bin/&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;g&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;sourcepath &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;#srcFiles
-testA&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;java
-testB&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;之后，通过命令&lt;code class=&quot;highlighter-rouge&quot;&gt;javac @Options @srcFiles&lt;/code&gt;来编译文件。&lt;/p&gt;
-
-&lt;h3 id=&quot;classpath---sourcepath&quot;&gt;-classpath 与 -sourcepath&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;classpath&lt;/code&gt; 设定java要搜索的类的路径，即编译&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;所需要依赖的class的路径。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt; 设定java要搜索类的源码的路径，即编译&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcefile&lt;/code&gt;所需要依赖的class的源码的路径。&lt;/p&gt;
-
-&lt;p&gt;一开始并不明白sourcepath的意义，以为是需要编译的源码的路径。后来看了看文档以及相关资料，才知道
-sourcepath与classpath其实都是指要编译文件需要搜寻的依赖类的路径。只不过classpath指明的是已经编译好的
-&lt;code class=&quot;highlighter-rouge&quot;&gt;.class&lt;/code&gt;文件的位置，而sourcepath指明的是依赖的class的源码的位置，如果&lt;code class=&quot;highlighter-rouge&quot;&gt;javac&lt;/code&gt;发现不存在或者现在的&lt;code class=&quot;highlighter-rouge&quot;&gt;.class&lt;/code&gt;
-不是最新版文件，会重新编译依赖文件来产生class文件。&lt;/p&gt;
-
-&lt;p&gt;我们可以通过&lt;code class=&quot;highlighter-rouge&quot;&gt;-verbose&lt;/code&gt;来查看编译过程。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$javac&lt;/span&gt; -verbose -sourcepath . testB.java
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析开始时间 RegularFileObject[testB.java]]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析已完成, 用时 14 毫秒]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;源文件的搜索路径: .]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;类文件的搜索路径: /lib/jvm/jdk7/jre/lib/resources.jar,/lib/jvm/jdk7/jre/lib/rt.jar,/lib/jvm/jdk7/jre/lib/sunrsasign.jar,/lib/jvm/jdk7/jre/lib/jsse.jar,/lib/jvm/jdk7/jre/lib/jce.jar,/lib/jvm/jdk7/jre/lib/charsets.jar,/lib/jvm/jdk7/jre/lib/jfr.jar,/lib/jvm/jdk7/jre/classes,/lib/jvm/jdk7/jre/lib/ext/zipfs.jar,/lib/jvm/jdk7/jre/lib/ext/sunpkcs11.jar,/lib/jvm/jdk7/jre/lib/ext/localedata.jar,/lib/jvm/jdk7/jre/lib/ext/dnsns.jar,/lib/jvm/jdk7/jre/lib/ext/sunec.jar,/lib/jvm/jdk7/jre/lib/ext/sunjce_provider.jar,.,/lib/jvm/jdk7/lib.tools.jar,/home/yeoman123/Workspace/java/MOECPM,/home/yeoman123/Workspace/java/public/colt-1.2.0.jar,/home/yeoman123/Workspace/java/public/slf4j-api-1.7.12.jar]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/Object.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/String.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在检查testB]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/AutoCloseable.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/lang/System.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/PrintStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/FilterOutputStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载ZipFileIndexFileObject[/lib/jvm/jdk7/lib/ct.sym&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;META-INF/sym/rt.jar/java/io/OutputStream.class&lt;span class=&quot;o&quot;&gt;)]]&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在加载RegularFileObject[./testA.java]]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析开始时间 RegularFileObject[./testA.java]]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;解析已完成, 用时 1 毫秒]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;已写入RegularFileObject[testB.class]]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;正在检查testA]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;已写入RegularFileObject[./testA.class]]
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;共 307 毫秒]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;其中文件&lt;code class=&quot;highlighter-rouge&quot;&gt;testB.java&lt;/code&gt;里边对&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;里的类进行调用，然而并没有事先编译&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;文件，而是指定了&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt;为
-当前目录，我们可以看到编译进程中首先找到&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.java&lt;/code&gt;对其进行编译生成&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.class&lt;/code&gt;，然后再对&lt;code class=&quot;highlighter-rouge&quot;&gt;testB.java&lt;/code&gt;进行编译。&lt;/p&gt;
-
-&lt;p&gt;需要注意的是：&lt;code class=&quot;highlighter-rouge&quot;&gt;sourcepath&lt;/code&gt;的默认路径与&lt;code class=&quot;highlighter-rouge&quot;&gt;classpath&lt;/code&gt;路径相同，但如果指定了之后会将原路径覆盖。&lt;/p&gt;
-
-&lt;h3 id=&quot;d&quot;&gt;-d&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;选项设定了类文件的目标目录，即你编译出来的class文件所存放的位置，这里是指存放的根目录。什么意思呢？如果你的文件中没有进行打包(package)
-那么直接就把class文件生成到该目录下边。如果文件中声明了package的信息，那么就会以&lt;code class=&quot;highlighter-rouge&quot;&gt;-d&lt;/code&gt;后的path为根目录生成整个package的文件目录中。举个例子&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;edu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;school&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;group&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;//...&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;javac -d /home/user/java/bin/ testA.java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;之后会将&lt;code class=&quot;highlighter-rouge&quot;&gt;testA.class&lt;/code&gt;生成到/home/user/java/bin/cn/edu/school/group/project中。如果想要&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;该类，则需要指定
-该类的根目录，即&lt;code class=&quot;highlighter-rouge&quot;&gt;-cp /home/user/java/bin&lt;/code&gt;即可。例如我在&lt;code class=&quot;highlighter-rouge&quot;&gt;testB&lt;/code&gt;中&lt;code class=&quot;highlighter-rouge&quot;&gt;import&lt;/code&gt;：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;cn.edu.school.group.project.testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This is B Initialize&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;testA&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;javac -d /home/user/java/bin -cp /home/user/java/bin testB.java&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;如果不指定&lt;code class=&quot;highlighter-rouge&quot;&gt;cp&lt;/code&gt;的话就会编译出错，或者将该目录添加到环境变量中其实也可以，但如果每个project都把classpath添加到环境变量中，
-那环境变量会变得相当臃肿。&lt;/p&gt;
-
-&lt;p&gt;另外，关于classpath的搜索规则，参考@haolujun 大神的说明，java的类的寻找规则是这样子的：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class文件所在目录=Classpath+&#39;\&#39;+Package路径中&#39;.&#39;换成&#39;\&#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;### debug 选项 ###&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;选项为编译提供了调试信息，包括行号信息，源文件信息以及局部变量信息。缺省情况只生成行号以及源文件信息。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:none&lt;/code&gt; 不生成任何调试信息。&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:{keylist}&lt;/code&gt; 指定生成调试信息的类型，&lt;code class=&quot;highlighter-rouge&quot;&gt;keylist&lt;/code&gt;包括&lt;code class=&quot;highlighter-rouge&quot;&gt;source&lt;/code&gt;提供源文件调试信息，&lt;code class=&quot;highlighter-rouge&quot;&gt;lines&lt;/code&gt;提供行号调试信息，以及
-&lt;code class=&quot;highlighter-rouge&quot;&gt;vars&lt;/code&gt;提供局部变量调试信息。类型之间用逗号来分隔。&lt;/p&gt;
-
-&lt;p&gt;如果你不想生成任何调试信息的话，需要&lt;code class=&quot;highlighter-rouge&quot;&gt;-g:none&lt;/code&gt;来指定，不指定的话，即使不加&lt;code class=&quot;highlighter-rouge&quot;&gt;-g&lt;/code&gt;默认也会生成行号以及源文件信息的。&lt;/p&gt;
-</description>
-				
-				<pubDate>Tue, 10 Nov 2015 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/java/2015/11/10/%E6%9C%89%E5%85%B3Javac%E7%9A%84%E6%8E%A2%E7%A9%B6/</guid>
 			</item>
 		
 	</channel>
