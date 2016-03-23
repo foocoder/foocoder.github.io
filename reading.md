@@ -43,9 +43,9 @@ books:
   link: 1139336
   score: 9.4
   cover: classicalC.jpg
-  status: 在读
+  status: 已读
   start_time: 2015.12
-  end_time: 
+  end_time: 2016.03
   description:
   tags: {C语言, 程序设计, 经典}
 
@@ -63,5 +63,20 @@ books:
   end_time: 
   description:
   tags: {Debug, Programming, Linux}
+
+- title: Essential C++ 中文版
+  author: Stanley B. Lippman
+  publisher: 电子工业出版社
+  origin_title: Essential C++
+  translator: 侯捷
+  language: 中文
+  link: 1215826
+  score: 8.2
+  cover: EssentialCpp.jpg
+  status: 在读
+  start_time: 2016.3
+  end_time: 
+  description: 号称是《C++ Primer》的浓缩版
+  tags: {C++, Programming, 经典}
 
 ---
