@@ -73,10 +73,25 @@ books:
   link: 1215826
   score: 8.2
   cover: EssentialCpp.jpg
+  status: 已读
+  start_time: 2016.3
+  end_time: 2016.3
+  description: 号称是《C++ Primer》的浓缩版
+  tags: {C++, Programming, 经典}
+
+- title: Effective C++
+  author: Scott Meyers
+  publisher: 电子工业出版社
+  origin_title: Effective C++, 55 Specific Ways to Improve Your Programs and Designs
+  translator: 侯捷
+  language: 中文
+  link: 1842426
+  score: 9.5
+  cover: EffectiveCpp.jpg
   status: 在读
   start_time: 2016.3
   end_time: 
-  description: 号称是《C++ Primer》的浓缩版
-  tags: {C++, Programming, 经典}
+  description: 世界顶级C++大师Scott Meyers成名之作
+  tags: { C++, Programming, 经典 }
 
 ---
