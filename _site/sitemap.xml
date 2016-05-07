@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://foocoder.github.io/linux/2016/05/07/Linux-IO%E6%A8%A1%E5%BC%8F%E5%8F%8Aselect-poll-epoll%E8%AF%A6%E8%A7%A3/</loc>
+    </url>
+    
+    <url>
+        <loc>http://foocoder.github.io/c/c++/2016/04/03/Const%E9%99%90%E5%AE%9A%E7%AC%A6/</loc>
+    </url>
+    
+    <url>
         <loc>http://foocoder.github.io/c/c++/2016/03/09/%E4%B8%80%E9%81%93%E7%AE%80%E5%8D%95%E7%9A%84%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/</loc>
     </url>
     
