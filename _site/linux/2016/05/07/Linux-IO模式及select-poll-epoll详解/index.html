@@ -236,7 +236,11 @@ header::after {
         </div>
 
         <hr>
-        <p>同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。</p>
+        <blockquote>
+  <p>本文系转自@人云思云 于 segmentfault 的一篇博文，<a href="https://segmentfault.com/a/1190000003063859">原作链接</a></p>
+</blockquote>
+
+<p>同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。</p>
 
 <blockquote>
   <p>本文讨论的背景是Linux环境下的network IO。</p>
@@ -273,7 +277,7 @@ header::after {
   <li>恢复处理机上下文。</li>
 </ol>
 
-<p>注：总而言之就是很耗资源，具体的可以参考这篇文章：进程切换</p>
+<p>注：总而言之就是很耗资源，具体的可以参考这篇文章：<a href="http://guojing.me/linux-kernel-architecture/posts/process-switch/">进程切换</a></p>
 
 <h2 id="section-3">进程的阻塞</h2>
 

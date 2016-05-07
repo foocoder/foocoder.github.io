@@ -7,6 +7,8 @@ summary:
 cover-image: 9.jpg
 ---
 
+> 本文系转自@人云思云 于 segmentfault 的一篇博文，[原作链接](https://segmentfault.com/a/1190000003063859)
+
 同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。
 
 > 本文讨论的背景是Linux环境下的network IO。
@@ -38,7 +40,7 @@ cover-image: 9.jpg
 5. 更新内存管理的数据结构。
 6. 恢复处理机上下文。
 
-注：总而言之就是很耗资源，具体的可以参考这篇文章：进程切换
+注：总而言之就是很耗资源，具体的可以参考这篇文章：[进程切换](http://guojing.me/linux-kernel-architecture/posts/process-switch/)
 
 
 ## 进程的阻塞

@@ -14,7 +14,11 @@
 					
 				
 				
-					<description>&lt;p&gt;同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。&lt;/p&gt;
+					<description>&lt;blockquote&gt;
+  &lt;p&gt;本文系转自@人云思云 于 segmentfault 的一篇博文，&lt;a href=&quot;https://segmentfault.com/a/1190000003063859&quot;&gt;原作链接&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;同步IO和异步IO，阻塞IO和非阻塞IO分别是什么，到底有什么区别？不同的人在不同的上下文下给出的答案是不同的。所以先限定一下本文的上下文。&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;本文讨论的背景是Linux环境下的network IO。&lt;/p&gt;
@@ -51,7 +55,7 @@
   &lt;li&gt;恢复处理机上下文。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;注：总而言之就是很耗资源，具体的可以参考这篇文章：进程切换&lt;/p&gt;
+&lt;p&gt;注：总而言之就是很耗资源，具体的可以参考这篇文章：&lt;a href=&quot;http://guojing.me/linux-kernel-architecture/posts/process-switch/&quot;&gt;进程切换&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;section-3&quot;&gt;进程的阻塞&lt;/h2&gt;
 
