@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+RTTI、虚函数和虚基类的实现方式、开销分析及使用指导 | Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="RTTI、虚函数和虚基类的实现方式、开销分析及使用指导 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/c/c++/2016/05/24/RTTI%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E8%99%9A%E5%9F%BA%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%BC%80%E9%94%80%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%9F%A5%E9%81%93/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>RTTI、虚函数和虚基类的实现方式、开销分析及使用指导</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#C/C++" title="C/C++"> C/C++</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#转载" title="转载">  转载</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#C/C++" title="C/C++">  C/C++</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Code" title="Code">  Code</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > May 24, 2016</span>
+        </div>
+
+        <hr>
+        <p>Ps: 文章系转自<a href="http://baiy.cn"> @白杨 </a>先生的<a href="http://baiy.cn//doc/cpp/index.htm"> C++编码规范与指导 </a>中一文，<a href="http://baiy.cn/doc/cpp/inside_rtti.htm">原文链接</a>。</p>
+
+<p>“在正确的场合使用恰当的特性” 对称职的C++程序员来说是一个基本标准。想要做到这点，首先要了解语言中每个特性的实现方式及其开销。本文主要讨论相对于传统 C 而言，对效率有影响的几个C++新特性：</p>
+
+<ul>
+  <li>编译时开销</li>
+  <li>运行时开销</li>
+</ul>
+
+<p>相对于传统的 C 语言，C++ 引入的额外开销体现在以下两个方面：</p>
+
+<h2 id="section">编译时开销</h2>
+
+<p>模板、类层次结构、强类型检查等新特性，以及大量使用了这些新特性的 STL 标准库都增加了编译器负担。但是应当看到，这些新机能在不降低，甚至（由于模板的内联能力）提升了程序执行效率的前提下，明显减轻了广大 C++ 程序员的工作量。</p>
+
+<p>用几秒钟的CPU时间换取几人日的辛勤劳动，附带节省了日后调试和维护代码的时间，这点开销当算超值。</p>
+
+<p>当然，在使用这些特性的时候，也有不少优化技巧。比如：编译一个 广泛依赖模板库的大型软件时，几条显式实例化指令就可能使编译速度提高几十倍；恰当地组合使用部分专门化和完全专门化，不但可以最优化程序的执行效率，还可以让同时使用多种不同参数实例化一套模板的程序体积显著减小……</p>
+
+<h2 id="section-1">运行时开销</h2>
+
+<p>运行时开销恐怕是程序员最关心的问题之一了。相对与传统C程序而言，C++中有可能引入额外运行时开销的新特性包括：</p>
+
+<ol>
+  <li>虚基类</li>
+  <li>虚函数</li>
+  <li>RTTI（dynamic_cast和typeid）</li>
+  <li>异常</li>
+  <li>对象的构造和析构</li>
+</ol>
+
+<p>关于其中第四点：异常，对于大多数现代编译器来说，在正常情况（未抛出异常）下，try块中的代码执行效率和普通代码一样高，而且由于不再需要使用传统上通过返回值或函数调用来判断错误的方式，代码的实际执行效率还可能进一步提高。抛出和捕捉异常的效率也只是在某些情况下才会稍低于函数正常返回的效率，何况对于一个编写良好的程序，抛出和捕捉异常的机会应该不多。关于异常使用的详细讨论，参见：C++编码规范正文中的相关部分和C++异常机制的实现方式和开销分析一节。</p>
+
+<p>而第五点，对象的构造和析构开销也不总是存在。对于不需要初始化/销毁的类型，并没有构造和析构的开销，相反对于那些需要初始化/销毁的类型来说，即使用传统的C方式实现，也至少需要与之相当的开销。这里要注意的一点是尽量不要让构造和析构函数过于臃肿，特别是在一个类层次结构中更要注意。时刻保持你的构造、析构函数中只有最必要的初始化和销毁操作，把那些并不是每个（子）对象都需要执行的操作留给其他方法和派生类去解决。</p>
+
+<p>其实对一个优秀的编译器而言，C++的各种特性本身就是使用C/汇编加以千锤百炼而最优化实现的。可以说，想用C甚至汇编比编译器更高效地实现某个C++特性几乎是不可能的。要是真能做到这一点的话，大侠就应该去写个编译器造福广大程序员才对～</p>
+
+<p>C++之所以 被广泛认为比C“低效”，其根本原因在于：由于程序员对某些特性的实现方式及其产生的开销不够了解，致使他们在错误的场合使用了错误的特性。而这些错误基本都集中在：</p>
+
+<ul>
+  <li>把异常当作另一种流控机制，而不是仅将其用于错误处理中</li>
+  <li>一个类和/或其基类的构造、析构函数过于臃肿，包含了很多非初始化/销毁范畴的代码</li>
+  <li>滥用或不正确地使用RTTI、虚函数和虚基类机制</li>
+</ul>
+
+<p>其中前两点上文已经讲过，下面讨论第三点。</p>
+
+<p>为了说明RTTI、虚函数和虚基类的实现方式，这里首先给出一个经典的菱形继承实例，及其具体实现（为了便于理解，这里故意忽略了一些无关紧要的优化）：</p>
+
+<p><img src="/img/inside_rtti.png" alt="钻石型继承的典型内存布局" /></p>
+
+<p>图中虚箭头代表偏移，实箭头代表指针</p>
+
+<p>由上图得到每种特性的运行时开销如下：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">特性</th>
+      <th style="text-align: left">时间开销</th>
+      <th style="text-align: left">空间开销</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">RTTI</td>
+      <td style="text-align: left">几次整形比较和一次取址操作（可能还会有1、2次整形加法）</td>
+      <td style="text-align: left">每类型一个type_info对象（包括类型ID和类名称），典型情况下小于32字节</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">虚函数</td>
+      <td style="text-align: left">一次整形加法和一次指针间接引用</td>
+      <td style="text-align: left">每类型一个虚表，典型情况下小于128字节 <br /><br />每对象若干个（大部分情况下是一个）虚表指针，典型情况下小于8字节</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">虚基类</td>
+      <td style="text-align: left">从虚继承的子类中访问虚基类的数据成员或其虚函数时，将增加两次指针间接引用和一次整形加法（部分情况下可以优化为一次指针间接引用）。</td>
+      <td style="text-align: left">每类型一个虚基类表，典型情况下小于32字节<br /> <br />每对象若干虚基类表指针，典型情况下小于8字节<br /> <br />在同时使用了虚函数的时候，虚基类表可以合并到虚表（virtual table）中，每对象的虚基类表指针（vbptr）也可以省略（只需vptr即可）。实际上，很多实现都是这么做的。 这样做的缺点是需要为一些中间类型（如：B1、B2 等）准备多个虚表。 <br /><br />如果指定类型在其类层次结构中只有一个虚基类（大部分使用了虚基类的情况下都是如此，如：上例中就只有 BB 一个虚基类），则可将 vbptr 直接替换为虚基类的偏移地址，这样做将可节省一次指针间接引用，从而提高效率。很多编译器都会自动开启这类优化措施。<br /> <br />此外，由于在很多原本需要访问虚表内 offset 字段的场合中（例如：调用某些虚函数时），该值都是编译时已知的。此时只需一个整形立即数加法即可完成从基类对象到派生类 this 指针的转换。因此，在不怎么影响时间效率的前提下，可以仅保留一个 vbptr 指针（意即：上例中 B2 内的 vbptr 可以被省略）。这种优化方式常常与前文提到的，在单虚基类的场合中将 vbptr 直接替换为虚基类偏址的做法一同使用，以期在时间效率和空间效率间取得较好的平衡，例如：VC 就经常使用这样的优化方式。</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>其中“每类型”或“每对象”是指用到该特性的类型/对象。对于未用到这些功能的类型及其对象，则不会增加上述开销</li>
+</ul>
+
+<p>可见，关于老天“饿时掉馅饼、睡时掉老婆”等美好传说纯属谣言。但凡人工制品必不完美，总有设计上的取舍，有其适应的场合也有其不适用的地方。</p>
+
+<p>C++中的每个特性，都是从程序员平时的生产生活中逐渐精化而来的。在不正确的场合使用它们必然会引起逻辑、行为和性能上的问题。对于上述特性，应该只在必要、合理的前提下才使用。</p>
+
+<p>“dynamic_cast” 用于在类层次结构中漫游，对指针或引用进行自由的向上、向下或交叉强制。”typeid” 则用于获取一个对象或引用的确切类型，与 “dynamic_cast” 不同，将 “typeid” 作用于指针通常是一个错误，要得到一个指针指向之对象的type_info，应当先将其解引用（例如：”typeid(*p);”）。</p>
+
+<p>一般地讲，能用虚函数解决的问题就不要用 “dynamic_cast”，能够用 “dynamic_cast” 解决的就不要用 “typeid”。比如：</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">//反面教材
+</span><span class="kt">void</span>
+<span class="nf">rotate</span><span class="p">(</span><span class="n">IN</span> <span class="k">const</span> <span class="n">CShape</span><span class="o">&amp;</span> <span class="n">iS</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">iS</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">CCircle</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...
+</span>    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">iS</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">CTriangle</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...
+</span>    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">iS</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">CSqucre</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="c1">// ...
+</span>    <span class="p">}</span>
+
+    <span class="c1">// ...
+</span><span class="p">}</span></code></pre></figure>
+
+<p>以上代码用 “dynamic_cast” 写会稍好一点，当然最好的方式还是在CShape里定义名为 “rotate” 的虚函数。</p>
+
+<p>虚函数是C++众多运行时多态特性中开销最小，也最常用的机制。虚函数的好处和作用这里不再多说，应当注意在对性能有苛刻要求的场合，或者需要频繁调用，对性能影响较大的地方（比如每秒钟要调用成千上万次，而自身内容又很简单的事件处理函数）要慎用虚函数。</p>
+
+<p>需要特别说明的一点是：虚函数的调用开销与通过函数指针的间接函数调用（例如：经典C程序中常见的，通过指向结构中的一个函数指针成员调用；以及调用DLL/SO中的函数等常见情况）是相当的。比起函数调用本身的开销（保存现场-&gt;传递参数-&gt;传递返回值-&gt;恢复现场）来说，一次指针间接引用是微不足道的。这就使得在绝大部分可以使用函数的场合中都能够负担得起虚方法的些微额外开销。</p>
+
+<p>作为一种支持多继承的面向对象语言，虚基类有时是保证类层次结构正确一致的一种必不可少的手段。但在需要频繁使用基类提供的服务，又对性能要求较高的场合，应该尽量避免使用它。在基类中没有数据成员的场合，也可以解除使用虚基类。例如，在上图中，如果类 “BB” 中不存在数据成员，那么 “BB” 就可以作为一个普通基类分别被 “B1” 和 “B2” 继承。这样的优化在达到相同效果的前提下，解除了虚基类引起的开销。不过这种优化也会带来一些问题：从 “DD” 向上强制到 “BB” 时会引起歧义，破坏了类层次结构的逻辑关系。</p>
+
+<p>上述特性的空间开销一般都是可以接受的，当然也存在一些特例，比如：在存储布局需要和传统C结构兼容的场合、在考虑对齐的场合、在需要为一个本来尺寸很小的类同时实例化许多对象的场合等等。</p>
+
+        <hr>
+        <p>24 May 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/linux/2016/05/07/Linux-IO%E6%A8%A1%E5%BC%8F%E5%8F%8Aselect-poll-epoll%E8%AF%A6%E8%A7%A3/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>

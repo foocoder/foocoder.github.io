@@ -7,6 +7,144 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>RTTI、虚函数和虚基类的实现方式、开销分析及使用指导</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;Ps: 文章系转自&lt;a href=&quot;http://baiy.cn&quot;&gt; @白杨 &lt;/a&gt;先生的&lt;a href=&quot;http://baiy.cn//doc/cpp/index.htm&quot;&gt; C++编码规范与指导 &lt;/a&gt;中一文，&lt;a href=&quot;http://baiy.cn/doc/cpp/inside_rtti.htm&quot;&gt;原文链接&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;“在正确的场合使用恰当的特性” 对称职的C++程序员来说是一个基本标准。想要做到这点，首先要了解语言中每个特性的实现方式及其开销。本文主要讨论相对于传统 C 而言，对效率有影响的几个C++新特性：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;编译时开销&lt;/li&gt;
+  &lt;li&gt;运行时开销&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;相对于传统的 C 语言，C++ 引入的额外开销体现在以下两个方面：&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;编译时开销&lt;/h2&gt;
+
+&lt;p&gt;模板、类层次结构、强类型检查等新特性，以及大量使用了这些新特性的 STL 标准库都增加了编译器负担。但是应当看到，这些新机能在不降低，甚至（由于模板的内联能力）提升了程序执行效率的前提下，明显减轻了广大 C++ 程序员的工作量。&lt;/p&gt;
+
+&lt;p&gt;用几秒钟的CPU时间换取几人日的辛勤劳动，附带节省了日后调试和维护代码的时间，这点开销当算超值。&lt;/p&gt;
+
+&lt;p&gt;当然，在使用这些特性的时候，也有不少优化技巧。比如：编译一个 广泛依赖模板库的大型软件时，几条显式实例化指令就可能使编译速度提高几十倍；恰当地组合使用部分专门化和完全专门化，不但可以最优化程序的执行效率，还可以让同时使用多种不同参数实例化一套模板的程序体积显著减小……&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;运行时开销&lt;/h2&gt;
+
+&lt;p&gt;运行时开销恐怕是程序员最关心的问题之一了。相对与传统C程序而言，C++中有可能引入额外运行时开销的新特性包括：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;虚基类&lt;/li&gt;
+  &lt;li&gt;虚函数&lt;/li&gt;
+  &lt;li&gt;RTTI（dynamic_cast和typeid）&lt;/li&gt;
+  &lt;li&gt;异常&lt;/li&gt;
+  &lt;li&gt;对象的构造和析构&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;关于其中第四点：异常，对于大多数现代编译器来说，在正常情况（未抛出异常）下，try块中的代码执行效率和普通代码一样高，而且由于不再需要使用传统上通过返回值或函数调用来判断错误的方式，代码的实际执行效率还可能进一步提高。抛出和捕捉异常的效率也只是在某些情况下才会稍低于函数正常返回的效率，何况对于一个编写良好的程序，抛出和捕捉异常的机会应该不多。关于异常使用的详细讨论，参见：C++编码规范正文中的相关部分和C++异常机制的实现方式和开销分析一节。&lt;/p&gt;
+
+&lt;p&gt;而第五点，对象的构造和析构开销也不总是存在。对于不需要初始化/销毁的类型，并没有构造和析构的开销，相反对于那些需要初始化/销毁的类型来说，即使用传统的C方式实现，也至少需要与之相当的开销。这里要注意的一点是尽量不要让构造和析构函数过于臃肿，特别是在一个类层次结构中更要注意。时刻保持你的构造、析构函数中只有最必要的初始化和销毁操作，把那些并不是每个（子）对象都需要执行的操作留给其他方法和派生类去解决。&lt;/p&gt;
+
+&lt;p&gt;其实对一个优秀的编译器而言，C++的各种特性本身就是使用C/汇编加以千锤百炼而最优化实现的。可以说，想用C甚至汇编比编译器更高效地实现某个C++特性几乎是不可能的。要是真能做到这一点的话，大侠就应该去写个编译器造福广大程序员才对～&lt;/p&gt;
+
+&lt;p&gt;C++之所以 被广泛认为比C“低效”，其根本原因在于：由于程序员对某些特性的实现方式及其产生的开销不够了解，致使他们在错误的场合使用了错误的特性。而这些错误基本都集中在：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;把异常当作另一种流控机制，而不是仅将其用于错误处理中&lt;/li&gt;
+  &lt;li&gt;一个类和/或其基类的构造、析构函数过于臃肿，包含了很多非初始化/销毁范畴的代码&lt;/li&gt;
+  &lt;li&gt;滥用或不正确地使用RTTI、虚函数和虚基类机制&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中前两点上文已经讲过，下面讨论第三点。&lt;/p&gt;
+
+&lt;p&gt;为了说明RTTI、虚函数和虚基类的实现方式，这里首先给出一个经典的菱形继承实例，及其具体实现（为了便于理解，这里故意忽略了一些无关紧要的优化）：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/img/inside_rtti.png&quot; alt=&quot;钻石型继承的典型内存布局&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;图中虚箭头代表偏移，实箭头代表指针&lt;/p&gt;
+
+&lt;p&gt;由上图得到每种特性的运行时开销如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;特性&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;时间开销&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;空间开销&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;RTTI&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;几次整形比较和一次取址操作（可能还会有1、2次整形加法）&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;每类型一个type_info对象（包括类型ID和类名称），典型情况下小于32字节&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;虚函数&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;一次整形加法和一次指针间接引用&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;每类型一个虚表，典型情况下小于128字节 &lt;br /&gt;&lt;br /&gt;每对象若干个（大部分情况下是一个）虚表指针，典型情况下小于8字节&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;虚基类&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;从虚继承的子类中访问虚基类的数据成员或其虚函数时，将增加两次指针间接引用和一次整形加法（部分情况下可以优化为一次指针间接引用）。&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;每类型一个虚基类表，典型情况下小于32字节&lt;br /&gt; &lt;br /&gt;每对象若干虚基类表指针，典型情况下小于8字节&lt;br /&gt; &lt;br /&gt;在同时使用了虚函数的时候，虚基类表可以合并到虚表（virtual table）中，每对象的虚基类表指针（vbptr）也可以省略（只需vptr即可）。实际上，很多实现都是这么做的。 这样做的缺点是需要为一些中间类型（如：B1、B2 等）准备多个虚表。 &lt;br /&gt;&lt;br /&gt;如果指定类型在其类层次结构中只有一个虚基类（大部分使用了虚基类的情况下都是如此，如：上例中就只有 BB 一个虚基类），则可将 vbptr 直接替换为虚基类的偏移地址，这样做将可节省一次指针间接引用，从而提高效率。很多编译器都会自动开启这类优化措施。&lt;br /&gt; &lt;br /&gt;此外，由于在很多原本需要访问虚表内 offset 字段的场合中（例如：调用某些虚函数时），该值都是编译时已知的。此时只需一个整形立即数加法即可完成从基类对象到派生类 this 指针的转换。因此，在不怎么影响时间效率的前提下，可以仅保留一个 vbptr 指针（意即：上例中 B2 内的 vbptr 可以被省略）。这种优化方式常常与前文提到的，在单虚基类的场合中将 vbptr 直接替换为虚基类偏址的做法一同使用，以期在时间效率和空间效率间取得较好的平衡，例如：VC 就经常使用这样的优化方式。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;其中“每类型”或“每对象”是指用到该特性的类型/对象。对于未用到这些功能的类型及其对象，则不会增加上述开销&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可见，关于老天“饿时掉馅饼、睡时掉老婆”等美好传说纯属谣言。但凡人工制品必不完美，总有设计上的取舍，有其适应的场合也有其不适用的地方。&lt;/p&gt;
+
+&lt;p&gt;C++中的每个特性，都是从程序员平时的生产生活中逐渐精化而来的。在不正确的场合使用它们必然会引起逻辑、行为和性能上的问题。对于上述特性，应该只在必要、合理的前提下才使用。&lt;/p&gt;
+
+&lt;p&gt;“dynamic_cast” 用于在类层次结构中漫游，对指针或引用进行自由的向上、向下或交叉强制。”typeid” 则用于获取一个对象或引用的确切类型，与 “dynamic_cast” 不同，将 “typeid” 作用于指针通常是一个错误，要得到一个指针指向之对象的type_info，应当先将其解引用（例如：”typeid(*p);”）。&lt;/p&gt;
+
+&lt;p&gt;一般地讲，能用虚函数解决的问题就不要用 “dynamic_cast”，能够用 “dynamic_cast” 解决的就不要用 “typeid”。比如：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//反面教材
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;rotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CShape&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CCircle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CTriangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CSqucre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// ...
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;以上代码用 “dynamic_cast” 写会稍好一点，当然最好的方式还是在CShape里定义名为 “rotate” 的虚函数。&lt;/p&gt;
+
+&lt;p&gt;虚函数是C++众多运行时多态特性中开销最小，也最常用的机制。虚函数的好处和作用这里不再多说，应当注意在对性能有苛刻要求的场合，或者需要频繁调用，对性能影响较大的地方（比如每秒钟要调用成千上万次，而自身内容又很简单的事件处理函数）要慎用虚函数。&lt;/p&gt;
+
+&lt;p&gt;需要特别说明的一点是：虚函数的调用开销与通过函数指针的间接函数调用（例如：经典C程序中常见的，通过指向结构中的一个函数指针成员调用；以及调用DLL/SO中的函数等常见情况）是相当的。比起函数调用本身的开销（保存现场-&amp;gt;传递参数-&amp;gt;传递返回值-&amp;gt;恢复现场）来说，一次指针间接引用是微不足道的。这就使得在绝大部分可以使用函数的场合中都能够负担得起虚方法的些微额外开销。&lt;/p&gt;
+
+&lt;p&gt;作为一种支持多继承的面向对象语言，虚基类有时是保证类层次结构正确一致的一种必不可少的手段。但在需要频繁使用基类提供的服务，又对性能要求较高的场合，应该尽量避免使用它。在基类中没有数据成员的场合，也可以解除使用虚基类。例如，在上图中，如果类 “BB” 中不存在数据成员，那么 “BB” 就可以作为一个普通基类分别被 “B1” 和 “B2” 继承。这样的优化在达到相同效果的前提下，解除了虚基类引起的开销。不过这种优化也会带来一些问题：从 “DD” 向上强制到 “BB” 时会引起歧义，破坏了类层次结构的逻辑关系。&lt;/p&gt;
+
+&lt;p&gt;上述特性的空间开销一般都是可以接受的，当然也存在一些特例，比如：在存储布局需要和传统C结构兼容的场合、在考虑对齐的场合、在需要为一个本来尺寸很小的类同时实例化许多对象的场合等等。&lt;/p&gt;
+</description>
+				
+				<pubDate>Tue, 24 May 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/c/c++/2016/05/24/RTTI%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E8%99%9A%E5%9F%BA%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%BC%80%E9%94%80%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%9F%A5%E9%81%93/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/c/c++/2016/05/24/RTTI%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E8%99%9A%E5%9F%BA%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%BC%80%E9%94%80%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%9F%A5%E9%81%93/</guid>
+			</item>
+		
+			<item>
 				<title>Linux IO模式及select、poll、epoll详解</title>
 				
 					
@@ -2143,169 +2281,6 @@ vim -V./startuptime
 				<pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/vim/2016/02/11/Vim%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
-			</item>
-		
-			<item>
-				<title>Vim复制粘贴探秘</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;Vim作为最好用的文本编辑器之一，使用vim来编文档，写代码实在是很惬意的事情。每当学会了vim的一个新功能，就会很大地提高工作效率。有人使用vim几十年，还没有完全掌握vim的功能，这也说明了vim的强大。而这样何尝不是一件好事呢，只要有的学习，就有的提高。&lt;/p&gt;
-
-&lt;p&gt;最近使用Vim来写博客，发现在Vim中粘贴Python代码后，缩进就全乱了。仔细研究了以下，原来是自动缩进的缘故，于是做如下设置：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; noai nosi&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;取消了自动缩进和智能缩进，这样粘贴就不会错行了。但在有的vim中不行，还是排版错乱。&lt;/p&gt;
-
-&lt;p&gt;后来发现了更好用的设置：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; paste&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;进入&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式以后，可以在插入模式下粘贴内容，不会有任何变形。这个真是灰常好用，情不自禁看了一下帮助，发现它做了这么多事：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;textwidth设置为0&lt;/li&gt;
-  &lt;li&gt;wrapmargin设置为0&lt;/li&gt;
-  &lt;li&gt;set noai&lt;/li&gt;
-  &lt;li&gt;set nosi&lt;/li&gt;
-  &lt;li&gt;softtabstop设置为0&lt;/li&gt;
-  &lt;li&gt;revins重置&lt;/li&gt;
-  &lt;li&gt;ruler重置&lt;/li&gt;
-  &lt;li&gt;showmatch重置&lt;/li&gt;
-  &lt;li&gt;formatoptions使用空值&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;下面的选项值不变，但却被禁用：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;lisp&lt;/li&gt;
-  &lt;li&gt;indentexpr&lt;/li&gt;
-  &lt;li&gt;cindent&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;怪不得之前只设置&lt;code class=&quot;highlighter-rouge&quot;&gt;noai&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;nosi&lt;/code&gt;不行，原来与这么多因素有关！&lt;/p&gt;
-
-&lt;p&gt;但这样还是比较麻烦的，每次要粘贴的话，先&lt;code class=&quot;highlighter-rouge&quot;&gt;set paste&lt;/code&gt;，然后粘贴，然后再&lt;code class=&quot;highlighter-rouge&quot;&gt;set nopaste&lt;/code&gt;。有没有更方便的呢？你可能想到了，使用键盘映射呀，对。我们可以这样设置：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F10&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; paste&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;map &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;F11&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; nopaste&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;CR&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这样在粘贴前按&lt;code class=&quot;highlighter-rouge&quot;&gt;F10&lt;/code&gt;键启动&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式，粘贴后按&lt;code class=&quot;highlighter-rouge&quot;&gt;F11&lt;/code&gt;取消&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式即可。其实，&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;有一个切换&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;开关的选项，这就是&lt;code class=&quot;highlighter-rouge&quot;&gt;pastetoggle&lt;/code&gt;。通过它可以绑定快捷键来激活/取消 &lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式。比如：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; pastetoggle&lt;span class=&quot;p&quot;&gt;=&amp;lt;&lt;/span&gt;F11&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这样减少了一个快捷键的占用，使用起来也更方便一些。&lt;/p&gt;
-
-&lt;p&gt;但，这是最方便的吗？Vimer们对高效的追求永无止境。还有其他更好地方法吗？&lt;/p&gt;
-
-&lt;p&gt;你可能想到了，vim寄存器。对，使用vim寄存器 &lt;code class=&quot;highlighter-rouge&quot;&gt;“+p&lt;/code&gt; 粘贴即可。根本不用考虑是否自动缩进，是否&lt;code class=&quot;highlighter-rouge&quot;&gt;paste&lt;/code&gt;模式，直接原文传递！&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;c&quot;&gt;&quot;+p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;要说vim寄存器，就要从vim文件间的复制粘贴说起。&lt;/p&gt;
-
-&lt;p&gt;Vim中，若要复制当前行，普通模式下按 yy 即可，在要粘贴的地方按 p 。这是vim将复制内容保存到了自己的寄存器中的缘故。如果在其他地方执行yy，新的内容将覆盖掉原寄存器中内容。如果想保存原寄存器中内容而同时增加新的内容呢？这时就要在yy前增加标签了。标签以双引号开始，跟着的是标签名称，可以是数字0-9，也可以是26个字母，然后就是复制操作，这样就把复制内容保存到该标签寄存器里。通过下面命令显示所有寄存器内容：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;reg&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;其中注意两个特殊的寄存器：”* 和 “+。这两个寄存器是和系统相通的，前者关联系统选择缓冲区，后者关联系统剪切板。通过它们可以和其他程序进行数据交换。&lt;/p&gt;
-
-&lt;p&gt;备注：
-若寄存器列表里无”* 或 “+ 寄存器，则可能是由于没有安装vim的图形界面所致。Debian/Ubuntu下可以通过安装vim-gnome解决。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install vim-gnome&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;选择缓冲区和系统剪切板啥子区别？让我们继续研究。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;选择缓冲区和剪切板&lt;/h2&gt;
-
-&lt;p&gt;不同于Windows，Linux系统里存在两个剪切板：一个叫做选择缓冲区(X11 selection buffer)，另一个才是剪切板(clipboard)。&lt;/p&gt;
-
-&lt;p&gt;选择缓冲区是实时的，当使用鼠标或键盘选择内容时，内容已经存在于选择缓冲区了，这或许就是选择缓冲区的由来吧。&lt;/p&gt;
-
-&lt;p&gt;使用下面的命令查看选择缓冲区的内容：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;xclip -out&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;如果没有xclip命令，Debian/Ubuntu下可以通过如下命令安装：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install xclip&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;可以使用鼠标中键或键入Shift+Insert来粘贴选择缓冲区的内容。但对于有些GUI程序，比如gedit，只能通过鼠标中键调用选择缓冲区的内容，使用Shift+Insert的话，调用的是剪切板的内容。&lt;/p&gt;
-
-&lt;p&gt;剪切板和Windows的剪切板类似，在选择文字内容后，执行Ctrl + c或在菜单里选择‘复制’的话，这时内容才存放到剪切板里。&lt;/p&gt;
-
-&lt;p&gt;使用下面的命令查看剪切板的内容：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;xclip -out -sel clipboard&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;而使用剪切板的内容，则是Ctrl+v。 但在有些情况下，比如gnome-terminal，不能直接使用Ctrl+c，Ctrl+v，这时就要用Shift+Ctrl+c，Shift+Ctrl+v代替。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;原格式粘贴&lt;/h2&gt;
-
-&lt;p&gt;好了，了解了选择缓冲区和剪切板，下面就是实现保留格式粘贴的完美解决方案：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;方案一：
-    &lt;ol&gt;
-      &lt;li&gt;选择文本内容&lt;/li&gt;
-      &lt;li&gt;vim普通模式下按 “*p 将选择缓冲区中内容粘贴进来&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;方案二：
-    &lt;ol&gt;
-      &lt;li&gt;复制文件内容&lt;/li&gt;
-      &lt;li&gt;vim普通模式下按 “+ p 将剪切板内容粘贴进来&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;这时，如果要复制的内容也是vim编辑器中的内容，那么如何复制才更方便呢？&lt;/p&gt;
-
-&lt;h2 id=&quot;vim&quot;&gt;vim中的复制&lt;/h2&gt;
-
-&lt;p&gt;vim有一个可视模式(Visual Mode)，在此模式下可以选择区域。可以在普通模式下键入v进入可视模式，也可以个性化一点，键入V进入行可视模式，或者键入Ctrl+v进入列可视模式。这时移动光标就可以选择内容了。注意这时被选内容已经实时保存于选择缓冲区了，当然你也可以键入”+y将此内容也保存到剪切板里，或者”ay将内容保存到标签为a的寄存器中。但要知道，只有前两个中的内容可以在其他程序中使用，而a寄存器中的内容只能在该vim编辑器内使用。&lt;/p&gt;
-
-&lt;p&gt;也可以通过鼠标来复制。这里首先要打开鼠标模式。:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;a&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这样在普通模式下可以直接使用鼠标选择区域复制到选择缓冲区。但这种情况下不能复制到剪切板。&lt;/p&gt;
-
-&lt;p&gt;若要使用鼠标复制内容到剪切板，则需要做如下设置：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;这种情况下，除了可以像上面一样直接使用鼠标选择区域复制到选择缓冲区以外，还可以在右键菜单中选择“复制”来保存到剪切板里。但新问题又出来了。若显示行号，也会将行号一并选择。你会想到，这好办呀，如果不需要行号的话，在复制前，先执行set nonu来取消行号显示呗。&lt;/p&gt;
-
-&lt;p&gt;其实没必要这样，如果不需要复制行号的话，用在可视模式下用键盘来选择不就可以吗？&lt;/p&gt;
-
-&lt;p&gt;并且，从上面的讨论，我们不难得出，使用选择缓冲区比使用剪切板要方便的多，可以节省很多步骤。&lt;/p&gt;
-
-&lt;p&gt;所以，最终我们得到了vim文件间复制粘贴的完美方案，文件传输的中转使用选择缓冲区。&lt;/p&gt;
-
-&lt;h2 id=&quot;vim-1&quot;&gt;vim文件间复制粘贴完美方案&lt;/h2&gt;
-
-&lt;p&gt;在~/.vimrc中增加如下一行：:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; mouse&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;v&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;复制内容到选择缓冲区。&lt;/p&gt;
-
-&lt;p&gt;带行号时，使用鼠标选择内容区域。
-不要行号，使用 “&lt;em&gt;yny 复制n行或可视模式下选择。
-将选择缓冲区中内容粘贴到vim文件：普通模式下按 “&lt;/em&gt;p 。&lt;/p&gt;
-
-&lt;p&gt;（原文地址： &lt;a href=&quot;http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html&quot;&gt;http://www.cnblogs.com/jianyungsun/archive/2011/03/19/1988855.html&lt;/a&gt;）&lt;/p&gt;
-</description>
-				
-				<pubDate>Thu, 11 Feb 2016 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/vim/2016/02/11/Vim%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E6%8E%A2%E7%A7%98/</guid>
 			</item>
 		
 	</channel>

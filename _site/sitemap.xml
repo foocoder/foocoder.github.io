@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://foocoder.github.io/c/c++/2016/05/24/RTTI%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E8%99%9A%E5%9F%BA%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%BC%80%E9%94%80%E5%8F%8A%E4%BD%BF%E7%94%A8%E7%9F%A5%E9%81%93/</loc>
+    </url>
+    
+    <url>
         <loc>http://foocoder.github.io/linux/2016/05/07/Linux-IO%E6%A8%A1%E5%BC%8F%E5%8F%8Aselect-poll-epoll%E8%AF%A6%E8%A7%A3/</loc>
     </url>
     
