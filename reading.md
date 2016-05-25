@@ -88,10 +88,55 @@ books:
   link: 1842426
   score: 9.5
   cover: EffectiveCpp.jpg
-  status: 在读
+  status: 已读
   start_time: 2016.3
-  end_time: 
+  end_time: 2016.4
   description: 世界顶级C++大师Scott Meyers成名之作
   tags: { C++, Programming, 经典 }
+
+- title: 深度探索C++对象模型
+  author: Stanley B. Lippman
+  publisher: 电子工业出版社
+  origin_title: Inside the C++ Object Model
+  translator: 侯捷
+  language: 中文
+  link: 10427315
+  score: 9.0
+  cover: InsideCppObjectModel.jpg
+  status: 已读
+  start_time: 2016.3
+  end_time: 2016.5
+  description:
+  tags: { C++, Programming, 对象模型, 经典 }
+
+- title: C专家编程
+  author: Peter Van Der Linden
+  publisher: 人民邮电出版社
+  origin_title: Expert C Programming
+  translator: 徐波
+  language: 中文
+  link: 2377310
+  score: 9.2
+  cover: ExpertCProgramming.jpg
+  status: 在读
+  start_time: 2016.5
+  end_time: 
+  description: 
+  tags: { C语言, 经典, Programming }
+
+- title: 现代操作系统
+  author: Andrew S. Tanenbaum
+  publisher: 机械工业出版社
+  origin_title: Modern Operating Systems
+  translator: 陈向群 / 马洪兵
+  language: 中文
+  link: 3852290
+  score: 9.1
+  cover: ModernOS.jpg
+  status: 在读
+  start_time: 2016.4
+  end_time: 
+  description: 操作系统领域的经典之作
+  tags: { 操作系统, 计算机系统 }
 
 ---

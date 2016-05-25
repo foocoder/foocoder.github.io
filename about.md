@@ -13,10 +13,5 @@ Hey! This is ***Meta Coder***!
 
 同时也热爱编程，热爱折腾，热爱接触新鲜事物。
 
----
-最近在读**《Head First Python》**
-
-最近在学习 **Redis**
-
 
 ---
