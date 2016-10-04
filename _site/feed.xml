@@ -7,6 +7,729 @@
 		<atom:link href="http://foocoder.github.io/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>找工作的那些事儿</title>
+				
+					
+						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
+					
+				
+				
+					<description>&lt;p&gt;人都说十一黄金周，想来给人感觉是一派阳光明媚以及充满收获的感觉。
+然而合肥地区的几场秋雨的降临，到让人感觉意兴阑珊了。有道是一场秋雨一场寒，突然感觉到夏季已然过完。&lt;/p&gt;
+
+&lt;p&gt;话说金9银10, 这也意味着校招的黄金时节也已经告一段落了，手里也有几个offer，也该是时候总结一下了。
+最后还剩下10月下旬的一个面试，看来学生时代的最后一个面试就要留给招商银行了。&lt;/p&gt;
+
+&lt;p&gt;先介绍下个人的背景，一个吊车尾211的小硕士，非大神，没有牛逼的ACM经历，没有牛逼公司实习经历，硕士阶段的研究方向于找工作而言没有任何卵用，所以只能凭借基础来跟面试官死磕了。。。
+话说在读研的时候不觉什么，但出来找工作才发现一个985的平台会多有优势，当自己在各种简历被刷时才开始后悔当时应该考研而不应该图安逸选择保研的。
+所以说，现在自己在找工作时流的泪，都是因为当时做抉择时脑子进的屎。
+抉择决定命运。&lt;/p&gt;
+
+&lt;h1 id=&quot;section&quot;&gt;从实习到校招，渣渣的成长之路&lt;/h1&gt;
+
+&lt;p&gt;废话不多说了。
+我本人因为没有一些牛逼的经历，所以准备工作比较早，系统的看书基本上5月就开始了。
+所谓笨鸟先飞么。
+而且也比较关注4月份左右的春招实习的信息。虽然老板不让去实习，但去面个试混点经验总归是好的。
+就当打怪升级涨经验了。&lt;/p&gt;
+
+&lt;p&gt;所以实习生阶段也投过一些简历，参加过若干笔试( 网易游戏，网易互联网，阿里，腾讯 ) 以及面试( 阿里-2面，腾讯-4面 )。
+总体来说，找实习相当与自己的模拟测试，来发现自己哪些方面不足，回来查漏补缺。
+确实也有了不少收获以及面试经验，为之后的校招奠定基础了。&lt;/p&gt;
+
+&lt;p&gt;之后的五六七月开始沉淀下来看看书，弥补自己的基础知识方面。
+并且考虑了下如何包装自己的研究生阶段的工作，并且如何组织自己的项目经历，修改简历等等方面。
+基本上完整系统的看书有2到3个月时间，接下来就是7,8月分的内推阶段。
+话说这段时间是整个找工作阶段最难熬的。
+各种找内推，各种内推简历被刷，各种被鄙视。
+曾一度怀疑自己的能力，也是压力最大的一段时期。
+按道理内推一般是各个公司比较容易进入的时机，但发现今年各厂的内推要求都特别高，像阿里腾讯这种都没面试机会，
+百度内推好不容易面了三面，然后说提前批要求较高，又被刷了。
+痛定思痛，反思下自己在项目经历上确实薄弱，没有什么大项目经验，也没有当下流行技术的支撑，只是靠基础死撑着，所以各种面试都是看面试官心情了。
+然则项目这东西想弥补也是弥补不了的，毕竟已经八月底了。
+自己能做的只有包装，包装，再包装了。&lt;/p&gt;
+
+&lt;p&gt;终于到了九月份，真正的校招季开始了。有了实习阶段跟内推阶段的积累，校招季相对而言就顺利的多了。
+校招季最先展开的是各大公司的在线笔试，九月上旬几乎每天晚上都有各大公司的在线笔试，甚至一天好几场都是正常。
+不过基本上这段时期就不怎么看书了。
+有过实习笔试的经验，自己的笔试通过率虽说不高，但也能保持在百分之七八十的概率上。
+这样为自己提供不少好公司面试机会。总之要想参加校招，笔试能力肯定要提高，毕竟笔试挂了的话，连面试都没有机会的。
+总体感觉，九月的校招季相对内推季而言简单不少，之后的面试也都终归中去，没有什么大的波折，毕竟内推的话可能要求会高些。
+先后拿了三四个offer后，最后在国庆前以收割百度Offer来结尾。
+九月校招算是完美了。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-1&quot;&gt;校招准备之知识储备&lt;/h1&gt;
+
+&lt;p&gt;讲到校招的知识储备，当然不同岗位是需求不不一样的，个人偏C++后台方向( 话说自己除了这个啥都不会 )，所以有相同方向的可以参考一下。&lt;/p&gt;
+
+&lt;p&gt;一般而言，面试的方向无非就是语言基础，操作系统，网络，数据库，数据结构及算法。
+额外还有逻辑推理智力题相关的等等。&lt;/p&gt;
+
+&lt;p&gt;在语言基础上，看的书有：《C++Primer》，《C程序设计语言》，《C语言参考手册》(参考用)，《深度探索C++对象模型》，《C++标准库》(参考用)，《Effective C++》以及 《STL源码剖析》(参考用)。
+忽的发现这一总结，自己看过的书还不少。当然这些书并不是完完整整全部看完的，毕竟一本《C++标准库》1000多页给我半年也不一定看完。
+基本上是相互参考着看的，反正都是关于C/C++的，肯定不少重复的地方，可以相互对照着理解。&lt;/p&gt;
+
+&lt;p&gt;网络方向的书主要就三本：《TCP/IP 协议族》，《TCP/IP 详解 卷一》 以及 本科时网络的教材《计算机网络》谢希仁版的。
+虽说一般国内的教材都是比较烂的，完全可以扔掉的。但这本谢希仁的网络总体来说还是不错的。
+另外就是《TCP/IP 详解》虽然经典，但里边好多协议显然是过时了，一开始看的时候积累了好多疑惑。
+最后还是决定以《TCP/IP 协议族》这本为主来复习网络方向。&lt;/p&gt;
+
+&lt;p&gt;操作系统则是《现代操作系统》以这本经典的教材为主了，当然也入手了圣经级的AUPE以及UNP，不过这套比较偏重编程，概念性的还是要靠《现代操作系统》。
+另外还有一本CASPP，把它放到操作系统下似乎有些不大合适，但这本书却是让人受益匪浅。不愧为价值比同等质量的金子更加值钱的书。&lt;/p&gt;
+
+&lt;p&gt;数据结构以及算法则是一些大公司的一大杀器，像一些国际巨头更是以这个为主。
+然而这一块的准备并非一朝一夕之功，自己的水平只能处于临阵磨枪级别。
+这里主要看了《算法第四版》，弥补了一些基础的数据结构以及经典的算法。
+另外也买了牛客上左神的《直通BAT讲座》视频。令人激动是面试时却是遇到不少原题，物超所值。
+于是把左神的那本《程序员面试代码指南》也入手了。虽说校招已经结束了，但莫名的发现自己对刷题也有点兴趣，留着无聊的时候刷题用。
+自己也入手过网上一些其他大神出的刷题书籍，但终归是左神的这本更加良心一点。
+最后再推荐一本左神最热衷的《程序员面试金典》( 看清楚不是宝典那本 )，国外的一本神书，竟然在上边遇到好多面试的智力题，相见恨晚。&lt;/p&gt;
+
+&lt;p&gt;至于数据库由于时间关系没怎么看了，而且个人感觉数据库光靠看书的话是远远不够的的，没有相关的优化经验以及项目经验基本上意味着
+数据库这块处于盲区。&lt;/p&gt;
+
+&lt;h1 id=&quot;section-2&quot;&gt;校招面试经验&lt;/h1&gt;
+
+&lt;p&gt;这里总结一下校招的面经，毕竟面过那么多家，参加过几十场面试，而且每场面试都详记在册。
+从春招实习到秋招内推一直到最后校招，几乎每场面试完都会把面试问题记录下来，当然不乏一些遗漏的问题以及遗漏的面试。
+这里总体来梳理一下。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;阿里巴巴(2面) 失败&lt;/h2&gt;
+
+&lt;p&gt;作为一个计算机出身的，肯定梦想着国内的BAT这三大巨头。
+而对于综合考虑地点环境，以及薪资待遇，A厂的条件算是Top了。地点杭州，待遇又属上等。
+最可惜的是，A厂是Java出身，C++想进A厂的话难度恐怕较大了。&lt;/p&gt;
+
+&lt;p&gt;首先是实习内推。但是还是在实验室跑实验，突然接到一个杭州支付宝的电话，意识到难道这就是传说中的点面？
+然后就在毫无准备的前提下进行了人生的第一场面试。
+( 一开始电话里说我们来简单聊聊，我还天真以为谈天说地呢，谁知道聊聊就是面试啊 )&lt;/p&gt;
+
+&lt;p&gt;阿里实习生内推电面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;讲一个拿得出手的项目&lt;/li&gt;
+  &lt;li&gt;C/C++ 与Java的区别&lt;/li&gt;
+  &lt;li&gt;你说C/C++较Java有性能优势，为什么？&lt;/li&gt;
+  &lt;li&gt;从N个无序数中寻找Top-k个最小数( 经典海量数据 )?&lt;/li&gt;
+  &lt;li&gt;Hashmap 的底层实现&lt;/li&gt;
+  &lt;li&gt;Array与List的区别&lt;/li&gt;
+  &lt;li&gt;进程与线程的区别&lt;/li&gt;
+  &lt;li&gt;网络的七层协议&lt;/li&gt;
+  &lt;li&gt;TCP与UDP的区别&lt;/li&gt;
+  &lt;li&gt;TCP的三次握手与四次挥手&lt;/li&gt;
+  &lt;li&gt;进程间调度算法&lt;/li&gt;
+  &lt;li&gt;数据库索引的实现方式&lt;/li&gt;
+  &lt;li&gt;Inner Join， Left Join 以及Right Join的区别&lt;/li&gt;
+  &lt;li&gt;有什么问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于当时处于裸面阶段，这些问题基本上没回答上多少，虽然现在看来很基础了。
+当时中途还跟面试官抱怨这些概念性的东西看了就知道，不看就不知道，没什么用。
+现在才体会到自己当时还是图样图森破。
+基础都不好，怎么指望你成神？
+不过好一点的是面试官人很Nice，并不会因为你啥都不会吐槽你鄙视你，而是一点点挖掘你的能力和潜力，
+基本上是去寻找你的闪光点，这样让我并没有感到太多的紧张。
+虽然第一场面试以失败告终，但由于面试官的Nice，反而给自己积累了不少的信心。&lt;/p&gt;
+
+&lt;p&gt;接下来阿里内推没过系统自动进入了实习生的校招流程，然后参加笔试，收到到南京现场面的通知。&lt;/p&gt;
+
+&lt;p&gt;阿里实习生校招现场面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;关于科研项目&lt;/li&gt;
+  &lt;li&gt;关于文件服务器的项目&lt;/li&gt;
+  &lt;li&gt;项目中有没有用到数据库？对数据库了解多少？&lt;/li&gt;
+  &lt;li&gt;谈一谈数据库的3个范式&lt;/li&gt;
+  &lt;li&gt;有没有用到其他的开源数据库&lt;/li&gt;
+  &lt;li&gt;C++面向对象的三个特性&lt;/li&gt;
+  &lt;li&gt;面向对象设计的基本原则&lt;/li&gt;
+  &lt;li&gt;C++多态的实现方式&lt;/li&gt;
+  &lt;li&gt;虚函数表是一个类一个还是一个对象一个？如果继承，子类与父类的虚函数表有何区别？虚函数表中可不可以存放非虚函数？&lt;/li&gt;
+  &lt;li&gt;有没有用过typeid检查运行时类型？&lt;/li&gt;
+  &lt;li&gt;模板中非类型参数与类型参数有什么区别？&lt;/li&gt;
+  &lt;li&gt;STL中有那些容器？vector与deque有什么区别？&lt;/li&gt;
+  &lt;li&gt;什么是智能指针？写一个模板的智能指针&lt;/li&gt;
+  &lt;li&gt;Linux下/etc/下有那些配置文件，有什么作用？resolve.conf是用来做什么的。&lt;/li&gt;
+  &lt;li&gt;如果修改Linux下网卡配置在哪修改？有没有用过iptable？&lt;/li&gt;
+  &lt;li&gt;Linux有5个运行级别，你知道么？( Ps这里是面试官下的坑，实际有7个运行级别 )&lt;/li&gt;
+  &lt;li&gt;内核态与用户态的区别？从用户态切换到内核态有哪几种方式？&lt;/li&gt;
+  &lt;li&gt;数据结构有没有了解？&lt;/li&gt;
+  &lt;li&gt;图有几种存储方式？邻接矩阵与邻接表存储结构的优缺点？什么时候用什么结构？&lt;/li&gt;
+  &lt;li&gt;排序算法哪些是稳定排序？归并排序常用于哪里？&lt;/li&gt;
+  &lt;li&gt;手写斐波那契数列？&lt;/li&gt;
+  &lt;li&gt;为什么不用递归？递归有什么不好？那为什么不用inline来写递归呢？如何来避免递归？&lt;/li&gt;
+  &lt;li&gt;有什么问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;阿里现场面的时候是在一个大厅，一个面试官一个小桌，每个人被叫到号后就去对应的面试官那里。
+当时发现Java面试的大概有二三十个，然而C++只有四五个面试官。
+而且面试官年纪比较大，很有经验，自己所谓的包装的各种高大上的项目被他一层一层剥开，一种被透视到内心深处的感觉。
+虽然这次面试比第一次要好一些，回答上来百分之六七十，但最后还是挂了。
+阿里C++要求还是较大的。&lt;/p&gt;
+
+&lt;p&gt;就这样，阿里的实习生内推跟校招都是一面挂掉。
+本想经过一番准备，再去向阿里重新发起挑战。
+后来7、8月非秋招内推则连面试机会都没给。后来问了阿里的学长，据说是简历的评估跟春招的面试成绩挂钩的。
+当时心凉了半截。春招阿里两次挂在一面上，因此秋招也就没有任何机会了。
+只能说与阿里无缘吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;腾讯(6面) 失败&lt;/h2&gt;
+
+&lt;p&gt;腾讯的流程跟阿里类似，也是参加了春招的实习招聘以及秋招。&lt;/p&gt;
+
+&lt;p&gt;话说实习生内推的时候明明收到腾讯的内推短信，却没收到完善简历的链接，所以内推的机会给错过了。
+之后参加实习生春招的笔试，然后腾讯来合肥现场面试。&lt;/p&gt;
+
+&lt;p&gt;腾讯实习生招聘现场一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;项目里到的主要语言&lt;/li&gt;
+  &lt;li&gt;项目中用到了Python，Python起的作用是什么&lt;/li&gt;
+  &lt;li&gt;是否理解hadoop等大数据平台&lt;/li&gt;
+  &lt;li&gt;项目的代码量在多少&lt;/li&gt;
+  &lt;li&gt;C++指针与引用的区别？经常使用指针还是引用？&lt;/li&gt;
+  &lt;li&gt;const在成员函数的位置，作用，如何保证成员变量的const？&lt;/li&gt;
+  &lt;li&gt;C++虚析构函数的作用，如果析构函数不是析构函数有什么后果?&lt;/li&gt;
+  &lt;li&gt;C++虚基类是什么？纯虚函数可不可以有实现？什么情况下会对纯虚函数进行实现？&lt;/li&gt;
+  &lt;li&gt;C++中如何实现接口，接口与多继承的优劣&lt;/li&gt;
+  &lt;li&gt;如何帮一个不懂电脑的女生找出电脑的问题(只能通过电话联系)&lt;/li&gt;
+  &lt;li&gt;项目中用到网络通信的地方&lt;/li&gt;
+  &lt;li&gt;TCP如何保证可靠传输&lt;/li&gt;
+  &lt;li&gt;TCP的流量控制&lt;/li&gt;
+  &lt;li&gt;IP分组传输以及重传等&lt;/li&gt;
+  &lt;li&gt;假设项目中TCP客户端申请一个文件的读事件，而服务端找不到该文件，却返回一个成功信号，这种情况有没有可能？&lt;/li&gt;
+  &lt;li&gt;项目里如何设计访问量过大，如何提升？&lt;/li&gt;
+  &lt;li&gt;微信中附近的人的功能，其位置信息该如何存储？&lt;/li&gt;
+  &lt;li&gt;操作系统页面管理是怎样的？页面大小一般多少？过大或过小会怎样？&lt;/li&gt;
+  &lt;li&gt;进程请求资源死锁，如何在编程上防止死锁？&lt;/li&gt;
+  &lt;li&gt;手写singleton。如何避免多线程同步问题？&lt;/li&gt;
+  &lt;li&gt;实现一个singleton的基类，令其派生类都是singleton？( 利用template )&lt;/li&gt;
+  &lt;li&gt;STL中容器的迭代器在什么情况下会失效？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;腾讯这次现场面是自己的第一次现场面试，要比阿里的现场面还要早。
+面试官看起来比较宅的那种，所以也比较严肃。
+整场面试回答上来百分之七八十，当时面试官都没说你有什么问题要问，感觉自己要跪。
+但当天晚上通过微信查状态发现已编程复试中，有些意外。
+不过二面时面试官没有到合肥，所以二面是电面的。&lt;/p&gt;
+
+&lt;p&gt;腾讯实习生招聘电面二面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;C++虚函数的实现机制&lt;/li&gt;
+  &lt;li&gt;如果基类的析构函数是非虚函数，会有什么后果&lt;/li&gt;
+  &lt;li&gt;gdb调试core文件的参数是什么&lt;/li&gt;
+  &lt;li&gt;有没有网络通信相关的项目&lt;/li&gt;
+  &lt;li&gt;hash表中为了防止冲突过多常用素数，为什么？&lt;/li&gt;
+  &lt;li&gt;stl中allocator adapter&lt;/li&gt;
+  &lt;li&gt;vector中内存扩充方式怎样？为什么每次都有2被扩充？( 算法导论中平摊分析 )&lt;/li&gt;
+  &lt;li&gt;vector与list的区别&lt;/li&gt;
+  &lt;li&gt;static的作用&lt;/li&gt;
+  &lt;li&gt;两个文件，一个是class A，一个是class B，如果A跟B相互引用，如何include？&lt;/li&gt;
+  &lt;li&gt;有什么问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;据说二面的面试官是以后工作的boss，那二面面试官应该是SNG的腾讯云部门的，人也很好，面试感觉回答上来百分之九十左右。
+果然，晚上面试状态就变了HR面了。&lt;/p&gt;
+
+&lt;p&gt;HR面还是现场面。但腾讯的HR面不涉及任何技术，就没有记录。只是从 HR那里得知了自己的部门是腾讯云。&lt;/p&gt;
+
+&lt;p&gt;本以为HR面都面过了，基本上没什么问题了吧。但后来却收到了要加面的消息，好吧，加面就加面吧。&lt;/p&gt;
+
+&lt;p&gt;腾讯实习生招聘电面四面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;网络字节序与主机字节序的区别？为何要有这样的区别？&lt;/li&gt;
+  &lt;li&gt;内存对齐，为什么要内存对齐&lt;/li&gt;
+  &lt;li&gt;1G的内存可以装入2G的程序么？怎么装？&lt;/li&gt;
+  &lt;li&gt;常见的页面置换算法？&lt;/li&gt;
+  &lt;li&gt;用浏览器打开网页发生的全部事件？第二次打开这个网页呢？&lt;/li&gt;
+  &lt;li&gt;循环与递归的区别&lt;/li&gt;
+  &lt;li&gt;二叉树给出前序,中序求后序&lt;/li&gt;
+  &lt;li&gt;墙上有一个插孔，提供无线的4孔插板，有28盏灯，至少需要多少插孔？280灯呢？&lt;/li&gt;
+  &lt;li&gt;一个处理机时间分辨率是1s，单执行流，每秒系统运行一次run函数，现要求设计一个提供定时任务的函数addfunc( Xs, func)，可以设置在X时间运行函数func。提供系统API是gettime()来获取当前时间。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这次面试不是太好，后来就没有然后了。
+虽说自己实习即便是过了也不能去，但毕竟拒offer跟被offer拒的感觉还是不一样的。
+而且这次是实习阶段离offer最近的一次。所谓看到希望的失望最是让人绝望。&lt;/p&gt;
+
+&lt;p&gt;通过春招发现自己的不足吧。也体验了一遍大厂的面试流程。
+总体来说还是自己能力欠缺，尤其是项目经验方向。
+于是自己又花时间改了改补了补项目。
+也花时间调整了下简历。&lt;/p&gt;
+
+&lt;p&gt;之后腾讯秋招内推，却发现成了TST专场了。虽然找人内推了，却一直没有消息。
+之后又是继续通过笔试来参加校招了。&lt;/p&gt;
+
+&lt;p&gt;腾讯秋招现场一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;用5分钟来介绍一个项目，你在项目中的职责以及获得的成绩&lt;/li&gt;
+  &lt;li&gt;做题，面试官给了个小本，上边好多题目。int i; (!!i);是什么含义。&lt;/li&gt;
+  &lt;li&gt;做题。关于unsigned int 与int相加截断问题&lt;/li&gt;
+  &lt;li&gt;做题。int a = (((int * )0)+4);&lt;/li&gt;
+  &lt;li&gt;做题。关于printf的缓冲区问题&lt;/li&gt;
+  &lt;li&gt;C中引用跟指针的区别&lt;/li&gt;
+  &lt;li&gt;Linux下如何检测内存泄露？如何检测程序crash？&lt;/li&gt;
+  &lt;li&gt;gdb调试设断点？如何查看系统堆栈？&lt;/li&gt;
+  &lt;li&gt;如何实现多态？&lt;/li&gt;
+  &lt;li&gt;进程通信的方式有哪几种？那种的效率会更好？为什么？&lt;/li&gt;
+  &lt;li&gt;Linux下swap区作用？&lt;/li&gt;
+  &lt;li&gt;给4个瓶子11种粉末，只有一种溶解呈现蓝色，溶解需要两分钟。问多久能测出蓝色粉末？&lt;/li&gt;
+  &lt;li&gt;写代码不用第三个变量交换两个变量值&lt;/li&gt;
+  &lt;li&gt;字符串匹配，O(n+m)&lt;/li&gt;
+  &lt;li&gt;给一个单链表如何判断有环？&lt;/li&gt;
+  &lt;li&gt;8个抽屉有一份文件，其中8个抽屉都没文件的概率是20%，现打开一个抽屉发现没有文件，求剩下7个抽屉会有文件的概率。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一面面试官人很好，面试完后直接就说面试通过了。之间还兴致勃勃的聊了个人爱好什么的，因为是早上第一个面试的么，毕竟心情还是比较不错的。&lt;/p&gt;
+
+&lt;p&gt;因为腾讯秋招的进度跟百度差不多，所以一直担心的一件事发生了，腾讯的二面跟百度三面冲突了。一个是早上八点，一个是早上九点。
+显然腾讯的面完肯定赶不到百度那去。
+于是面试当天7点就赶到腾讯面试现场，想跟HR申请调整下面试时间。
+不过HR没遇到，倒是碰到一个面试官。跟他讲明情况后( 当然是以其他理由说明的，但看他的眼神感觉一直不相信我 )，面试官说他来给我面，就面半小时，给我留出时间。&lt;/p&gt;
+
+&lt;p&gt;腾讯秋招现场二面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;做题。内存对齐，为什么要内存对其？&lt;/li&gt;
+  &lt;li&gt;1G物理内存，malloc申请2G空间，可以么？为什么？&lt;/li&gt;
+  &lt;li&gt;浏览器打开一个网页，说明一下这其中发生了什么事？&lt;/li&gt;
+  &lt;li&gt;TCP与UDP区别？&lt;/li&gt;
+  &lt;li&gt;HTTP 为什么要用TCP而不用UDP?&lt;/li&gt;
+  &lt;li&gt;HTTP 报头以及状态码。&lt;/li&gt;
+  &lt;li&gt;如果客户端keep-alive,服务端不支持keep-alive,连接是从客户端断开还是从服务端断开？为什么？&lt;/li&gt;
+  &lt;li&gt;一个处理机时间分辨率是1s，单执行流，每秒系统运行一次run函数，现要求设计一个提供定时任务的函数addfunc( Xs, func)，可以设置在X时间运行函数func。提供系统API是gettime()来获取当前时间。&lt;/li&gt;
+  &lt;li&gt;fun(){ int a; a=6; } 与fun(){ int a=5; a=6; }二者在二进制代码上有什么区别？若变量是static的呢？&lt;/li&gt;
+  &lt;li&gt;一个函数rand可以等概论生成无符号整数，假定M的值是这样定义的，若rand产生的序列中只有一个r0=r1,则M=2；若有r0=r1=r2,则M=3；以此类推，求M的期望。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;整体面试自我感觉还行，基本没什么卡壳的，但最后还是挂在的二面上，只能跟腾讯说拜拜了。
+鱼与熊掌不可兼得吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;offer&quot;&gt;百度(7面) 已拿Offer&lt;/h2&gt;
+
+&lt;p&gt;百度是实习的时候并没有投简历，而是在内推的时候投过一些简历。
+内推时总共经历过两个部门的4次面试。&lt;/p&gt;
+
+&lt;p&gt;首先Web Data的知识图谱。&lt;/p&gt;
+
+&lt;p&gt;百度知识图谱内推电面一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;考虑一个Int64的整型。若计算一个数的各位数上的平方和，通过不断迭代最终得到1，则称这个数为有趣的数。现给定一个数，判断该数是否为有趣的数?若判断一个数组的数呢？&lt;/li&gt;
+  &lt;li&gt;TCP与UDP的区别&lt;/li&gt;
+  &lt;li&gt;项目中文件服务器如何支持断点续传？&lt;/li&gt;
+  &lt;li&gt;用什么数据结构保存cookie&lt;/li&gt;
+  &lt;li&gt;hashmap支持并发，如何上锁来保证锁粒度最小。&lt;/li&gt;
+  &lt;li&gt;堆与栈的区别&lt;/li&gt;
+  &lt;li&gt;析构函数为虚函数的作用。&lt;/li&gt;
+  &lt;li&gt;普通类的析构函数对异常有什么要求？&lt;/li&gt;
+  &lt;li&gt;有什么问题？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;百度知识图谱内推电面二面:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;项目中如何用Python来处理数据?&lt;/li&gt;
+  &lt;li&gt;有一个文件，有不同的属性列，如何将ID相同的Item整合到一起？&lt;/li&gt;
+  &lt;li&gt;Python如果考虑多处理机。&lt;/li&gt;
+  &lt;li&gt;简单介绍文件服务器的项目&lt;/li&gt;
+  &lt;li&gt;TCP 流量控制&lt;/li&gt;
+  &lt;li&gt;如何在main函数调用前处理一些事情&lt;/li&gt;
+  &lt;li&gt;main函数前会有什么操作&lt;/li&gt;
+  &lt;li&gt;考虑如何设计一个高并发量高吞吐量的服务器？如果是分布式的怎么设计？&lt;/li&gt;
+  &lt;li&gt;扑克牌均分3堆，求大小王在同一堆的概率。&lt;/li&gt;
+  &lt;li&gt;介绍自己科研项目&lt;/li&gt;
+  &lt;li&gt;服务器中端口复用&lt;/li&gt;
+  &lt;li&gt;程序中出bug，从哪些方面考虑找bug&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;百度知识图谱内推电面三面:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;前两面感觉如何？&lt;/li&gt;
+  &lt;li&gt;项目如何用PY处理数据，是怎么处理的？&lt;/li&gt;
+  &lt;li&gt;项目中规模如何？有没有多人合作的项目？&lt;/li&gt;
+  &lt;li&gt;多人合作项目中个人职责是什么？工作量有多少？&lt;/li&gt;
+  &lt;li&gt;有没有一些学一些新技术应用到实践中？&lt;/li&gt;
+  &lt;li&gt;Traceroute如果路由动态改变了，会出现问题，如何克服该问题？&lt;/li&gt;
+  &lt;li&gt;有没有算法角度的新技能？&lt;/li&gt;
+  &lt;li&gt;有没有失败的项目？为什么会失败？考虑下失败的原因。&lt;/li&gt;
+  &lt;li&gt;如果重新做失败的项目，会从哪方面考虑&lt;/li&gt;
+  &lt;li&gt;项目中遇到哪些困难？如何解决？&lt;/li&gt;
+  &lt;li&gt;你有什么问题？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;总体来讲，百度的面试难度是较高的，毕竟是三面技术面。第三面经理面偏技术与HR面结合的感觉。三面的时候感觉压力很大。
+之后发现挂在了三面上。问了下面试官，说自己达到校招的水平，但提前批还是差点火候。
+看来提前批应该是sp的概率会大些吧。&lt;/p&gt;
+
+&lt;p&gt;接下来接到百度运维部门的电面：&lt;/p&gt;
+
+&lt;p&gt;百度运维电面一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;聊项目&lt;/li&gt;
+  &lt;li&gt;C/C++static作用；static函数与非static函数区别&lt;/li&gt;
+  &lt;li&gt;宏定义与const的区别？宏定义可以完全用const替换么？宏定义如何调试？&lt;/li&gt;
+  &lt;li&gt;对设计模式有多少了解？&lt;/li&gt;
+  &lt;li&gt;一个有n行的文件，随机选m行？如何选？&lt;/li&gt;
+  &lt;li&gt;Linux查看文件的磁盘空间，监控进程cpu，内存使用率&lt;/li&gt;
+  &lt;li&gt;ping的底层协议？ICMP处于7层的哪一层？&lt;/li&gt;
+  &lt;li&gt;socket位于哪一层？socket编程的过程？&lt;/li&gt;
+  &lt;li&gt;内核分几个部分？&lt;/li&gt;
+  &lt;li&gt;OS同步与互斥的区别？&lt;/li&gt;
+  &lt;li&gt;数据库中事物的原则&lt;/li&gt;
+  &lt;li&gt;你所知道的最快的排序算法？&lt;/li&gt;
+  &lt;li&gt;若在数据库底层进行排序,该如何设计排序算法？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这场面试是面试最久的一次，历时将近100分钟，只因为卡在了概率题上，面试官给了好几次机会，说这题你说上来就给你过，然而最终还是没答上来。
+事后发现的确是很简单的一道题。只能惋惜了。&lt;/p&gt;
+
+&lt;p&gt;接着参加百度的笔试，之后是合肥本地的现场面试。&lt;/p&gt;
+
+&lt;p&gt;百度秋招现场一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;手写vector删除元素，需要注意迭代器失效情况。&lt;/li&gt;
+  &lt;li&gt;手写两个类，要体现构造，析构，拷贝构造，赋值，虚函数，重载函数等特点。&lt;/li&gt;
+  &lt;li&gt;析构函数为什么为虚函数？&lt;/li&gt;
+  &lt;li&gt;new跟malloc的区别？&lt;/li&gt;
+  &lt;li&gt;free是如何识别free区域的&lt;/li&gt;
+  &lt;li&gt;Linux的找到目录中cpp文件？如何找文件中一变量？&lt;/li&gt;
+  &lt;li&gt;Linux检测内存泄露？&lt;/li&gt;
+  &lt;li&gt;了解哪些开源项目？redis,mysql有多少了解？&lt;/li&gt;
+  &lt;li&gt;n级台阶问题&lt;/li&gt;
+  &lt;li&gt;手写代码，有序数组查找某个元素出现的次数&lt;/li&gt;
+  &lt;li&gt;一致性哈希&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;百度秋招现场二面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;如何判断一个图是否有环&lt;/li&gt;
+  &lt;li&gt;讲一个你觉得很完美的代码或开源项目&lt;/li&gt;
+  &lt;li&gt;traceroute有什么优势？&lt;/li&gt;
+  &lt;li&gt;介绍一个比较完整的项目，画出流程图&lt;/li&gt;
+  &lt;li&gt;STL中vector内存分配？如何从原内存拷贝的新内存？会调用构造函数么？&lt;/li&gt;
+  &lt;li&gt;软件工程？&lt;/li&gt;
+  &lt;li&gt;如何看待C++面向对象？与c有何区别？&lt;/li&gt;
+  &lt;li&gt;面向对象设计原则？里氏替换是指什么？&lt;/li&gt;
+  &lt;li&gt;多态是如何实现的？画一下虚指针与虚函数表，如果多继承，虚函数表怎么画？虚指针是对象成员变量么？在什么时候初始化？&lt;/li&gt;
+  &lt;li&gt;讲一下TCP中拥塞控制&lt;/li&gt;
+  &lt;li&gt;你还有什么问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;二面面试官人很Nice，过去的时候还给我倒了一杯水，很客气，也很友善，看起来年级也不大。&lt;/p&gt;
+
+&lt;p&gt;百度秋招现场三面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;析构函数为什么要虚函数？&lt;/li&gt;
+  &lt;li&gt;C++中强制类型转换？Dynamic_cast的作用&lt;/li&gt;
+  &lt;li&gt;多态是如何实现的？&lt;/li&gt;
+  &lt;li&gt;C++中构造函数发生异常会怎样？&lt;/li&gt;
+  &lt;li&gt;C++中构造函数中this指针暴露了会有什么后果？&lt;/li&gt;
+  &lt;li&gt;针对简历详细询问每个项目的细节&lt;/li&gt;
+  &lt;li&gt;介绍自己的部门( 企业安全方向 )&lt;/li&gt;
+  &lt;li&gt;你还有什么问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;三面也是技术面，而且面试官就是之后的boss，做的是企业安全方向，虽不是百度的核心部门大搜，但这一方向还是很有前景的。
+当时面完就感觉基本差不多了。
+后来在十一前收到了面试通过的信息，整个秋招算是比较圆满了吧。&lt;/p&gt;
+
+&lt;h2 id=&quot;sp-offer&quot;&gt;华为 SP 已拿Offer&lt;/h2&gt;
+
+&lt;p&gt;华为则是参加2016的软件精英挑战赛获了赛区二等奖，之后参加的合肥地区的软件精英挑战赛专场的面试，当天面完就跟我说通过了。
+但正式offer也是十一前才下来的，算下来，华为这offer基本是面的最早，下来的最晚了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;深信服-星云计划 失败&lt;/h2&gt;
+
+&lt;p&gt;深信服的星云计划据说待遇也很高。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;聊项目&lt;/li&gt;
+  &lt;li&gt;对于N个点的网络，求任意两点的最短路径的复杂的&lt;/li&gt;
+  &lt;li&gt;C语言局部变量与全局变量&lt;/li&gt;
+  &lt;li&gt;对于大的数组，如何使用局部变量？&lt;/li&gt;
+  &lt;li&gt;不同文件中如何引用外部变量？&lt;/li&gt;
+  &lt;li&gt;递归时栈溢出怎么办？任何递归都可以用非递归实现么？&lt;/li&gt;
+  &lt;li&gt;存储通讯录信息：姓名，手机，邮箱，简介，如何能实现快速查询以及部分查询？&lt;/li&gt;
+  &lt;li&gt;Linux编程中的锁有哪些？&lt;/li&gt;
+  &lt;li&gt;自旋锁与互斥锁区别&lt;/li&gt;
+  &lt;li&gt;进程IPC方式&lt;/li&gt;
+  &lt;li&gt;socket与共享内存用于什么情况？&lt;/li&gt;
+  &lt;li&gt;卫星网络中网络带宽足够，但丢包率高，导致网页打不开，通信质量差，什么原因？如何解决？&lt;/li&gt;
+  &lt;li&gt;Dijkstra单源最短路径&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;深信服这场也跪在了算法上，面试官说只要你回答上这个问题就给你过，但还是没想起来Dijkstra的具体内容。
+无奈。&lt;/p&gt;
+
+&lt;h2 id=&quot;cvte-&quot;&gt;CVTE提前批 失败&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;C++多态实现&lt;/li&gt;
+  &lt;li&gt;虚函数表的位置&lt;/li&gt;
+  &lt;li&gt;C++中new跟malloc的区别&lt;/li&gt;
+  &lt;li&gt;堆与栈的区别&lt;/li&gt;
+  &lt;li&gt;Python三种内置数据类型&lt;/li&gt;
+  &lt;li&gt;shell后台运行&lt;/li&gt;
+  &lt;li&gt;STL中容器&lt;/li&gt;
+  &lt;li&gt;vector的内存释放&lt;/li&gt;
+  &lt;li&gt;shell中调用脚本是通过线程还是进程&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CVTE面试还是比较简单的，然而还是挂了，主要是因为项目经验缺乏的问题。
+面试官对科研项目不感兴趣，自己包装的服务器又是烂大街，最后评价说基础很好但项目经验不足。&lt;/p&gt;
+
+&lt;h2 id=&quot;wps-&quot;&gt;金山WPS 失败&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;项目&lt;/li&gt;
+  &lt;li&gt;C++中虚函数的作用&lt;/li&gt;
+  &lt;li&gt;那些函数不能是虚函数&lt;/li&gt;
+  &lt;li&gt;析构函数可不可以为虚函数，为什么&lt;/li&gt;
+  &lt;li&gt;const 引用，为什么用const引用&lt;/li&gt;
+  &lt;li&gt;指针与引用的区别&lt;/li&gt;
+  &lt;li&gt;static 的用法，每种用法的作用域以及生存周期&lt;/li&gt;
+  &lt;li&gt;模板类声明跟定义放在两个不同文件中可以么？为什么？&lt;/li&gt;
+  &lt;li&gt;快排的思路&lt;/li&gt;
+  &lt;li&gt;查找的复杂度&lt;/li&gt;
+  &lt;li&gt;STL中list跟map的不同应用场景&lt;/li&gt;
+  &lt;li&gt;红黑树查找、删除、增加的复杂度，为什么？&lt;/li&gt;
+  &lt;li&gt;介绍一个项目，遇到的困难，如何解决？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;评价：基础很好，项目经验不足。然后果不其然又给挂了。&lt;/p&gt;
+
+&lt;h2 id=&quot;offer-1&quot;&gt;多益网络-内推 已拿Offer&lt;/h2&gt;
+
+&lt;p&gt;多益总共一轮笔试，一轮视频面试。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;介绍项目&lt;/li&gt;
+  &lt;li&gt;如果有比主管更好的Idea，你会怎么办？&lt;/li&gt;
+  &lt;li&gt;怎么看待加班&lt;/li&gt;
+  &lt;li&gt;vector如何扩容&lt;/li&gt;
+  &lt;li&gt;怎么理解线程安全&lt;/li&gt;
+  &lt;li&gt;如果有一个很难重现的bug，如何处理（可能运行好多次都难以重现）&lt;/li&gt;
+  &lt;li&gt;设计一个爬虫爬网页的话是DFS好还是BFS好，或者有没有更好的策略&lt;/li&gt;
+  &lt;li&gt;关于一些网盘中，服务商如何提高服务器存储利用率&lt;/li&gt;
+  &lt;li&gt;数字签名中伪造问题&lt;/li&gt;
+  &lt;li&gt;地图软件中实时路况的实现策略&lt;/li&gt;
+  &lt;li&gt;有什么想问的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;offer-2&quot;&gt;科大讯飞-大数据研究院 已拿Offer&lt;/h2&gt;
+
+&lt;p&gt;因为地处合肥，所以讯飞对我们学校的学生还是比较认可的。
+整个面试过程也比较随意，总共就经历了一面面试，包含了技术+HR的因素。
+但没有记录，所以面试内容也就不记得了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;远景能源-提前批 放弃&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C++如何申请释放内存？与malloc/free的区别&lt;/li&gt;
+  &lt;li&gt;实现一个strlen，不用循环怎么做？&lt;/li&gt;
+  &lt;li&gt;C++面向对象的作用，特点&lt;/li&gt;
+  &lt;li&gt;若析构函数不声明为虚函数，会有什么后果？为什么？&lt;/li&gt;
+  &lt;li&gt;fork 一个新进程与建立一个线程的区别。&lt;/li&gt;
+  &lt;li&gt;gdb 调试查看栈的命令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;远景的提前批很早，八月就面试了，一直没消息，一开始以为是跪了。后来九月收到现场面试的通知，才知道八月的面试是过了。
+后来因为一些事而没参加后续面试，自己主动放弃了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;知乎 岗位不匹&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;有没有用过Python的Adapter 适配器&lt;/li&gt;
+  &lt;li&gt;对Java有多少了解&lt;/li&gt;
+  &lt;li&gt;C++中多继承与Java单继承的优缺点。Java如何体现多继承&lt;/li&gt;
+  &lt;li&gt;线程与进程区别与联系？为什么进程切换代价比线程高&lt;/li&gt;
+  &lt;li&gt;有没有听过协程&lt;/li&gt;
+  &lt;li&gt;TCP的建立连接与释放过程？为什么最后需要2个MSL时间关闭&lt;/li&gt;
+  &lt;li&gt;数据库了解么？事物的四个原则？索引是如何事项的。&lt;/li&gt;
+  &lt;li&gt;知乎话题之间子话题跟父话题之间的数据结构存储你是怎样？如何判断新加入的节点是否有环？&lt;/li&gt;
+  &lt;li&gt;HashMap怎么实现？如何解决冲突？hashmap是如何扩容的？&lt;/li&gt;
+  &lt;li&gt;怎么理解面向对象？有什么优点？&lt;/li&gt;
+  &lt;li&gt;用过拿些web框架？&lt;/li&gt;
+  &lt;li&gt;了解哪些攻击手段？&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;知乎总体来说岗位偏Python跟Java，面试官也是这方向的，于是最后扑街了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;滴滴出行 岗位不批&lt;/h2&gt;
+
+&lt;p&gt;滴滴投简历时投了个系统工程师，一开始不知道是做什么方向。
+后来面试的时候才发现完全不是研发。
+面试偏运维方向，问好多分布式，虚拟化，Docker等问题，真个是大眼瞪小眼了。
+面试这么多，从来没有这么尴尬的时刻，什么都不会，后来还是我打破的尴尬的局面，跟面试官说抱歉投错岗位了。&lt;/p&gt;
+
+&lt;p&gt;后来收到滴滴现场面试的通知，不知道什么鬼，难道是给调岗位了？然而自己却忘记去了。。。&lt;/p&gt;
+
+&lt;h2 id=&quot;hr&quot;&gt;涂鸦移动 被HR挂了&lt;/h2&gt;
+
+&lt;p&gt;涂鸦移动笔试是发给你两道编程题，一天内写完后再发给HR就OK，都比较基础。&lt;/p&gt;
+
+&lt;p&gt;涂鸦一面现场面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;多态&lt;/li&gt;
+  &lt;li&gt;手写螺旋矩阵打印&lt;/li&gt;
+  &lt;li&gt;象棋中马走日从A点到B点的最短路径走法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;涂鸦二面电面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自我介绍&lt;/li&gt;
+  &lt;li&gt;做过什么开源项目&lt;/li&gt;
+  &lt;li&gt;git&lt;/li&gt;
+  &lt;li&gt;长为N的数组，元素范围是0-N-1，其中只有一个数是重复的，找出这个重复元素&lt;/li&gt;
+  &lt;li&gt;矩阵从左上角向右下角走，每次只能向右或者向下移动，求经过最大的路径&lt;/li&gt;
+  &lt;li&gt;数n可以由完全平方数构成，求最小的完全平方数构成数。&lt;/li&gt;
+  &lt;li&gt;对算法有多少了解？算法导论看多没？&lt;/li&gt;
+  &lt;li&gt;堆排序&lt;/li&gt;
+  &lt;li&gt;两个栈实现一个队列&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;之后,几个星期后HR加QQ说技术面通过了，然后问你有多少offer，待遇多少，实话实说了之后，就没然后了。
+周围有同学收到的涂鸦的Offer，但待遇很低，所以猜测是被HR给挂了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;网宿科技 待定&lt;/h2&gt;
+
+&lt;p&gt;网宿科技也是内推时投的简历，但面试的时间较晚，在九月中旬左右。先是一面HR面。之后是一面技术面。&lt;/p&gt;
+
+&lt;p&gt;网宿科技技术面电面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Linux环境变量的配置&lt;/li&gt;
+  &lt;li&gt;Linux定时任务&lt;/li&gt;
+  &lt;li&gt;设计一个QQ群，如何存储群里的发送消息？&lt;/li&gt;
+  &lt;li&gt;两个很大的文件，去匹配相同的数据行&lt;/li&gt;
+  &lt;li&gt;Linux的重定向&lt;/li&gt;
+  &lt;li&gt;如果有很多很大的对象，如何用容器存储？&lt;/li&gt;
+  &lt;li&gt;gdb 如何调试&lt;/li&gt;
+  &lt;li&gt;STL中vector， list， map的区别&lt;/li&gt;
+  &lt;li&gt;有什么问题。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;网宿面完后一直没消息，开始以为是跪了，前两天收到消息说要成绩单照片，所以现在也不清楚具体是怎样。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;招银 一面&lt;/h2&gt;
+
+&lt;p&gt;招银的笔试比较简单，编程题是完形填空。&lt;/p&gt;
+
+&lt;p&gt;招银电面一面：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;介绍一个项目&lt;/li&gt;
+  &lt;li&gt;项目遇到什么困难&lt;/li&gt;
+  &lt;li&gt;C++用过什么容器&lt;/li&gt;
+  &lt;li&gt;STL中如何计算迭代器距离&lt;/li&gt;
+  &lt;li&gt;C中static的用法&lt;/li&gt;
+  &lt;li&gt;TCP,UDP的区别&lt;/li&gt;
+  &lt;li&gt;你有什么优缺点&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;面试大概二十分钟左右，面试官人很好，一开始我在外边，给我调整了两次时间。最后官评价说挺满意的，说两周左右有反馈。
+后来收到完善简历的消息，貌似是十月下旬会有现场面试。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;金蝶 失败&lt;/h2&gt;
+
+&lt;p&gt;差点把金蝶忘记了。金蝶是一轮笔试加一轮视频面试。
+值得吐槽的是，金蝶的面试总共不到10分钟，除了一个问题“你对运维有多少了解”之后，一半的时间是面试官在讲金蝶很牛逼，一半的时间是我在问问题。
+后来就没有后来了。
+着实让人无语。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;总结下，BAT这种大厂的面试还是很享受的，整个面试过程面试官是在不断挖掘你的闪光点，即使一开始你并不知道问题的最优解，但他也会一步步引导你，拓展你的思路。
+而且大厂并不要求你有多丰富的项目经验，而是看你能挖掘出多大潜力，因为这些大厂还是很愿意培养人才的。而对于其他的一些小公司，看中的可能更是项目经验和
+实习经历了。毕竟这些公司资金有限，他们所需要的人希望一出来就能接手项目来产生价值的，而且这些公司员工流动较大，花大价钱培养出人了没两天就跳走了，不如
+直接就招聘项目经验丰富的能直接上手的人才。&lt;/p&gt;
+
+&lt;p&gt;另归纳下常考的知识点：&lt;/p&gt;
+
+&lt;p&gt;C/C++方向：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;指针与引用的区别&lt;/li&gt;
+  &lt;li&gt;const 关键字与static关键字&lt;/li&gt;
+  &lt;li&gt;malloc 与 new区别&lt;/li&gt;
+  &lt;li&gt;堆与栈区别&lt;/li&gt;
+  &lt;li&gt;多态，虚指针，虚函数表。&lt;/li&gt;
+  &lt;li&gt;析构函数为什么是虚函数。&lt;/li&gt;
+  &lt;li&gt;STL中容器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;网络方向：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TCP UDP区别&lt;/li&gt;
+  &lt;li&gt;TCP三次握手四次挥手&lt;/li&gt;
+  &lt;li&gt;TCP流量控制拥塞控制&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;操作系统方向：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;进程调度算法&lt;/li&gt;
+  &lt;li&gt;进程线程区别&lt;/li&gt;
+  &lt;li&gt;进程IPC方式&lt;/li&gt;
+  &lt;li&gt;进程同步与互斥&lt;/li&gt;
+  &lt;li&gt;页面调度算法&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;数据结构与算法方向：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;排序算法&lt;/li&gt;
+  &lt;li&gt;查找算法&lt;/li&gt;
+  &lt;li&gt;字符串，矩阵算法&lt;/li&gt;
+  &lt;li&gt;哈希表&lt;/li&gt;
+  &lt;li&gt;堆结构&lt;/li&gt;
+  &lt;li&gt;海量数据处理&lt;/li&gt;
+  &lt;li&gt;这块可以参考牛客网左神视频&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;section-13&quot;&gt;写在最后&lt;/h1&gt;
+
+&lt;p&gt;折腾一天，总算把零零散散的面经总结了一些。
+一总结才发现，自己的校招也经历过这么多笔试面试，也可谓是经历了不少艰难险阻了。
+话说这两个月忙着找工作也没什么机会来更新博客，接下来博客还是要更的。
+做人要有始有终才是对的。&lt;/p&gt;
+
+&lt;p&gt;好了，就这样吧。&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
+				<link>http://foocoder.github.io/%E9%9A%8F%E6%84%9F/2016/10/04/%E6%89%BE%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</link>
+				<guid isPermaLink="true">http://foocoder.github.io/%E9%9A%8F%E6%84%9F/2016/10/04/%E6%89%BE%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</guid>
+			</item>
+		
+			<item>
 				<title>由一道题引起的对内存泄露的思考</title>
 				
 					
@@ -1933,134 +2656,6 @@ We will talk about dynamically allocated data structures after we talk about poi
 				<pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
 				<link>http://foocoder.github.io/os/2016/03/03/Processes-and-Threads/</link>
 				<guid isPermaLink="true">http://foocoder.github.io/os/2016/03/03/Processes-and-Threads/</guid>
-			</item>
-		
-			<item>
-				<title>获取一个十进制数的最高位</title>
-				
-					
-						<dc:creator>{&quot;name&quot;=&gt;&quot;MetaCoder&quot;, &quot;email&quot;=&gt;&quot;slow295185031@gmail.com&quot;, &quot;info&quot;=&gt;nil}</dc:creator>
-					
-				
-				
-					<description>&lt;p&gt;整理来自于&lt;code class=&quot;highlighter-rouge&quot;&gt;Stackoverflow&lt;/code&gt;的这里&lt;a href=&quot;http://stackoverflow.com/questions/701322/how-can-you-get-the-first-digit-in-an-int-c/701621#701621&quot;&gt;http://stackoverflow.com/questions/701322/how-can-you-get-the-first-digit-in-an-int-c/701621#701621&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;问题描述：在给定的一个十进制的整数，如何能够快速的求得其十进制的最高位数值是多少？&lt;/p&gt;
-
-&lt;h2 id=&quot;method-1&quot;&gt;Method 1&lt;/h2&gt;
-
-&lt;p&gt;利用&lt;code class=&quot;highlighter-rouge&quot;&gt;to_string&lt;/code&gt;函数，将整数强制转换为&lt;code class=&quot;highlighter-rouge&quot;&gt;string&lt;/code&gt;类型，然后取数组中第一个字符，再将之转换为&lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;类型。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Method 1
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&#39;0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;很简单的一种思路，想当然的想法，但其效率肯定会很差的。&lt;/p&gt;
-
-&lt;h2 id=&quot;method-2&quot;&gt;Method 2&lt;/h2&gt;
-
-&lt;p&gt;利用&lt;code class=&quot;highlighter-rouge&quot;&gt;math&lt;/code&gt;中库函数，直接用整数除以不大于该整数最大的10的整数幂值，来获取其商。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Method 2
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_MathFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;数学思路，比如11/10商1， 321/100 商3，非常简单，也没什么可讲的。
-不过需要注意一点是log函数的参数必须为正值，如果测试代码中包含0的话需要特别处理下。
-处理后应该如下：&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_MathFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;method-3&quot;&gt;Method 3&lt;/h2&gt;
-
-&lt;p&gt;前两类方法都是利用外部函数调用，相较而言速度肯定会比较慢的。
-这里有一种相对速度较快的，也是比较好想的方法。
-通过整除10的方法来循环得到整数的各位以及最高位。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Method 3
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Looping&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;时间复杂度跟整数的十进制最高位数成正比。&lt;/p&gt;
-
-&lt;h2 id=&quot;method-4&quot;&gt;Method 4&lt;/h2&gt;
-
-&lt;p&gt;条件判断法。&lt;/p&gt;
-
-&lt;p&gt;因为我们知道一个整数在计算机的存储中范围是有限的。
-那我们就分情况来讨论该整数最邻近的10的指数幂，然后利用整除方式得到最高位值。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Method 4
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Conditional&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;digit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;可以看到，代码是最长的一个，因为我们需要讨论从1到最大范围内的10的幂值，但相对其他方式来说速度也是很快的。&lt;/p&gt;
-
-&lt;h2 id=&quot;method-5&quot;&gt;Method 5&lt;/h2&gt;
-
-&lt;p&gt;最后这个方法堪称完美。&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//Method 5
-&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Unrolled_Optimized&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;巧妙的利用二分法将&lt;code class=&quot;highlighter-rouge&quot;&gt;Method 4&lt;/code&gt;中的条件进一步拆解。最高可以处理到(10^16 - 1)的数值。
-比如说3872865， 首先经过第二个&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;剩下387，然后第三个&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;后得到38，最后一个&lt;code class=&quot;highlighter-rouge&quot;&gt;if&lt;/code&gt;则出来最终结果3。
-简洁凝练迅速，太完美了。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;性能对比&lt;/h2&gt;
-
-&lt;p&gt;通过测试代码，&lt;code class=&quot;highlighter-rouge&quot;&gt;for&lt;/code&gt;循环从0到10^9次，间隔为5，统计所有数的最高位数的总和。
-结果如下所示:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cpp&quot; data-lang=&quot;cpp&quot;&gt;&lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;999999996&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;48.2231&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_MathFunc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;999999996&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;32.8894&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Looping&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;999999996&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;8.66428&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Conditional&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;999999996&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.68092&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Fn_Get_First_By_Unrolled_Optimized&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;999999996&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.87899&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;还是方法5的速度最快。
-而第一种方式跟第二种方式由于调用外部函数，很是耗时。&lt;/p&gt;
-
-</description>
-				
-				<pubDate>Sat, 13 Feb 2016 00:00:00 +0000</pubDate>
-				<link>http://foocoder.github.io/algorithm/2016/02/13/%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E6%9C%80%E9%AB%98%E4%BD%8D/</link>
-				<guid isPermaLink="true">http://foocoder.github.io/algorithm/2016/02/13/%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E6%9C%80%E9%AB%98%E4%BD%8D/</guid>
 			</item>
 		
 	</channel>
