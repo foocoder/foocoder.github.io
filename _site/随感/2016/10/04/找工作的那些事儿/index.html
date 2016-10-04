@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>
+
+找工作的那些事儿 | Meta Coder
+
+</title>
+<meta name="description" content=" Reading, Thinking, Coding">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/feed.xml">
+<!-- include Font Awesome -->
+<link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css" >
+<!-- include Font Awesome -->
+<!-- icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+<meta name="theme-color" content="#00f0ff">
+<meta name="msapplication-TileColor" content="#00f0ff">
+<meta name="msapplication-TileImage" content="/mstile-310x310.png">
+<!-- /icons -->
+<!-- og tags -->
+<meta property="og:site_name" content="Meta Coder">
+<meta property="og:title" content="找工作的那些事儿 • Meta Coder">
+<meta property="og:locale" content="en">
+
+  
+    <meta property="og:image" content="http://foocoder.github.io/img/9.jpg">
+  
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://foocoder.github.io/%E9%9A%8F%E6%84%9F/2016/10/04/%E6%89%BE%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">
+<meta property="og:description" content="
+
+Reading, Thinking, Coding
+">
+<!-- /og tags -->
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<script src="/js/fitvids.js"></script>
+<script>
+$("#back-top").hide();
+$(document).ready(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $('#back-top').fadeIn();
+    } else {
+      $('#back-top').fadeOut();
+    }
+  });
+  $('#back-top a').click(function () {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 800);
+    return false;
+  });
+});
+</script>
+<link href='//fonts.useso.com/css?family=Source+Code+Pro:400,700|Source+Sans+Pro:600,900|Open+Sans:400,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/pygments.css">
+
+    <link rel="stylesheet" href="/font_awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/style.css">
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+<style>
+header {
+  margin-bottom: 40px;
+}
+@media all and (min-width: 500px) {
+  header {
+    margin-bottom: 100px;
+  }
+}
+header::after {
+  display: none;
+}
+</style>
+
+
+    </head>
+    <body>
+        
+        <div class="cover-image-container">
+            <img alt="Cover image" src="/img/covers/9.jpg" style="width:100%">
+        </div>
+        
+        
+        <div id="back-top" style="display:none">
+          <a href="#top" title="回到顶部">
+              <span class="fa fa-stack fa-lg">
+                  <i class="fa fa-square fa-stack-2x"></i>
+                  <i class="fa fa-stack-1x fa-arrow-up fa-inverse"></i>
+              </span>
+          </a>
+        </div>
+        
+        <header class="intro-header-container" style="background-image: url('/img/covers/9.jpg'); background-size:cover">
+  <div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Meta Code</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar" class=" ">
+            <div class="navbar-collapse" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/about/">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="/archive/">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="/category/">CATEGORY</a>
+                    </li>
+                    <li>
+                        <a href="/tags/">TAGS</a>
+                    </li>
+                    <li>
+                        <a href="/reading/">BOOK</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+        <div class="wrap">
+            <article>
+        <h1>找工作的那些事儿</h1>
+        <div class="category">
+            
+                <a class="fa fa-coffee" style="font-size:large" href="/category/#随感" title="随感"> 随感</a>
+            
+        </div>
+        <div class="tags">
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#Offer" title="Offer">  Offer</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#职业" title="职业">  职业</a>
+            
+            <a class="fa fa-thumb-tack" style="font-size:large" href="/tags/#程序猿" title="程序猿">  程序猿</a>
+            
+        </div>
+        <div class="times">
+            <span class="fa fa-calendar"style="font-size:large" > Oct 4, 2016</span>
+        </div>
+
+        <hr>
+        <p>人都说十一黄金周，想来给人感觉是一派阳光明媚以及充满收获的感觉。
+然而合肥地区的几场秋雨的降临，到让人感觉意兴阑珊了。有道是一场秋雨一场寒，突然感觉到夏季已然过完。</p>
+
+<p>话说金9银10, 这也意味着校招的黄金时节也已经告一段落了，手里也有几个offer，也该是时候总结一下了。
+最后还剩下10月下旬的一个面试，看来学生时代的最后一个面试就要留给招商银行了。</p>
+
+<p>先介绍下个人的背景，一个吊车尾211的小硕士，非大神，没有牛逼的ACM经历，没有牛逼公司实习经历，硕士阶段的研究方向于找工作而言没有任何卵用，所以只能凭借基础来跟面试官死磕了。。。
+话说在读研的时候不觉什么，但出来找工作才发现一个985的平台会多有优势，当自己在各种简历被刷时才开始后悔当时应该考研而不应该图安逸选择保研的。
+所以说，现在自己在找工作时流的泪，都是因为当时做抉择时脑子进的屎。
+抉择决定命运。</p>
+
+<h1 id="section">从实习到校招，渣渣的成长之路</h1>
+
+<p>废话不多说了。
+我本人因为没有一些牛逼的经历，所以准备工作比较早，系统的看书基本上5月就开始了。
+所谓笨鸟先飞么。
+而且也比较关注4月份左右的春招实习的信息。虽然老板不让去实习，但去面个试混点经验总归是好的。
+就当打怪升级涨经验了。</p>
+
+<p>所以实习生阶段也投过一些简历，参加过若干笔试( 网易游戏，网易互联网，阿里，腾讯 ) 以及面试( 阿里-2面，腾讯-4面 )。
+总体来说，找实习相当与自己的模拟测试，来发现自己哪些方面不足，回来查漏补缺。
+确实也有了不少收获以及面试经验，为之后的校招奠定基础了。</p>
+
+<p>之后的五六七月开始沉淀下来看看书，弥补自己的基础知识方面。
+并且考虑了下如何包装自己的研究生阶段的工作，并且如何组织自己的项目经历，修改简历等等方面。
+基本上完整系统的看书有2到3个月时间，接下来就是7,8月分的内推阶段。
+话说这段时间是整个找工作阶段最难熬的。
+各种找内推，各种内推简历被刷，各种被鄙视。
+曾一度怀疑自己的能力，也是压力最大的一段时期。
+按道理内推一般是各个公司比较容易进入的时机，但发现今年各厂的内推要求都特别高，像阿里腾讯这种都没面试机会，
+百度内推好不容易面了三面，然后说提前批要求较高，又被刷了。
+痛定思痛，反思下自己在项目经历上确实薄弱，没有什么大项目经验，也没有当下流行技术的支撑，只是靠基础死撑着，所以各种面试都是看面试官心情了。
+然则项目这东西想弥补也是弥补不了的，毕竟已经八月底了。
+自己能做的只有包装，包装，再包装了。</p>
+
+<p>终于到了九月份，真正的校招季开始了。有了实习阶段跟内推阶段的积累，校招季相对而言就顺利的多了。
+校招季最先展开的是各大公司的在线笔试，九月上旬几乎每天晚上都有各大公司的在线笔试，甚至一天好几场都是正常。
+不过基本上这段时期就不怎么看书了。
+有过实习笔试的经验，自己的笔试通过率虽说不高，但也能保持在百分之七八十的概率上。
+这样为自己提供不少好公司面试机会。总之要想参加校招，笔试能力肯定要提高，毕竟笔试挂了的话，连面试都没有机会的。
+总体感觉，九月的校招季相对内推季而言简单不少，之后的面试也都终归中去，没有什么大的波折，毕竟内推的话可能要求会高些。
+先后拿了三四个offer后，最后在国庆前以收割百度Offer来结尾。
+九月校招算是完美了。</p>
+
+<h1 id="section-1">校招准备之知识储备</h1>
+
+<p>讲到校招的知识储备，当然不同岗位是需求不不一样的，个人偏C++后台方向( 话说自己除了这个啥都不会 )，所以有相同方向的可以参考一下。</p>
+
+<p>一般而言，面试的方向无非就是语言基础，操作系统，网络，数据库，数据结构及算法。
+额外还有逻辑推理智力题相关的等等。</p>
+
+<p>在语言基础上，看的书有：《C++Primer》，《C程序设计语言》，《C语言参考手册》(参考用)，《深度探索C++对象模型》，《C++标准库》(参考用)，《Effective C++》以及 《STL源码剖析》(参考用)。
+忽的发现这一总结，自己看过的书还不少。当然这些书并不是完完整整全部看完的，毕竟一本《C++标准库》1000多页给我半年也不一定看完。
+基本上是相互参考着看的，反正都是关于C/C++的，肯定不少重复的地方，可以相互对照着理解。</p>
+
+<p>网络方向的书主要就三本：《TCP/IP 协议族》，《TCP/IP 详解 卷一》 以及 本科时网络的教材《计算机网络》谢希仁版的。
+虽说一般国内的教材都是比较烂的，完全可以扔掉的。但这本谢希仁的网络总体来说还是不错的。
+另外就是《TCP/IP 详解》虽然经典，但里边好多协议显然是过时了，一开始看的时候积累了好多疑惑。
+最后还是决定以《TCP/IP 协议族》这本为主来复习网络方向。</p>
+
+<p>操作系统则是《现代操作系统》以这本经典的教材为主了，当然也入手了圣经级的AUPE以及UNP，不过这套比较偏重编程，概念性的还是要靠《现代操作系统》。
+另外还有一本CASPP，把它放到操作系统下似乎有些不大合适，但这本书却是让人受益匪浅。不愧为价值比同等质量的金子更加值钱的书。</p>
+
+<p>数据结构以及算法则是一些大公司的一大杀器，像一些国际巨头更是以这个为主。
+然而这一块的准备并非一朝一夕之功，自己的水平只能处于临阵磨枪级别。
+这里主要看了《算法第四版》，弥补了一些基础的数据结构以及经典的算法。
+另外也买了牛客上左神的《直通BAT讲座》视频。令人激动是面试时却是遇到不少原题，物超所值。
+于是把左神的那本《程序员面试代码指南》也入手了。虽说校招已经结束了，但莫名的发现自己对刷题也有点兴趣，留着无聊的时候刷题用。
+自己也入手过网上一些其他大神出的刷题书籍，但终归是左神的这本更加良心一点。
+最后再推荐一本左神最热衷的《程序员面试金典》( 看清楚不是宝典那本 )，国外的一本神书，竟然在上边遇到好多面试的智力题，相见恨晚。</p>
+
+<p>至于数据库由于时间关系没怎么看了，而且个人感觉数据库光靠看书的话是远远不够的的，没有相关的优化经验以及项目经验基本上意味着
+数据库这块处于盲区。</p>
+
+<h1 id="section-2">校招面试经验</h1>
+
+<p>这里总结一下校招的面经，毕竟面过那么多家，参加过几十场面试，而且每场面试都详记在册。
+从春招实习到秋招内推一直到最后校招，几乎每场面试完都会把面试问题记录下来，当然不乏一些遗漏的问题以及遗漏的面试。
+这里总体来梳理一下。</p>
+
+<h2 id="section-3">阿里巴巴(2面) 失败</h2>
+
+<p>作为一个计算机出身的，肯定梦想着国内的BAT这三大巨头。
+而对于综合考虑地点环境，以及薪资待遇，A厂的条件算是Top了。地点杭州，待遇又属上等。
+最可惜的是，A厂是Java出身，C++想进A厂的话难度恐怕较大了。</p>
+
+<p>首先是实习内推。但是还是在实验室跑实验，突然接到一个杭州支付宝的电话，意识到难道这就是传说中的点面？
+然后就在毫无准备的前提下进行了人生的第一场面试。
+( 一开始电话里说我们来简单聊聊，我还天真以为谈天说地呢，谁知道聊聊就是面试啊 )</p>
+
+<p>阿里实习生内推电面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>讲一个拿得出手的项目</li>
+  <li>C/C++ 与Java的区别</li>
+  <li>你说C/C++较Java有性能优势，为什么？</li>
+  <li>从N个无序数中寻找Top-k个最小数( 经典海量数据 )?</li>
+  <li>Hashmap 的底层实现</li>
+  <li>Array与List的区别</li>
+  <li>进程与线程的区别</li>
+  <li>网络的七层协议</li>
+  <li>TCP与UDP的区别</li>
+  <li>TCP的三次握手与四次挥手</li>
+  <li>进程间调度算法</li>
+  <li>数据库索引的实现方式</li>
+  <li>Inner Join， Left Join 以及Right Join的区别</li>
+  <li>有什么问题</li>
+</ul>
+
+<p>由于当时处于裸面阶段，这些问题基本上没回答上多少，虽然现在看来很基础了。
+当时中途还跟面试官抱怨这些概念性的东西看了就知道，不看就不知道，没什么用。
+现在才体会到自己当时还是图样图森破。
+基础都不好，怎么指望你成神？
+不过好一点的是面试官人很Nice，并不会因为你啥都不会吐槽你鄙视你，而是一点点挖掘你的能力和潜力，
+基本上是去寻找你的闪光点，这样让我并没有感到太多的紧张。
+虽然第一场面试以失败告终，但由于面试官的Nice，反而给自己积累了不少的信心。</p>
+
+<p>接下来阿里内推没过系统自动进入了实习生的校招流程，然后参加笔试，收到到南京现场面的通知。</p>
+
+<p>阿里实习生校招现场面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>关于科研项目</li>
+  <li>关于文件服务器的项目</li>
+  <li>项目中有没有用到数据库？对数据库了解多少？</li>
+  <li>谈一谈数据库的3个范式</li>
+  <li>有没有用到其他的开源数据库</li>
+  <li>C++面向对象的三个特性</li>
+  <li>面向对象设计的基本原则</li>
+  <li>C++多态的实现方式</li>
+  <li>虚函数表是一个类一个还是一个对象一个？如果继承，子类与父类的虚函数表有何区别？虚函数表中可不可以存放非虚函数？</li>
+  <li>有没有用过typeid检查运行时类型？</li>
+  <li>模板中非类型参数与类型参数有什么区别？</li>
+  <li>STL中有那些容器？vector与deque有什么区别？</li>
+  <li>什么是智能指针？写一个模板的智能指针</li>
+  <li>Linux下/etc/下有那些配置文件，有什么作用？resolve.conf是用来做什么的。</li>
+  <li>如果修改Linux下网卡配置在哪修改？有没有用过iptable？</li>
+  <li>Linux有5个运行级别，你知道么？( Ps这里是面试官下的坑，实际有7个运行级别 )</li>
+  <li>内核态与用户态的区别？从用户态切换到内核态有哪几种方式？</li>
+  <li>数据结构有没有了解？</li>
+  <li>图有几种存储方式？邻接矩阵与邻接表存储结构的优缺点？什么时候用什么结构？</li>
+  <li>排序算法哪些是稳定排序？归并排序常用于哪里？</li>
+  <li>手写斐波那契数列？</li>
+  <li>为什么不用递归？递归有什么不好？那为什么不用inline来写递归呢？如何来避免递归？</li>
+  <li>有什么问题</li>
+</ul>
+
+<p>阿里现场面的时候是在一个大厅，一个面试官一个小桌，每个人被叫到号后就去对应的面试官那里。
+当时发现Java面试的大概有二三十个，然而C++只有四五个面试官。
+而且面试官年纪比较大，很有经验，自己所谓的包装的各种高大上的项目被他一层一层剥开，一种被透视到内心深处的感觉。
+虽然这次面试比第一次要好一些，回答上来百分之六七十，但最后还是挂了。
+阿里C++要求还是较大的。</p>
+
+<p>就这样，阿里的实习生内推跟校招都是一面挂掉。
+本想经过一番准备，再去向阿里重新发起挑战。
+后来7、8月非秋招内推则连面试机会都没给。后来问了阿里的学长，据说是简历的评估跟春招的面试成绩挂钩的。
+当时心凉了半截。春招阿里两次挂在一面上，因此秋招也就没有任何机会了。
+只能说与阿里无缘吧。</p>
+
+<h2 id="section-4">腾讯(6面) 失败</h2>
+
+<p>腾讯的流程跟阿里类似，也是参加了春招的实习招聘以及秋招。</p>
+
+<p>话说实习生内推的时候明明收到腾讯的内推短信，却没收到完善简历的链接，所以内推的机会给错过了。
+之后参加实习生春招的笔试，然后腾讯来合肥现场面试。</p>
+
+<p>腾讯实习生招聘现场一面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>项目里到的主要语言</li>
+  <li>项目中用到了Python，Python起的作用是什么</li>
+  <li>是否理解hadoop等大数据平台</li>
+  <li>项目的代码量在多少</li>
+  <li>C++指针与引用的区别？经常使用指针还是引用？</li>
+  <li>const在成员函数的位置，作用，如何保证成员变量的const？</li>
+  <li>C++虚析构函数的作用，如果析构函数不是析构函数有什么后果?</li>
+  <li>C++虚基类是什么？纯虚函数可不可以有实现？什么情况下会对纯虚函数进行实现？</li>
+  <li>C++中如何实现接口，接口与多继承的优劣</li>
+  <li>如何帮一个不懂电脑的女生找出电脑的问题(只能通过电话联系)</li>
+  <li>项目中用到网络通信的地方</li>
+  <li>TCP如何保证可靠传输</li>
+  <li>TCP的流量控制</li>
+  <li>IP分组传输以及重传等</li>
+  <li>假设项目中TCP客户端申请一个文件的读事件，而服务端找不到该文件，却返回一个成功信号，这种情况有没有可能？</li>
+  <li>项目里如何设计访问量过大，如何提升？</li>
+  <li>微信中附近的人的功能，其位置信息该如何存储？</li>
+  <li>操作系统页面管理是怎样的？页面大小一般多少？过大或过小会怎样？</li>
+  <li>进程请求资源死锁，如何在编程上防止死锁？</li>
+  <li>手写singleton。如何避免多线程同步问题？</li>
+  <li>实现一个singleton的基类，令其派生类都是singleton？( 利用template )</li>
+  <li>STL中容器的迭代器在什么情况下会失效？</li>
+</ul>
+
+<p>腾讯这次现场面是自己的第一次现场面试，要比阿里的现场面还要早。
+面试官看起来比较宅的那种，所以也比较严肃。
+整场面试回答上来百分之七八十，当时面试官都没说你有什么问题要问，感觉自己要跪。
+但当天晚上通过微信查状态发现已编程复试中，有些意外。
+不过二面时面试官没有到合肥，所以二面是电面的。</p>
+
+<p>腾讯实习生招聘电面二面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>C++虚函数的实现机制</li>
+  <li>如果基类的析构函数是非虚函数，会有什么后果</li>
+  <li>gdb调试core文件的参数是什么</li>
+  <li>有没有网络通信相关的项目</li>
+  <li>hash表中为了防止冲突过多常用素数，为什么？</li>
+  <li>stl中allocator adapter</li>
+  <li>vector中内存扩充方式怎样？为什么每次都有2被扩充？( 算法导论中平摊分析 )</li>
+  <li>vector与list的区别</li>
+  <li>static的作用</li>
+  <li>两个文件，一个是class A，一个是class B，如果A跟B相互引用，如何include？</li>
+  <li>有什么问题</li>
+</ul>
+
+<p>据说二面的面试官是以后工作的boss，那二面面试官应该是SNG的腾讯云部门的，人也很好，面试感觉回答上来百分之九十左右。
+果然，晚上面试状态就变了HR面了。</p>
+
+<p>HR面还是现场面。但腾讯的HR面不涉及任何技术，就没有记录。只是从 HR那里得知了自己的部门是腾讯云。</p>
+
+<p>本以为HR面都面过了，基本上没什么问题了吧。但后来却收到了要加面的消息，好吧，加面就加面吧。</p>
+
+<p>腾讯实习生招聘电面四面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>网络字节序与主机字节序的区别？为何要有这样的区别？</li>
+  <li>内存对齐，为什么要内存对齐</li>
+  <li>1G的内存可以装入2G的程序么？怎么装？</li>
+  <li>常见的页面置换算法？</li>
+  <li>用浏览器打开网页发生的全部事件？第二次打开这个网页呢？</li>
+  <li>循环与递归的区别</li>
+  <li>二叉树给出前序,中序求后序</li>
+  <li>墙上有一个插孔，提供无线的4孔插板，有28盏灯，至少需要多少插孔？280灯呢？</li>
+  <li>一个处理机时间分辨率是1s，单执行流，每秒系统运行一次run函数，现要求设计一个提供定时任务的函数addfunc( Xs, func)，可以设置在X时间运行函数func。提供系统API是gettime()来获取当前时间。</li>
+</ul>
+
+<p>这次面试不是太好，后来就没有然后了。
+虽说自己实习即便是过了也不能去，但毕竟拒offer跟被offer拒的感觉还是不一样的。
+而且这次是实习阶段离offer最近的一次。所谓看到希望的失望最是让人绝望。</p>
+
+<p>通过春招发现自己的不足吧。也体验了一遍大厂的面试流程。
+总体来说还是自己能力欠缺，尤其是项目经验方向。
+于是自己又花时间改了改补了补项目。
+也花时间调整了下简历。</p>
+
+<p>之后腾讯秋招内推，却发现成了TST专场了。虽然找人内推了，却一直没有消息。
+之后又是继续通过笔试来参加校招了。</p>
+
+<p>腾讯秋招现场一面：</p>
+
+<ul>
+  <li>用5分钟来介绍一个项目，你在项目中的职责以及获得的成绩</li>
+  <li>做题，面试官给了个小本，上边好多题目。int i; (!!i);是什么含义。</li>
+  <li>做题。关于unsigned int 与int相加截断问题</li>
+  <li>做题。int a = (((int * )0)+4);</li>
+  <li>做题。关于printf的缓冲区问题</li>
+  <li>C中引用跟指针的区别</li>
+  <li>Linux下如何检测内存泄露？如何检测程序crash？</li>
+  <li>gdb调试设断点？如何查看系统堆栈？</li>
+  <li>如何实现多态？</li>
+  <li>进程通信的方式有哪几种？那种的效率会更好？为什么？</li>
+  <li>Linux下swap区作用？</li>
+  <li>给4个瓶子11种粉末，只有一种溶解呈现蓝色，溶解需要两分钟。问多久能测出蓝色粉末？</li>
+  <li>写代码不用第三个变量交换两个变量值</li>
+  <li>字符串匹配，O(n+m)</li>
+  <li>给一个单链表如何判断有环？</li>
+  <li>8个抽屉有一份文件，其中8个抽屉都没文件的概率是20%，现打开一个抽屉发现没有文件，求剩下7个抽屉会有文件的概率。</li>
+</ul>
+
+<p>一面面试官人很好，面试完后直接就说面试通过了。之间还兴致勃勃的聊了个人爱好什么的，因为是早上第一个面试的么，毕竟心情还是比较不错的。</p>
+
+<p>因为腾讯秋招的进度跟百度差不多，所以一直担心的一件事发生了，腾讯的二面跟百度三面冲突了。一个是早上八点，一个是早上九点。
+显然腾讯的面完肯定赶不到百度那去。
+于是面试当天7点就赶到腾讯面试现场，想跟HR申请调整下面试时间。
+不过HR没遇到，倒是碰到一个面试官。跟他讲明情况后( 当然是以其他理由说明的，但看他的眼神感觉一直不相信我 )，面试官说他来给我面，就面半小时，给我留出时间。</p>
+
+<p>腾讯秋招现场二面：</p>
+
+<ul>
+  <li>做题。内存对齐，为什么要内存对其？</li>
+  <li>1G物理内存，malloc申请2G空间，可以么？为什么？</li>
+  <li>浏览器打开一个网页，说明一下这其中发生了什么事？</li>
+  <li>TCP与UDP区别？</li>
+  <li>HTTP 为什么要用TCP而不用UDP?</li>
+  <li>HTTP 报头以及状态码。</li>
+  <li>如果客户端keep-alive,服务端不支持keep-alive,连接是从客户端断开还是从服务端断开？为什么？</li>
+  <li>一个处理机时间分辨率是1s，单执行流，每秒系统运行一次run函数，现要求设计一个提供定时任务的函数addfunc( Xs, func)，可以设置在X时间运行函数func。提供系统API是gettime()来获取当前时间。</li>
+  <li>fun(){ int a; a=6; } 与fun(){ int a=5; a=6; }二者在二进制代码上有什么区别？若变量是static的呢？</li>
+  <li>一个函数rand可以等概论生成无符号整数，假定M的值是这样定义的，若rand产生的序列中只有一个r0=r1,则M=2；若有r0=r1=r2,则M=3；以此类推，求M的期望。</li>
+</ul>
+
+<p>整体面试自我感觉还行，基本没什么卡壳的，但最后还是挂在的二面上，只能跟腾讯说拜拜了。
+鱼与熊掌不可兼得吧。</p>
+
+<h2 id="offer">百度(7面) 已拿Offer</h2>
+
+<p>百度是实习的时候并没有投简历，而是在内推的时候投过一些简历。
+内推时总共经历过两个部门的4次面试。</p>
+
+<p>首先Web Data的知识图谱。</p>
+
+<p>百度知识图谱内推电面一面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>考虑一个Int64的整型。若计算一个数的各位数上的平方和，通过不断迭代最终得到1，则称这个数为有趣的数。现给定一个数，判断该数是否为有趣的数?若判断一个数组的数呢？</li>
+  <li>TCP与UDP的区别</li>
+  <li>项目中文件服务器如何支持断点续传？</li>
+  <li>用什么数据结构保存cookie</li>
+  <li>hashmap支持并发，如何上锁来保证锁粒度最小。</li>
+  <li>堆与栈的区别</li>
+  <li>析构函数为虚函数的作用。</li>
+  <li>普通类的析构函数对异常有什么要求？</li>
+  <li>有什么问题？</li>
+</ul>
+
+<p>百度知识图谱内推电面二面:</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>项目中如何用Python来处理数据?</li>
+  <li>有一个文件，有不同的属性列，如何将ID相同的Item整合到一起？</li>
+  <li>Python如果考虑多处理机。</li>
+  <li>简单介绍文件服务器的项目</li>
+  <li>TCP 流量控制</li>
+  <li>如何在main函数调用前处理一些事情</li>
+  <li>main函数前会有什么操作</li>
+  <li>考虑如何设计一个高并发量高吞吐量的服务器？如果是分布式的怎么设计？</li>
+  <li>扑克牌均分3堆，求大小王在同一堆的概率。</li>
+  <li>介绍自己科研项目</li>
+  <li>服务器中端口复用</li>
+  <li>程序中出bug，从哪些方面考虑找bug</li>
+</ul>
+
+<p>百度知识图谱内推电面三面:</p>
+
+<ul>
+  <li>前两面感觉如何？</li>
+  <li>项目如何用PY处理数据，是怎么处理的？</li>
+  <li>项目中规模如何？有没有多人合作的项目？</li>
+  <li>多人合作项目中个人职责是什么？工作量有多少？</li>
+  <li>有没有一些学一些新技术应用到实践中？</li>
+  <li>Traceroute如果路由动态改变了，会出现问题，如何克服该问题？</li>
+  <li>有没有算法角度的新技能？</li>
+  <li>有没有失败的项目？为什么会失败？考虑下失败的原因。</li>
+  <li>如果重新做失败的项目，会从哪方面考虑</li>
+  <li>项目中遇到哪些困难？如何解决？</li>
+  <li>你有什么问题？</li>
+</ul>
+
+<p>总体来讲，百度的面试难度是较高的，毕竟是三面技术面。第三面经理面偏技术与HR面结合的感觉。三面的时候感觉压力很大。
+之后发现挂在了三面上。问了下面试官，说自己达到校招的水平，但提前批还是差点火候。
+看来提前批应该是sp的概率会大些吧。</p>
+
+<p>接下来接到百度运维部门的电面：</p>
+
+<p>百度运维电面一面：</p>
+
+<ul>
+  <li>聊项目</li>
+  <li>C/C++static作用；static函数与非static函数区别</li>
+  <li>宏定义与const的区别？宏定义可以完全用const替换么？宏定义如何调试？</li>
+  <li>对设计模式有多少了解？</li>
+  <li>一个有n行的文件，随机选m行？如何选？</li>
+  <li>Linux查看文件的磁盘空间，监控进程cpu，内存使用率</li>
+  <li>ping的底层协议？ICMP处于7层的哪一层？</li>
+  <li>socket位于哪一层？socket编程的过程？</li>
+  <li>内核分几个部分？</li>
+  <li>OS同步与互斥的区别？</li>
+  <li>数据库中事物的原则</li>
+  <li>你所知道的最快的排序算法？</li>
+  <li>若在数据库底层进行排序,该如何设计排序算法？</li>
+</ul>
+
+<p>这场面试是面试最久的一次，历时将近100分钟，只因为卡在了概率题上，面试官给了好几次机会，说这题你说上来就给你过，然而最终还是没答上来。
+事后发现的确是很简单的一道题。只能惋惜了。</p>
+
+<p>接着参加百度的笔试，之后是合肥本地的现场面试。</p>
+
+<p>百度秋招现场一面：</p>
+
+<ul>
+  <li>手写vector删除元素，需要注意迭代器失效情况。</li>
+  <li>手写两个类，要体现构造，析构，拷贝构造，赋值，虚函数，重载函数等特点。</li>
+  <li>析构函数为什么为虚函数？</li>
+  <li>new跟malloc的区别？</li>
+  <li>free是如何识别free区域的</li>
+  <li>Linux的找到目录中cpp文件？如何找文件中一变量？</li>
+  <li>Linux检测内存泄露？</li>
+  <li>了解哪些开源项目？redis,mysql有多少了解？</li>
+  <li>n级台阶问题</li>
+  <li>手写代码，有序数组查找某个元素出现的次数</li>
+  <li>一致性哈希</li>
+</ul>
+
+<p>百度秋招现场二面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>如何判断一个图是否有环</li>
+  <li>讲一个你觉得很完美的代码或开源项目</li>
+  <li>traceroute有什么优势？</li>
+  <li>介绍一个比较完整的项目，画出流程图</li>
+  <li>STL中vector内存分配？如何从原内存拷贝的新内存？会调用构造函数么？</li>
+  <li>软件工程？</li>
+  <li>如何看待C++面向对象？与c有何区别？</li>
+  <li>面向对象设计原则？里氏替换是指什么？</li>
+  <li>多态是如何实现的？画一下虚指针与虚函数表，如果多继承，虚函数表怎么画？虚指针是对象成员变量么？在什么时候初始化？</li>
+  <li>讲一下TCP中拥塞控制</li>
+  <li>你还有什么问题</li>
+</ul>
+
+<p>二面面试官人很Nice，过去的时候还给我倒了一杯水，很客气，也很友善，看起来年级也不大。</p>
+
+<p>百度秋招现场三面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>析构函数为什么要虚函数？</li>
+  <li>C++中强制类型转换？Dynamic_cast的作用</li>
+  <li>多态是如何实现的？</li>
+  <li>C++中构造函数发生异常会怎样？</li>
+  <li>C++中构造函数中this指针暴露了会有什么后果？</li>
+  <li>针对简历详细询问每个项目的细节</li>
+  <li>介绍自己的部门( 企业安全方向 )</li>
+  <li>你还有什么问题</li>
+</ul>
+
+<p>三面也是技术面，而且面试官就是之后的boss，做的是企业安全方向，虽不是百度的核心部门大搜，但这一方向还是很有前景的。
+当时面完就感觉基本差不多了。
+后来在十一前收到了面试通过的信息，整个秋招算是比较圆满了吧。</p>
+
+<h2 id="sp-offer">华为 SP 已拿Offer</h2>
+
+<p>华为则是参加2016的软件精英挑战赛获了赛区二等奖，之后参加的合肥地区的软件精英挑战赛专场的面试，当天面完就跟我说通过了。
+但正式offer也是十一前才下来的，算下来，华为这offer基本是面的最早，下来的最晚了。</p>
+
+<h2 id="section-5">深信服-星云计划 失败</h2>
+
+<p>深信服的星云计划据说待遇也很高。</p>
+
+<ul>
+  <li>聊项目</li>
+  <li>对于N个点的网络，求任意两点的最短路径的复杂的</li>
+  <li>C语言局部变量与全局变量</li>
+  <li>对于大的数组，如何使用局部变量？</li>
+  <li>不同文件中如何引用外部变量？</li>
+  <li>递归时栈溢出怎么办？任何递归都可以用非递归实现么？</li>
+  <li>存储通讯录信息：姓名，手机，邮箱，简介，如何能实现快速查询以及部分查询？</li>
+  <li>Linux编程中的锁有哪些？</li>
+  <li>自旋锁与互斥锁区别</li>
+  <li>进程IPC方式</li>
+  <li>socket与共享内存用于什么情况？</li>
+  <li>卫星网络中网络带宽足够，但丢包率高，导致网页打不开，通信质量差，什么原因？如何解决？</li>
+  <li>Dijkstra单源最短路径</li>
+</ul>
+
+<p>深信服这场也跪在了算法上，面试官说只要你回答上这个问题就给你过，但还是没想起来Dijkstra的具体内容。
+无奈。</p>
+
+<h2 id="cvte-">CVTE提前批 失败</h2>
+
+<ul>
+  <li>自我介绍</li>
+  <li>C++多态实现</li>
+  <li>虚函数表的位置</li>
+  <li>C++中new跟malloc的区别</li>
+  <li>堆与栈的区别</li>
+  <li>Python三种内置数据类型</li>
+  <li>shell后台运行</li>
+  <li>STL中容器</li>
+  <li>vector的内存释放</li>
+  <li>shell中调用脚本是通过线程还是进程</li>
+</ul>
+
+<p>CVTE面试还是比较简单的，然而还是挂了，主要是因为项目经验缺乏的问题。
+面试官对科研项目不感兴趣，自己包装的服务器又是烂大街，最后评价说基础很好但项目经验不足。</p>
+
+<h2 id="wps-">金山WPS 失败</h2>
+
+<ul>
+  <li>自我介绍</li>
+  <li>项目</li>
+  <li>C++中虚函数的作用</li>
+  <li>那些函数不能是虚函数</li>
+  <li>析构函数可不可以为虚函数，为什么</li>
+  <li>const 引用，为什么用const引用</li>
+  <li>指针与引用的区别</li>
+  <li>static 的用法，每种用法的作用域以及生存周期</li>
+  <li>模板类声明跟定义放在两个不同文件中可以么？为什么？</li>
+  <li>快排的思路</li>
+  <li>查找的复杂度</li>
+  <li>STL中list跟map的不同应用场景</li>
+  <li>红黑树查找、删除、增加的复杂度，为什么？</li>
+  <li>介绍一个项目，遇到的困难，如何解决？</li>
+</ul>
+
+<p>评价：基础很好，项目经验不足。然后果不其然又给挂了。</p>
+
+<h2 id="offer-1">多益网络-内推 已拿Offer</h2>
+
+<p>多益总共一轮笔试，一轮视频面试。</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>介绍项目</li>
+  <li>如果有比主管更好的Idea，你会怎么办？</li>
+  <li>怎么看待加班</li>
+  <li>vector如何扩容</li>
+  <li>怎么理解线程安全</li>
+  <li>如果有一个很难重现的bug，如何处理（可能运行好多次都难以重现）</li>
+  <li>设计一个爬虫爬网页的话是DFS好还是BFS好，或者有没有更好的策略</li>
+  <li>关于一些网盘中，服务商如何提高服务器存储利用率</li>
+  <li>数字签名中伪造问题</li>
+  <li>地图软件中实时路况的实现策略</li>
+  <li>有什么想问的。</li>
+</ul>
+
+<h2 id="offer-2">科大讯飞-大数据研究院 已拿Offer</h2>
+
+<p>因为地处合肥，所以讯飞对我们学校的学生还是比较认可的。
+整个面试过程也比较随意，总共就经历了一面面试，包含了技术+HR的因素。
+但没有记录，所以面试内容也就不记得了。</p>
+
+<h2 id="section-6">远景能源-提前批 放弃</h2>
+
+<ul>
+  <li>C++如何申请释放内存？与malloc/free的区别</li>
+  <li>实现一个strlen，不用循环怎么做？</li>
+  <li>C++面向对象的作用，特点</li>
+  <li>若析构函数不声明为虚函数，会有什么后果？为什么？</li>
+  <li>fork 一个新进程与建立一个线程的区别。</li>
+  <li>gdb 调试查看栈的命令</li>
+</ul>
+
+<p>远景的提前批很早，八月就面试了，一直没消息，一开始以为是跪了。后来九月收到现场面试的通知，才知道八月的面试是过了。
+后来因为一些事而没参加后续面试，自己主动放弃了。</p>
+
+<h2 id="section-7">知乎 岗位不匹</h2>
+
+<ul>
+  <li>自我介绍</li>
+  <li>有没有用过Python的Adapter 适配器</li>
+  <li>对Java有多少了解</li>
+  <li>C++中多继承与Java单继承的优缺点。Java如何体现多继承</li>
+  <li>线程与进程区别与联系？为什么进程切换代价比线程高</li>
+  <li>有没有听过协程</li>
+  <li>TCP的建立连接与释放过程？为什么最后需要2个MSL时间关闭</li>
+  <li>数据库了解么？事物的四个原则？索引是如何事项的。</li>
+  <li>知乎话题之间子话题跟父话题之间的数据结构存储你是怎样？如何判断新加入的节点是否有环？</li>
+  <li>HashMap怎么实现？如何解决冲突？hashmap是如何扩容的？</li>
+  <li>怎么理解面向对象？有什么优点？</li>
+  <li>用过拿些web框架？</li>
+  <li>了解哪些攻击手段？</li>
+</ul>
+
+<p>知乎总体来说岗位偏Python跟Java，面试官也是这方向的，于是最后扑街了。</p>
+
+<h2 id="section-8">滴滴出行 岗位不批</h2>
+
+<p>滴滴投简历时投了个系统工程师，一开始不知道是做什么方向。
+后来面试的时候才发现完全不是研发。
+面试偏运维方向，问好多分布式，虚拟化，Docker等问题，真个是大眼瞪小眼了。
+面试这么多，从来没有这么尴尬的时刻，什么都不会，后来还是我打破的尴尬的局面，跟面试官说抱歉投错岗位了。</p>
+
+<p>后来收到滴滴现场面试的通知，不知道什么鬼，难道是给调岗位了？然而自己却忘记去了。。。</p>
+
+<h2 id="hr">涂鸦移动 被HR挂了</h2>
+
+<p>涂鸦移动笔试是发给你两道编程题，一天内写完后再发给HR就OK，都比较基础。</p>
+
+<p>涂鸦一面现场面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>多态</li>
+  <li>手写螺旋矩阵打印</li>
+  <li>象棋中马走日从A点到B点的最短路径走法</li>
+</ul>
+
+<p>涂鸦二面电面：</p>
+
+<ul>
+  <li>自我介绍</li>
+  <li>做过什么开源项目</li>
+  <li>git</li>
+  <li>长为N的数组，元素范围是0-N-1，其中只有一个数是重复的，找出这个重复元素</li>
+  <li>矩阵从左上角向右下角走，每次只能向右或者向下移动，求经过最大的路径</li>
+  <li>数n可以由完全平方数构成，求最小的完全平方数构成数。</li>
+  <li>对算法有多少了解？算法导论看多没？</li>
+  <li>堆排序</li>
+  <li>两个栈实现一个队列</li>
+</ul>
+
+<p>之后,几个星期后HR加QQ说技术面通过了，然后问你有多少offer，待遇多少，实话实说了之后，就没然后了。
+周围有同学收到的涂鸦的Offer，但待遇很低，所以猜测是被HR给挂了。</p>
+
+<h2 id="section-9">网宿科技 待定</h2>
+
+<p>网宿科技也是内推时投的简历，但面试的时间较晚，在九月中旬左右。先是一面HR面。之后是一面技术面。</p>
+
+<p>网宿科技技术面电面：</p>
+
+<ul>
+  <li>Linux环境变量的配置</li>
+  <li>Linux定时任务</li>
+  <li>设计一个QQ群，如何存储群里的发送消息？</li>
+  <li>两个很大的文件，去匹配相同的数据行</li>
+  <li>Linux的重定向</li>
+  <li>如果有很多很大的对象，如何用容器存储？</li>
+  <li>gdb 如何调试</li>
+  <li>STL中vector， list， map的区别</li>
+  <li>有什么问题。</li>
+</ul>
+
+<p>网宿面完后一直没消息，开始以为是跪了，前两天收到消息说要成绩单照片，所以现在也不清楚具体是怎样。</p>
+
+<h2 id="section-10">招银 一面</h2>
+
+<p>招银的笔试比较简单，编程题是完形填空。</p>
+
+<p>招银电面一面：</p>
+
+<ul>
+  <li>介绍一个项目</li>
+  <li>项目遇到什么困难</li>
+  <li>C++用过什么容器</li>
+  <li>STL中如何计算迭代器距离</li>
+  <li>C中static的用法</li>
+  <li>TCP,UDP的区别</li>
+  <li>你有什么优缺点</li>
+</ul>
+
+<p>面试大概二十分钟左右，面试官人很好，一开始我在外边，给我调整了两次时间。最后官评价说挺满意的，说两周左右有反馈。
+后来收到完善简历的消息，貌似是十月下旬会有现场面试。</p>
+
+<h2 id="section-11">金蝶 失败</h2>
+
+<p>差点把金蝶忘记了。金蝶是一轮笔试加一轮视频面试。
+值得吐槽的是，金蝶的面试总共不到10分钟，除了一个问题“你对运维有多少了解”之后，一半的时间是面试官在讲金蝶很牛逼，一半的时间是我在问问题。
+后来就没有后来了。
+着实让人无语。</p>
+
+<h2 id="section-12">总结</h2>
+
+<p>总结下，BAT这种大厂的面试还是很享受的，整个面试过程面试官是在不断挖掘你的闪光点，即使一开始你并不知道问题的最优解，但他也会一步步引导你，拓展你的思路。
+而且大厂并不要求你有多丰富的项目经验，而是看你能挖掘出多大潜力，因为这些大厂还是很愿意培养人才的。而对于其他的一些小公司，看中的可能更是项目经验和
+实习经历了。毕竟这些公司资金有限，他们所需要的人希望一出来就能接手项目来产生价值的，而且这些公司员工流动较大，花大价钱培养出人了没两天就跳走了，不如
+直接就招聘项目经验丰富的能直接上手的人才。</p>
+
+<p>另归纳下常考的知识点：</p>
+
+<p>C/C++方向：</p>
+
+<ul>
+  <li>指针与引用的区别</li>
+  <li>const 关键字与static关键字</li>
+  <li>malloc 与 new区别</li>
+  <li>堆与栈区别</li>
+  <li>多态，虚指针，虚函数表。</li>
+  <li>析构函数为什么是虚函数。</li>
+  <li>STL中容器</li>
+</ul>
+
+<p>网络方向：</p>
+
+<ul>
+  <li>TCP UDP区别</li>
+  <li>TCP三次握手四次挥手</li>
+  <li>TCP流量控制拥塞控制</li>
+</ul>
+
+<p>操作系统方向：</p>
+
+<ul>
+  <li>进程调度算法</li>
+  <li>进程线程区别</li>
+  <li>进程IPC方式</li>
+  <li>进程同步与互斥</li>
+  <li>页面调度算法</li>
+</ul>
+
+<p>数据结构与算法方向：</p>
+
+<ul>
+  <li>排序算法</li>
+  <li>查找算法</li>
+  <li>字符串，矩阵算法</li>
+  <li>哈希表</li>
+  <li>堆结构</li>
+  <li>海量数据处理</li>
+  <li>这块可以参考牛客网左神视频</li>
+</ul>
+
+<h1 id="section-13">写在最后</h1>
+
+<p>折腾一天，总算把零零散散的面经总结了一些。
+话说这两个月忙着找工作也没什么机会来更新博客，接下来博客还是要更的。
+做人要有始有终才是对的。</p>
+
+<p>好了，就这样吧。</p>
+
+
+        <hr>
+        <p>04 Oct 2016</p>
+        
+            
+                
+                    <small><em>Post by: MetaCoder </em></small>
+                
+            
+        
+</article>
+
+
+<div class="pagination clearfix">
+    <div class="left">
+        
+        <span class="disabled">‹ Next post</span>
+        
+    </div>
+    <div class="right">
+        
+        <a href="/c/c++/2016/05/26/Look-Inside-Memory-Leak/">Previous post ›</a>
+        
+    </div>
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'foocoder'; // Required - Replace '<example>' with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+            <script>
+                $("article").fitVids();
+                $('article p').each(function(i){
+                    if (($(this).find('img').length) && (!$.trim($(this).text()).length))  {
+                        $(this).addClass('img-only');
+                    }
+                    if ($.trim($(this).text()).length - $.trim($(this).find('small').text()).length == 0 && ($(this).find('img').length)){
+                        $(this).removeClass('img-only');
+                        $(this).addClass('img-with-source');
+                    }
+                });
+            </script>
+            <!-- FancyBox -->
+            <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="all" />
+            <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+            <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+            <script>
+            // 给图片添加链接
+            $(document).ready(function() {
+              $('.img-with-source img,.img-only img').each(function () {
+                var $image = $(this);
+                var $imageWrapLink = $image.parent('a');
+
+                if ($imageWrapLink.size() < 1) {
+                  $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
+                }
+                $imageWrapLink.addClass('fancybox');
+                if ($image.attr("alt")) {
+                  $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("alt") + '</span></div>');
+                  $imageWrapLink.attr("title",$image.attr("alt")); 
+                };
+              });
+            });
+            // fancybox
+            $(".fancybox").fancybox({
+              openEffect    : 'fade',
+              closeEffect   : 'fade',
+              helpers: {
+                overlay: {
+                  locked: false
+                }
+              }
+            });
+            </script>
+        </div>
+        <footer>
+  <div class="inner">
+    <p>Copyright © MetaCoder 2014~2016 </br> Powered by Jekyll</p>
+  </div>
+</footer>
+
+        
+        
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?93c048bb9273a232e5e814272f1409b7";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+        
+    </body>
+</html>

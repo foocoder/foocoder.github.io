@@ -476,8 +476,10 @@ Ps. 每次运行时会将其余部分注释掉，只测试本部分的数据内�
 这些存放指针的内存却被回收了，从而导致了内存泄露。</p>
 
 <p>另外，这个程序为什么会<code class="highlighter-rouge">segment fault</code>呢？
-这是由于对于g++来讲，<code class="highlighter-rouge">new[]</code>出的内存第一个位置放的是数组长度，而只有<code class="highlighter-rouge">delete[]</code>才能读懂这种模型，<code class="highlighter-rouge">delete</code>的话会直接将第一个
-位置当作object的起始位置来处理，这样的话导致的模型不匹配处理出问题。</p>
+这是由于对于g++来讲，<code class="highlighter-rouge">new[]</code>出的内存第一个位置放的是数组长度，所以真正使用的内存的起始位置是在<code class="highlighter-rouge">new[]</code>得到的指针后边8字节处，
+而只有<code class="highlighter-rouge">delete[]</code>才能读懂这种模型，它会将指针向前回退8个字节，然后将指针传给<code class="highlighter-rouge">free</code>， 之后<code class="highlighter-rouge">free</code>会继续回退8字节来查看该内存块的信息。
+但是<code class="highlighter-rouge">delete</code>的话只能将当前位置的指针传给<code class="highlighter-rouge">free</code>，<code class="highlighter-rouge">free</code>通过回退8字节后的位置实际上是数组的长度信息，而此时由于<code class="highlighter-rouge">free</code>获取不到有用的
+内存信息从而产生<code class="highlighter-rouge">segment fault</code>的错误。</p>
 
         <hr>
         <p>26 May 2016</p>
@@ -494,7 +496,7 @@ Ps. 每次运行时会将其余部分注释掉，只测试本部分的数据内�
 <div class="pagination clearfix">
     <div class="left">
         
-        <span class="disabled">‹ Next post</span>
+        <a href="/%E9%9A%8F%E6%84%9F/2016/10/04/%E6%89%BE%E5%B7%A5%E4%BD%9C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">‹ Next post</a>
         
     </div>
     <div class="right">
